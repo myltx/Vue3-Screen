@@ -54,5 +54,12 @@
       text-align: right;
       font-style: normal;
     }
+    .avatar {
+      width: 32px !important;
+      height: 32px;
+      max-width: 32px !important;
+      border-radius: 50%;
+      cursor: pointer;
+    }
   }
 }

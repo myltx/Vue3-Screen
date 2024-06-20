@@ -1,5 +1,8 @@
 <script setup lang="ts">
+  import { SettingOutlined } from '@ant-design/icons-vue';
   import { getDate } from '@/utils';
+  import { useSettingStore } from '@/stores';
+  const { setSettingShow } = useSettingStore();
 
   const props = defineProps({
     title: {
@@ -16,10 +19,22 @@
 <template>
   <div class="header-container">
     <div class="title"> {{ title }} </div>
-    <div class="other">
+    <a-space class="other">
       <div class="date">{{ getDate() }}</div>
       <div class="time">{{ time }}</div>
-    </div>
+      <a-avatar size="large">
+        <img src="@/assets/images/header/avatar.gif" alt="" class="avatar" />
+      </a-avatar>
+      <SettingOutlined
+        :style="{
+          color: '#fff',
+          fontSize: '20px',
+          cursor: 'pointer',
+          marginBottom: '5px',
+        }"
+        @click="setSettingShow(true)"
+      />
+    </a-space>
   </div>
 </template>
 

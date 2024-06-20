@@ -47,9 +47,11 @@ export default defineConfig(({ command, mode }: ConfigEnv): UserConfig => {
         extensions: ['vue', 'md'],
         dts: 'src/components.d.ts',
         include: [/\.vue$/, /\.vue\?vue/, /\.md$/],
-        resolvers: [AntDesignVueResolver({
-          importStyle: false
-        })],
+        resolvers: [
+          AntDesignVueResolver({
+            importStyle: false,
+          }),
+        ],
       }),
       UnoCSS({
         // configFile: "../my-uno.config.ts",

@@ -1,3 +1,3 @@
 import MessageContent from './index.vue';
 
-export default MessageContent ;
+export default MessageContent;

@@ -27,6 +27,18 @@ const routes: Array<RouteRecordRaw> = [
     name: 'Cockpit',
     component: () => import('@/views/cockpit/index.vue'),
   },
+  {
+    path: '/dataConfig',
+    name: 'DataConfig',
+    redirect: '/dataConfig/index',
+    children: [
+      {
+        path: '/dataConfig/index',
+        name: 'DataConfigIndex',
+        component: () => import('@/views/data/index.vue'),
+      },
+    ],
+  },
 ];
 const router = createRouter({
   history: createWebHashHistory(import.meta.env.BASE_URL),
