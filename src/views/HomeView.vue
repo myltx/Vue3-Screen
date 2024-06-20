@@ -1,16 +1,15 @@
 <script setup lang="ts">
-import { ref } from "vue";
-import { RouterView } from "vue-router";
-import ScaleScreen from "@/components/scale-screen";
-import Headers from "./header.vue";
-import Setting from "./setting.vue";
-import { useSettingStore } from "@/stores/index";
-import { storeToRefs } from "pinia";
-import MessageContent from "@/components/Plugins/MessageContent";
+  import { RouterView } from 'vue-router';
+  import ScaleScreen from '@/components/scale-screen';
+  import Headers from './header.vue';
+  import Setting from './setting.vue';
+  import { useSettingStore } from '@/stores/index';
+  import { storeToRefs } from 'pinia';
+  import MessageContent from '@/components/Plugins/MessageContent';
 
-const settingStore = useSettingStore();
-const { isScale } = storeToRefs(settingStore);
-const wrapperStyle = {};
+  const settingStore = useSettingStore();
+  const { isScale } = storeToRefs(settingStore);
+  const wrapperStyle = {};
 </script>
 
 <template>
@@ -35,13 +34,13 @@ const wrapperStyle = {};
   <Setting />
 </template>
 <style lang="scss" scoped>
-.content_wrap {
-  width: 100%;
-  height: 100%;
-  padding: 16px 16px 16px 16px;
-  box-sizing: border-box;
-  background-image: url("@/assets/img/pageBg.png");
-  background-size: cover;
-  background-position: center center;
-}
+  .content_wrap {
+    width: 100%;
+    height: 100%;
+    padding: 16px 16px 16px 16px;
+    box-sizing: border-box;
+    background-image: url('@/assets/img/pageBg.png');
+    background-size: cover;
+    background-position: center center;
+  }
 </style>
