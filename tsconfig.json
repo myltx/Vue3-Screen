@@ -18,7 +18,6 @@
     "types": [
       "node",
       "vite/client",
-      "element-plus/global"
     ],
     "paths": {
       "@/*": [

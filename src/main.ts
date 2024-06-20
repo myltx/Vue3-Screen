@@ -12,6 +12,8 @@ import "@unocss/reset/tailwind-compat.css";
 // 引入 unocss
 import "virtual:uno.css";
 
+import 'ant-design-vue/dist/reset.css';
+
 import { registerEcharts } from "@/plugins/echarts";
 //不使用mock 请注释掉
 import { mockXHR } from "@/mock/index";

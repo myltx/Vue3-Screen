@@ -4,9 +4,8 @@ import vue from '@vitejs/plugin-vue';
 import { resolve } from 'path';
 import AutoImport from 'unplugin-auto-import/vite';
 import Components from 'unplugin-vue-components/vite';
-import { ElementPlusResolver } from 'unplugin-vue-components/resolvers';
+import { AntDesignVueResolver } from 'unplugin-vue-components/resolvers';
 //https://github.com/element-plus/unplugin-element-plus/blob/HEAD/README.zh-CN.md
-import ElementPlus from 'unplugin-element-plus/vite';
 // vite.config.ts
 import UnoCSS from 'unocss/vite';
 
@@ -18,7 +17,6 @@ export default defineConfig(({ command, mode }: ConfigEnv): UserConfig => {
       vue(),
       AutoImport({
         dts: true, // or a custom path
-        resolvers: [ElementPlusResolver()],
         // global imports to register
         imports: [
           // presets
@@ -49,10 +47,9 @@ export default defineConfig(({ command, mode }: ConfigEnv): UserConfig => {
         extensions: ['vue', 'md'],
         dts: 'src/components.d.ts',
         include: [/\.vue$/, /\.vue\?vue/, /\.md$/],
-        resolvers: [ElementPlusResolver()],
-      }),
-      ElementPlus({
-        // useSource: true
+        resolvers: [AntDesignVueResolver({
+          importStyle: false
+        })],
       }),
       UnoCSS({
         // configFile: "../my-uno.config.ts",
