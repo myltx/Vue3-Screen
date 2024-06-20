@@ -5,9 +5,12 @@
   };
 </script>
 <template>
-  <div>
-    <a-button @click="goBack">返回</a-button>
-  </div>
+  <a-page-header
+    style="border: 1px solid rgb(235, 237, 240)"
+    title="数据配置"
+    sub-title="在这里配置大屏展示需要的数据内容"
+    @back="goBack"
+  />
 </template>
 
 <style scoped></style>
