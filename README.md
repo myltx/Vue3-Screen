@@ -6,15 +6,11 @@ Vue3+vite版本驾驶舱，
 
 #### 样式
 
-进行微调，整体看着更加美观
-
 - 项目需要全屏展示（按 F11）。
 
 - 项目部分区域使用了全局注册方式，增加了打包体积，在实际运用中请使用 **按需引入**。
 
 - 项目环境：Vite、Echarts、Npm、Node，axios,mock,vue3。
-
-- 请拉取 master 分支的代码，其余分支是开发分支。
 
 - 在项目public目录下存放地图数据合集，根据地市编存放。
 
@@ -26,6 +22,8 @@ Vue3+vite版本驾驶舱，
 4. [axios官网](https://axios-http.com/)
 5. [unocss](https://unocss.dev/)
 6. [unocss语法](https://unocss.dev/interactive/)
+7. [unplugin-auto-import](https://github.com/unplugin/unplugin-auto-import)
+8. [unplugin-vue-components](https://github.com/unplugin/unplugin-vue-components)
 
 ### 采用自适应组件方式，
 
@@ -276,3 +274,7 @@ isSouthChinaSea:false,//默认不显示南海，改为true可显示南海
 - [ ] loading
 - [ ] 自动登录的中间页
 - [ ] 弹框
+- [ ] login
+- [ ] map components
+- [ ] setting data function
+

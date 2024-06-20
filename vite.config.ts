@@ -1,14 +1,14 @@
-import type { UserConfig, ConfigEnv } from "vite";
-import { defineConfig } from "vite";
-import vue from "@vitejs/plugin-vue";
-import { resolve } from "path";
-import AutoImport from "unplugin-auto-import/vite";
-import Components from "unplugin-vue-components/vite";
-import { ElementPlusResolver } from "unplugin-vue-components/resolvers";
+import type { UserConfig, ConfigEnv } from 'vite';
+import { defineConfig } from 'vite';
+import vue from '@vitejs/plugin-vue';
+import { resolve } from 'path';
+import AutoImport from 'unplugin-auto-import/vite';
+import Components from 'unplugin-vue-components/vite';
+import { ElementPlusResolver } from 'unplugin-vue-components/resolvers';
 //https://github.com/element-plus/unplugin-element-plus/blob/HEAD/README.zh-CN.md
-import ElementPlus from "unplugin-element-plus/vite";
+import ElementPlus from 'unplugin-element-plus/vite';
 // vite.config.ts
-import UnoCSS from "unocss/vite";
+import UnoCSS from 'unocss/vite';
 
 export default defineConfig(({ command, mode }: ConfigEnv): UserConfig => {
   // const env = loadEnv(mode, process.cwd(), '')
@@ -17,9 +17,38 @@ export default defineConfig(({ command, mode }: ConfigEnv): UserConfig => {
     plugins: [
       vue(),
       AutoImport({
+        dts: true, // or a custom path
         resolvers: [ElementPlusResolver()],
+        // global imports to register
+        imports: [
+          // presets
+          'vue',
+          'vue-router',
+          // custom
+          {
+            '@vueuse/core': [
+              // named imports
+              'useMouse', // import { useMouse } from '@vueuse/core',
+              'useDark', // import { useDark } from '@vueuse/core',
+              'useToggle',
+            ],
+            axios: [
+              // default imports
+              ['default', 'axios'], // import { default as axios } from 'axios',
+            ],
+          },
+          // example type import
+          {
+            from: 'vue-router',
+            imports: ['RouteLocationRaw'],
+            type: true,
+          },
+        ],
       }),
       Components({
+        extensions: ['vue', 'md'],
+        dts: 'src/components.d.ts',
+        include: [/\.vue$/, /\.vue\?vue/, /\.md$/],
         resolvers: [ElementPlusResolver()],
       }),
       ElementPlus({
@@ -29,10 +58,10 @@ export default defineConfig(({ command, mode }: ConfigEnv): UserConfig => {
         // configFile: "../my-uno.config.ts",
       }),
     ],
-    publicDir: "public",
-    base: "./",
+    publicDir: 'public',
+    base: './',
     server: {
-      host: "0.0.0.0",
+      host: '0.0.0.0',
       port: 8112,
       open: false,
       strictPort: false,
@@ -40,9 +69,9 @@ export default defineConfig(({ command, mode }: ConfigEnv): UserConfig => {
     },
     resolve: {
       alias: {
-        "@": resolve(__dirname, "./src"),
-        components: resolve(__dirname, "./src/components"),
-        api: resolve(__dirname, "./src/api"),
+        '@': resolve(__dirname, './src'),
+        components: resolve(__dirname, './src/components'),
+        api: resolve(__dirname, './src/api'),
       },
     },
     css: {
@@ -55,7 +84,7 @@ export default defineConfig(({ command, mode }: ConfigEnv): UserConfig => {
       },
     },
     build: {
-      outDir: "dist",
+      outDir: 'dist',
     },
   };
 });
