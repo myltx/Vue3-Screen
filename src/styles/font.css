@@ -1,0 +1,62 @@
+@font-face {
+  font-family: "星汉等宽";
+  src: url('~@/assets/font/星汉等宽.ttf');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Helvetica-Narrow";
+  src: url('~@/assets/font/Helvetica-Narrow.ttf');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "TRENDS";
+  src: url('~@/assets/font/SHISHANGZHONGHEIJIANTI.TTF');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'ShiShangZhongHeiJianTi';
+  src: url('~@/assets/font/SHISHANGZHONGHEIJIANTI.TTF');
+}
+@font-face {
+  font-family: 'Alibaba-PuHuiTi-M';
+  src: url('~@/assets/font/AlibabaPuHuiTi-2-65-Medium.ttf');
+  src: url('~@/assets/font/AlibabaPuHuiTi-2-65-Medium.otf');
+}
+@font-face {
+  font-family: 'Alibaba-PuHuiTi-T';
+  src: url('~@/assets/font/AlibabaPuHuiTi-2-35-Thin.ttf');
+  src: url('~@/assets/font/AlibabaPuHuiTi-2-35-Thin.otf');
+}
+@font-face {
+  font-family: 'YouSheBiaoTiHei';
+  src: url('~@/assets/font/YouSheBiaoTiHei.ttf');
+}
+@font-face {
+  font-family: 'yejingshuzi';
+  src: url('~@/assets/font/液晶数字字体.TTF');
+}
+@font-face {
+  font-family: 'PangMenZhengDao-3';
+  src: url('~@/assets/font/庞门正道.ttf');
+}
+
+@font-face {
+  font-family: 'SourceHanSansCN-Bold';
+  src: url('~@/assets/font/SourceHanSansCN-Bold.otf');
+}
+
+@font-face {
+  font-family: 'lianmengqiyilushuaizhengruiheiti';
+  src: url('~@/assets/font/LianMengQiYiLuShuaiZhengRuiHeiTi-2.ttf');
+}
+
+@font-face {
+  font-family: 'Oswald';
+  src: url('~@/assets/font/Oswald-Regular.ttf');
+}
