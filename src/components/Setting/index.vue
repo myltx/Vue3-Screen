@@ -17,20 +17,20 @@
     rightBottomRadio.value = indexConfig.value.rightBottomSwiper;
   };
   init();
-  const handleClose = () => {};
+  // const handleClose = () => {};
 
-  const cancelClick = () => {
-    settingStore.setSettingShow(false);
-  };
+  // const cancelClick = () => {
+  //   settingStore.setSettingShow(false);
+  // };
 
-  const confirmClick = () => {};
+  // const confirmClick = () => {};
   const isScaleChange = () => {
     settingStore.setIsScale(isScaleRadio.value);
   };
-  const radiochange = (blag: boolean) => {
-    settingStore.setIsScale(blag);
-    // this.$store.commit('setting/updateSwiper', { val, type })
-  };
+  // const radiochange = (blag: boolean) => {
+  //   settingStore.setIsScale(blag);
+  //   // this.$store.commit('setting/updateSwiper', { val, type })
+  // };
   const indexRadioChange = () => {
     settingStore.setIndexConfig({
       leftBottomSwiper: leftBottomRadio.value, //左轮播
@@ -87,7 +87,7 @@
       <div class="setting_item mt-20px">
         <a-space>
           <a-button @click="go('/dataConfig')">数据配置</a-button>
-          <a-button @click="go('/dataConfig/excelToJson')">ExCelToJson</a-button>
+          <!-- <a-button @click="go('/dataConfig/excelToJson')">ExCelToJson</a-button> -->
         </a-space>
       </div>
     </template>

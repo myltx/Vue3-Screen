@@ -3,8 +3,8 @@
     v-model:value="code"
     :options="cmOptions"
     border
-    placeholder="test placeholder"
-    :height="200"
+    placeholder="请输入"
+    :height="'80vh'"
   />
 </template>
 
@@ -21,15 +21,23 @@
   //   // theme
   import 'codemirror/theme/dracula.css';
 
+  const props = defineProps({
+    code: {
+      type: String,
+      default: '',
+    },
+  });
+  console.log(props.code, 'props');
+  const { code } = toRaw(props);
   const cmOptions = {
-    mode: 'text/javascript', // Language mode
+    mode: 'javascript', // Language mode
     theme: 'dracula', // Theme
   };
 
-  const code = ref(`
-      var i = 0;
-      for (; i < 9; i++) {
-	console.log(i);
-	// more statements
-      }`);
+  watch(
+    () => props.code,
+    () => {
+      console.log(props.code);
+    },
+  );
 </script>

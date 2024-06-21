@@ -1,40 +1,48 @@
 <template>
-  <div title="驾驶舱数据导入">
-    <a
-      href="http://ec-res.whenyoungcloud.cn/excelTemplate/%E9%A9%BE%E9%A9%B6%E8%88%B1%E6%95%B0%E6%8D%AE%E5%AF%BC%E5%85%A5%E6%A8%A1%E7%89%88.xlsx"
-    >
-      模版下载
-    </a>
-    <a-button
-      @click="handleImport"
-      type="primary"
-      success
-      :disabled="Object.keys(nowJsonData).length || (value && !Object.keys(value).length)"
-      class="mr-30px"
-    >
-      导入
-    </a-button>
-    <a-button
-      @click="handleSubmit"
-      type="primary"
-      success
-      :disabled="!Object.keys(nowJsonData).length"
-      class="mr-30px"
-    >
-      提交
-    </a-button>
-    <a-space size="middle">
-      <a-button @click="handleReset" type="primary" danger> 初始化 </a-button>
-      <a-upload
-        name="file"
-        v-model:file-list="fileList"
-        :multiple="false"
-        :before-upload="handleFileUpload"
+  <a-page-header
+    style="border: 1px solid rgb(235, 237, 240)"
+    title="数据配置"
+    sub-title="在这里配置大屏展示需要的数据内容"
+    @back="goBack"
+  />
+  <div class="p-20px">
+    <div title="驾驶舱数据导入" class="mb-20px">
+      <a
+        href="http://ec-res.whenyoungcloud.cn/excelTemplate/%E9%A9%BE%E9%A9%B6%E8%88%B1%E6%95%B0%E6%8D%AE%E5%AF%BC%E5%85%A5%E6%A8%A1%E7%89%88.xlsx"
       >
-        <a-button> 选择文件 </a-button>
-      </a-upload>
-    </a-space>
-    <Codemirror />
+        模版下载
+      </a>
+      <a-button
+        @click="handleImport"
+        type="primary"
+        success
+        :disabled="Object.keys(nowJsonData).length || (value && !Object.keys(value).length)"
+        class="mr-30px"
+      >
+        导入
+      </a-button>
+      <a-button
+        @click="handleSubmit"
+        type="primary"
+        success
+        :disabled="!Object.keys(nowJsonData).length"
+        class="mr-30px"
+      >
+        提交
+      </a-button>
+      <a-space size="middle">
+        <a-button @click="handleReset" type="primary" danger> 初始化 </a-button>
+        <a-upload
+          name="file"
+          v-model:file-list="fileList"
+          :multiple="false"
+          :before-upload="handleFileUpload"
+        >
+          <a-button> 选择文件 </a-button>
+        </a-upload>
+      </a-space>
+    </div>
+    <Codemirror :code="code" />
   </div>
 </template>
 <script lang="ts" setup>
@@ -73,6 +81,7 @@
   // const modeValue = ref<MODE>(MODE.JSON);
   const value = ref<any>('');
   const nowJsonData = ref<any>({});
+  const code = ref(nowJsonData.value);
   const { createMessage } = useMessage();
   // 提交导入excel数据
   function handleSubmit() {
@@ -91,8 +100,7 @@
   // 提交粘贴到代码编辑器的数据
   function handleImport() {
     const allPromise: any = [];
-    value.value;
-    const data = JSON.parse(value.value)?.data;
+    const data = JSON.parse(code.value)?.data;
     data.forEach((item) => {
       allPromise.push(setModule(item));
     });
@@ -105,7 +113,7 @@
   }
   // 初始化页面数据
   function handleReset() {
-    value.value = '';
+    code.value = '';
     nowJsonData.value = {};
     fileList.value = [];
   }
@@ -127,10 +135,10 @@
         });
         // 这里拦截掉错误配置的数据
         if (!configIsCorrect(headerData)) {
-          value.value = {
+          code.value = JSON.stringify({
             code: 0,
             errorMessage: 'excel 配置参数错误，请检查文件后重新上传',
-          };
+          });
           throw 'excel 配置参数错误，请检查文件后重新上传';
         }
         // 这里获取到 pageKey 以及 moduleKey
@@ -243,7 +251,8 @@
           nowJsonData.value[nowKey].kvList = [...nowJsonData.value[nowKey].kvList, ...normalArr];
         }
       });
-      value.value = nowJsonData.value;
+      code.value = nowJsonData.value;
+      console.log(nowJsonData.value);
     } catch (error) {
       console.error('Error reading Excel file:', error);
     }
@@ -327,6 +336,10 @@
     const flag = allConfig.every((item) => config.includes(item));
     return flag;
   }
+  const router = useRouter();
+  const goBack = () => {
+    router.go(-1);
+  };
 </script>
 <style scoped>
   ::v-deep .ant-upload-list {
