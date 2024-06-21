@@ -34,17 +34,15 @@
         <a-button> 选择文件 </a-button>
       </a-upload>
     </a-space>
-    <CodeEditor v-model:value="value" :mode="modeValue" />
+    <Codemirror />
   </div>
 </template>
 <script lang="ts" setup>
   import { ref } from 'vue';
-  import { CodeEditor, MODE } from '/@/components/CodeEditor';
-  import { PageWrapper } from '/@/components/Page';
-  import XLSX from 'xlsx';
+  import * as XLSX from 'xlsx';
   import { cloneDeep } from 'lodash-es';
-  import { setModule } from '/@/api/ec/cockpit/ageStructure';
-  import { useMessage } from '/@/hooks/web/useMessage';
+  import { useMessage } from '@/hooks/useMessage';
+  import { setModule } from '@/api/modules/cockpit';
 
   interface RuleType {
     key: string;
@@ -72,7 +70,7 @@
   }
   const normalDataType = ['number', 'string', 'boolean', 'object'];
   const fileList = ref([]);
-  const modeValue = ref<MODE>(MODE.JSON);
+  // const modeValue = ref<MODE>(MODE.JSON);
   const value = ref<any>('');
   const nowJsonData = ref<any>({});
   const { createMessage } = useMessage();

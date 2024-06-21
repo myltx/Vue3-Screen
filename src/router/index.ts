@@ -39,6 +39,11 @@ const routes: Array<RouteRecordRaw> = [
       },
     ],
   },
+  {
+    path: '/dataConfig/excelToJson',
+    name: 'ExcelToJson',
+    component: () => import('@/views/data/excelToJson.vue'),
+  },
 ];
 const router = createRouter({
   history: createWebHashHistory(import.meta.env.BASE_URL),

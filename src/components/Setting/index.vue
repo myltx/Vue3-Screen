@@ -87,6 +87,7 @@
       <div class="setting_item mt-20px">
         <a-space>
           <a-button @click="go('/dataConfig')">数据配置</a-button>
+          <a-button @click="go('/dataConfig/excelToJson')">ExCelToJson</a-button>
         </a-space>
       </div>
     </template>
