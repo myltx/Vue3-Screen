@@ -1,34 +1,44 @@
 <script setup lang="ts">
-  const props = defineProps({
-    title: {
-      type: [String, Number],
-      default: '标题',
-    },
-  });
-  const { title } = toRaw(props);
+  import { BasicBoxProps } from '@/types/components';
+  import { BasicConfig } from './src/default';
+  const { title: defaultTitle, titleBgImg: defaultTitleBg, height: defaultHeight } = BasicConfig;
+
+  const props = defineProps<BasicBoxProps>();
+  const { title, titleBgImg } = toRaw(props);
 </script>
 <template>
   <div class="basic-box">
-    <div class="box-title">
-      <div class="title">{{ title }}</div>
+    <div
+      class="box-title"
+      :style="{
+        background: `url(${titleBgImg || defaultTitleBg}) no-repeat`,
+        backgroundSize: '100% 100%',
+      }"
+    >
+      <div class="title">{{ title || defaultTitle }}</div>
     </div>
-    <div class="box-content">
+    <div
+      class="box-content"
+      :style="{
+        height: `${height || defaultHeight}`,
+      }"
+    >
       <slot></slot>
     </div>
   </div>
 </template>
 
 <style scoped lang="scss">
-  @import './index.scss';
+  @import './src/index.scss';
   .basic-box {
     width: 100%;
-    height: 100%;
+    height: auto;
     box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
     .box-title {
       width: 100%;
       height: 52px;
-      background: url('@/assets/images/basic/box/basic-title-bg.png') no-repeat;
-      background-size: 100% 100%;
+      // background: url('@/assets/images/basic/box/basic-title-bg.png') no-repeat;
+      // background-size: 100% 100%;
       display: flex;
       align-items: center;
 
