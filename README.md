@@ -47,6 +47,7 @@ Vue3+vite版本驾驶舱，
 ## 使用介绍
 
 ### 环境
+
 - node version >= 20
 
 ### 安装
@@ -239,6 +240,20 @@ interface CountUpOptions {
 isSouthChinaSea:false,//默认不显示南海，改为true可显示南海
 ```
 
+### [echarts](src/plugins/echarts.ts)配置文件
+
+- 如果需要添加组件在此文件导入即可
+- 组件使用
+
+```javascript
+  <v-chart
+    class="chart"
+    id="bar-chart"
+    :option="option"
+    v-if="Object.keys(option).length"
+  />
+```
+
 ## 全局参数
 
 ### filter
@@ -280,4 +295,3 @@ isSouthChinaSea:false,//默认不显示南海，改为true可显示南海
 - [ ] login
 - [ ] map components
 - [ ] setting data function
-

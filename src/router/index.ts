@@ -28,6 +28,11 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import('@/views/cockpit/index.vue'),
   },
   {
+    path: '/3DModelPage',
+    name: '3DModelPage',
+    component: () => import('@/views/3DModelPage/index.vue'),
+  },
+  {
     path: '/dataConfig',
     name: 'DataConfig',
     redirect: '/dataConfig/index',
