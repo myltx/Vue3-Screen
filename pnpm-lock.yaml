@@ -43,15 +43,15 @@ dependencies:
   vue:
     specifier: ^3.3.4
     version: 3.4.29(typescript@5.1.6)
-  vue-baidu-map-3x:
-    specifier: ^1.0.39
-    version: 1.0.39(vue@3.4.29)
   vue-echarts:
     specifier: ^6.6.0
     version: 6.7.3(echarts@5.5.0)(vue@3.4.29)
   vue-router:
     specifier: ^4.2.2
     version: 4.3.3(vue@3.4.29)
+  vue3-baidu-map-gl:
+    specifier: ^2.3.2
+    version: 2.3.2(vue@3.4.29)
   xlsx:
     specifier: ^0.18.5
     version: 0.18.5
@@ -1438,10 +1438,6 @@ packages:
       - typescript
     dev: false
 
-  /@yangjianfei/bmaplib.lushu@1.0.0:
-    resolution: {integrity: sha512-qZVijbgUgNs6tsP1muS67x0XzE5fJ3kFireouDvXO3bUYVV6XbpjZXksQTsggihLMIEvC1DO9GS9vVF8CnEeqQ==}
-    dev: false
-
   /JSONStream@1.3.5:
     resolution: {integrity: sha512-E+iruNOY8VV9s4JEbe1aNEm6MiszPRr/UfcHMz0TQh1BXSxHK+ASV1R6W4HpjBhSeS+54PIsAMCBmwD06LLsqQ==}
     hasBin: true
@@ -1673,28 +1669,6 @@ packages:
   /binary-extensions@2.3.0:
     resolution: {integrity: sha512-Ceh+7ox5qe7LJuLHoY0feh3pHuUDHAcRUeyL2VYghZwfpkNIy/+8Ocg0a3UuSoYzavmylwuLWQOf3hl0jjMMIw==}
     engines: {node: '>=8'}
-
-  /bmaplib.curveline@1.0.0:
-    resolution: {integrity: sha512-9wcFMVhiYxNPqpvsLDAADn3qDhNzXp2mA6VyHSHg2XOAgSooC7ZiujdFhy0sp+0QYjTfJ/MjmLuNoUg2HHxH4Q==}
-    dev: false
-
-  /bmaplib.distancetool@1.0.2:
-    resolution: {integrity: sha512-EvxMnQRH6xM036zx5OLPyTg5tMCTbFBuGTTHOtExLy2/T0X6v5Va0YE7c3IPm/a/Eo5V/ynYpOLOLZbRY8ccyA==}
-    dev: false
-
-  /bmaplib.heatmap@1.0.4:
-    resolution: {integrity: sha512-rmhqUARBpUSJ9jXzUI2j7dIOqnc38bqubkx/8a349U2qtw/ulLUwyzRD535OrA8G7w5cz4aPKm6/rNvUAarg/Q==}
-    dev: false
-
-  /bmaplib.markerclusterer@1.0.13:
-    resolution: {integrity: sha512-VrLyWSiuDEVNi0yUfwOhFQ6z1oEEHS4w36GNu3iASu6p52QIx9uAXMUkuSCHReNR0bj2Cp9SA1dSx5RpojXajQ==}
-    dependencies:
-      bmaplib.texticonoverlay: 1.0.2
-    dev: false
-
-  /bmaplib.texticonoverlay@1.0.2:
-    resolution: {integrity: sha512-4ZTWr4ZP3B6qEWput5Tut16CfZgII38YwM3bpyb4gFTQyORlKYryFp9WHWrwZZaHlOyYDAXG9SX0hka43jTADg==}
-    dev: false
 
   /boolbase@1.0.0:
     resolution: {integrity: sha512-JZOSA7Mo9sNGB8+UjSgzdLtokWAky1zbztM3WRLCbZ70/3cTANmQmOdR7y2g+J0e2WXywy1yS468tY+IruqEww==}
@@ -3638,6 +3612,10 @@ packages:
     engines: {node: '>=16 || 14 >=14.17'}
     dev: true
 
+  /mitt@3.0.1:
+    resolution: {integrity: sha512-vKivATfr97l2/QBCYAkXYDbrIWPM2IIKEl7YPhjCvKlG3kE2gm+uBo6nEXK3M5/Ffh/FLpKExzOQ3JJoJGFKBw==}
+    dev: false
+
   /mlly@1.7.1:
     resolution: {integrity: sha512-rrVRZRELyQzrIUAVMHxP97kv+G786pHmOKzuFII8zDYahFBS7qnHh2AlYSl1GAHhaMPCz6/oHjVMcfFYgFYHgA==}
     dependencies:
@@ -4712,10 +4690,6 @@ packages:
     resolution: {integrity: sha512-w89qg7PI8wAdvX60bMDP+bFoD5Dvhm9oLheFp5O4a2QF0cSBGsBX4qZmadPMvVqlLJBBci+WqGGOAPvcDeNSVg==}
     dev: true
 
-  /tiny-emitter@2.1.0:
-    resolution: {integrity: sha512-NB6Dk1A9xgQPMoGqC5CVXn123gWyte215ONT5Pp5a0yt4nlEoO1ZWeCwpncaekPHXO60i47ihFnZPiRPjRMq4Q==}
-    dev: false
-
   /to-fast-properties@2.0.0:
     resolution: {integrity: sha512-/OaKK0xYrs3DmxRYqL/yDc+FxFUVYhDlXMhRmv3z915w2HF1tnN1omB354j8VUGO/hbRzyD6Y3sA7v7GS/ceog==}
     engines: {node: '>=4'}
@@ -5135,21 +5109,6 @@ packages:
       fsevents: 2.3.3
     dev: true
 
-  /vue-baidu-map-3x@1.0.39(vue@3.4.29):
-    resolution: {integrity: sha512-9wN1WP3hu82HwNUZ/7WaYn55ehxubJ+jkKtSKpwMcfh0LWdv3D2TBYlWSp6d76pz/jUEEpWcf2xHG6owFPtN8g==}
-    peerDependencies:
-      vue: ^3.2.25
-    dependencies:
-      '@yangjianfei/bmaplib.lushu': 1.0.0
-      bmaplib.curveline: 1.0.0
-      bmaplib.distancetool: 1.0.2
-      bmaplib.heatmap: 1.0.4
-      bmaplib.markerclusterer: 1.0.13
-      tiny-emitter: 2.1.0
-      vue: 3.4.29(typescript@5.1.6)
-      vue-router: 4.3.3(vue@3.4.29)
-    dev: false
-
   /vue-demi@0.13.11(vue@3.4.29):
     resolution: {integrity: sha512-IR8HoEEGM65YY3ZJYAjMlKygDQn25D5ajNFNoKh9RSDMQtlzCxtfQjdQgv9jjK+m3377SsJXY8ysq8kLCZL25A==}
     engines: {node: '>=12'}
@@ -5252,6 +5211,16 @@ packages:
       vue: ^3.0.0
     dependencies:
       is-plain-object: 3.0.1
+      vue: 3.4.29(typescript@5.1.6)
+    dev: false
+
+  /vue3-baidu-map-gl@2.3.2(vue@3.4.29):
+    resolution: {integrity: sha512-iwHTfSb7K+KBFbMZvt2jFJOvCU5nyboCH0ua5Jr78FvD/9XHM2yl9wk94/an32KNX0Sfvc0vTkyS7PrNyiVUQw==}
+    engines: {node: '>=12.0.0', pnpm: '>=6.0.0'}
+    peerDependencies:
+      vue: ^3.0.0
+    dependencies:
+      mitt: 3.0.1
       vue: 3.4.29(typescript@5.1.6)
     dev: false
 

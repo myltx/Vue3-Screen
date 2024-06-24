@@ -145,11 +145,16 @@
       </BasicBox>
       <BasicBox :title="'消防安全制度建设'" />
     </div>
+    <Map class="map" />
   </PageWrapper>
 </template>
 
 <style scoped lang="scss">
   .container-left {
+    position: absolute;
+    top: 60px;
+    left: 0;
+    z-index: 9999;
     width: 400px;
     background: linear-gradient(180deg, rgba(0, 0, 1, 0.5) 0%, #091829 100%);
     backdrop-filter: blur(4px);
@@ -376,5 +381,10 @@
         width: 100%;
       }
     }
+  }
+  .map {
+    position: absolute;
+    top: 0;
+    left: 0;
   }
 </style>
