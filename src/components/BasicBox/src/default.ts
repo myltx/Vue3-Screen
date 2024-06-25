@@ -1,4 +1,4 @@
-import { BasicBoxProps } from '@/types/components';
+import type { BasicBoxProps } from '@/types/components';
 import BasicTitleBg from '@/assets/images/basic/box/basic-title-bg.png';
 
 export const BasicConfig: BasicBoxProps = {

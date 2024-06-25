@@ -1,5 +1,5 @@
 <script setup lang="ts">
-  import { BasicBoxProps } from '@/types/components';
+  import type { BasicBoxProps } from '@/types/components';
   import { BasicConfig } from './src/default';
   const { title: defaultTitle, titleBgImg: defaultTitleBg, height: defaultHeight } = BasicConfig;
 
