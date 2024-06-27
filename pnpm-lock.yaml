@@ -52,6 +52,9 @@ dependencies:
   vue3-baidu-map-gl:
     specifier: ^2.3.2
     version: 2.3.2(vue@3.4.29)
+  vue3-seamless-scroll:
+    specifier: ^2.0.1
+    version: 2.0.1
   xlsx:
     specifier: ^0.18.5
     version: 0.18.5
@@ -5222,6 +5225,12 @@ packages:
     dependencies:
       mitt: 3.0.1
       vue: 3.4.29(typescript@5.1.6)
+    dev: false
+
+  /vue3-seamless-scroll@2.0.1:
+    resolution: {integrity: sha512-mI3BaDU3pjcPUhVSw3/xNKdfPBDABTi/OdZaZqKysx4cSdNfGRbVvGNDzzptBbJ5S7imv5T55l6x/SqgnxKreg==}
+    dependencies:
+      throttle-debounce: 5.0.0
     dev: false
 
   /vue@3.4.29(typescript@5.1.6):

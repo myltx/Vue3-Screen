@@ -1,11 +1,60 @@
 <script setup lang="ts">
+  import { Vue3SeamlessScroll } from 'vue3-seamless-scroll';
   import { equipmentOption } from './config';
 
   type ClickType = 'equipment';
-
+  const isScroll = ref(false);
+  setTimeout(() => {
+    isScroll.value = true;
+  }, 1000);
   const equipmentActive = ref(0);
   const option = ref({});
   const chartRef = ref(null); // 用于引用图表实例
+  const list = ref([
+    {
+      value: 1,
+      status: 1,
+      text: 123,
+    },
+    {
+      value: 1,
+      status: 1,
+      text: 123,
+    },
+    {
+      value: 1,
+      status: 1,
+      text: 123,
+    }, {
+      value: 1,
+      status: 1,
+      text: 123,
+    },
+    {
+      value: 1,
+      status: 1,
+      text: 123,
+    },
+    {
+      value: 1,
+      status: 1,
+      text: 123,
+    }, {
+      value: 1,
+      status: 1,
+      text: 123,
+    },
+    {
+      value: 1,
+      status: 1,
+      text: 123,
+    },
+    {
+      value: 1,
+      status: 1,
+      text: 123,
+    },
+  ]);
 
   const handleType = (type: ClickType, value: number) => {
     switch (type) {
@@ -143,7 +192,16 @@
           />
         </div>
       </BasicBox>
-      <BasicBox :title="'消防安全制度建设'" />
+      <BasicBox :title="'告警'">
+        <div class="scroll">
+          <vue3-seamless-scroll :list="list" hover v-model="isScroll" :limitScrollNum="10">
+            <div class="item" v-for="(item, index) in list" :key="index">
+              <span>{{ item.text }}</span>
+              <span>{{ item.status }}</span>
+            </div>
+          </vue3-seamless-scroll>
+        </div>
+      </BasicBox>
     </div>
     <Map class="map" />
   </PageWrapper>
@@ -380,6 +438,11 @@
         height: 100%;
         width: 100%;
       }
+    }
+    // 底部
+    .scroll {
+      overflow: hidden;
+      height: 100%;
     }
   }
   .map {
