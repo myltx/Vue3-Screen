@@ -15,6 +15,8 @@ export interface BasicBoxProps {
    * 标题背景图片
    */
   titleBgImg?: string;
+  titleLargeBgImg?: string;
+  /**
   /**
    * 内容背景图片
    */
