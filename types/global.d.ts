@@ -1,5 +1,5 @@
 interface Window {
-  $message: any
+  $message: any;
 }
 
-type TimeProp= NodeJS.Timeout
+type TimeProp = NodeJS.Timeout;

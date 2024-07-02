@@ -65,9 +65,7 @@
       </div>
       <div class="left_shu">实时监测</div>
       <div class="setting_item">
-        <span class="setting_label">
-          设备提醒自动轮询: <span class="setting_label_tip"></span>
-        </span>
+        <span class="setting_label"> 告警轮播: <span class="setting_label_tip"></span> </span>
         <div class="setting_content">
           <a-radio-group v-model:value="leftBottomRadio" @change="indexRadioChange">
             <a-radio :value="true">是</a-radio>
@@ -76,7 +74,7 @@
         </div>
       </div>
       <div class="setting_item">
-        <span class="setting_label"> 实时预警轮播: </span>
+        <span class="setting_label"> 右侧轮播: </span>
         <div class="setting_content">
           <a-radio-group v-model:value="rightBottomRadio" @change="indexRadioChange">
             <a-radio :value="true">是</a-radio>
