@@ -12,11 +12,5 @@
 </template>
 
 <style scoped lang="scss">
-  .container-bottom {
-    position: absolute;
-    bottom: 16px;
-    left: 22.5%;
-    width: 55%;
-    height: 327px;
-  }
+  @import './styles/bottom.scss';
 </style>
