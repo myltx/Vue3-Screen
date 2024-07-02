@@ -25,6 +25,7 @@ Vue3+vite版本驾驶舱
 7. [unplugin-auto-import](https://github.com/unplugin/unplugin-auto-import)
 8. [unplugin-vue-components](https://github.com/unplugin/unplugin-vue-components)
 9. [vue3-baidu-map-gl](https://yue1123.github.io/vue3-baidu-map-gl/)
+10. [nprogress](https://ricostacruz.com/nprogress/)
 
 ## 采用自适应组件方式
 
