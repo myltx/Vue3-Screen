@@ -17,7 +17,15 @@
     theme: 'dracula', // Theme
   };
 
-  const code = ref('');
+  const code = ref(`{
+    pageName: '首页',
+    pageKey: '',
+    moduleKey: '',
+    moduleName: '',
+    moduleParam: '',
+    moduleType: '',
+    kvList: [],
+  }`);
 
   const goBack = () => {
     router.go(-1);
