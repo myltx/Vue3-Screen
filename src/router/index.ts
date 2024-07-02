@@ -1,5 +1,6 @@
 import { createRouter, createWebHashHistory } from 'vue-router';
 import type { RouteRecordRaw } from 'vue-router';
+import { start, close } from '@/utils/nprogress';
 const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
@@ -56,7 +57,12 @@ const router = createRouter({
 });
 
 router.beforeEach((to, from, next) => {
+  start();
   next();
 });
-
+router.afterEach(() => {
+  setTimeout(() => {
+    close();
+  }, 1000);
+});
 export default router;
