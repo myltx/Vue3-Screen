@@ -1,6 +1,6 @@
 ## 项目描述
 
-Vue3+vite版本驾驶舱，
+Vue3+vite版本驾驶舱
 
 [源代码地址](https://github.com/daidaibg/IofTV-Screen-Vue3/tree/master)
 
@@ -14,7 +14,7 @@ Vue3+vite版本驾驶舱，
 
 - 在项目public目录下存放地图数据合集，根据地市编存放。
 
-友情链接：
+使用到的技术栈：
 
 1. [Vue 官方文档](https://cn.vuejs.org/)
 2. [echarts 实例](https://gitee.com/link?target=https%3A%2F%2Fecharts.apache.org%2Fexamples%2Fzh%2Findex.html)，[echarts API 文档](https://gitee.com/link?target=https%3A%2F%2Fecharts.apache.org%2Fzh%2Fapi.html%23echarts)
@@ -26,7 +26,7 @@ Vue3+vite版本驾驶舱，
 8. [unplugin-vue-components](https://github.com/unplugin/unplugin-vue-components)
 9. [vue3-baidu-map-gl](https://yue1123.github.io/vue3-baidu-map-gl/)
 
-### 采用自适应组件方式，
+## 采用自适应组件方式
 
 ## 2、主要文件介绍
 
@@ -42,8 +42,6 @@ Vue3+vite版本驾驶舱，
 | common/...        | 全局封装的 ECharts 和 flexible 插件代码（适配屏幕尺寸，可定制化修改） |
 | api/api.js        | 接口封装文件                                                          |
 | mock              | 模拟数据接口地址                                                      |
-
-###
 
 ## 使用介绍
 
@@ -67,12 +65,10 @@ pnpm dev
 
 ```javascript
 // src\main.ts文件
-把下面两行代码注释掉就可以了。
-import { mockXHR } from "@/mock/index";
-mockXHR()
+// 把下面两行代码注释掉就可以了。
+import { mockXHR } from '@/mock/index';
+mockXHR();
 ```
-
-##
 
 ## 公用组件
 
@@ -225,20 +221,12 @@ interface CountUpOptions {
 
 ### 无缝轮播组件
 
-看此文档 优化次源码
-
-[https://doc.wssio.com/opensource/vue3-seamless-scroll/](https://doc.wssio.com/opensource/vue3-seamless-scroll/)
+[看此文档 优化此源码](https://doc.wssio.com/opensource/vue3-seamless-scroll/)
 
 ## 中间地图
 
-### 南海显隐控制
-
-根据需求来，**修改此值请刷新页面**
-
-`indexs/center-map.vue` 文件中`isSouthChinaSea`变量 默认不显示南海(false),为`true`的时候显示南海
-
-```
-isSouthChinaSea:false,//默认不显示南海，改为true可显示南海
+```vue
+<Map />
 ```
 
 ### [echarts](src/plugins/echarts.ts)配置文件
@@ -246,13 +234,8 @@ isSouthChinaSea:false,//默认不显示南海，改为true可显示南海
 - 如果需要添加组件在此文件导入即可
 - 组件使用
 
-```javascript
-  <v-chart
-    class="chart"
-    id="bar-chart"
-    :option="option"
-    v-if="Object.keys(option).length"
-  />
+```vue
+<v-chart class="chart" id="bar-chart" :option="option" v-if="Object.keys(option).length" />
 ```
 
 ## 全局参数
@@ -289,8 +272,8 @@ isSouthChinaSea:false,//默认不显示南海，改为true可显示南海
 - [ ] 接口请求（数据逻辑）
 - [ ] 表格组件
 - [ ] pageWrapper
-- [ ] 带标题的 BasicBox
-- [ ] loading
+- [x] 带标题的 BasicBox
+- [x] loading
 - [ ] 自动登录的中间页
 - [ ] 弹框
 - [ ] login
