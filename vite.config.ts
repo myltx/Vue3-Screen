@@ -5,6 +5,7 @@ import { resolve } from 'path';
 import AutoImport from 'unplugin-auto-import/vite';
 import Components from 'unplugin-vue-components/vite';
 import { AntDesignVueResolver } from 'unplugin-vue-components/resolvers';
+import topLevelAwait from 'vite-plugin-top-level-await';
 //https://github.com/element-plus/unplugin-element-plus/blob/HEAD/README.zh-CN.md
 // vite.config.ts
 import UnoCSS from 'unocss/vite';
@@ -14,6 +15,12 @@ export default defineConfig(({ command, mode }: ConfigEnv): UserConfig => {
   console.log(command, mode);
   return {
     plugins: [
+      topLevelAwait({
+        // The export name of top-level await promise for each chunk module
+        promiseExportName: '__tla',
+        // The function to generate import names of top-level await promise in each chunk module
+        promiseImportName: (i) => `__tla_${i}`,
+      }),
       vue(),
       AutoImport({
         dts: true, // or a custom path
@@ -84,6 +91,7 @@ export default defineConfig(({ command, mode }: ConfigEnv): UserConfig => {
     },
     build: {
       outDir: 'dist',
+      target: 'esnext',
     },
   };
 });

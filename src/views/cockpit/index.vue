@@ -16,7 +16,8 @@
     <Left />
     <Right />
     <Bottom />
-    <Map class="map" />
+    <!-- <Map class="map" /> -->
+    <ThreeJsHomeBg style="width: 100%" />
     <Loading class="loading" />
   </PageWrapper>
 </template>
