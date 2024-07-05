@@ -3,6 +3,10 @@
   import Left from './components/Left.vue';
   import Right from './components/Right.vue';
   import Bottom from './components/Bottom.vue';
+  import { useSettingStore } from '@/stores/index';
+  import { storeToRefs } from 'pinia';
+  const settingStore = useSettingStore();
+  const { bgType } = storeToRefs(settingStore);
   const { startLoading, endLoading } = useLoadingStore();
   startLoading();
   onMounted(() => {
@@ -16,8 +20,8 @@
     <Left />
     <Right />
     <Bottom />
-    <!-- <Map class="map" /> -->
-    <ThreeJsHomeBg style="width: 100%" />
+    <Map class="map" v-if="bgType == 'map'" />
+    <ThreeJsHomeBg style="width: 100%" v-if="bgType == 'threejs'" />
     <Loading class="loading" />
   </PageWrapper>
 </template>

@@ -7,7 +7,7 @@
   const leftBottomRadio = ref(true);
   const rightBottomRadio = ref(true);
   const settingStore = useSettingStore();
-  const { indexConfig } = storeToRefs(settingStore);
+  const { indexConfig, bgType } = storeToRefs(settingStore);
 
   const init = () => {
     settingStore.initSetting();
@@ -60,6 +60,16 @@
           <a-radio-group v-model:value="isScaleRadio" @change="isScaleChange">
             <a-radio :value="true">是</a-radio>
             <a-radio :value="false">否</a-radio>
+          </a-radio-group>
+        </div>
+      </div>
+      <div class="left_shu">首页背景</div>
+      <div class="setting_item">
+        <span class="setting_label"> 首页背景: <span class="setting_label_tip"></span> </span>
+        <div class="setting_content">
+          <a-radio-group v-model:value="bgType">
+            <a-radio :value="'map'">Map</a-radio>
+            <a-radio :value="'threejs'">ThreeJs</a-radio>
           </a-radio-group>
         </div>
       </div>
