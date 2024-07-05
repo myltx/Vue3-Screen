@@ -42,7 +42,6 @@
         </a-upload>
       </a-space>
     </div>
-    <Codemirror :code="code" />
   </div>
 </template>
 <script lang="ts" setup>

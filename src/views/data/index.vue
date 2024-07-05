@@ -1,23 +1,8 @@
 <script setup lang="ts">
-  import Codemirror from 'codemirror-editor-vue3';
+  import { supabase } from '@/utils/supabase';
 
-  // placeholder
-  import 'codemirror/addon/display/placeholder.js';
-
-  //   // language
-  import 'codemirror/mode/javascript/javascript.js';
-  //   // placeholder
-  import 'codemirror/addon/display/placeholder.js';
-  //   // theme
-  import 'codemirror/theme/dracula.css';
   const router = useRouter();
-
-  const cmOptions = {
-    mode: 'javascript', // Language mode
-    theme: 'dracula', // Theme
-  };
-
-  const code = ref(`{
+  const code = ref<any>({
     pageName: '首页',
     pageKey: '',
     moduleKey: '',
@@ -25,8 +10,16 @@
     moduleParam: '',
     moduleType: '',
     kvList: [],
-  }`);
+  });
 
+  async function getTodos() {
+    const { data } = await supabase.from('data').select();
+    code.value = data;
+  }
+
+  onMounted(() => {
+    getTodos();
+  });
   const goBack = () => {
     router.go(-1);
   };
@@ -38,13 +31,8 @@
     sub-title="在这里配置大屏展示需要的数据内容"
     @back="goBack"
   />
-  <Codemirror
-    v-model:value="code"
-    :options="cmOptions"
-    border
-    placeholder="请输入"
-    :height="'80vh'"
-  />
+
+  <CodeEditor :code="code" theme="vs-dark" height="500" />
 </template>
 
 <style scoped></style>

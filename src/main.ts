@@ -11,7 +11,6 @@ import '@unocss/reset/normalize.css';
 import '@unocss/reset/tailwind-compat.css';
 // 引入 unocss
 import 'virtual:uno.css';
-import { InstallCodemirro } from 'codemirror-editor-vue3';
 
 import 'ant-design-vue/dist/reset.css';
 
@@ -23,7 +22,6 @@ import { registerEcharts } from '@/plugins/echarts';
 const app: App = createApp(AppComponent);
 registerEcharts(app);
 
-app.use(InstallCodemirro);
 app.use(createPinia());
 app.use(router);
 // 这里注册全局组件
