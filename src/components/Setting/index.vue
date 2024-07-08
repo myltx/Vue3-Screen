@@ -1,5 +1,6 @@
 <script setup lang="ts">
   import { storeToRefs } from 'pinia';
+  import { GithubOutlined } from '@ant-design/icons-vue';
   import { useSettingStore } from '@/stores/index';
 
   const router = useRouter();
@@ -95,6 +96,15 @@
       <div class="setting_item mt-20px">
         <a-space>
           <a-button @click="go('/dataConfig')">数据配置</a-button>
+          <a-button
+            href="https://github.com/myltx/Vue3-Screen"
+            target="_blank"
+            class="flex items-center"
+          >
+            <GithubOutlined />
+            源码地址
+          </a-button>
+
           <!-- <a-button @click="go('/dataConfig/excelToJson')">ExCelToJson</a-button> -->
         </a-space>
       </div>
