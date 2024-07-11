@@ -34,6 +34,11 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import('@/views/3DModelPage/index.vue'),
   },
   {
+    path: '/threeMap',
+    name: 'ThreeMap',
+    component: () => import('@/views/threeMap/index.vue'),
+  },
+  {
     path: '/dataConfig',
     name: 'DataConfig',
     redirect: '/dataConfig/index',

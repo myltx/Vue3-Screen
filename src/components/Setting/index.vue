@@ -96,6 +96,7 @@
       <div class="setting_item mt-20px">
         <a-space>
           <a-button @click="go('/dataConfig')">数据配置</a-button>
+          <a-button @click="go('/threeMap')">threeJsMap</a-button>
           <a-button
             href="https://github.com/myltx/Vue3-Screen"
             target="_blank"
