@@ -14,6 +14,13 @@
       endLoading();
     }, 3000);
   });
+  watch(bgType, (newVal) => {
+    console.log(newVal);
+    startLoading();
+    setTimeout(() => {
+      endLoading();
+    }, 3000);
+  });
 </script>
 <template>
   <PageWrapper :title="'大屏示例页面'">
