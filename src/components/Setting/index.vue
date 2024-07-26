@@ -1,14 +1,13 @@
 <script setup lang="ts">
   import { storeToRefs } from 'pinia';
-  import { GithubOutlined } from '@ant-design/icons-vue';
   import { useSettingStore } from '@/stores/index';
 
-  const router = useRouter();
+  // const router = useRouter();
   const isScaleRadio = ref(false);
   const leftBottomRadio = ref(true);
   const rightBottomRadio = ref(true);
   const settingStore = useSettingStore();
-  const { indexConfig, bgType } = storeToRefs(settingStore);
+  const { indexConfig } = storeToRefs(settingStore);
 
   const init = () => {
     settingStore.initSetting();
@@ -38,12 +37,12 @@
       rightBottomSwiper: rightBottomRadio.value, //右下轮播
     });
   };
-  function go(path: string) {
-    settingStore.setSettingShow(false);
-    router.push({
-      path,
-    });
-  }
+  // function go(path: string) {
+  //   settingStore.setSettingShow(false);
+  //   router.push({
+  //     path,
+  //   });
+  // }
 </script>
 
 <template>
@@ -61,16 +60,6 @@
           <a-radio-group v-model:value="isScaleRadio" @change="isScaleChange">
             <a-radio :value="true">是</a-radio>
             <a-radio :value="false">否</a-radio>
-          </a-radio-group>
-        </div>
-      </div>
-      <div class="left_shu">首页背景</div>
-      <div class="setting_item">
-        <span class="setting_label"> 首页背景: <span class="setting_label_tip"></span> </span>
-        <div class="setting_content">
-          <a-radio-group v-model:value="bgType">
-            <a-radio :value="'map'">Map</a-radio>
-            <a-radio :value="'threejs'">ThreeJs</a-radio>
           </a-radio-group>
         </div>
       </div>
@@ -92,22 +81,6 @@
             <a-radio :value="false">否</a-radio>
           </a-radio-group>
         </div>
-      </div>
-      <div class="setting_item mt-20px">
-        <a-space>
-          <a-button @click="go('/dataConfig')">数据配置</a-button>
-          <a-button @click="go('/threeMap')">threeJsMap</a-button>
-          <a-button
-            href="https://github.com/myltx/Vue3-Screen"
-            target="_blank"
-            class="flex items-center"
-          >
-            <GithubOutlined />
-            源码地址
-          </a-button>
-
-          <!-- <a-button @click="go('/dataConfig/excelToJson')">ExCelToJson</a-button> -->
-        </a-space>
       </div>
     </template>
     <!-- <template #footer>

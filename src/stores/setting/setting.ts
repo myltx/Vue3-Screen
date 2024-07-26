@@ -17,7 +17,7 @@ export const useSettingStore = defineStore('setting', () => {
     singleHeight: 0, // 单步运动停止的高度(默认值0是无缝不停止的滚动) direction => 0/1
     singleWidth: 0, // 单步运动停止的宽度(默认值0是无缝不停止的滚动) direction => 2/3
     singleWaitTime: 3000, // 单步运动停止的时间(默认值1000ms)
-    bgType: 'threejs', // 背景类型
+    bgType: 'map', // 背景类型
   });
   // 背景控制
   const bgType = ref<'map' | 'threejs'>('threejs');

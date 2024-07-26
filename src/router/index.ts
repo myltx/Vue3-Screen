@@ -28,33 +28,6 @@ const routes: Array<RouteRecordRaw> = [
     name: 'Cockpit',
     component: () => import('@/views/cockpit/index.vue'),
   },
-  {
-    path: '/3DModelPage',
-    name: '3DModelPage',
-    component: () => import('@/views/3DModelPage/index.vue'),
-  },
-  {
-    path: '/threeMap',
-    name: 'ThreeMap',
-    component: () => import('@/views/threeMap/index.vue'),
-  },
-  {
-    path: '/dataConfig',
-    name: 'DataConfig',
-    redirect: '/dataConfig/index',
-    children: [
-      {
-        path: '/dataConfig/index',
-        name: 'DataConfigIndex',
-        component: () => import('@/views/data/index.vue'),
-      },
-    ],
-  },
-  {
-    path: '/dataConfig/excelToJson',
-    name: 'ExcelToJson',
-    component: () => import('@/views/data/excelToJson.vue'),
-  },
 ];
 const router = createRouter({
   history: createWebHashHistory(import.meta.env.BASE_URL),
