@@ -24,3 +24,26 @@ export const withInstall = <T>(component: T, alias?: string) => {
   };
   return component as T & Plugin;
 };
+
+// /设置token
+export function setToken(token: string) {
+  localStorage.setItem('token', token);
+}
+// 获取token'
+export function getToken(): string {
+  return localStorage.getItem('token') || '';
+}
+
+// 删除 缓存信息
+export function removeLocalStorage(key?: string) {
+  if (key) {
+    localStorage.removeItem(key);
+  } else {
+    localStorage.clear();
+  }
+}
+
+// 获取 tenant
+export function getTenant(): string {
+  return localStorage.getItem('tenant') || '';
+}

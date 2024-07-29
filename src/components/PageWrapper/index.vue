@@ -4,6 +4,13 @@
   const settingStore = useSettingStore();
   const { isScale } = storeToRefs(settingStore);
   const wrapperStyle = {};
+  const props = defineProps({
+    showHeader: {
+      type: Boolean,
+      default: true,
+    },
+  });
+  const { showHeader } = unref(props);
 </script>
 <template>
   <ScaleScreen
@@ -18,7 +25,7 @@
     :wrapperStyle="wrapperStyle"
     :autoScale="isScale"
   >
-    <Header v-bind="$attrs" />
+    <Header v-bind="$attrs" v-if="showHeader" />
     <slot></slot>
   </ScaleScreen>
   <Setting />

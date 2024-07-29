@@ -1,6 +1,14 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+// 这里走免登接口
+
+
+</script>
 <template>
-  <div>login</div>
+  <PageWrapper :show-header="false">
+    <Loading class="loading" />
+  </PageWrapper>
 </template>
 
-<style scoped></style>
+<style scoped lang="scss">
+  @import '@/styles/common.scss';
+</style>
