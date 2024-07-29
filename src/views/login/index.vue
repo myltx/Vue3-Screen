@@ -16,13 +16,17 @@
     setToken(token as string);
     // 获取用户信息
     // 这里走免登接口
-    getUserCurrentInfo().then((res: any) => {
-      setUserInfo(res.data);
-      setTimeout(() => {
-        endLoading();
-        router.replace('/');
-      }, 2000);
-    });
+    setTimeout(() => {
+      endLoading();
+      router.replace('/');
+    }, 2000);
+    // getUserCurrentInfo().then((res: any) => {
+    //   setUserInfo(res.data);
+    //   setTimeout(() => {
+    //     endLoading();
+    //     router.replace('/');
+    //   }, 2000);
+    // });
   }
 </script>
 <template>

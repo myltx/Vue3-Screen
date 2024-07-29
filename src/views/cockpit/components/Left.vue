@@ -7,6 +7,7 @@
   import dayjs from 'dayjs';
   import { useSettingStore } from '@/stores/setting/setting';
   import { storeToRefs } from 'pinia';
+  import { useCockpitDataStore } from '@/stores/cockpitData';
 
   type ClickType = 'equipment';
   interface AlarmListType {
@@ -19,7 +20,7 @@
 
   const settingStore = useSettingStore();
   const { indexConfig } = storeToRefs(settingStore);
-  console.log(indexConfig.value, 'settingStore');
+  const { getModuleName, getValue } = useCockpitDataStore();
 
   const statusImgMap: {
     [key in number]: string;
@@ -101,7 +102,7 @@
 
 <template>
   <div class="container-left mt-22px ml-16px">
-    <BasicBox :title="'消防安全制度建设'">
+    <BasicBox :title="getModuleName('institution')">
       <div class="w-full h-full">
         <div class="flex justify-center items-center w-full">
           <div class="flex-1">
@@ -133,13 +134,13 @@
           <div class="flex-1 file-info">
             <div class="left-text">
               <div class="info-title">已上传</div>
-              <div class="info-value">21</div>
+              <div class="info-value">{{ getValue('profile', 0) }}</div>
               <div class="info-unit">家</div>
             </div>
             <div class="placeholder"></div>
             <div class="left-text">
               <div class="info-title">已上传</div>
-              <div class="info-value">21</div>
+              <div class="info-value">{{ getValue('profile', 1) }}</div>
               <div class="info-unit">家</div>
             </div>
           </div>
@@ -172,7 +173,7 @@
         </div>
       </div>
     </BasicBox>
-    <BasicBox :title="'消防设施设备'">
+    <BasicBox :title="getModuleName('profile')">
       <div class="equipment-top">
         <div
           :class="['equipment-item mr-5px', equipmentActive == 0 ? 'active' : '']"

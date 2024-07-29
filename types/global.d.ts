@@ -21,4 +21,8 @@ declare interface ViteEnv {
   VITE_CDN: string;
 }
 
+interface ModuleKeyType {
+  [key: string]: string;
+}
+
 type TimeProp = NodeJS.Timeout;

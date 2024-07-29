@@ -42,19 +42,20 @@ const whiteList = [LOGIN_PATH];
 
 router.beforeEach((to, from, next) => {
   start();
-  if (!getToken() && !whiteList.includes(to.path)) {
-    if (isDevFn(import.meta.env.MODE)) {
-      setTimeout(() => {
-        next(LOGIN_OUT_PATH);
-      });
-    } else {
-      window.location.href = LOGIN_OUT_PATH;
-    }
-  } else {
-    setTimeout(() => {
-      next();
-    });
-  }
+  next();
+  // if (!getToken() && !whiteList.includes(to.path)) {
+  //   if (isDevFn(import.meta.env.MODE)) {
+  //     setTimeout(() => {
+  //       next(LOGIN_OUT_PATH);
+  //     });
+  //   } else {
+  //     window.location.href = LOGIN_OUT_PATH;
+  //   }
+  // } else {
+  //   setTimeout(() => {
+  //     next();
+  //   });
+  // }
 });
 router.afterEach(() => {
   setTimeout(() => {

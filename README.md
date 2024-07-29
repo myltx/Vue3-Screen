@@ -269,14 +269,12 @@ interface CountUpOptions {
 
 ## 需要开发功能
 
-- [ ] 登录
-- [ ] 接口请求（数据逻辑）
-- [ ] 表格组件
-- [ ] pageWrapper
+- [x] 接口请求（数据逻辑）
+- [x] pageWrapper
 - [x] 带标题的 BasicBox
 - [x] loading
-- [ ] 自动登录的中间页
+- [x] 自动登录的中间页
 - [ ] 弹框
-- [ ] login
 - [ ] map components
-- [ ] setting data function
+- [ ] 获取动态数据然后转换
+- [ ] 

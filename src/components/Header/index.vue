@@ -9,6 +9,10 @@
       type: [String, Number],
       default: '',
     },
+    showSetting: {
+      type: Boolean,
+      default: false,
+    },
   });
   const { title } = toRaw(props);
   const time = ref(getDate('HH:mm:ss'));
@@ -33,6 +37,7 @@
           marginBottom: '5px',
         }"
         @click="setSettingShow(true)"
+        v-if="showSetting"
       />
     </a-space>
   </div>

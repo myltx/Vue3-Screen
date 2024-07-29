@@ -1,6 +1,7 @@
 import { removeLocalStorage } from '@/utils';
 import { TIMEOUT, OTHER, NOLOGIN } from './error-code';
 import { useMessage } from '@/hooks/useMessage';
+
 // import { LOGIN_OUT_PATH } from '@/helpers';
 
 const LOGIN_OUT_PATH = '';
@@ -9,28 +10,21 @@ const { createConfirm, createMessage } = useMessage();
 
 // 成功处理函数
 export function handleSuccess(res: any, resolve: Function, opts?: any) {
-  console.log(opts, 'opts');
+  console.log(opts, 'opts-success');
   const data = res.data;
-  // console.log(data);
-  if (data.isSuccess == false) {
-    // 未登录
-    if (NOLOGIN.includes(data.code)) {
-      createConfirm({
-        iconType: 'warning',
-        content: data.msg || data.message,
-        title: '',
-        onOk() {
-          removeLocalStorage();
-          window.location.hash = LOGIN_OUT_PATH;
-        },
-      });
+  // 未登录
+  if (NOLOGIN.includes(data.code)) {
+    createMessage.warn(data.msg);
+    setTimeout(() => {
+      removeLocalStorage();
+      window.location.hash = LOGIN_OUT_PATH;
+    }, 2000);
+  } else {
+    const msg = data.msg || data.message;
+    if (msg.includes('[]未匹配地址')) {
+      createMessage.warn('非嘉善县户籍');
     } else {
-      const msg = data.msg || data.message;
-      if (msg.includes('[]未匹配地址')) {
-        createMessage.warn('非嘉善县户籍');
-      } else {
-        createMessage.warn(msg);
-      }
+      // createMessage.warn(msg);
     }
   }
   resolve(data);
@@ -48,28 +42,20 @@ export function handleError(error: any, reject: Function, opts?: any) {
       createMessage.error(error.response.data);
     }
     if (NOLOGIN.includes(error.response.data.code)) {
-      createConfirm({
-        iconType: 'warning',
-        content: error.response.data.errorMsg || error.response.data.msg,
-        title: '',
-        onOk() {
-          removeLocalStorage();
-          window.location.hash = LOGIN_OUT_PATH;
-        },
-      });
+      createMessage.warn(error.response.data.errorMsg || error.response.data.msg);
+      setTimeout(() => {
+        removeLocalStorage();
+        window.location.hash = LOGIN_OUT_PATH;
+      }, 2000);
     } else {
       const resData = error.response.data;
 
       if (OTHER.includes(resData.code)) {
-        createConfirm({
-          iconType: 'warning',
-          content: resData.msg || resData.message,
-          title: '',
-          onOk() {
-            removeLocalStorage();
-            window.location.hash = LOGIN_OUT_PATH;
-          },
-        });
+        createMessage.warn(resData.msg || resData.message);
+        setTimeout(() => {
+          removeLocalStorage();
+          window.location.hash = LOGIN_OUT_PATH;
+        }, 2000);
       } else if (resData.msg) {
         createMessage.error(resData.msg);
       } else if (resData.message) {

@@ -13,7 +13,9 @@ axios.interceptors.request.use((config: any) => {
   const isToken = config.headers['X-token'] === false ? config.headers['x-isToken'] : true;
   const token = getToken();
   if (token && isToken) {
-    config.headers.Authorization = `bearer ${token}`;
+    // config.headers.Authorization = `bearer ${token}`;
+    config.headers.Authorization = `Basic ZWNfYWRtaW5fd2ViOmVjX3lsZ2oyMDIyMDQxOV9zZWNyZXQ=`;
+    config.headers.Token = `Bearer ${token}`;
   }
 
   const {
