@@ -1,5 +1,7 @@
 import type { UserConfig, ConfigEnv } from 'vite';
-import { defineConfig } from 'vite';
+import { defineConfig, loadEnv } from 'vite';
+import { createProxy } from './build/vite/proxy';
+import { wrapperEnv } from './build/utils';
 import vue from '@vitejs/plugin-vue';
 import { resolve } from 'path';
 import AutoImport from 'unplugin-auto-import/vite';
@@ -12,9 +14,16 @@ import MonacoEditorNlsPlugin from 'vite-plugin-monaco-editor';
 import UnoCSS from 'unocss/vite';
 
 export default defineConfig(({ command, mode }: ConfigEnv): UserConfig => {
-  // const env = loadEnv(mode, process.cwd(), '')
+  const root = process.cwd();
   console.log(command, mode);
+  const env = loadEnv(mode, root);
+
+  // The boolean type read by loadEnv is a string. This function can be converted to boolean type
+  const viteEnv = wrapperEnv(env);
+  const { VITE_PORT, VITE_PUBLIC_PATH, VITE_PROXY, VITE_DROP_CONSOLE } = viteEnv;
+
   return {
+    base: VITE_PUBLIC_PATH,
     plugins: [
       MonacoEditorNlsPlugin({
         languageWorkers: ['json'],
@@ -69,13 +78,15 @@ export default defineConfig(({ command, mode }: ConfigEnv): UserConfig => {
       }),
     ],
     publicDir: 'public',
-    base: './',
     server: {
       host: '0.0.0.0',
-      port: 8112,
+      port: VITE_PORT,
       open: false,
       strictPort: false,
-      // proxy: {}
+      proxy: createProxy(VITE_PROXY),
+    },
+    esbuild: {
+      drop: VITE_DROP_CONSOLE ? ['console', 'debugger'] : [],
     },
     resolve: {
       alias: {

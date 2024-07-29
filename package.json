@@ -47,6 +47,7 @@
     "@vue/tsconfig": "^0.4.0",
     "@vueuse/core": "^10.11.0",
     "autoprefixer": "^10.4.19",
+    "dotenv": "^16.4.5",
     "eslint": "^8.57.0",
     "eslint-config-prettier": "^8.10.0",
     "eslint-define-config": "^1.24.1",

@@ -1,7 +1,10 @@
 <script setup lang="ts">
-// 这里走免登接口
+  import { getUserCurrentInfo } from '@/api/cockpit/user';
 
-
+  // 这里走免登接口
+  getUserCurrentInfo({}).then((res) => {
+    console.log(res);
+  });
 </script>
 <template>
   <PageWrapper :show-header="false">
