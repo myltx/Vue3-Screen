@@ -2,7 +2,7 @@ import { defineStore } from 'pinia';
 // import { storeToRefs } from 'pinia';
 export const useSettingStore = defineStore('setting', () => {
   const settingShow = ref(false); //设置弹窗显隐
-  const isScale = ref(false); //是否进行全局适配
+  const isScale = ref(true); //是否进行全局适配
   const indexConfig = ref({
     leftBottomSwiper: true, //左轮播
     rightBottomSwiper: true, //右下轮播

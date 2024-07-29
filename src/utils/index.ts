@@ -29,9 +29,20 @@ export const withInstall = <T>(component: T, alias?: string) => {
 export function setToken(token: string) {
   localStorage.setItem('token', token);
 }
+
 // 获取token'
 export function getToken(): string {
   return localStorage.getItem('token') || '';
+}
+
+// 获取用户信息
+export function getUserInfo(): any {
+  return JSON.parse(localStorage.getItem('userInfo') || '{}');
+}
+
+// 设置用户信息
+export function setUserInfo(userInfo: any) {
+  localStorage.setItem('userInfo', JSON.stringify(userInfo));
 }
 
 // 删除 缓存信息

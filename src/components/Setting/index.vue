@@ -3,7 +3,7 @@
   import { useSettingStore } from '@/stores/index';
 
   // const router = useRouter();
-  const isScaleRadio = ref(false);
+  const isScaleRadio = ref(true);
   const leftBottomRadio = ref(true);
   const rightBottomRadio = ref(true);
   const settingStore = useSettingStore();

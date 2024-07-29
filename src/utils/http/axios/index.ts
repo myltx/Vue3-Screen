@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { Base64 } from 'js-base64';
+// import { Base64 } from 'js-base64';
 import { getTenant, getToken } from '@/utils';
 import { handleError, handleSuccess } from './utils';
 import qs from 'qs';
@@ -13,23 +13,22 @@ axios.interceptors.request.use((config: any) => {
   const isToken = config.headers['X-token'] === false ? config.headers['x-isToken'] : true;
   const token = getToken();
   if (token && isToken) {
-    config.headers.token = `Bearer ${token}`;
-    // config.headers.token = `${token}`;
+    config.headers.Authorization = `bearer ${token}`;
   }
 
   const {
     VITE_GLOB_MULTI_TENANT_TYPE: multiTenantType,
-    VITE_GLOB_CLIENT_ID: clientId,
-    VITE_GLOB_CLIENT_SECRET: clientSecret,
+    // VITE_GLOB_CLIENT_ID: clientId,
+    // VITE_GLOB_CLIENT_SECRET: clientSecret,
   } = import.meta.env;
   // 增加租户编码
   if ((config as any)?.requestOptions?.withTenanNotifyt !== false && multiTenantType !== 'NONE') {
     (config as any).headers.tenant = getTenant();
   }
   // 添加客户端信息
-  (config as any).headers['Authorization'] = `Basic ${Base64.encode(
-    `${clientId}:${clientSecret}`,
-  )}`;
+  // (config as any).headers['Authorization'] = `Basic ${Base64.encode(
+  //   `${clientId}:${clientSecret}`,
+  // )}`;
   return config;
 });
 
@@ -52,15 +51,14 @@ const httpServer = (config: any) => {
   // console.log('protocol------', protocol);
   // console.log('host------', host);
   if (host.split(':')[0] === 'localhost') {
-    baseURL = '/api';
+    baseURL = import.meta.env.VITE_GLOB_API_URL;
   } else {
     baseURL = `${protocol}//${host}${import.meta.env.VITE_GLOB_API_URL}`;
   }
-  // console.log('baseURL------', baseURL);
   const httpDefaultOpts: any = {
     method,
     baseURL,
-    url: config.url,
+    url: import.meta.env.VITE_GLOB_API_URL_PREFIX + config.url,
     responseType: config.responseType || '',
     timeout: (config.custom && config.custom['timeout']) || 30000,
   };
@@ -70,7 +68,6 @@ const httpServer = (config: any) => {
 
   const dataRequest = ['PUT', 'GET', 'POST', 'PATCH'];
   if (dataRequest.includes(method)) {
-    // console.log(config.data);
     if (config.params) {
       httpDefaultOpts.params = config.params || {};
     } else {
@@ -88,7 +85,6 @@ const httpServer = (config: any) => {
     httpDefaultOpts.headers['content-type'] == 'application/x-www-form-urlencoded'
   ) {
     httpDefaultOpts.data = qs.stringify(httpDefaultOpts.data);
-    // httpDefaultOpts.params = qs.stringify(httpDefaultOpts.params);
   }
 
   // formData 转换

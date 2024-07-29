@@ -2,10 +2,9 @@ import { ServicePrefixEnum } from '@/enums/comon';
 import { RequestEnum } from '@/enums/httpEnum';
 import Axios from '@/utils/http/axios/index';
 
-export function getUserCurrentInfo(data: any) {
+export function getUserCurrentInfo() {
   return Axios({
     url: ServicePrefixEnum.OAUTH + '/CurrentUser',
-    method: RequestEnum.POST,
-    data,
+    method: RequestEnum.GET,
   });
 }

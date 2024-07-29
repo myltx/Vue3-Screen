@@ -1,6 +1,10 @@
 import { createRouter, createWebHashHistory } from 'vue-router';
 import type { RouteRecordRaw } from 'vue-router';
 import { start, close } from '@/utils/nprogress';
+import { LOGIN_OUT_PATH, LOGIN_PATH } from '@/helper';
+import { getToken } from '@/utils';
+import { isDevFn } from '../../build/utils';
+
 const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
@@ -34,9 +38,23 @@ const router = createRouter({
   routes,
 });
 
+const whiteList = [LOGIN_PATH];
+
 router.beforeEach((to, from, next) => {
   start();
-  next();
+  if (!getToken() && !whiteList.includes(to.path)) {
+    if (isDevFn(import.meta.env.MODE)) {
+      setTimeout(() => {
+        next(LOGIN_OUT_PATH);
+      });
+    } else {
+      window.location.href = LOGIN_OUT_PATH;
+    }
+  } else {
+    setTimeout(() => {
+      next();
+    });
+  }
 });
 router.afterEach(() => {
   setTimeout(() => {
