@@ -7,8 +7,23 @@
     },
   });
   const { markerList } = unref(props);
-  function handleMarkerClick(e: any) {
-    console.log(e);
+  const centerPoint = ref({ lng: 116.404, lat: 39.915 });
+
+  watch(
+    () => markerList,
+    (newVal) => {
+      if (newVal.length) {
+        centerPoint.value = { lng: newVal[0]?.lng, lat: newVal[0]?.lat };
+      } else {
+        centerPoint.value = { lng: 116.404, lat: 39.915 };
+      }
+    },
+    { immediate: true, deep: true },
+  );
+
+  function handleMarkerClick(data: any) {
+    console.log(data);
+    centerPoint.value = { lng: data?.lng, lat: data?.lat };
   }
 </script>
 <template>
@@ -20,6 +35,7 @@
     enableDoubleClickZoom
     ak="0BMG1CekNJ2VVFRrrmX6x6qma8WHYGY0"
     mapStyleId="6053418609ae26d7c32f05d45ea7991b"
+    :center="centerPoint"
   >
     <BMarker
       v-for="(marker, index) in markerList"
