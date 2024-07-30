@@ -1,5 +1,4 @@
 import axios from 'axios';
-// import { Base64 } from 'js-base64';
 import { getTenant, getToken } from '@/utils';
 import { handleError, handleSuccess } from './utils';
 import qs from 'qs';
@@ -14,23 +13,13 @@ axios.interceptors.request.use((config: any) => {
   const token = getToken();
   if (token && isToken) {
     config.headers.Authorization = `bearer ${token}`;
-    // config.headers.Authorization = `Basic ZWNfYWRtaW5fd2ViOmVjX3lsZ2oyMDIyMDQxOV9zZWNyZXQ=`;
-    // config.headers.Token = `Bearer ${token}`;
   }
 
-  const {
-    VITE_GLOB_MULTI_TENANT_TYPE: multiTenantType,
-    // VITE_GLOB_CLIENT_ID: clientId,
-    // VITE_GLOB_CLIENT_SECRET: clientSecret,
-  } = import.meta.env;
+  const { VITE_GLOB_MULTI_TENANT_TYPE: multiTenantType } = import.meta.env;
   // 增加租户编码
   if ((config as any)?.requestOptions?.withTenanNotifyt !== false && multiTenantType !== 'NONE') {
     (config as any).headers.tenant = getTenant();
   }
-  // 添加客户端信息
-  // (config as any).headers['Authorization'] = `Basic ${Base64.encode(
-  //   `${clientId}:${clientSecret}`,
-  // )}`;
   return config;
 });
 
@@ -50,8 +39,6 @@ const httpServer = (config: any) => {
   let baseURL = '';
   const protocol = window.location.protocol;
   const host = window.location.host;
-  // console.log('protocol------', protocol);
-  // console.log('host------', host);
   if (host.split(':')[0] === 'localhost') {
     baseURL = import.meta.env.VITE_GLOB_API_URL;
   } else {

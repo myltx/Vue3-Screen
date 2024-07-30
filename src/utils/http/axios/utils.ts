@@ -2,7 +2,7 @@ import { removeLocalStorage } from '@/utils';
 import { TIMEOUT, OTHER, NOLOGIN } from './error-code';
 import { useMessage } from '@/hooks/useMessage';
 import { Modal } from 'ant-design-vue';
-import { LOGIN_OUT_PATH } from '@/helper';
+import { LOGIN_OUT_PATH_DEV, LOGIN_OUT_PATH_PRODUCTION } from '@/helper';
 
 const { createMessage } = useMessage();
 
@@ -62,7 +62,7 @@ export function loginOut(content: string) {
     cancelButtonProps: { style: { display: 'none' } },
     onOk: () => {
       removeLocalStorage();
-      window.location.hash = LOGIN_OUT_PATH;
+      window.location.href = import.meta.env.DEV ? LOGIN_OUT_PATH_DEV : LOGIN_OUT_PATH_PRODUCTION;
     },
   });
 }
