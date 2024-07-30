@@ -277,10 +277,10 @@ interface CountUpOptions {
 - [x] loading
 - [x] 自动登录的中间页
 - [ ] 公共弹框
-- [ ] map components
+- [x] map components
   - [x] 点位渲染
   - [x] 中心点切换
-  - [ ] marker 点击事件
+  - [x] marker 点击事件
   - [x] 自定义 marker icon
 - [ ] 获取动态数据然后转换为页面需要格式（使用 store ）
 - [ ] 根据环境判断跳转地址
