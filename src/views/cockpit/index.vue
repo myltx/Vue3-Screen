@@ -11,9 +11,8 @@
   const { isLoading } = storeToRefs(useLoadingStore());
   startLoading();
   const pageKey = 'homePage';
-  const moduleKeys = {
-    profile: 'profile',
-    institution: 'institution',
+  const moduleKeys: ModuleKeyType = {
+    homePage: ['safetySystem-消防安全制度建设'],
   };
   const open = ref(false);
   const { getALlModuleData } = useCockpitDataStore();

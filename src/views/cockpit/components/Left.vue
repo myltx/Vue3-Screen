@@ -102,7 +102,7 @@
 
 <template>
   <div class="container-left mt-22px ml-16px">
-    <BasicBox :title="getModuleName('institution')">
+    <BasicBox :title="getModuleName('safetySystem')">
       <div class="w-full h-full">
         <div class="flex justify-center items-center w-full">
           <div class="flex-1">
@@ -134,15 +134,15 @@
           <div class="flex-1 file-info">
             <div class="left-text">
               <div class="info-title">已上传</div>
-              <div class="info-value">{{ getValue('profile', 0) }}</div>
+              <div class="info-value">{{ getValue('safetySystem', 0) }}</div>
               <div class="info-unit">家</div>
             </div>
-            <div class="placeholder"></div>
+            <!-- <div class="placeholder"></div>
             <div class="left-text">
               <div class="info-title">已上传</div>
-              <div class="info-value">{{ getValue('profile', 1) }}</div>
+              <div class="info-value">{{ getValue('safetySystem', 1) }}</div>
               <div class="info-unit">家</div>
-            </div>
+            </div> -->
           </div>
           <div class="flex-1 file-info mx-10px">
             <div class="left-text">

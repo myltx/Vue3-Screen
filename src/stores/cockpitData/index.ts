@@ -16,13 +16,20 @@ export const useCockpitDataStore = defineStore('cockpitData', () => {
     allData.value = {};
     if (isObject(moduleKeys)) {
       for (const key in moduleKeys) {
-        promiseList.push(
-          getModule({
-            pageKey,
-            moduleKey: moduleKeys[key],
-            moduleParam: '',
-          }),
-        );
+        const moduleList = moduleKeys[key].map((item: string) => {
+          const regexPattern = /^([^-]+)/;
+          const match: string[] = regexPattern.exec(item) || [];
+          return match[1] || '';
+        });
+        moduleList.forEach((moduleKey: string) => {
+          promiseList.push(
+            getModule({
+              pageKey: key,
+              moduleKey: moduleKey,
+              moduleParam: '',
+            }),
+          );
+        });
       }
       const data = await Promise.all(promiseList);
       if (data.length) {
@@ -66,7 +73,7 @@ export const useCockpitDataStore = defineStore('cockpitData', () => {
     return '';
   }
   //   获取数据为列表的项
-  function getArray(moduleKey: string, subInd: number, ind: number = 0) {
+  function getArray(moduleKey: string, subInd: number, ind = 0) {
     if (kvLists.value[moduleKey]) {
       if (subInd) {
         subInd = kvLists.value.length;

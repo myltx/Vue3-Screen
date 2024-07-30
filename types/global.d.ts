@@ -22,7 +22,7 @@ declare interface ViteEnv {
 }
 
 interface ModuleKeyType {
-  [key: string]: string;
+  [key: string]: string[];
 }
 
 type TimeProp = NodeJS.Timeout;
