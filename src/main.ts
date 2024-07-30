@@ -1,5 +1,6 @@
 import { createApp, App } from 'vue';
 import { createPinia } from 'pinia';
+import { MotionPlugin } from '@vueuse/motion';
 
 import { registerGlobalComponents } from './utils/globalComponents';
 
@@ -21,6 +22,8 @@ import { registerEcharts } from '@/plugins/echarts';
 
 const app: App = createApp(AppComponent);
 registerEcharts(app);
+
+app.use(MotionPlugin);
 
 app.use(createPinia());
 app.use(router);

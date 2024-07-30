@@ -8,13 +8,14 @@
   import MapIconImg from '@/assets/images/map/map-icon.png';
 
   const { startLoading, endLoading } = useLoadingStore();
-  const { isCustomLoading } = storeToRefs(useLoadingStore());
+  const { isLoading } = storeToRefs(useLoadingStore());
   startLoading();
   const pageKey = 'homePage';
   const moduleKeys = {
     profile: 'profile',
     institution: 'institution',
   };
+  const open = ref(false);
   const { getALlModuleData } = useCockpitDataStore();
   // 根据配置的 moduleKey 在页面动态获取数据
   getALlModuleData(pageKey, moduleKeys, endLoading);
@@ -36,14 +37,18 @@
       icon: MapIconImg,
     },
   ]);
+  setTimeout(() => {
+    open.value = true;
+  }, 2000);
 </script>
 <template>
   <PageWrapper :title="'大屏示例页面'">
-    <Left v-if="!isCustomLoading && false" />
-    <Right v-if="!isCustomLoading && false" />
-    <Bottom v-if="!isCustomLoading && false" />
+    <Left v-if="!isLoading" />
+    <Right v-if="!isLoading" />
+    <Bottom v-if="!isLoading" />
     <Map class="map" :markerList="markerList" />
     <!-- <Loading class="loading" /> -->
+    <BasicModal v-model:modalValue="open" />
   </PageWrapper>
 </template>
 
