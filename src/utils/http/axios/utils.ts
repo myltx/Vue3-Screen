@@ -1,12 +1,10 @@
 import { removeLocalStorage } from '@/utils';
 import { TIMEOUT, OTHER, NOLOGIN } from './error-code';
 import { useMessage } from '@/hooks/useMessage';
+import { Modal } from 'ant-design-vue';
+import { LOGIN_OUT_PATH } from '@/helper';
 
-// import { LOGIN_OUT_PATH } from '@/helpers';
-
-const LOGIN_OUT_PATH = '';
-
-const { createConfirm, createMessage } = useMessage();
+const { createMessage } = useMessage();
 
 // 成功处理函数
 export function handleSuccess(res: any, resolve: Function, opts?: any) {
@@ -14,11 +12,7 @@ export function handleSuccess(res: any, resolve: Function, opts?: any) {
   const data = res.data;
   // 未登录
   if (NOLOGIN.includes(data.code)) {
-    createMessage.warn(data.msg);
-    setTimeout(() => {
-      removeLocalStorage();
-      window.location.hash = LOGIN_OUT_PATH;
-    }, 2000);
+    loginOut(data.msg);
   } else {
     const msg = data.msg || data.message;
     if (msg.includes('[]未匹配地址')) {
@@ -42,30 +36,33 @@ export function handleError(error: any, reject: Function, opts?: any) {
       createMessage.error(error.response.data);
     }
     if (NOLOGIN.includes(error.response.data.code)) {
-      createMessage.warn(error.response.data.errorMsg || error.response.data.msg);
-      setTimeout(() => {
-        removeLocalStorage();
-        window.location.hash = LOGIN_OUT_PATH;
-      }, 2000);
+      loginOut(error.response.data.errorMsg || error.response.data.msg);
     } else {
       const resData = error.response.data;
 
       if (OTHER.includes(resData.code)) {
-        createMessage.warn(resData.msg || resData.message);
-        setTimeout(() => {
-          removeLocalStorage();
-          window.location.hash = LOGIN_OUT_PATH;
-        }, 2000);
+        loginOut(resData.msg || resData.message);
       } else if (resData.msg) {
         createMessage.error(resData.msg);
       } else if (resData.message) {
-        createMessage.error(resData.message);
-
-        window.location.hash = LOGIN_OUT_PATH;
+        loginOut(resData.message);
       }
     }
   } else if (error.message || error.msg) {
     createMessage.error(error.message || error.msg);
   }
   reject(error);
+}
+
+export function loginOut(content: string) {
+  Modal.confirm({
+    iconType: 'error',
+    title: '提示',
+    content: content || '登录信息已过期，请重新登录',
+    cancelButtonProps: { style: { display: 'none' } },
+    onOk: () => {
+      removeLocalStorage();
+      window.location.hash = LOGIN_OUT_PATH;
+    },
+  });
 }

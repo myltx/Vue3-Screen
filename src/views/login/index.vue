@@ -1,38 +1,44 @@
 <script setup lang="ts">
-  import { getUserCurrentInfo } from '@/api/cockpit/user';
-  import { useMessage } from '@/hooks/useMessage';
-  import { useLoadingStore } from '@/stores/loading';
-  import { setToken, setUserInfo } from '@/utils';
-
-  const route = useRoute();
-  const router = useRouter();
-  const { startLoading, endLoading } = useLoadingStore();
-  const { createMessage } = useMessage();
-  const { token } = route.query;
-  startLoading();
-  if (!token) {
-    createMessage.warn('请先登录');
-  } else {
-    setToken(token as string);
-    // 获取用户信息
-    // 这里走免登接口
-    setTimeout(() => {
-      endLoading();
-      router.replace('/');
-    }, 2000);
-    // getUserCurrentInfo().then((res: any) => {
-    //   setUserInfo(res.data);
-    //   setTimeout(() => {
-    //     endLoading();
-    //     router.replace('/');
-    //   }, 2000);
-    // });
+  interface FormState {
+    account: string;
+    password: string;
   }
+
+  const formState = reactive<FormState>({
+    account: '',
+    password: '',
+  });
+  const onFinish = (values: any) => {
+    console.log('Success:', values);
+  };
+
+  const onFinishFailed = (errorInfo: any) => {
+    console.log('Failed:', errorInfo);
+  };
 </script>
 <template>
-  <PageWrapper :show-header="false">
-    <Loading class="loading" />
-  </PageWrapper>
+  <a-form
+    :model="formState"
+    name="basic"
+    :label-col="{ span: 8 }"
+    :wrapper-col="{ span: 16 }"
+    class="w-50% mt-50px"
+    autocomplete="off"
+    @finish="onFinish"
+    @finishFailed="onFinishFailed"
+  >
+    <a-form-item label="账号" name="username" :rules="[{ required: true, message: '请输入账号' }]">
+      <a-input v-model:value="formState.account" />
+    </a-form-item>
+
+    <a-form-item label="密码" name="password" :rules="[{ required: true, message: '请输入密码' }]">
+      <a-input-password v-model:value="formState.password" />
+    </a-form-item>
+
+    <a-form-item :wrapper-col="{ offset: 8, span: 16 }">
+      <a-button type="primary" html-type="submit" block>登录</a-button>
+    </a-form-item>
+  </a-form>
 </template>
 
 <style scoped lang="scss">

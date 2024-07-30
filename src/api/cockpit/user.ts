@@ -8,3 +8,11 @@ export function getUserCurrentInfo() {
     method: RequestEnum.GET,
   });
 }
+
+export function login(data: any) {
+  return Axios({
+    url: ServicePrefixEnum.OAUTH + '/login',
+    method: RequestEnum.POST,
+    data,
+  });
+}
