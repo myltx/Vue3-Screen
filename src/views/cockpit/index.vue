@@ -5,7 +5,6 @@
   import Right from './components/Right.vue';
   import Bottom from './components/Bottom.vue';
   import { useCockpitDataStore } from '@/stores/cockpitData';
-  import MapIconActiveImg from '@/assets/images/map/map-icon-active.png';
   import MapIconImg from '@/assets/images/map/map-icon.png';
 
   const { startLoading, endLoading } = useLoadingStore();
@@ -28,11 +27,11 @@
       name: '测试点',
       lat: 39.915185,
       lng: 116.403901,
-      icon: MapIconActiveImg,
+      icon: MapIconImg,
     },
     {
       name: '测试点1',
-      lat: 39.911593,
+      lat: 39.811593,
       lng: 116.396226,
       icon: MapIconImg,
     },

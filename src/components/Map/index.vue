@@ -1,5 +1,7 @@
 <script setup lang="ts">
   import { BMap, BMarker } from 'vue3-baidu-map-gl';
+  import MapIconActiveImg from '@/assets/images/map/map-icon-active.png';
+  import MapIconImg from '@/assets/images/map/map-icon.png';
   interface Marker {
     lng: number;
     lat: number;
@@ -29,10 +31,19 @@
 
   function handleMarkerClick(data: any) {
     map.value.map.panTo({ lng: data?.lng, lat: data?.lat });
-    setTimeout(() => {
-      map.value.map.setHeading(64.5);
-      map.value.map.setTilt(50);
-    }, 200);
+    markerList.forEach((item: any) => {
+      if (item.name == data.name) {
+        item.icon = MapIconActiveImg;
+      } else {
+        item.icon = MapIconImg;
+      }
+    });
+
+    // centerPoint.value = { lng: data?.lng, lat: data?.lat };
+    // setTimeout(() => {
+    //   map.value.map.setHeading(64.5);
+    //   map.value.map.setTilt(50);
+    // }, 200);
   }
   function mapInitd(e: any) {
     map.value = e;
@@ -76,6 +87,7 @@
       v-for="(marker, index) in markerList"
       :key="index"
       :position="{ lng: marker.lng, lat: marker.lat }"
+      :data="marker"
       :icon="getMarkerIcon(marker.icon)"
       @click="handleMarkerClick(marker)"
     />
