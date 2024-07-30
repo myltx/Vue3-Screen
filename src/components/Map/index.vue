@@ -1,18 +1,23 @@
 <script setup lang="ts">
   import { BMap, BMarker } from 'vue3-baidu-map-gl';
+  interface Marker {
+    lng: number;
+    lat: number;
+    icon?: any;
+  }
   const props = defineProps({
     markerList: {
-      type: Array,
+      type: Array<Marker>,
       default: () => [],
     },
   });
   const { markerList } = unref(props);
   const centerPoint = ref({ lng: 116.404, lat: 39.915 });
-  const map = ref(null);
+  const map = ref<any>(null);
 
   watch(
     () => markerList,
-    (newVal) => {
+    (newVal: any) => {
       if (newVal.length) {
         centerPoint.value = { lng: newVal[0]?.lng, lat: newVal[0]?.lat };
       } else {
