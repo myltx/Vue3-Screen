@@ -17,13 +17,32 @@
   const { getALlModuleData } = useCockpitDataStore();
   // 根据配置的 moduleKey 在页面动态获取数据
   getALlModuleData(pageKey, moduleKeys, endLoading);
+  const markerList = ref<
+    {
+      lat: number;
+      lng: number;
+      name: string;
+      [key: string]: any;
+    }[]
+  >([
+    {
+      name: '测试点',
+      lat: 39.915185,
+      lng: 116.403901,
+    },
+    {
+      name: '测试点1',
+      lat: 39.911593,
+      lng: 116.396226,
+    },
+  ]);
 </script>
 <template>
   <PageWrapper :title="'大屏示例页面'">
     <Left v-if="!isLoading && false" />
     <Right v-if="!isLoading && false" />
     <Bottom v-if="!isLoading && false" />
-    <Map class="map" v-if="!isLoading" />
+    <Map class="map" v-if="!isLoading" :markerList="markerList" />
     <Loading class="loading" />
   </PageWrapper>
 </template>
