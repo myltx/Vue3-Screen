@@ -1,12 +1,7 @@
 import { createRouter, createWebHashHistory } from 'vue-router';
 import type { RouteRecordRaw } from 'vue-router';
 import { start, close } from '@/utils/nprogress';
-import {
-  LOGIN_OUT_PATH_DEV,
-  LOGIN_OUT_PATH_PRODUCTION,
-  LOGIN_PATH,
-  MIDDLE_LOGIN_PATH,
-} from '@/helper';
+import { LOGIN_OUT_PATH_PRODUCTION, LOGIN_PATH, MIDDLE_LOGIN_PATH } from '@/helper';
 import { getToken } from '@/utils';
 import { isDevFn } from '../../build/utils';
 
@@ -52,10 +47,11 @@ const whiteList = [LOGIN_PATH, MIDDLE_LOGIN_PATH];
 
 router.beforeEach((to, from, next) => {
   start();
+  document.title = '驾驶舱';
   if (!getToken() && !whiteList.includes(to.path)) {
     if (isDevFn(import.meta.env.MODE)) {
       setTimeout(() => {
-        next(LOGIN_OUT_PATH_DEV);
+        next(MIDDLE_LOGIN_PATH);
       });
     } else {
       window.location.href = LOGIN_OUT_PATH_PRODUCTION;

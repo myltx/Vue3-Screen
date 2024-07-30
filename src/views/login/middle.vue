@@ -3,6 +3,7 @@
   import { useMessage } from '@/hooks/useMessage';
   import { useLoadingStore } from '@/stores/loading';
   import { setToken, setUserInfo } from '@/utils';
+  import { loginOut } from '@/utils/http/axios/utils';
 
   const route = useRoute();
   const router = useRouter();
@@ -11,7 +12,11 @@
   const { token } = route.query;
   startLoading();
   if (!token) {
-    createMessage.warn('请先登录');
+    if (import.meta.env.DEV) {
+      createMessage.warn('请先登录');
+    } else {
+      loginOut('请先登录');
+    }
   } else {
     setToken(token as string);
     // 获取用户信息
