@@ -39,6 +39,29 @@
   function mapInitd(e: any) {
     map.value = e;
   }
+  function getMarkerIcon(icon: string) {
+    if (icon.includes('/src/assets/')) {
+      const imgIcon = {
+        imageUrl: icon,
+        // imageSize: {
+        //   width: 30,
+        //   height: 30,
+        // },
+        size: {
+          width: 40,
+          height: 40,
+        },
+        // anchor: {
+        //   width: 15,
+        //   height: 15,
+        // },
+      };
+      console.log(imgIcon, 'i');
+      return imgIcon;
+    } else {
+      return icon;
+    }
+  }
 </script>
 <template>
   <BMap
@@ -55,10 +78,8 @@
     <BMarker
       v-for="(marker, index) in markerList"
       :key="index"
-      :zIndex="99"
-      :position="{ lat: marker?.lat, lng: marker?.lng }"
-      :icon="marker?.icon"
-      @click="handleMarkerClick(marker)"
+      :position="{ lng: marker.lng, lat: marker.lat }"
+      :icon="getMarkerIcon(marker.icon)"
     />
   </BMap>
 </template>

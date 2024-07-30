@@ -3,10 +3,10 @@
   import { storeToRefs } from 'pinia';
   import Index from './components/index.vue';
 
-  const { isLoading } = storeToRefs(useLoadingStore());
+  const { isCustomLoading } = storeToRefs(useLoadingStore());
 </script>
 <template>
-  <div v-if="isLoading">
+  <div v-if="isCustomLoading">
     <Index />
   </div>
 </template>

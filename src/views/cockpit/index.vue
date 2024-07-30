@@ -5,9 +5,11 @@
   import Right from './components/Right.vue';
   import Bottom from './components/Bottom.vue';
   import { useCockpitDataStore } from '@/stores/cockpitData';
+  import MapIconActiveImg from '@/assets/images/map/map-icon-active.png';
+  import MapIconImg from '@/assets/images/map/map-icon.png';
 
   const { startLoading, endLoading } = useLoadingStore();
-  const { isLoading } = storeToRefs(useLoadingStore());
+  const { isCustomLoading } = storeToRefs(useLoadingStore());
   startLoading();
   const pageKey = 'homePage';
   const moduleKeys = {
@@ -26,23 +28,23 @@
       name: '测试点',
       lat: 39.915185,
       lng: 116.403901,
-      icon: 'start',
+      icon: MapIconActiveImg,
     },
     {
       name: '测试点1',
       lat: 39.911593,
       lng: 116.396226,
-      icon: 'end',
+      icon: MapIconImg,
     },
   ]);
 </script>
 <template>
   <PageWrapper :title="'大屏示例页面'">
-    <Left v-if="!isLoading && false" />
-    <Right v-if="!isLoading && false" />
-    <Bottom v-if="!isLoading && false" />
-    <Map class="map" v-if="!isLoading" :markerList="markerList" />
-    <Loading class="loading" />
+    <Left v-if="!isCustomLoading && false" />
+    <Right v-if="!isCustomLoading && false" />
+    <Bottom v-if="!isCustomLoading && false" />
+    <Map class="map" :markerList="markerList" />
+    <!-- <Loading class="loading" /> -->
   </PageWrapper>
 </template>
 

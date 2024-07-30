@@ -2,16 +2,16 @@ import { defineStore } from 'pinia';
 
 export const useLoadingStore = defineStore('loading', () => {
   // 定义状态
-  const isLoading = ref(true);
+  const isCustomLoading = ref(true);
 
   // 定义方法
   const startLoading = () => {
-    isLoading.value = true;
+    isCustomLoading.value = true;
   };
 
   const endLoading = () => {
-    isLoading.value = false;
+    isCustomLoading.value = false;
   };
 
-  return { isLoading, startLoading, endLoading };
+  return { isCustomLoading, startLoading, endLoading };
 });

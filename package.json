@@ -13,7 +13,6 @@
   },
   "dependencies": {
     "@ant-design/icons-vue": "^7.0.1",
-    "@supabase/supabase-js": "^2.44.2",
     "@unocss/reset": "^0.53.6",
     "ant-design-vue": "~4.2.3",
     "axios": "^1.7.2",
@@ -28,7 +27,7 @@
     "vue": "^3.4.31",
     "vue-echarts": "^6.7.3",
     "vue-router": "^4.4.0",
-    "vue3-baidu-map-gl": "^2.3.2",
+    "vue3-baidu-map-gl": "^2.3.4",
     "vue3-seamless-scroll": "^2.0.1"
   },
   "devDependencies": {
