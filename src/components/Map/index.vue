@@ -28,13 +28,11 @@
   );
 
   function handleMarkerClick(data: any) {
-    console.log(map.value.map);
     map.value.map.panTo({ lng: data?.lng, lat: data?.lat });
     setTimeout(() => {
       map.value.map.setHeading(64.5);
       map.value.map.setTilt(50);
-    }, 100);
-    // centerPoint.value = { lng: data?.lng, lat: data?.lat };
+    }, 200);
   }
   function mapInitd(e: any) {
     map.value = e;
@@ -56,7 +54,6 @@
         //   height: 15,
         // },
       };
-      console.log(imgIcon, 'i');
       return imgIcon;
     } else {
       return icon;
@@ -80,6 +77,7 @@
       :key="index"
       :position="{ lng: marker.lng, lat: marker.lat }"
       :icon="getMarkerIcon(marker.icon)"
+      @click="handleMarkerClick(marker)"
     />
   </BMap>
 </template>
