@@ -8,6 +8,7 @@
   });
   const { markerList } = unref(props);
   const centerPoint = ref({ lng: 116.404, lat: 39.915 });
+  const map = ref(null);
 
   watch(
     () => markerList,
@@ -22,8 +23,16 @@
   );
 
   function handleMarkerClick(data: any) {
-    console.log(data);
-    centerPoint.value = { lng: data?.lng, lat: data?.lat };
+    console.log(map.value.map);
+    map.value.map.panTo({ lng: data?.lng, lat: data?.lat });
+    setTimeout(() => {
+      map.value.map.setHeading(64.5);
+      map.value.map.setTilt(50);
+    }, 100);
+    // centerPoint.value = { lng: data?.lng, lat: data?.lat };
+  }
+  function mapInitd(e: any) {
+    map.value = e;
   }
 </script>
 <template>
@@ -36,13 +45,14 @@
     ak="0BMG1CekNJ2VVFRrrmX6x6qma8WHYGY0"
     mapStyleId="6053418609ae26d7c32f05d45ea7991b"
     :center="centerPoint"
+    @initd="mapInitd"
   >
     <BMarker
       v-for="(marker, index) in markerList"
       :key="index"
       :zIndex="99"
       :position="{ lat: marker?.lat, lng: marker?.lng }"
-      icon="start"
+      :icon="marker?.icon"
       @click="handleMarkerClick(marker)"
     />
   </BMap>

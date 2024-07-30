@@ -19,9 +19,6 @@
   getALlModuleData(pageKey, moduleKeys, endLoading);
   const markerList = ref<
     {
-      lat: number;
-      lng: number;
-      name: string;
       [key: string]: any;
     }[]
   >([
@@ -29,11 +26,13 @@
       name: '测试点',
       lat: 39.915185,
       lng: 116.403901,
+      icon: 'start',
     },
     {
       name: '测试点1',
       lat: 39.911593,
       lng: 116.396226,
+      icon: 'end',
     },
   ]);
 </script>
