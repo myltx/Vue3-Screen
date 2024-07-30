@@ -280,7 +280,8 @@ interface CountUpOptions {
 - [ ] map components
   - [x] 点位渲染
   - [x] 中心点切换
-  - [ ] 自定义 marker icon
+  - [ ] marker 点击事件
+  - [x] 自定义 marker icon
 - [ ] 获取动态数据然后转换为页面需要格式（使用 store ）
 - [ ] 根据环境判断跳转地址
 - [ ] dev 运行后增加访问方式、地址提示，防止初次访问项目无法正确访问问题
