@@ -1,5 +1,4 @@
 <script setup lang="ts">
-  import { storeToRefs } from 'pinia';
   import { useSettingStore } from '@/stores/index';
 
   // const router = useRouter();

@@ -6,7 +6,6 @@
   import HEIGHT_IMG from '@/assets/images/business/height.png';
   import dayjs from 'dayjs';
   import { useSettingStore } from '@/stores/setting/setting';
-  import { storeToRefs } from 'pinia';
   import { useCockpitDataStore } from '@/stores/cockpitData';
 
   type ClickType = 'equipment';

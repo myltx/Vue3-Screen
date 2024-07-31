@@ -1,6 +1,5 @@
 <script setup lang="ts">
   import { useSettingStore } from '@/stores/index';
-  import { storeToRefs } from 'pinia';
   const settingStore = useSettingStore();
   const { isScale } = storeToRefs(settingStore);
   const wrapperStyle = {};

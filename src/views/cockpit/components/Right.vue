@@ -6,7 +6,6 @@
   import HEIGHT_IMG from '@/assets/images/business/height.png';
   import dayjs from 'dayjs';
   import { useSettingStore } from '@/stores/setting/setting';
-  import { storeToRefs } from 'pinia';
 
   type ClickType = 'equipment';
   interface AlarmListType {

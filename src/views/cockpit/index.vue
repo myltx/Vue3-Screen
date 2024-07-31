@@ -1,5 +1,4 @@
 <script setup lang="ts">
-  import { storeToRefs } from 'pinia';
   import { useLoadingStore } from '@/stores/loading';
   import Left from './components/Left.vue';
   import Right from './components/Right.vue';

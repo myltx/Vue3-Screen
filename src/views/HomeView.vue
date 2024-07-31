@@ -4,7 +4,6 @@
   import Headers from './header.vue';
   import Setting from './setting.vue';
   import { useSettingStore } from '@/stores/index';
-  import { storeToRefs } from 'pinia';
   import MessageContent from '@/components/Plugins/MessageContent';
 
   const settingStore = useSettingStore();

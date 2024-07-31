@@ -3,7 +3,6 @@
   import SeamlessScroll from '@/components/seamless-scroll';
   import { computed, onMounted, reactive } from 'vue';
   import { useSettingStore } from '@/stores';
-  import { storeToRefs } from 'pinia';
   import EmptyCom from '@/components/empty-com';
   const settingStore = useSettingStore();
   const { defaultOption, indexConfig } = storeToRefs(settingStore);

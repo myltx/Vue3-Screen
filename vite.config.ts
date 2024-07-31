@@ -42,6 +42,7 @@ export default defineConfig(({ command, mode }: ConfigEnv): UserConfig => {
           // presets
           'vue',
           'vue-router',
+          'pinia',
           // custom
           {
             '@vueuse/core': [

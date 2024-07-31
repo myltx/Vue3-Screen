@@ -1,4 +1,3 @@
-import { defineStore } from 'pinia';
 import { useMessage } from '@/hooks/useMessage';
 import { isFunction, isObject } from '@/utils/is';
 import { getModule } from '@/api/cockpit/cockpit';
