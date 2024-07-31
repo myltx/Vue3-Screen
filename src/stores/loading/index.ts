@@ -1,4 +1,3 @@
-
 export const useLoadingStore = defineStore('loading', () => {
   // 定义状态
   const isLoading = ref(true);

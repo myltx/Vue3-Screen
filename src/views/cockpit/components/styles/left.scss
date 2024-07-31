@@ -35,9 +35,10 @@
     );
     border-image-slice: 1;
     border-bottom: 0;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    text-align: center;
+    // display: flex;
+    // justify-content: space-between;
+    // align-items: center;
 
     &::after {
       content: '';
@@ -50,7 +51,7 @@
       background: #4fd3fe;
     }
     .left-text {
-      width: calc((100% - 11px) / 2);
+      // width: calc((100% - 11px) / 2);
       text-align: center;
       padding: 2px;
       .info-title {

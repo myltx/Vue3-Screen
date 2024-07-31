@@ -132,7 +132,7 @@
         <div class="flex space-between items-center w-full">
           <div class="flex-1 file-info">
             <div class="left-text">
-              <div class="info-title">已上传</div>
+              <!-- <div class="info-title">已上传</div> -->
               <div class="info-value">{{ getValue('safetySystem', 0) }}</div>
               <div class="info-unit">家</div>
             </div>
@@ -144,30 +144,30 @@
             </div> -->
           </div>
           <div class="flex-1 file-info mx-10px">
+            <div class="flex-1 left-text">
+              <!-- <div class="info-title">已上传</div> -->
+              <div class="info-value">21</div>
+              <div class="info-unit">家</div>
+            </div>
+            <!-- <div class="placeholder"></div>
             <div class="left-text">
               <div class="info-title">已上传</div>
               <div class="info-value">21</div>
               <div class="info-unit">家</div>
-            </div>
-            <div class="placeholder"></div>
-            <div class="left-text">
-              <div class="info-title">已上传</div>
-              <div class="info-value">21</div>
-              <div class="info-unit">家</div>
-            </div>
+            </div> -->
           </div>
           <div class="flex-1 file-info">
             <div class="left-text">
-              <div class="info-title">已上传</div>
+              <!-- <div class="info-title">已上传</div> -->
               <div class="info-value">21</div>
               <div class="info-unit">家</div>
             </div>
-            <div class="placeholder"></div>
+            <!-- <div class="placeholder"></div>
             <div class="left-text">
               <div class="info-title">已上传</div>
               <div class="info-value">21</div>
               <div class="info-unit">家</div>
-            </div>
+            </div> -->
           </div>
         </div>
       </div>
