@@ -1,0 +1,414 @@
+.container-right {
+  position: absolute;
+  top: 60px;
+  right: 0;
+  z-index: 9999;
+  width: 400px;
+  background: linear-gradient(180deg, rgba(0, 0, 1, 0.5) 0%, #091829 100%);
+  backdrop-filter: blur(4px);
+  .text {
+    font-family: PangMenZhengDao;
+    font-size: 18px;
+    color: #ffffff;
+    line-height: 21px;
+    text-align: center;
+    font-style: normal;
+    background: linear-gradient(top, #ffffff 0%, #caf9ff 100%);
+  }
+  .file-info {
+    position: relative;
+    margin-top: 10px;
+    height: 114px;
+    background: linear-gradient(
+      180deg,
+      #0f3c67 0%,
+      rgba(22, 67, 110, 0.29) 53%,
+      rgba(29, 74, 116, 0) 100%
+    );
+    border-radius: 8px 8px 0px 0px;
+    border: 2px solid;
+    border-image: linear-gradient(
+      to bottom,
+      rgba(97, 204, 255, 1),
+      rgba(29, 70, 89, 0.93),
+      rgba(8, 40, 58, 0)
+    );
+    border-image-slice: 1;
+    border-bottom: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    &::after {
+      content: '';
+      position: absolute;
+      top: -2px;
+      left: 50%;
+      transform: translate(-50%, 0);
+      width: 52px;
+      height: 3px;
+      background: #4fd3fe;
+    }
+    .left-text {
+      width: calc((100% - 11px) / 2);
+      text-align: center;
+      padding: 2px;
+      .info-title {
+        font-family:
+          PingFangSC,
+          PingFang SC;
+        font-weight: 400;
+        font-size: 14px;
+        color: rgba(255, 255, 255, 0.7);
+        line-height: 20px;
+        font-style: normal;
+        text-transform: none;
+      }
+      .info-value {
+        font-family: DINAlternate, DINAlternate;
+        font-weight: bold;
+        font-size: 32px;
+        color: #ffffff;
+        line-height: 37px;
+        font-style: normal;
+        margin: 10px 0;
+      }
+      .info-unit {
+        font-family:
+          PingFangSC,
+          PingFang SC;
+        font-weight: 400;
+        font-size: 13px;
+        color: rgba(255, 255, 255, 0.49);
+        line-height: 18px;
+        font-style: normal;
+      }
+    }
+    .placeholder {
+      width: 1px;
+      height: 90px;
+      background: linear-gradient(
+        180deg,
+        rgba(79, 211, 254, 0) 0%,
+        #4fd3fe 52%,
+        rgba(216, 216, 216, 0) 100%
+      );
+      opacity: 0.53;
+      margin: 0 5px;
+    }
+  }
+  .top-container {
+    display: flex;
+    .left-container {
+      display: flex;
+      width: 50%;
+      margin-left: 27px;
+    //   margin-top: 9px;
+      .title {
+        // width: 62px;
+        height: 22px;
+        font-family:
+          PingFangSC,
+          PingFang SC;
+        font-weight: 400;
+        font-size: 16px;
+        color: rgba(255, 255, 255, 0.8);
+        line-height: 22px;
+        text-align: left;
+        font-style: normal;
+      }
+      .number {
+        // width: 41px;
+        height: 32px;
+        font-family: DINAlternate, DINAlternate;
+        font-weight: bold;
+        font-size: 28px;
+        color: #ffffff;
+        line-height: 32px;
+        text-align: left;
+        font-style: normal;
+      }
+    }
+  }
+  // 设备
+  .equipment-top {
+    height: 33px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    .equipment-item {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      height: 100%;
+      flex: 1;
+      background: url('@/assets/images/business/equipment-tag-bg.png') no-repeat;
+      background-size: 100% 100%;
+      &.active {
+        background: url('@/assets/images/business/equipment-tag-bg-active.png') no-repeat;
+        background-size: 100% 100%;
+      }
+    }
+  }
+  .value-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 10px;
+    .value-item {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      font-family:
+        PingFangSC,
+        PingFang SC;
+      font-weight: 600;
+      font-size: 16px;
+      color: #ffffff;
+      line-height: 22px;
+      text-align: left;
+      font-style: normal;
+      &.placeholder {
+        position: relative;
+        &::after {
+          content: '';
+          position: absolute;
+          right: 0;
+          top: 0;
+          width: 2px;
+          height: 20px;
+          background: linear-gradient(
+            180deg,
+            rgba(114, 218, 245, 0) 0%,
+            #72daf5 46%,
+            rgba(114, 218, 245, 0) 100%
+          );
+          margin: 0 5px;
+        }
+        &::before {
+          content: '';
+          position: absolute;
+          left: 0;
+          top: 0;
+          width: 2px;
+          height: 20px;
+          background: linear-gradient(
+            180deg,
+            rgba(114, 218, 245, 0) 0%,
+            #72daf5 46%,
+            rgba(114, 218, 245, 0) 100%
+          );
+          margin: 0 5px;
+        }
+      }
+      .value {
+        font-family:
+          PingFangSC,
+          PingFang SC;
+        font-weight: 600;
+        font-size: 16px;
+        line-height: 22px;
+        text-align: left;
+        font-style: normal;
+        margin-left: 5px;
+      }
+    }
+  }
+  .chart-container {
+    margin-top: 10px;
+    height: 70%;
+    position: relative;
+    .tip-container {
+      width: 90px;
+      height: 28px;
+      font-family: PangMenZhengDao;
+      font-size: 16px;
+      color: #ffffff;
+      line-height: 28px;
+      text-align: left;
+      font-style: normal;
+      text-transform: none;
+    }
+    .bar-chart-title {
+      text-indent: 35px;
+      height: 28px;
+      width: 206px;
+      background: url('@/assets/images/business/equipment-chart-title-bg.png') no-repeat;
+      background-size: 100% 100%;
+      font-family: PangMenZhengDao, PangMenZhengDao;
+      font-weight: normal;
+      font-size: 18px;
+      color: #ffffff;
+      line-height: 28px;
+      text-align: left;
+      font-style: normal;
+      background: linear-gradient(top, #ffffff 0%, #1f8dcb 100%);
+      position: absolute;
+      top: 0;
+      z-index: 9999;
+    }
+    .bar-chart-unit {
+      position: absolute;
+      top: 5px;
+      right: 0;
+      z-index: 9999;
+      font-family:
+        PingFangSC,
+        PingFang SC;
+      font-weight: 400;
+      font-size: 13px;
+      color: rgba(255, 255, 255, 0.45);
+      line-height: 18px;
+      text-align: right;
+      font-style: normal;
+      span {
+        color: #fff;
+      }
+    }
+    #bar-chart {
+      height: 100%;
+      width: 100%;
+    }
+  }
+  .safe-container {
+    margin-top: 0;
+    span {
+      display: flex;
+      justify-content: right;
+      height: 28px;
+      font-family: DINAlternate, DINAlternate;
+      font-weight: bold;
+      font-size: 24px;
+      color: #ffffff;
+      line-height: 28px;
+      font-style: normal;
+    }
+    .pie-container {
+      width: 181px;
+      height: 179px;
+      margin-top: 4px;
+      margin-left: 42px;
+      background: url('@/assets/images/institution/pie.png') no-repeat;
+    }
+  }
+  // 底部
+  .scroll {
+    overflow: hidden;
+    height: 95%;
+    .item {
+      padding: 8px 12px;
+      width: 100%;
+      height: 120px;
+      background: linear-gradient(180deg, #182f4a 0%, #112034 100%);
+      margin-bottom: 5px;
+      .item-top {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        .left-title {
+          display: flex;
+          align-items: center;
+        }
+        img {
+          width: 39px;
+          height: 39px;
+          margin-right: 10px;
+        }
+        .normal {
+          font-family: PangMenZhengDao, PangMenZhengDao;
+          font-weight: normal;
+          font-size: 24px;
+          color: #69ddff;
+          line-height: 27px;
+          letter-spacing: 2px;
+          text-align: left;
+          font-style: normal;
+        }
+        .middle {
+          font-family: PangMenZhengDao, PangMenZhengDao;
+          font-weight: normal;
+          font-size: 24px;
+          color: #f3b158;
+          line-height: 27px;
+          letter-spacing: 2px;
+          text-align: left;
+          font-style: normal;
+        }
+        .height {
+          font-family: PangMenZhengDao, PangMenZhengDao;
+          font-weight: normal;
+          font-size: 24px;
+          color: #dd5858;
+          line-height: 27px;
+          letter-spacing: 2px;
+          text-align: left;
+          font-style: normal;
+        }
+        .time {
+          font-family:
+            PingFangSC,
+            PingFang SC;
+          font-weight: 400;
+          font-size: 16px;
+          color: #ffffff;
+          line-height: 22px;
+          text-align: right;
+          font-style: normal;
+        }
+      }
+      .item-content {
+        font-family:
+          PingFangSC,
+          PingFang SC;
+        font-weight: 600;
+        font-size: 20px;
+        color: #ffffff;
+        line-height: 28px;
+        text-align: left;
+        font-style: normal;
+        margin-top: 4px;
+      }
+      .item-subscribe {
+        margin-top: 8px;
+        font-family:
+          PingFangSC,
+          PingFang SC;
+        font-size: 16px;
+        color: rgba(255, 255, 255, 0.41);
+        line-height: 22px;
+        text-align: left;
+        font-style: normal;
+      }
+    }
+  }
+  .more-tip {
+    position: absolute;
+    right: 85px;
+    top: 660px;
+    // width: 28px;
+    height: 20px;
+    font-family:
+      PingFangSC,
+      PingFang SC;
+    font-weight: 400;
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.7);
+    line-height: 20px;
+    text-align: left;
+    font-style: normal;
+    text-transform: none;
+  }
+  .video-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-left: -20px;
+    margin-right: -20px;
+    img {
+      margin-bottom: 8px;
+    }
+  }
+}
