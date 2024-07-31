@@ -1,14 +1,14 @@
 <script setup lang="ts">
-  // import { storeToRefs } from 'pinia';
+  import { storeToRefs } from 'pinia';
   import { useLoadingStore } from '@/stores/loading';
-  // import Left from './components/Left.vue';
-  // import Right from './components/Right.vue';
-  // import Bottom from './components/Bottom.vue';
+  import Left from './components/Left.vue';
+  import Right from './components/Right.vue';
+  import Bottom from './components/Bottom.vue';
   import { useCockpitDataStore } from '@/stores/cockpitData';
   import MapIconImg from '@/assets/images/map/map-icon.png';
 
   const { startLoading, endLoading } = useLoadingStore();
-  // const { isLoading } = storeToRefs(useLoadingStore());
+  const { isLoading } = storeToRefs(useLoadingStore());
   startLoading();
   const pageKey = 'homePage';
   const moduleKeys: ModuleKeyType = {
@@ -42,11 +42,11 @@
 </script>
 <template>
   <PageWrapper :title="'大屏示例页面'">
-    <!-- <Left v-if="!isLoading" v-motion-slide-left />
+    <Left v-if="!isLoading" v-motion-slide-left />
     <Right v-if="!isLoading" v-motion-slide-right />
-    <Bottom v-if="!isLoading" v-motion-slide-visible-bottom /> -->
+    <Bottom v-if="!isLoading" v-motion-slide-visible-bottom />
     <Map class="map" :markerList="markerList" />
-    <!-- <Loading class="loading" /> -->
+    <Loading class="loading" />
     <BasicModal v-model:modalValue="open" />
   </PageWrapper>
 </template>
