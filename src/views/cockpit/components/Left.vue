@@ -1,10 +1,5 @@
 <script setup lang="ts">
-  import { Vue3SeamlessScroll } from 'vue3-seamless-scroll';
-  import NORMAL_IMG from '@/assets/images/business/normal.png';
-  import MIDDLE_IMG from '@/assets/images/business/middle.png';
-  import HEIGHT_IMG from '@/assets/images/business/height.png';
   import dayjs from 'dayjs';
-  import { useSettingStore } from '@/stores/setting/setting';
   import { useCockpitDataStore } from '@/stores/cockpitData';
 
   interface AlarmListType {
@@ -15,24 +10,8 @@
     subscribe: number | string;
   }
 
-  const settingStore = useSettingStore();
-  const { indexConfig } = storeToRefs(settingStore);
   const { getModuleName, getValue, getName } = useCockpitDataStore();
 
-  const statusImgMap: { [key in number]: string } = {
-    1: NORMAL_IMG,
-    2: MIDDLE_IMG,
-    3: HEIGHT_IMG,
-  };
-  const statusClass: { [key in number]: string } = {
-    1: 'normal',
-    2: 'middle',
-    3: 'height',
-  };
-
-  const isScroll = computed(() => {
-    return indexConfig.value.leftBottomSwiper;
-  });
   const alarmList = ref<AlarmListType[]>([]);
   generateList();
   function generateList() {
@@ -112,27 +91,7 @@
       </div>
     </BasicBox>
     <DeviceBox :module-keys="['fireAwarenessEquipmentType', 'fireFightingEquipmentType']" />
-    <BasicBox :title="'告警'">
-      <div class="scroll">
-        <vue3-seamless-scroll :list="alarmList" hover v-model="isScroll" :limitScrollNum="2">
-          <div class="item" v-for="(item, index) in alarmList" :key="index">
-            <div class="item-top">
-              <div class="left-title">
-                <img :src="statusImgMap[item.status]" alt="" />
-                <span :class="statusClass[item.status]">{{ item.statusText }}</span>
-              </div>
-              <div class="time">{{ item.date }}</div>
-            </div>
-            <div class="item-content">
-              {{ item.content }}
-            </div>
-            <div class="item-subscribe">
-              {{ item.subscribe }}
-            </div>
-          </div>
-        </vue3-seamless-scroll>
-      </div>
-    </BasicBox>
+    <VideoBox />
   </div>
 </template>
 
