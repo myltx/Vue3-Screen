@@ -115,6 +115,36 @@
           巡检
         </div>
       </div>
+      <div class="bottom-container">
+        <div>
+          <img src="@/assets/images/business/rws.png" alt="" class="img">
+          <span class="tip">累计巡更任务数</span>
+        </div>
+        <div>
+          <span class="number">1254</span>
+          <span class="dw">次</span>
+        </div>
+      </div>
+      <div class="bottom-container">
+        <div>
+          <img src="@/assets/images/business/wcs.png" alt="" class="img">
+          <span class="tip">累计巡更完成数</span>
+        </div>
+        <div>
+          <span class="number">1098</span>
+          <span class="dw">次</span>
+        </div>
+      </div>
+      <div class="bottom-container">
+        <div>
+          <img src="@/assets/images/business/yqs.png" alt="" class="img">
+          <span class="tip">累计巡更逾期数</span>
+        </div>
+        <div>
+          <span class="number font3">148</span>
+          <span class="dw">次</span>
+        </div>
+      </div>
       <!-- <div class="value-container">
         <div class="value-item"> 在线 <div class="value text-#3bdff6">256</div>
         </div>
