@@ -6,7 +6,6 @@
     location: string;
   }
   const alarmList = ref<AlarmListType[]>([]);
-
 </script>
 
 <template>
@@ -15,24 +14,23 @@
       <BasicBox :title="'消防值班情况'" :size="'large'">21313</BasicBox>
     </div>
     <div class="w-50% bg-#112034">
-      <BasicBox :title="'消防演练与培训'" :width="'50%'">
-        <div class="flex">
+      <BasicBox :title="'消防演练与培训'" :width="'50%'" :height="'200px'">
+        <div class="flex h-90%">
           <div class="swipter-container">
             <a-carousel autoplay>
-              <div>
-                <h3>1</h3>
+              <div class="h-100%">
+                <img src="@/assets/images/institution/video.png" alt="" />
               </div>
-              <div>
-                <h3>2</h3>
+              <div class="h-100%">
+                <img src="@/assets/images/institution/video.png" alt="" />
               </div>
-              <div>
-                <h3>3</h3>
+              <div class="h-100%">
+                <img src="@/assets/images/institution/video.png" alt="" />
               </div>
-              <div>
-                <h3>4</h3>
+              <div class="h-100%">
+                <img src="@/assets/images/institution/video.png" alt="" />
               </div>
             </a-carousel>
-            <!-- <img /> -->
           </div>
           <div class="right-container">
             <div class="item-container">
@@ -55,24 +53,26 @@
             </div>
           </div>
         </div>
-
       </BasicBox>
     </div>
   </div>
 </template>
 
 <style scoped lang="scss">
-@import './styles/bottom.scss';
+  @import './styles/bottom.scss';
 
-.ant-carousel :deep(.slick-slide) {
-  text-align: center;
-  height: 160px;
-  line-height: 160px;
-  background: #364d79;
-  overflow: hidden;
-}
+  .ant-carousel :deep(.slick-slide) {
+    height: 200px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+  }
 
-.ant-carousel :deep(.slick-slide h3) {
-  color: #fff;
-}
+  :deep(.slick-dots) {
+    padding-top: 20px !important;
+  }
+
+  .ant-carousel :deep(.slick-slide h3) {
+    color: #fff;
+  }
 </style>
