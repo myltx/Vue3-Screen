@@ -40,7 +40,7 @@
 
 <template>
   <div class="container-left mt-22px ml-16px">
-    <BasicBox :title="getModuleName('safetySystem')">
+    <BasicBox :title="getModuleName('safetySystem')" :height="'235px'">
       <div class="w-full h-full">
         <div class="flex justify-center items-center w-full">
           <div class="flex-1">
