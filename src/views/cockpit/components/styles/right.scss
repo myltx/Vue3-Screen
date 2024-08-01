@@ -97,6 +97,55 @@
 	    margin: 0 5px;
 	  }
 	}
+	.top-container {
+		display: flex;
+		.left-container {
+		  display: flex;
+		  width: 50%;
+		  margin: 0 10px 0 -10px;
+		  margin-left: -10px;
+		  margin-right: 10px;
+		//   margin-top: 9px;
+		  .title {
+			// width: 62px;
+			height: 22px;
+			font-family:
+			  PingFangSC,
+			  PingFang SC;
+			font-weight: 400;
+			font-size: 16px;
+			color: rgba(255, 255, 255, 0.8);
+			line-height: 22px;
+			text-align: left;
+			font-style: normal;
+		  }
+		  .number {
+			width: 16px;
+            height: 37px;
+			margin-left: 45px;
+            font-family: DINAlternate, DINAlternate;
+	        font-weight: bold;
+	        font-size: 32px;
+	        color: #FFC934;
+	        line-height: 37px;
+	        text-align: center;
+	        font-style: normal;
+		  }
+		  .tip {
+			width: 200px;
+			height: 22px;
+			margin-left: 3px;
+			margin-top: 20px;
+			font-family: PingFangSC, PingFang SC;
+			font-weight: 400;
+			font-size: 16px;
+			color: rgba(255, 255, 255, 0.8);
+			line-height: 22px;
+			text-align: left;
+			font-style: normal;
+		  }
+		}
+	  }
 	// 设备
 	.equipment-top {
 	  height: 33px;

@@ -99,7 +99,52 @@
 
 <template>
   <div class="container-right mt-22px mr-16px">
-    <BasicBox :title="'消防安全制度建设'">
+    <BasicBox :title="'消防安全检查'" style="height: 350px;">
+      <div class="top-container">
+        <div class="left-container">
+          <img src="@/assets/images/institution/ljxg.png" alt="">
+          <div>
+            <div class="title">
+              <span class="number">6</span>
+              <span class="tip">家</span>
+            </div>
+            <div class="tip">近3日未巡更机构</div>
+          </div>
+        </div>
+        <div class="left-container">
+          <img src="@/assets/images/institution/ljxj.png" alt="">
+          <div>
+            <div class="title">
+              <span class="number">9</span>
+              <span class="tip">家</span>
+            </div>
+            <div class="tip">近1月未巡检机构</div>
+          </div>
+        </div>
+      </div>
+      <div class="equipment-top">
+        <div :class="['equipment-item mr-5px', equipmentActive == 0 ? 'active' : '']"
+          @click="handleType('equipment', 0)">
+          巡更
+        </div>
+        <div :class="['equipment-item mr-5px', equipmentActive == 1 ? 'active' : '']"
+          @click="handleType('equipment', 1)">
+          巡检
+        </div>
+      </div>
+      <!-- <div class="value-container">
+        <div class="value-item"> 在线 <div class="value text-#3bdff6">256</div>
+        </div>
+        <div class="value-item placeholder"> 故障 <div class="value text-#E3B026">256</div>
+        </div>
+        <div class="value-item"> 离线 <div class="value text-#DD5858">256</div>
+        </div>
+      </div> -->
+      <!-- <div class="chart-container">
+        <div class="tip-container">当前巡更情况</div>
+      </div> -->
+    </BasicBox>
+    <!-- <BasicBox :title="'消防安全制度建设'">
       <div class="w-full h-full">
         <div class="flex justify-center items-center w-full">
           <div class="flex-1">
@@ -169,7 +214,7 @@
           </div>
         </div>
       </div>
-    </BasicBox>
+    </BasicBox> -->
     <BasicBox :title="'消防设施设备'">
       <div class="equipment-top">
         <div
