@@ -49,14 +49,26 @@ export const useCockpitDataStore = defineStore('cockpitData', () => {
     });
   }
 
-  //   获取模块标题
-  const getModuleName = computed(() => (moduleKey: string) => {
+  // 获取模块标题
+  function getModuleName(moduleKey: string) {
     if (allData.value[moduleKey]) {
-      return allData.value[moduleKey].moduleName;
+      return allData.value[moduleKey].moduleName.replace(/[\(（].*?[\)）]/g, '');
     } else {
       return '';
     }
-  });
+  }
+  // 获取模块子标题
+  function getSubtModuleName(moduleKey: string) {
+    if (allData.value[moduleKey]) {
+      const regex = /（([^）]*)）/;
+      const match = allData.value[moduleKey].moduleName.match(regex);
+      const contentInsideBrackets = match ? match[1] : '';
+      return contentInsideBrackets;
+    } else {
+      return '';
+    }
+  }
+
   //   获取每项标题
   function getName(moduleKey: string, index: number) {
     if (kvLists.value[moduleKey] && kvLists.value[moduleKey][index]) {
@@ -88,5 +100,6 @@ export const useCockpitDataStore = defineStore('cockpitData', () => {
     getValue,
     getArray,
     getName,
+    getSubtModuleName,
   };
 });

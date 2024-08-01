@@ -1,6 +1,5 @@
 <script setup lang="ts">
   import { Vue3SeamlessScroll } from 'vue3-seamless-scroll';
-  import { equipmentOption } from '../config';
   import NORMAL_IMG from '@/assets/images/business/normal.png';
   import MIDDLE_IMG from '@/assets/images/business/middle.png';
   import HEIGHT_IMG from '@/assets/images/business/height.png';
@@ -71,20 +70,6 @@
     switch (type) {
       case 'equipment':
         equipmentActive.value = value;
-        setOption('option', equipmentOption);
-        break;
-
-      default:
-        break;
-    }
-  };
-  const setOption = (key: string, opt: any) => {
-    switch (key) {
-      case 'option':
-        option.value = {};
-        setTimeout(() => {
-          option.value = opt;
-        }, 1000);
         break;
 
       default:
@@ -92,9 +77,7 @@
     }
   };
 
-  onMounted(() => {
-    setOption('option', equipmentOption);
-  });
+  onMounted(() => {});
 </script>
 
 <template>
