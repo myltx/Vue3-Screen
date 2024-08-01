@@ -1,13 +1,6 @@
 <script setup lang="ts">
-  import { Vue3SeamlessScroll } from 'vue3-seamless-scroll';
-  import { equipmentOption } from '../config';
-  import NORMAL_IMG from '@/assets/images/business/normal.png';
-  import MIDDLE_IMG from '@/assets/images/business/middle.png';
-  import HEIGHT_IMG from '@/assets/images/business/height.png';
   import dayjs from 'dayjs';
-  import { useSettingStore } from '@/stores/setting/setting';
 
-  type ClickType = 'equipment';
   interface AlarmListType {
     content: number | string;
     status: number;
@@ -16,30 +9,7 @@
     subscribe: number | string;
   }
 
-  const settingStore = useSettingStore();
-  const { indexConfig } = storeToRefs(settingStore);
-
-  const statusImgMap: {
-    [key in number]: string;
-  } = {
-    1: NORMAL_IMG,
-    2: MIDDLE_IMG,
-    3: HEIGHT_IMG,
-  };
-  const statusClass: {
-    [key in number]: string;
-  } = {
-    1: 'normal',
-    2: 'middle',
-    3: 'height',
-  };
-
-  const isScroll = computed(() => {
-    return indexConfig.value.rightBottomSwiper;
-  });
   const equipmentActive = ref(0);
-  const option = ref({});
-  const chartRef = ref(null); // 用于引用图表实例
   const alarmList = ref<AlarmListType[]>([]);
   generateList();
   function generateList() {
@@ -67,34 +37,9 @@
     return Math.floor(Math.random() * (max - min + 1)) + min;
   }
 
-  const handleType = (type: ClickType, value: number) => {
-    switch (type) {
-      case 'equipment':
-        equipmentActive.value = value;
-        setOption('option', equipmentOption);
-        break;
-
-      default:
-        break;
-    }
+  const handleType = (value: number) => {
+    equipmentActive.value = value;
   };
-  const setOption = (key: string, opt: any) => {
-    switch (key) {
-      case 'option':
-        option.value = {};
-        setTimeout(() => {
-          option.value = opt;
-        }, 1000);
-        break;
-
-      default:
-        break;
-    }
-  };
-
-  onMounted(() => {
-    setOption('option', equipmentOption);
-  });
 </script>
 
 <template>
@@ -119,13 +64,13 @@
       <div class="equipment-top">
         <div
           :class="['equipment-item mr-5px', equipmentActive == 0 ? 'active' : '']"
-          @click="handleType('equipment', 0)"
+          @click="handleType(0)"
         >
           巡更情况
         </div>
         <div
           :class="['equipment-item mr-5px', equipmentActive == 1 ? 'active' : '']"
-          @click="handleType('equipment', 1)"
+          @click="handleType(1)"
         >
           巡检情况
         </div>
@@ -142,15 +87,7 @@
         <div class="pie-container"> </div>
       </div>
     </BasicBox>
-    <BasicBox :title="'实时视频联动'">
-      <span class="more-tip">更多></span>
-      <div class="video-container">
-        <img src="@/assets/images/institution/video.png" alt="" />
-        <img src="@/assets/images/institution/video.png" alt="" />
-        <img src="@/assets/images/institution/video.png" alt="" />
-        <img src="@/assets/images/institution/video.png" alt="" />
-      </div>
-    </BasicBox>
+    <VideoBox />
   </div>
 </template>
 
