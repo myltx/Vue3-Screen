@@ -5,7 +5,7 @@ const data1 = [40, 85, 230, 95, 100];
 const getvalue1 = [40, 85, 230, 95, 100];
 
 export const equipmentOption = {
-//   backgroundColor: '#000E1A', //背景色
+  //   backgroundColor: '#000E1A', //背景色
   tooltip: {
     trigger: 'axis',
     borderColor: 'rgba(255,255,255,.3)',
@@ -210,5 +210,26 @@ export const equipmentOption = {
         },
       },
     },
+  ],
+};
+
+export const moduleKeys: ModuleKeyType = {
+  orgPage: [
+    'fireAwarenessEquipment-消防设施设备（消防感知设备）',
+    'fireFightingEquipment-消防设施设备（消防器材）',
+    'fireFightingEquipmentType-设备类型统计（消防器材）',
+    'fireAwarenessEquipmentType-设备类型统计（消防感知设备）',
+    'realTimeVideo-时视频联动',
+    'topCenter-顶部中间',
+    'inspection-巡检(消防安全检查）',
+    'fireSafetynspection-消防安全检查',
+    'keepWatch-巡更(消防安全检查）',
+    'giveAnAlarm-告警/隐患记录（告警）',
+    'hiddenTrouble-告警/隐患记录（隐患）',
+    'dutySituation-消防值班情况',
+    'fireDrillAndTraining-消防演练与培训',
+    'safetyHazardRectification-安全隐患整改（超期一个月未整改）',
+    'safetyHazardRectificationChart-安全隐患整改（chart）',
+    'map-中间图片',
   ],
 };
