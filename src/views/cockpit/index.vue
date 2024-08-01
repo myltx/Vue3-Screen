@@ -29,7 +29,7 @@
     },
   ]);
   setTimeout(() => {
-    // open.value = true;
+    open.value = true;
   }, 2000);
 </script>
 <template>
@@ -39,7 +39,9 @@
     <Bottom v-if="!isLoading" v-motion-slide-visible-bottom />
     <Map class="map" :markerList="markerList" />
     <Loading class="loading" />
-    <BasicModal v-model:modalValue="open" />
+    <BasicModal v-model:modalValue="open" :title="'实时监测告警'">
+      <template> <div>213</div> </template>
+    </BasicModal>
   </PageWrapper>
 </template>
 
