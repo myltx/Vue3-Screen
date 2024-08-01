@@ -53,7 +53,11 @@
     .left-text {
       // width: calc((100% - 11px) / 2);
       text-align: center;
-      padding: 2px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      padding: 10px;
       .info-title {
         font-family:
           PingFangSC,
@@ -66,20 +70,21 @@
         text-transform: none;
       }
       .info-value {
+        width: 100%;
         font-family: DINAlternate, DINAlternate;
         font-weight: bold;
-        font-size: 32px;
-        color: #ffffff;
+        font-size: 42px;
         line-height: 37px;
         font-style: normal;
         margin: 10px 0;
       }
       .info-unit {
+        margin-top: 5px;
         font-family:
           PingFangSC,
           PingFang SC;
         font-weight: 400;
-        font-size: 13px;
+        font-size: 21px;
         color: rgba(255, 255, 255, 0.49);
         line-height: 18px;
         font-style: normal;
