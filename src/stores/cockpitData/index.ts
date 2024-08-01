@@ -10,7 +10,7 @@ export const useCockpitDataStore = defineStore('cockpitData', () => {
   const kvLists = ref<{ [key: string]: any }>({});
   const allData = ref<{ [key: string]: any }>({});
   //   异步根据页面所有模块配置获取数据
-  async function getALlModuleData(pageKey: string, moduleKeys: ModuleKeyType, callBack: Function) {
+  async function getALlModuleData(moduleKeys: ModuleKeyType, callBack: Function) {
     kvLists.value = {};
     allData.value = {};
     if (isObject(moduleKeys)) {
