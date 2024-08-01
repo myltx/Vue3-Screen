@@ -66,3 +66,12 @@
     }
   }
 }
+.footer-container{
+  position: absolute;
+  bottom: 10px;
+  z-index: 9999;
+  height: 10px;
+  width: 100%;
+  background: url('@/assets/images/header/footer-bg.png') no-repeat;
+  background-size: 100% 100%;
+}
