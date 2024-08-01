@@ -17,11 +17,7 @@
   const { getALlModuleData } = useCockpitDataStore();
   // 根据配置的 moduleKey 在页面动态获取数据
   getALlModuleData(pageKey, moduleKeys, endLoading);
-  const markerList = ref<
-    {
-      [key: string]: any;
-    }[]
-  >([
+  const markerList = ref<{ [key: string]: any }[]>([
     {
       name: '测试点',
       lat: 39.915185,
