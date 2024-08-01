@@ -228,8 +228,16 @@
         </div>
       </div>
     </BasicBox> -->
-    <BasicBox :title="'消防设施设备'">
-      <div class="equipment-top">
+    <BasicBox :title="'安全隐患整改'">
+      <div class="safe-container">
+        <span class="title">隐患整改</span>
+        <div class="right-container">
+          <span class="left">累计发现隐患</span>
+          <span class="middle">87</span>
+          <span class="right">条</span>
+        </div>
+      </div>
+      <!-- <div class="equipment-top">
         <div
           :class="['equipment-item mr-5px', equipmentActive == 0 ? 'active' : '']"
           @click="handleType('equipment', 0)"
@@ -259,7 +267,7 @@
           :option="option"
           v-if="Object.keys(option).length"
         />
-      </div>
+      </div> -->
     </BasicBox>
     <BasicBox :title="'告警'">
       <div class="scroll">

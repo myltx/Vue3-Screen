@@ -217,6 +217,50 @@
 			color: #FFC934;
 		}
 	}
+	.safe-container{
+		display: flex;
+		justify-content: space-between;
+		.title{
+			width: 78px;
+height: 20px;
+margin-top: 14px;
+font-family: PangMenZhengDao;
+font-size: 20px;
+color: #FFFFFF;
+line-height: 23px;
+text-align: left;
+font-style: normal;
+		}
+		.right-container{
+			.left{
+				width: 84px;
+height: 18px;
+margin-right: 12px;
+font-family: PingFangSC, PingFang SC;
+font-weight: 400;
+font-size: 14px;
+color: rgba(255,255,255,0.8);
+line-height: 18px;
+text-align: left;
+font-style: normal;
+			}
+			.middle{
+				width: 27px;
+                height: 32px;
+                margin-right: 4px;
+                font-family: DINAlternate, DINAlternate;
+                font-weight: bold;
+                font-size: 28px;
+                color: #FF4141;
+                line-height: 32px;
+                text-align: center;
+                font-style: normal;
+			}
+			.right{
+
+			}
+		}
+	}
 	.value-container {
 	  display: flex;
 	  align-items: center;
