@@ -231,8 +231,8 @@
   }
   // 底部
   .scroll {
-    // overflow: hidden;
-    // height: 95%;
+    overflow-y: auto;
+    height: 550px;
     .item {
       padding: 8px 12px;
       width: 100%;
