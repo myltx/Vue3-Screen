@@ -14,7 +14,7 @@
   const open = ref(false);
   const { getALlModuleData } = useCockpitDataStore();
   // 根据配置的 moduleKey 在页面动态获取数据
-  getALlModuleData(moduleKeys, endLoading);
+  getALlModuleData(moduleKeys, endLoading, '560803012012960709');
 
   setTimeout(() => {
     open.value = true;

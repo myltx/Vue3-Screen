@@ -1,6 +1,5 @@
 <script setup lang="ts">
   import { Vue3SeamlessScroll } from 'vue3-seamless-scroll';
-  import { getEquipmentOption } from '../config';
   import NORMAL_IMG from '@/assets/images/business/normal.png';
   import MIDDLE_IMG from '@/assets/images/business/middle.png';
   import HEIGHT_IMG from '@/assets/images/business/height.png';
@@ -18,7 +17,7 @@
 
   const settingStore = useSettingStore();
   const { indexConfig } = storeToRefs(settingStore);
-  const { getModuleName, getValue, getName, getSubtModuleName, getArray } = useCockpitDataStore();
+  const { getModuleName, getValue, getName } = useCockpitDataStore();
 
   const statusImgMap: { [key in number]: string } = {
     1: NORMAL_IMG,
@@ -34,9 +33,6 @@
   const isScroll = computed(() => {
     return indexConfig.value.leftBottomSwiper;
   });
-  const equipmentActive = ref(0);
-  const option = ref({});
-  const chartRef = ref(null); // 用于引用图表实例
   const alarmList = ref<AlarmListType[]>([]);
   generateList();
   function generateList() {
@@ -61,30 +57,6 @@
     max = Math.floor(max);
     return Math.floor(Math.random() * (max - min + 1)) + min;
   }
-
-  const handleType = (value: number) => {
-    equipmentActive.value = value;
-    setOption();
-  };
-  const setOption = () => {
-    let data = [];
-    let yData = [];
-    let xData = [];
-    if (equipmentActive.value == 1) {
-      data = getValue('fireAwarenessEquipmentType', 0);
-    } else {
-      data = getValue('fireFightingEquipmentType', 0);
-    }
-    yData = data.map((item: { [key: string]: string | number }) => item.value);
-    xData = data.map((item: { [key: string]: string | number }) => item.name);
-    setTimeout(() => {
-      option.value = getEquipmentOption(xData, yData);
-    }, 1000);
-  };
-
-  onMounted(() => {
-    setOption();
-  });
 </script>
 
 <template>
@@ -139,62 +111,7 @@
         </div>
       </div>
     </BasicBox>
-    <BasicBox :title="getModuleName('fireAwarenessEquipment')">
-      <div class="equipment-top">
-        <div
-          :class="['equipment-item mr-5px', equipmentActive == 0 ? 'active' : '']"
-          @click="handleType(0)"
-        >
-          {{ getSubtModuleName('fireAwarenessEquipment') }}
-          ({{ getValue('fireAwarenessEquipment', 3) }})
-        </div>
-        <div
-          :class="['equipment-item mr-5px', equipmentActive == 1 ? 'active' : '']"
-          @click="handleType(1)"
-        >
-          {{ getSubtModuleName('fireFightingEquipment') }}
-          ({{ getValue('fireFightingEquipment', 3) }})
-        </div>
-      </div>
-
-      <div class="value-container">
-        <div class="value-item">
-          在线
-          <div class="value text-#3bdff6">
-            {{
-              getValue(equipmentActive == 0 ? 'fireAwarenessEquipment' : 'fireFightingEquipment', 0)
-            }}
-          </div>
-        </div>
-        <div class="value-item placeholder">
-          故障
-          <div class="value text-#E3B026">
-            {{
-              getValue(equipmentActive == 0 ? 'fireAwarenessEquipment' : 'fireFightingEquipment', 1)
-            }}
-          </div>
-        </div>
-        <div class="value-item">
-          离线
-          <div class="value text-#DD5858">
-            {{
-              getValue(equipmentActive == 0 ? 'fireAwarenessEquipment' : 'fireFightingEquipment', 2)
-            }}
-          </div>
-        </div>
-      </div>
-      <div class="chart-container">
-        <div class="bar-chart-title">设备类型统计</div>
-        <div class="bar-chart-unit">单位: <span>台</span></div>
-        <v-chart
-          class="chart"
-          ref="chartRef"
-          id="bar-chart"
-          :option="option"
-          v-if="Object.keys(option).length"
-        />
-      </div>
-    </BasicBox>
+    <DeviceBox :module-keys="['fireAwarenessEquipmentType', 'fireFightingEquipmentType']" />
     <BasicBox :title="'告警'">
       <div class="scroll">
         <vue3-seamless-scroll :list="alarmList" hover v-model="isScroll" :limitScrollNum="2">
