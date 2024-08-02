@@ -70,6 +70,15 @@
     // }, 200);
     emits('markerClick', data);
   }
+  function cleanMarkerActive() {
+    markerList.forEach((item: any) => {
+      item.icon = MapIconImg;
+    });
+    setTimeout(() => {
+      map.value.map.setHeading(64.5);
+      map.value.map.setTilt(50);
+    }, 200);
+  }
   function mapInitd(e: any) {
     map.value = e;
     handleInitd();
@@ -96,6 +105,9 @@
       return icon;
     }
   }
+  defineExpose({
+    cleanMarkerActive,
+  });
 </script>
 <template>
   <BMap

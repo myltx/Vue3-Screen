@@ -10,11 +10,12 @@
   const router = useRouter();
   const { startLoading, endLoading } = useLoadingStore();
   const { isLoading } = storeToRefs(useLoadingStore());
-  startLoading();
+  const mapRef = ref();
   const open = ref(false);
   const openMapModal = ref(false);
   const { getALlModuleData } = useCockpitDataStore();
   // 根据配置的 moduleKey 在页面动态获取数据
+  startLoading();
   getALlModuleData(moduleKeys, endLoading);
   const markerList = ref<{ [key: string]: any }[]>([
     {
@@ -42,6 +43,10 @@
       // },
     });
   }
+  function cleanMarkerActive() {
+    console.log(123);
+    mapRef.value?.cleanMarkerActive();
+  }
   setTimeout(() => {
     // openMapModal.value = true;
   }, 2000);
@@ -51,13 +56,17 @@
     <Left v-if="!isLoading" v-motion-slide-left />
     <Right v-if="!isLoading" v-motion-slide-right />
     <Bottom v-if="!isLoading" v-motion-slide-visible-bottom />
-    <Map class="map" :markerList="markerList" @markerClick="markerClick" />
+    <Map class="map" ref="mapRef" :markerList="markerList" @markerClick="markerClick" />
     <Loading class="loading" />
     <BasicModal v-model:modalValue="open" :title="'实时监测告警'">
       <div>213</div>
     </BasicModal>
-    <BasicMapModal v-model:modalValue="openMapModal" :title="'泰康明养老院'">
-      <div @click="handleDetail" class="text-white bg-red p-20px h-20px">213</div>
+    <BasicMapModal
+      v-model:modalValue="openMapModal"
+      :title="'泰康明养老院'"
+      @closed="cleanMarkerActive"
+    >
+      <div @click="handleDetail" class="text-white bg-red p-20px h-20px cursor-pointer">213</div>
     </BasicMapModal>
   </PageWrapper>
 </template>

@@ -9,6 +9,7 @@
       default: '提示',
     },
   });
+  const emits = defineEmits(['closed']);
   const { title } = unref(props);
   const open = ref(props.modalValue);
   // watch for changes in the modelValue prop
@@ -16,6 +17,9 @@
     () => props.modalValue,
     (value) => {
       open.value = value;
+      if (!value) {
+        emits('closed');
+      }
     },
   );
 </script>
