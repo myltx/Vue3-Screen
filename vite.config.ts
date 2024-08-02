@@ -110,9 +110,7 @@ export default defineConfig(({ command, mode }: ConfigEnv): UserConfig => {
       target: 'esnext',
       rollupOptions: {
         output: {
-          manualChunks: {
-            'monaco-editor': ['monaco-editor'],
-          },
+          manualChunks: {},
         },
       },
     },
