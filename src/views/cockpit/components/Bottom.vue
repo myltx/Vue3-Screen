@@ -6,7 +6,7 @@
       <BasicBox :title="'消防安全制度建设'" :size="'large'" :height="'200px'">21313</BasicBox>
     </div>
     <div class="w-50% bg-#112034">
-      <BasicBox :title="'消防安全制度建设'" :width="'50%'">21313</BasicBox>
+      <BasicBox :title="'消防安全制度建设'" :width="'50%'" :height="'200px'">21313</BasicBox>
     </div>
   </div>
 </template>
