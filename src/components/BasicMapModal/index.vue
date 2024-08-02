@@ -9,7 +9,7 @@
       default: '提示',
     },
   });
-  const emits = defineEmits(['closed']);
+  const emits = defineEmits(['closed', 'update:modalValue']);
   const { title } = unref(props);
   const open = ref(props.modalValue);
   // watch for changes in the modelValue prop
@@ -27,7 +27,7 @@
   <div
     v-motion-pop-visible
     v-if="open"
-    class="w-50% h-50% bg-white z-999 position-absolute top-1/2 left-1/2 p-20px basic-modal"
+    class="w-50% h-50% bg-white z-999 position-absolute top-40% right-16% p-20px basic-modal"
   >
     <div class="title text-white">
       <div class="title-text">{{ title }}</div>
@@ -48,9 +48,10 @@
   @import '@/styles/common.scss';
   .basic-modal {
     transform: translate(-50%, -50%) !important;
-    width: 646px;
-    height: 436px;
-    background: linear-gradient(180deg, rgba(0, 0, 1, 0.5) 0%, #091829 100%);
+    width: 356px;
+    height: 506px;
+    background: url('@/assets/images/basic/modal/map-bg-icon.png') no-repeat;
+    background-size: 100% 100%;
     box-shadow: 0px 13px 26px 0px rgba(0, 0, 0, 0.89);
     border: 1px solid #2baaff;
     backdrop-filter: blur(4px);
@@ -64,34 +65,9 @@
         color: #ffffff;
         line-height: 21px;
         letter-spacing: 1px;
-        text-align: center;
+        text-align: left;
         font-style: normal;
         background: linear-gradient(top, #ffffff, #caf9ff);
-      }
-      &::before {
-        position: absolute;
-        top: 0;
-        left: 0;
-        content: '';
-        display: inline-block;
-        width: 106px;
-        height: 7px;
-        background: #2baaff;
-        margin-right: 10px;
-        background: url('@/assets/images/basic/modal/left-icon.png') no-repeat;
-        background-size: 100% 100%;
-      }
-      &::after {
-        position: absolute;
-        top: 0;
-        right: 0;
-        content: '';
-        display: inline-block;
-        width: 106px;
-        height: 7px;
-        background: #2baaff;
-        background: url('@/assets/images/basic/modal/right-icon.png') no-repeat;
-        background-size: 100% 100%;
       }
     }
     .close {

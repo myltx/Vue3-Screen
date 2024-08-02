@@ -9,7 +9,7 @@
       default: '提示',
     },
   });
-  const emits = defineEmits(['closed']);
+  const emits = defineEmits(['closed', 'update:modalValue']);
   const { title } = unref(props);
   const open = ref(props.modalValue);
   // watch for changes in the modelValue prop

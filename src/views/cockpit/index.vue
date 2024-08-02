@@ -44,11 +44,10 @@
     });
   }
   function cleanMarkerActive() {
-    console.log(123);
     mapRef.value?.cleanMarkerActive();
   }
   setTimeout(() => {
-    // openMapModal.value = true;
+    openMapModal.value = true;
   }, 2000);
 </script>
 <template>
