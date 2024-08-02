@@ -3,7 +3,7 @@
   import { useCockpitDataStore } from '@/stores/cockpitData';
   import { default_chart_colors } from '@/helper';
 
-  const { getModuleName, getValue, getName } = useCockpitDataStore();
+  const { getModuleName, getValue } = useCockpitDataStore();
 
   const threeChartRef = ref();
   const forewarningList = ref(getValue('fireWarningAnalysis', 0));
@@ -165,7 +165,7 @@
         </div>
       </div>
     </BasicBox>
-    <BasicBox :title="getModuleName('fireWarningAnalysis')">
+    <BasicBox :title="getModuleName('fireWarningAnalysis')" :height="'260px'">
       <div class="h-100%">
         <div class="chart-container">
           <div class="bar-chart-title">
