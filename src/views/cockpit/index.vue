@@ -7,10 +7,12 @@
   import MapIconImg from '@/assets/images/map/map-icon.png';
   import { moduleKeys } from './config';
 
+  const router = useRouter();
   const { startLoading, endLoading } = useLoadingStore();
   const { isLoading } = storeToRefs(useLoadingStore());
   startLoading();
   const open = ref(false);
+  const openMapModal = ref(false);
   const { getALlModuleData } = useCockpitDataStore();
   // 根据配置的 moduleKey 在页面动态获取数据
   getALlModuleData(moduleKeys, endLoading);
@@ -28,8 +30,20 @@
       icon: MapIconImg,
     },
   ]);
+  function markerClick(markerData: any) {
+    console.log(markerData);
+    openMapModal.value = true;
+  }
+  function handleDetail() {
+    router.push({
+      path: '/institution',
+      // query: {
+      //   name: markerData.name,
+      // },
+    });
+  }
   setTimeout(() => {
-    open.value = true;
+    // openMapModal.value = true;
   }, 2000);
 </script>
 <template>
@@ -37,11 +51,14 @@
     <Left v-if="!isLoading" v-motion-slide-left />
     <Right v-if="!isLoading" v-motion-slide-right />
     <Bottom v-if="!isLoading" v-motion-slide-visible-bottom />
-    <Map class="map" :markerList="markerList" />
+    <Map class="map" :markerList="markerList" @markerClick="markerClick" />
     <Loading class="loading" />
     <BasicModal v-model:modalValue="open" :title="'实时监测告警'">
-      <template> <div>213</div> </template>
+      <div>213</div>
     </BasicModal>
+    <BasicMapModal v-model:modalValue="openMapModal" :title="'泰康明养老院'">
+      <div @click="handleDetail" class="text-white bg-red p-20px h-20px">213</div>
+    </BasicMapModal>
   </PageWrapper>
 </template>
 

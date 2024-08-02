@@ -21,6 +21,7 @@
       default: '浙江省杭州市',
     },
   });
+  const emits = defineEmits(['markerClick']);
   const { markerList, areaName, areaKey } = unref(props);
   const defaultCanterPoint = { lng: 120.103241, lat: 30.307823 };
   const centerPoint = ref(defaultCanterPoint);
@@ -67,6 +68,7 @@
     //   map.value.map.setHeading(64.5);
     //   map.value.map.setTilt(50);
     // }, 200);
+    emits('markerClick', data);
   }
   function mapInitd(e: any) {
     map.value = e;
