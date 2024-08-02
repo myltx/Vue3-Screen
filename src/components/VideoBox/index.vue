@@ -13,10 +13,10 @@
       <span class="more-tip" @click="handleMore">更多 <DoubleRightOutlined /> </span>
     </template>
     <div class="video-container">
-      <img src="@/assets/images/institution/video.png" alt="" />
-      <img src="@/assets/images/institution/video.png" alt="" />
-      <img src="@/assets/images/institution/video.png" alt="" />
-      <img src="@/assets/images/institution/video.png" alt="" />
+      <img src="@/assets/images/institution/video.png" alt="" class="mt-0px" />
+      <img src="@/assets/images/institution/video.png" alt="" class="mt-0px" />
+      <img src="@/assets/images/institution/video.png" alt="" class="mt-8px" />
+      <img src="@/assets/images/institution/video.png" alt="" class="mt-8px" />
     </div>
   </BasicBox>
 </template>
@@ -45,9 +45,10 @@
     justify-content: space-between;
     margin-left: -20px;
     margin-right: -20px;
+    height: 100%;
     img {
       cursor: pointer;
-      margin-bottom: 8px;
+      // margin-top: 8px;
     }
   }
 </style>
