@@ -8,6 +8,7 @@
   import { useSettingStore } from '@/stores/setting/setting';
   import Ring from '../components/3dpie/index2.vue';
   import { color } from '../components/3dpie/data.js';
+  import Rang from '../components/echarts/index.vue';
 
   type ClickType = 'equipment';
 
@@ -26,7 +27,12 @@
   const option = ref({});
   const chartRef = ref(null); // 用于引用图表实例
   const alarmList = ref<AlarmListType[]>([]);
-
+  const ringData = ref([
+    { name: 'a', value: 10 },
+    { name: 'b', value: 30 },
+    { name: 'c', value: 22 },
+    { name: 'd', value: 12 },
+  ]);
   const setOption = (key: string, opt: any) => {
     switch (key) {
       case 'option':
@@ -117,7 +123,9 @@
       <div class="chart-container safe-container">
         <div class="bar-chart-title">超期一个月未整改</div>
         <span>16</span>
-        <div class="pie-container"> </div>
+        <div class="pie-container">
+          <Rang :data="[]" />
+        </div>
       </div>
     </BasicBox>
     <VideoBox />

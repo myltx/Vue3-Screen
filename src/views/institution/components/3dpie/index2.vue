@@ -1,6 +1,6 @@
 <template>
   <div class="chart-container">
-    <div class="chart" ref="chart" />
+    <div class="chart" ref="chart"></div>
     <!-- 底座背景 -->
     <!-- <div class="bg"></div> -->
   </div>
@@ -9,7 +9,7 @@
 <script>
   import { color } from './data';
   import { getPie3D, getParametricEquation } from './chart.js'; // 工具类js，页面路径自己修改
-
+  import * as echarts from 'echarts';
   export default {
     name: 'Chart',
     props: {
@@ -107,7 +107,9 @@
       },
       // 图表初始化
       initChart() {
-        this.statusChart = this.$chart.init(this.$refs.chart);
+        console.log('111111', this.$refs.chart, echarts);
+        this.statusChart = echarts.init(this.$refs.chart);
+        console.log('222222', this.statusChart);
         // 传入数据生成 option, 构建3d饼状图, 参数工具文件已经备注的很详细
         this.option = getPie3D(this.chartData, 0.94, 100, 20, 4, 0.85);
         this.statusChart.setOption(this.option);

@@ -24,9 +24,9 @@ const getPie3D = (pieData, internalDiameterRatio, distance, alpha, pieHeight, op
     sumValue += Number(pieData[i].count);
     const seriesItem = {
       name:
-        typeof pieData[i].echoMap.examinationType === 'undefined'
+        typeof pieData[i].echoMap?.examinationType === 'undefined'
           ? `series${i}`
-          : pieData[i].echoMap.examinationType,
+          : pieData[i].echoMap?.examinationType,
       type: 'surface',
       parametric: true,
       wireframe: {
@@ -59,9 +59,6 @@ const getPie3D = (pieData, internalDiameterRatio, distance, alpha, pieHeight, op
   legendData = [];
   legendBfb = [];
   for (let i = 0; i < series.length; i++) {
-    console.log('endValue-->', Number(endValue));
-    console.log('sumValue-->', Number(startValue));
-    console.log('series[i].pieData.count-->', Number(series[i].pieData.count));
     endValue = Number(startValue) + Number(series[i].pieData.count);
     series[i].pieData.startRatio = Number(startValue) / Number(sumValue);
     series[i].pieData.endRatio = Number(endValue) / Number(sumValue);
