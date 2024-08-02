@@ -217,32 +217,32 @@
 			color: #FFC934;
 		}
 	}
-	.safe-container{
-		display: flex;
-		justify-content: space-between;
-		.title{
-			width: 78px;
-height: 20px;
-margin-top: 14px;
-font-family: PangMenZhengDao;
-font-size: 20px;
-color: #FFFFFF;
-line-height: 23px;
-text-align: left;
-font-style: normal;
-		}
+		.safe-container{
+			display: flex;
+			justify-content: space-between;
+			.title{
+				width: 78px;
+				height: 20px;
+				margin-top: 14px;
+                font-family: PangMenZhengDao;
+                font-size: 20px;
+                color: #FFFFFF;
+                line-height: 23px;
+                text-align: left;
+                font-style: normal;
+		    }
 		.right-container{
 			.left{
 				width: 84px;
-height: 18px;
-margin-right: 12px;
-font-family: PingFangSC, PingFang SC;
-font-weight: 400;
-font-size: 14px;
-color: rgba(255,255,255,0.8);
-line-height: 18px;
-text-align: left;
-font-style: normal;
+                height: 18px;
+                margin-right: 12px;
+                font-family: PingFangSC, PingFang SC;
+                font-weight: 400;
+                font-size: 14px;
+                color: rgba(255,255,255,0.8);
+                line-height: 18px;
+                text-align: left;
+                font-style: normal;
 			}
 			.middle{
 				width: 27px;
@@ -258,6 +258,111 @@ font-style: normal;
 			}
 			.right{
 
+			}
+		}
+	}
+	.progress-container{
+		margin-top: 13px;
+		.main{
+			position: relative;
+			width: 343px;
+            height: 7px;
+            background: rgba(217,231,255,0.1);
+			.loading{
+				width: 256px;
+                height: 7px;
+                background: linear-gradient( 90deg, #00A9FA 0%, #FF513E 100%);
+				.img{
+					position: absolute;
+					top: -6px;
+					margin-left: 246px;
+				}
+			}
+		}
+		.tip-container{
+			width: 169px;
+			height: 44px;
+			margin: 0 auto;
+			margin-top: 8px;
+			background: url('@/assets/images/business/progress-border.png');
+			.text1{
+				display: inline-block;
+				height: 26px;
+				margin: 13px 0 5px 8px;
+				font-family: PingFangSC, PingFang SC;
+				font-weight: 400;
+				font-size: 12px;
+				color: rgba(255,255,255,0.8);
+				line-height: 13px;
+				text-align: left;
+				font-style: normal;
+				width: 36px;
+			}
+			.text2{
+				display: inline-block;
+				width: 24px;
+                height: 28px;
+                margin: 11px 0 5px 17px;
+                font-family: DINAlternate, DINAlternate;
+                font-weight: bold;
+                font-size: 24px;
+                color: #FFFFFF;
+                line-height: 28px;
+                font-style: normal;
+			}
+			.text3{
+				display: inline-block;
+				width: 36px;
+				margin: 11px 0 5px 30px;
+				font-family: DINAlternate, DINAlternate;
+				font-weight: bold;
+				font-size: 24px;
+				color: #52D7FF;
+				line-height: 28px;
+				font-style: normal;
+				height: 28px;
+			}
+		}
+		.footer-container{
+			margin: 21px 0 3px -10px;
+			.img{
+				display: inline-block;
+			}
+			.left{
+				width: 176px;
+				margin-left: 12px;
+				font-family: PangMenZhengDao, PangMenZhengDao;
+				font-weight: normal;
+				font-size: 18px;
+				color: #FFFFFF;
+				line-height: 28px;
+				text-align: left;
+				font-style: normal;
+				height: 28px;
+			}
+			.middle{
+				width: 27px;
+				margin-left: 72px;
+				font-family: DINAlternate, DINAlternate;
+				font-weight: bold;
+				font-size: 28px;
+				color: #FFC934;
+				line-height: 32px;
+				text-align: center;
+				height: 32px;
+                font-style: normal;
+			}
+			.right{
+				width: 13px;
+				margin-left: 4px;
+				font-family: PingFangSC, PingFang SC;
+				font-weight: 400;
+				font-size: 13px;
+				color: #FFFFFF;
+				line-height: 18px;
+				text-align: right;
+				font-style: normal;
+				height: 18px;
 			}
 		}
 	}
