@@ -21,7 +21,7 @@
   }, 2000);
 </script>
 <template>
-  <PageWrapper :title="'大屏示例页面'">
+  <PageWrapper :title="'大屏示例页面'" showBack>
     <Left v-if="!isLoading" v-motion-slide-left />
     <Right v-if="!isLoading" v-motion-slide-right />
     <Bottom v-if="!isLoading" v-motion-slide-visible-bottom />

@@ -12,6 +12,10 @@
       type: Boolean,
       default: false,
     },
+    showBack: {
+      type: Boolean,
+      default: false,
+    },
   });
   const { showHeader, showSetting } = unref(props);
 </script>
@@ -28,7 +32,12 @@
     :wrapperStyle="wrapperStyle"
     :autoScale="isScale"
   >
-    <Header v-bind="$attrs" v-if="showHeader" :showSetting="showSetting" />
+    <BasicHeader
+      v-bind="$attrs"
+      v-if="showHeader"
+      :showSetting="showSetting"
+      :showBack="showBack"
+    />
     <slot></slot>
   </ScaleScreen>
   <Setting />
