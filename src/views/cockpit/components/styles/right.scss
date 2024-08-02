@@ -324,6 +324,7 @@
 			}
 		}
 		.footer-container{
+			position: relative;
 			margin: 21px 0 3px -10px;
 			.img{
 				display: inline-block;
@@ -342,7 +343,7 @@
 			}
 			.middle{
 				width: 27px;
-				margin-left: 72px;
+				margin-left: 90px;
 				font-family: DINAlternate, DINAlternate;
 				font-weight: bold;
 				font-size: 28px;
@@ -353,6 +354,9 @@
                 font-style: normal;
 			}
 			.right{
+				position: absolute;
+                right: 0;
+                top: 28px;
 				width: 13px;
 				margin-left: 4px;
 				font-family: PingFangSC, PingFang SC;
