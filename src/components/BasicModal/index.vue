@@ -34,7 +34,9 @@
     >
       <img class="w-18px" src="@/assets/images/basic/modal/close-icon.png" />
     </div>
-    <slot></slot>
+    <div class="modal-content w-100% h-90% mt-20px overflow-y-auto">
+      <slot></slot>
+    </div>
   </div>
 </template>
 

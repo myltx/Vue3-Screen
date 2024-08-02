@@ -12,15 +12,23 @@
       type: Array<Marker>,
       default: () => [],
     },
+    areaName: {
+      type: String,
+      default: '浙江省杭州市西湖区',
+    },
+    areaKey: {
+      type: String,
+      default: '浙江省杭州市',
+    },
   });
-  const { markerList } = unref(props);
+  const { markerList, areaName, areaKey } = unref(props);
   const defaultCanterPoint = { lng: 120.103241, lat: 30.307823 };
   const centerPoint = ref(defaultCanterPoint);
   const map = ref<any>(null);
   const { isLoading, boundaries, get } = useAreaBoundary();
 
   function handleInitd() {
-    get('浙江省杭州市西湖区');
+    get(areaName);
   }
   watch(
     () => isLoading.value,
@@ -109,7 +117,7 @@
       @click="handleMarkerClick(marker)"
     />
     <BPolygon
-      :key="'浙江省杭州市'"
+      :key="areaKey"
       isBoundary
       :path="boundaries"
       stroke-color="#00baaf"
