@@ -1,6 +1,12 @@
 <script setup lang="ts">
   import dayjs from 'dayjs';
-  import { useSettingStore } from '@/stores/setting/setting';
+  import { useCockpitDataStore } from '@/stores/cockpitData';
+  import { default_chart_colors } from '@/helper';
+
+  const { getModuleName, getValue, getName } = useCockpitDataStore();
+
+  const threeChartRef = ref();
+  const forewarningList = ref(getValue('fireWarningAnalysis', 0));
 
   type ClickType = 'equipment';
   interface AlarmListType {
@@ -50,7 +56,15 @@
     }
   };
 
-  onMounted(() => {});
+  onMounted(() => {
+    console.log(getValue('fireWarningAnalysis', 0));
+    forewarningList.value.forEach((item: any, index: number) => {
+      item.color = default_chart_colors[index];
+      item.value = item.value * 1;
+    });
+    console.log(forewarningList.value);
+    threeChartRef.value.initChart(forewarningList.value);
+  });
 </script>
 
 <template>
@@ -151,23 +165,34 @@
         </div>
       </div>
     </BasicBox>
-    <BasicBox :title="'消防预警分析'">
+    <BasicBox :title="getModuleName('fireWarningAnalysis')">
       <div class="h-100%">
         <div class="chart-container">
           <div class="bar-chart-title">
             <div class="title-text">有效告警</div>
           </div>
-          <div class="bar-chart-unit">106 <span>条</span></div>
+          <div class="bar-chart-unit">{{ getValue('fireWarningAnalysis', 1) }} <span>条</span></div>
         </div>
         <div class="h-90% w-100% flex position-relative">
           <div class="h-100% w-50% three-chart">
-            <ThreeChart isHover />
+            <ThreeChart isHover ref="threeChartRef" />
           </div>
           <div class="flex items-center justify-center ml-20px flex-wrap w-50% h-50% mt-12%">
-            <div class="flex items-center justify-center" v-for="(item, index) in 4" :key="index">
-              <div class="legend mr-10px w-8px h-8px bg-#7BFBFD"></div>
-              <div class="title text-white text-opacity-80 mr-10px text-14px">安全用电告警</div>
-              <div class="value text-white text-18px">60条</div>
+            <div
+              class="flex items-center justify-center"
+              v-for="(item, index) in forewarningList"
+              :key="index"
+            >
+              <div
+                class="legend mr-5px w-12px h-12px"
+                :style="{
+                  background: item.color,
+                }"
+              ></div>
+              <div class="title text-white text-opacity-80 mr-5px text-14px w-65% text-center">
+                {{ item.name }}
+              </div>
+              <div class="value text-white text-18px w-80px text-right">{{ item.value }}条</div>
             </div>
           </div>
         </div>

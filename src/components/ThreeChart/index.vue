@@ -17,28 +17,28 @@
         name: 'cc',
         value: 47,
         itemStyle: {
-          color: 'rgba(111, 250, 252, .85)',
+          color: 'rgba(124, 253, 255, .8)',
         },
       },
       {
         name: 'aa',
         value: 44,
         itemStyle: {
-          color: 'rgba(46, 214, 250, .85)',
+          color: 'rgba(30, 255, 180, .8)',
         },
       },
       {
         name: 'bb',
         value: 32,
         itemStyle: {
-          color: 'rgba(255, 201, 52, .85)',
+          color: 'rgba(46, 109, 255, .8)',
         },
       },
       {
         name: 'ee',
         value: 16,
         itemStyle: {
-          color: 'rgba(0, 223, 245, .85)',
+          color: 'rgba(255, 171, 85, .8)',
         },
       },
     ],
@@ -258,7 +258,9 @@
     return option;
   }
 
-  onMounted(() => {
+  function initChart(opt: any) {
+    console.log(opt, 'opt');
+    const option = getPie3D(opt || [], 0.59);
     var dom = document.getElementById('chart-panel');
     var myChart = echarts.init(dom);
     //  修正取消高亮失败的 bug
@@ -375,7 +377,11 @@
     if (option && typeof option === 'object') {
       myChart.setOption(option);
     }
+  }
+  defineExpose({
+    initChart,
   });
+  onMounted(() => {});
 </script>
 
 <template>
