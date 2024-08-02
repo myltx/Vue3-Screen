@@ -1,5 +1,4 @@
 <script setup lang="ts">
-<<<<<<< HEAD
   import { Vue3SeamlessScroll } from 'vue3-seamless-scroll';
   import { equipmentOption } from '../config';
   import NORMAL_IMG from '@/assets/images/business/normal.png';
@@ -11,10 +10,8 @@
   import { color } from '@/components/3dpie/data.js';
 
   type ClickType = 'equipment';
-=======
   import dayjs from 'dayjs';
 
->>>>>>> 90494fda88e83544b0bd70f102278e3933f36881
   interface AlarmListType {
     content: number | string;
     status: number;
@@ -23,7 +20,6 @@
     subscribe: number | string;
   }
 
-<<<<<<< HEAD
   const settingStore = useSettingStore();
   const { indexConfig } = storeToRefs(settingStore);
 
@@ -103,7 +99,6 @@
   onMounted(() => {
     setOption('option', equipmentOption);
   });
-=======
   const equipmentActive = ref(0);
   const alarmList = ref<AlarmListType[]>([]);
   generateList();
@@ -135,12 +130,10 @@
   const handleType = (value: number) => {
     equipmentActive.value = value;
   };
->>>>>>> 90494fda88e83544b0bd70f102278e3933f36881
 </script>
 
 <template>
   <div class="container-right mt-22px mr-16px">
-<<<<<<< HEAD
     <!-- <BasicBox :title="'消防安全制度建设'">
       <div class="w-full h-full">
         <div class="flex justify-center items-center w-full">
@@ -212,8 +205,6 @@
         </div>
       </div>
     </BasicBox> -->
-=======
->>>>>>> 90494fda88e83544b0bd70f102278e3933f36881
     <BasicBox :title="'消防安全检查'" style="height: 350px">
       <div class="top-container">
         <div class="left-container">
@@ -234,21 +225,15 @@
       <div class="equipment-top">
         <div
           :class="['equipment-item mr-5px', equipmentActive == 0 ? 'active' : '']"
-<<<<<<< HEAD
           @click="handleType('equipment', 0)"
-=======
           @click="handleType(0)"
->>>>>>> 90494fda88e83544b0bd70f102278e3933f36881
         >
           巡更情况
         </div>
         <div
           :class="['equipment-item mr-5px', equipmentActive == 1 ? 'active' : '']"
-<<<<<<< HEAD
           @click="handleType('equipment', 1)"
-=======
           @click="handleType(1)"
->>>>>>> 90494fda88e83544b0bd70f102278e3933f36881
         >
           巡检情况
         </div>
@@ -263,7 +248,6 @@
         <div class="bar-chart-title">超期一个月未整改</div>
         <span>16</span>
         <div class="pie-container"> </div>
-<<<<<<< HEAD
       </div>
     </BasicBox>
     <BasicBox :title="'实时视频联动'">
@@ -273,8 +257,6 @@
         <img src="@/assets/images/institution/video.png" alt="" />
         <img src="@/assets/images/institution/video.png" alt="" />
         <img src="@/assets/images/institution/video.png" alt="" />
-=======
->>>>>>> 90494fda88e83544b0bd70f102278e3933f36881
       </div>
     </BasicBox>
     <VideoBox />
