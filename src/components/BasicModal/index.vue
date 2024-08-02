@@ -30,12 +30,9 @@
     </div>
     <div
       class="cursor-pointer position-absolute top-0 right--40px b-1px border-#2BAAFF p-10px close"
+      @click="$emit('update:modalValue', false)"
     >
-      <img
-        class="w-18px"
-        src="@/assets/images/basic/modal/close-icon.png"
-        @click="$emit('update:modalValue', false)"
-      />
+      <img class="w-18px" src="@/assets/images/basic/modal/close-icon.png" />
     </div>
     <slot></slot>
   </div>
