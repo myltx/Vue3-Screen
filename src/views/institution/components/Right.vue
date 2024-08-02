@@ -1,4 +1,5 @@
 <script setup lang="ts">
+<<<<<<< HEAD
   import { Vue3SeamlessScroll } from 'vue3-seamless-scroll';
   import { equipmentOption } from '../config';
   import NORMAL_IMG from '@/assets/images/business/normal.png';
@@ -10,6 +11,10 @@
   import { color } from '@/components/3dpie/data.js';
 
   type ClickType = 'equipment';
+=======
+  import dayjs from 'dayjs';
+
+>>>>>>> 90494fda88e83544b0bd70f102278e3933f36881
   interface AlarmListType {
     content: number | string;
     status: number;
@@ -18,6 +23,7 @@
     subscribe: number | string;
   }
 
+<<<<<<< HEAD
   const settingStore = useSettingStore();
   const { indexConfig } = storeToRefs(settingStore);
 
@@ -97,10 +103,44 @@
   onMounted(() => {
     setOption('option', equipmentOption);
   });
+=======
+  const equipmentActive = ref(0);
+  const alarmList = ref<AlarmListType[]>([]);
+  generateList();
+  function generateList() {
+    const statusTextMap: {
+      [key in number]: string;
+    } = {
+      1: '普通告警',
+      2: '重要告警',
+      3: '紧急告警',
+    };
+    for (let i = 0; i < 11; i++) {
+      const status = getRandomInt(1, 3);
+      alarmList.value.push({
+        content: '设备：13号智能烟感设备',
+        subscribe: '厨房餐厅',
+        status,
+        statusText: statusTextMap[status],
+        date: dayjs().format('YYYY-MM-DD HH:mm:ss'),
+      });
+    }
+  }
+  function getRandomInt(min: number, max: number) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+  }
+
+  const handleType = (value: number) => {
+    equipmentActive.value = value;
+  };
+>>>>>>> 90494fda88e83544b0bd70f102278e3933f36881
 </script>
 
 <template>
   <div class="container-right mt-22px mr-16px">
+<<<<<<< HEAD
     <!-- <BasicBox :title="'消防安全制度建设'">
       <div class="w-full h-full">
         <div class="flex justify-center items-center w-full">
@@ -172,6 +212,8 @@
         </div>
       </div>
     </BasicBox> -->
+=======
+>>>>>>> 90494fda88e83544b0bd70f102278e3933f36881
     <BasicBox :title="'消防安全检查'" style="height: 350px">
       <div class="top-container">
         <div class="left-container">
@@ -192,29 +234,28 @@
       <div class="equipment-top">
         <div
           :class="['equipment-item mr-5px', equipmentActive == 0 ? 'active' : '']"
+<<<<<<< HEAD
           @click="handleType('equipment', 0)"
+=======
+          @click="handleType(0)"
+>>>>>>> 90494fda88e83544b0bd70f102278e3933f36881
         >
           巡更情况
         </div>
         <div
           :class="['equipment-item mr-5px', equipmentActive == 1 ? 'active' : '']"
+<<<<<<< HEAD
           @click="handleType('equipment', 1)"
+=======
+          @click="handleType(1)"
+>>>>>>> 90494fda88e83544b0bd70f102278e3933f36881
         >
           巡检情况
         </div>
       </div>
 
-      <!-- <div class="value-container">
-        <div class="value-item"> 在线 <div class="value text-#3bdff6">256</div>
-        </div>
-        <div class="value-item placeholder"> 故障 <div class="value text-#E3B026">256</div>
-        </div>
-        <div class="value-item"> 离线 <div class="value text-#DD5858">256</div>
-        </div>
-      </div> -->
       <div class="chart-container">
         <div class="tip-container">当前巡更情况</div>
-        <!-- <v-chart class="chart" ref="chartRef" id="bar-chart" :option="option" v-if="Object.keys(option).length" /> -->
       </div>
     </BasicBox>
     <BasicBox :title="'安全隐患整改'" style="height: 280px">
@@ -222,6 +263,7 @@
         <div class="bar-chart-title">超期一个月未整改</div>
         <span>16</span>
         <div class="pie-container"> </div>
+<<<<<<< HEAD
       </div>
     </BasicBox>
     <BasicBox :title="'实时视频联动'">
@@ -231,8 +273,11 @@
         <img src="@/assets/images/institution/video.png" alt="" />
         <img src="@/assets/images/institution/video.png" alt="" />
         <img src="@/assets/images/institution/video.png" alt="" />
+=======
+>>>>>>> 90494fda88e83544b0bd70f102278e3933f36881
       </div>
     </BasicBox>
+    <VideoBox />
   </div>
 </template>
 

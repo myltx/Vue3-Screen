@@ -17,19 +17,19 @@
   const markerList = ref<{ [key: string]: any }[]>([
     {
       name: '测试点',
-      lat: 39.915185,
-      lng: 116.403901,
+      lat: 30.307823,
+      lng: 120.103241,
       icon: MapIconImg,
     },
     {
       name: '测试点1',
-      lat: 39.811593,
-      lng: 116.396226,
+      lat: 30.311893,
+      lng: 120.107183,
       icon: MapIconImg,
     },
   ]);
   setTimeout(() => {
-    // open.value = true;
+    open.value = true;
   }, 2000);
 </script>
 <template>
@@ -39,7 +39,9 @@
     <Bottom v-if="!isLoading" v-motion-slide-visible-bottom />
     <Map class="map" :markerList="markerList" />
     <Loading class="loading" />
-    <BasicModal v-model:modalValue="open" />
+    <BasicModal v-model:modalValue="open" :title="'实时监测告警'">
+      <template> <div>213</div> </template>
+    </BasicModal>
   </PageWrapper>
 </template>
 

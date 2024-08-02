@@ -53,7 +53,11 @@
     .left-text {
       // width: calc((100% - 11px) / 2);
       text-align: center;
-      padding: 2px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      padding: 10px;
       .info-title {
         font-family:
           PingFangSC,
@@ -66,20 +70,21 @@
         text-transform: none;
       }
       .info-value {
+        width: 100%;
         font-family: DINAlternate, DINAlternate;
         font-weight: bold;
-        font-size: 32px;
-        color: #ffffff;
+        font-size: 42px;
         line-height: 37px;
         font-style: normal;
         margin: 10px 0;
       }
       .info-unit {
+        margin-top: 5px;
         font-family:
           PingFangSC,
           PingFang SC;
         font-weight: 400;
-        font-size: 13px;
+        font-size: 21px;
         color: rgba(255, 255, 255, 0.49);
         line-height: 18px;
         font-style: normal;
@@ -96,138 +101,6 @@
       );
       opacity: 0.53;
       margin: 0 5px;
-    }
-  }
-  // 设备
-  .equipment-top {
-    height: 33px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    .equipment-item {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      height: 100%;
-      flex: 1;
-      background: url('@/assets/images/business/equipment-tag-bg.png') no-repeat;
-      background-size: 100% 100%;
-      &.active {
-        background: url('@/assets/images/business/equipment-tag-bg-active.png') no-repeat;
-        background-size: 100% 100%;
-      }
-    }
-  }
-  .value-container {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-top: 10px;
-    .value-item {
-      flex: 1;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      font-family:
-        PingFangSC,
-        PingFang SC;
-      font-weight: 600;
-      font-size: 16px;
-      color: #ffffff;
-      line-height: 22px;
-      text-align: left;
-      font-style: normal;
-      &.placeholder {
-        position: relative;
-        &::after {
-          content: '';
-          position: absolute;
-          right: 0;
-          top: 0;
-          width: 2px;
-          height: 20px;
-          background: linear-gradient(
-            180deg,
-            rgba(114, 218, 245, 0) 0%,
-            #72daf5 46%,
-            rgba(114, 218, 245, 0) 100%
-          );
-          margin: 0 5px;
-        }
-        &::before {
-          content: '';
-          position: absolute;
-          left: 0;
-          top: 0;
-          width: 2px;
-          height: 20px;
-          background: linear-gradient(
-            180deg,
-            rgba(114, 218, 245, 0) 0%,
-            #72daf5 46%,
-            rgba(114, 218, 245, 0) 100%
-          );
-          margin: 0 5px;
-        }
-      }
-      .value {
-        font-family:
-          PingFangSC,
-          PingFang SC;
-        font-weight: 600;
-        font-size: 16px;
-        line-height: 22px;
-        text-align: left;
-        font-style: normal;
-        margin-left: 5px;
-      }
-    }
-  }
-  .chart-container {
-    margin-top: 10px;
-    height: 70%;
-    position: relative;
-    .bar-chart-title {
-      text-indent: 35px;
-      height: 28px;
-      width: 206px;
-      background: url('@/assets/images/business/equipment-chart-title-bg.png') no-repeat;
-      background-size: 100% 100%;
-      font-family: PangMenZhengDao, PangMenZhengDao;
-      font-weight: normal;
-      font-size: 18px;
-      color: #ffffff;
-      line-height: 28px;
-      text-align: left;
-      font-style: normal;
-      background: linear-gradient(top, #ffffff 0%, #1f8dcb 100%);
-      position: absolute;
-      top: 0;
-      z-index: 9999;
-    }
-    .bar-chart-unit {
-      position: absolute;
-      top: 5px;
-      right: 0;
-      z-index: 9999;
-      font-family:
-        PingFangSC,
-        PingFang SC;
-      font-weight: 400;
-      font-size: 13px;
-      color: rgba(255, 255, 255, 0.45);
-      line-height: 18px;
-      text-align: right;
-      font-style: normal;
-      span {
-        color: #fff;
-      }
-    }
-    #bar-chart {
-      height: 100%;
-      width: 100%;
     }
   }
   // 底部

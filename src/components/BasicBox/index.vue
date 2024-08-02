@@ -21,6 +21,9 @@
       }"
     >
       <div class="title">{{ title || defaultTitle }}</div>
+      <div class="sub-title">
+        <slot name="subTitle"></slot>
+      </div>
     </div>
     <div
       class="box-content"

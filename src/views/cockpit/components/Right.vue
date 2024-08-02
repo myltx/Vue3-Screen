@@ -1,6 +1,5 @@
 <script setup lang="ts">
   import { Vue3SeamlessScroll } from 'vue3-seamless-scroll';
-  import { equipmentOption } from '../config';
   import NORMAL_IMG from '@/assets/images/business/normal.png';
   import MIDDLE_IMG from '@/assets/images/business/middle.png';
   import HEIGHT_IMG from '@/assets/images/business/height.png';
@@ -71,20 +70,6 @@
     switch (type) {
       case 'equipment':
         equipmentActive.value = value;
-        setOption('option', equipmentOption);
-        break;
-
-      default:
-        break;
-    }
-  };
-  const setOption = (key: string, opt: any) => {
-    switch (key) {
-      case 'option':
-        option.value = {};
-        setTimeout(() => {
-          option.value = opt;
-        }, 1000);
         break;
 
       default:
@@ -92,14 +77,87 @@
     }
   };
 
-  onMounted(() => {
-    setOption('option', equipmentOption);
-  });
+  onMounted(() => {});
 </script>
 
 <template>
   <div class="container-right mt-22px mr-16px">
-    <BasicBox :title="'消防安全制度建设'">
+    <BasicBox :title="'消防安全检查'" style="height: 350px;">
+      <div class="top-container">
+        <div class="left-container">
+          <img src="@/assets/images/institution/ljxg.png" alt="">
+          <div>
+            <div class="title">
+              <span class="number">6</span>
+              <span class="tip">家</span>
+            </div>
+            <div class="tip">近3日未巡更机构</div>
+          </div>
+        </div>
+        <div class="left-container">
+          <img src="@/assets/images/institution/ljxj.png" alt="">
+          <div>
+            <div class="title">
+              <span class="number">9</span>
+              <span class="tip">家</span>
+            </div>
+            <div class="tip">近1月未巡检机构</div>
+          </div>
+        </div>
+      </div>
+      <div class="equipment-top">
+        <div :class="['equipment-item mr-5px', equipmentActive == 0 ? 'active' : '']"
+          @click="handleType('equipment', 0)">
+          巡更
+        </div>
+        <div :class="['equipment-item mr-5px', equipmentActive == 1 ? 'active' : '']"
+          @click="handleType('equipment', 1)">
+          巡检
+        </div>
+      </div>
+      <div class="bottom-container">
+        <div>
+          <img src="@/assets/images/business/rws.png" alt="" class="img">
+          <span class="tip">累计巡更任务数</span>
+        </div>
+        <div>
+          <span class="number">1254</span>
+          <span class="dw">次</span>
+        </div>
+      </div>
+      <div class="bottom-container">
+        <div>
+          <img src="@/assets/images/business/wcs.png" alt="" class="img">
+          <span class="tip">累计巡更完成数</span>
+        </div>
+        <div>
+          <span class="number">1098</span>
+          <span class="dw">次</span>
+        </div>
+      </div>
+      <div class="bottom-container">
+        <div>
+          <img src="@/assets/images/business/yqs.png" alt="" class="img">
+          <span class="tip">累计巡更逾期数</span>
+        </div>
+        <div>
+          <span class="number font3">148</span>
+          <span class="dw">次</span>
+        </div>
+      </div>
+      <!-- <div class="value-container">
+        <div class="value-item"> 在线 <div class="value text-#3bdff6">256</div>
+        </div>
+        <div class="value-item placeholder"> 故障 <div class="value text-#E3B026">256</div>
+        </div>
+        <div class="value-item"> 离线 <div class="value text-#DD5858">256</div>
+        </div>
+      </div> -->
+      <!-- <div class="chart-container">
+        <div class="tip-container">当前巡更情况</div>
+      </div> -->
+    </BasicBox>
+    <!-- <BasicBox :title="'消防安全制度建设'">
       <div class="w-full h-full">
         <div class="flex justify-center items-center w-full">
           <div class="flex-1">
@@ -169,9 +227,17 @@
           </div>
         </div>
       </div>
-    </BasicBox>
-    <BasicBox :title="'消防设施设备'">
-      <div class="equipment-top">
+    </BasicBox> -->
+    <BasicBox :title="'安全隐患整改'">
+      <div class="safe-container">
+        <span class="title">隐患整改</span>
+        <div class="right-container">
+          <span class="left">累计发现隐患</span>
+          <span class="middle">87</span>
+          <span class="right">条</span>
+        </div>
+      </div>
+      <!-- <div class="equipment-top">
         <div
           :class="['equipment-item mr-5px', equipmentActive == 0 ? 'active' : '']"
           @click="handleType('equipment', 0)"
@@ -201,7 +267,7 @@
           :option="option"
           v-if="Object.keys(option).length"
         />
-      </div>
+      </div> -->
     </BasicBox>
     <BasicBox :title="'告警'">
       <div class="scroll">

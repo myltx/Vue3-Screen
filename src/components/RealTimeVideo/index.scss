@@ -1,0 +1,27 @@
+.more-tip {
+    position: absolute;
+    right: 85px;
+    top: 660px;
+    // width: 28px;
+    height: 20px;
+    font-family:
+      PingFangSC,
+      PingFang SC;
+    font-weight: 400;
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.7);
+    line-height: 20px;
+    text-align: left;
+    font-style: normal;
+    text-transform: none;
+  }
+  .video-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-left: -20px;
+    margin-right: -20px;
+    img {
+      margin-bottom: 8px;
+    }
+  }

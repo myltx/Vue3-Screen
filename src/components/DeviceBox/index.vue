@@ -1,0 +1,234 @@
+<script setup lang="ts">
+  import { useCockpitDataStore } from '@/stores/cockpitData';
+  import { getEquipmentOption } from '@/views/cockpit/config';
+
+  interface Props {
+    moduleKeys: string[];
+  }
+
+  const props = defineProps<Props>();
+  const { moduleKeys } = unref(props);
+
+  const { getModuleName, getValue, getSubtModuleName } = useCockpitDataStore();
+
+  const equipmentActive = ref(0);
+  const option = ref({});
+  const chartRef = ref(null); // 用于引用图表实例
+
+  const handleType = (value: number) => {
+    equipmentActive.value = value;
+    setOption();
+  };
+  const setOption = () => {
+    let data = [];
+    let yData = [];
+    let xData = [];
+    if (equipmentActive.value == 1) {
+      data = getValue(moduleKeys[1], 0);
+    } else {
+      data = getValue(moduleKeys[0], 0);
+    }
+    yData = data.map((item: { [key: string]: string | number }) => item.value);
+    xData = data.map((item: { [key: string]: string | number }) => item.name);
+    option.value = {};
+    setTimeout(() => {
+      option.value = getEquipmentOption(xData, yData);
+    }, 500);
+  };
+
+  onMounted(() => {
+    setOption();
+  });
+</script>
+
+<template>
+  <BasicBox :title="getModuleName('fireAwarenessEquipment')">
+    <div class="equipment-top">
+      <div
+        :class="['equipment-item mr-5px', equipmentActive == 0 ? 'active' : '']"
+        @click="handleType(0)"
+      >
+        {{ getSubtModuleName('fireAwarenessEquipment') }}
+      </div>
+      <div
+        :class="['equipment-item mr-5px', equipmentActive == 1 ? 'active' : '']"
+        @click="handleType(1)"
+      >
+        {{ getSubtModuleName('fireFightingEquipment') }}
+      </div>
+    </div>
+
+    <div class="value-container">
+      <div class="value-item">
+        在线
+        <div class="value text-#3bdff6">
+          {{
+            getValue(equipmentActive == 0 ? 'fireAwarenessEquipment' : 'fireFightingEquipment', 0)
+          }}
+        </div>
+      </div>
+      <div class="value-item placeholder">
+        故障
+        <div class="value text-#E3B026">
+          {{
+            getValue(equipmentActive == 0 ? 'fireAwarenessEquipment' : 'fireFightingEquipment', 1)
+          }}
+        </div>
+      </div>
+      <div class="value-item">
+        离线
+        <div class="value text-#DD5858">
+          {{
+            getValue(equipmentActive == 0 ? 'fireAwarenessEquipment' : 'fireFightingEquipment', 2)
+          }}
+        </div>
+      </div>
+    </div>
+    <div class="chart-container">
+      <div class="bar-chart-title">设备类型统计</div>
+      <div class="bar-chart-unit">单位: <span>台</span></div>
+      <v-chart
+        class="chart"
+        ref="chartRef"
+        id="bar-chart"
+        :option="option"
+        v-if="Object.keys(option).length"
+      />
+    </div>
+  </BasicBox>
+</template>
+
+<style scoped lang="scss">
+  // 设备
+  .equipment-top {
+    height: 33px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    .equipment-item {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      height: 100%;
+      flex: 1;
+      background: url('@/assets/images/business/equipment-tag-bg.png') no-repeat;
+      background-size: 100% 100%;
+      &.active {
+        background: url('@/assets/images/business/equipment-tag-bg-active.png') no-repeat;
+        background-size: 100% 100%;
+      }
+    }
+  }
+  .value-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 10px;
+    .value-item {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      font-family:
+        PingFangSC,
+        PingFang SC;
+      font-weight: 600;
+      font-size: 16px;
+      color: #ffffff;
+      line-height: 22px;
+      text-align: left;
+      font-style: normal;
+      &.placeholder {
+        position: relative;
+        &::after {
+          content: '';
+          position: absolute;
+          right: 0;
+          top: 0;
+          width: 2px;
+          height: 20px;
+          background: linear-gradient(
+            180deg,
+            rgba(114, 218, 245, 0) 0%,
+            #72daf5 46%,
+            rgba(114, 218, 245, 0) 100%
+          );
+          margin: 0 5px;
+        }
+        &::before {
+          content: '';
+          position: absolute;
+          left: 0;
+          top: 0;
+          width: 2px;
+          height: 20px;
+          background: linear-gradient(
+            180deg,
+            rgba(114, 218, 245, 0) 0%,
+            #72daf5 46%,
+            rgba(114, 218, 245, 0) 100%
+          );
+          margin: 0 5px;
+        }
+      }
+      .value {
+        font-family:
+          PingFangSC,
+          PingFang SC;
+        font-weight: 600;
+        font-size: 16px;
+        line-height: 22px;
+        text-align: left;
+        font-style: normal;
+        margin-left: 5px;
+      }
+    }
+  }
+  .chart-container {
+    margin-top: 10px;
+    height: 70%;
+    position: relative;
+    .bar-chart-title {
+      text-indent: 35px;
+      height: 28px;
+      width: 206px;
+      background: url('@/assets/images/business/equipment-chart-title-bg.png') no-repeat;
+      background-size: 100% 100%;
+      font-family: PangMenZhengDao, PangMenZhengDao;
+      font-weight: normal;
+      font-size: 18px;
+      color: #ffffff;
+      line-height: 28px;
+      text-align: left;
+      font-style: normal;
+      background: linear-gradient(top, #ffffff 0%, #1f8dcb 100%);
+      position: absolute;
+      top: 0;
+      z-index: 9999;
+    }
+    .bar-chart-unit {
+      position: absolute;
+      top: 5px;
+      right: 0;
+      z-index: 9999;
+      font-family:
+        PingFangSC,
+        PingFang SC;
+      font-weight: 400;
+      font-size: 13px;
+      color: rgba(255, 255, 255, 0.45);
+      line-height: 18px;
+      text-align: right;
+      font-style: normal;
+      span {
+        color: #fff;
+      }
+    }
+    #bar-chart {
+      height: 100%;
+      width: 100%;
+    }
+  }
+</style>

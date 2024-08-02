@@ -1,5 +1,5 @@
 <script setup lang="ts">
-  import { BMap, BMarker } from 'vue3-baidu-map-gl';
+  import { BMap, BMarker, BPolygon, useAreaBoundary } from 'vue3-baidu-map-gl';
   import MapIconActiveImg from '@/assets/images/map/map-icon-active.png';
   import MapIconImg from '@/assets/images/map/map-icon.png';
   interface Marker {
@@ -14,16 +14,31 @@
     },
   });
   const { markerList } = unref(props);
-  const centerPoint = ref({ lng: 116.404, lat: 39.915 });
+  const defaultCanterPoint = { lng: 120.103241, lat: 30.307823 };
+  const centerPoint = ref(defaultCanterPoint);
   const map = ref<any>(null);
+  const { isLoading, boundaries, get } = useAreaBoundary();
 
+  function handleInitd() {
+    get('浙江省杭州市西湖区');
+  }
+  watch(
+    () => isLoading.value,
+    () => {
+      console.log(boundaries.value);
+      setTimeout(() => {
+        map.value.map.setHeading(64.5);
+        map.value.map.setTilt(50);
+      }, 200);
+    },
+  );
   watch(
     () => markerList,
     (newVal: any) => {
       if (newVal.length) {
         centerPoint.value = { lng: newVal[0]?.lng, lat: newVal[0]?.lat };
       } else {
-        centerPoint.value = { lng: 116.404, lat: 39.915 };
+        centerPoint.value = defaultCanterPoint;
       }
     },
     { immediate: true, deep: true },
@@ -47,6 +62,7 @@
   }
   function mapInitd(e: any) {
     map.value = e;
+    handleInitd();
   }
   function getMarkerIcon(icon: string) {
     if (icon.includes('/src/assets/')) {
@@ -78,6 +94,7 @@
     :height="'100%'"
     class="map"
     enableDoubleClickZoom
+    enableScrollWheelZoom
     ak="0BMG1CekNJ2VVFRrrmX6x6qma8WHYGY0"
     mapStyleId="6053418609ae26d7c32f05d45ea7991b"
     :center="centerPoint"
@@ -90,6 +107,14 @@
       :data="marker"
       :icon="getMarkerIcon(marker.icon)"
       @click="handleMarkerClick(marker)"
+    />
+    <BPolygon
+      :key="'浙江省杭州市'"
+      isBoundary
+      :path="boundaries"
+      stroke-color="#00baaf"
+      fillColor="rgba(0,0,0,0)"
+      :stroke-weight="2"
     />
   </BMap>
 </template>

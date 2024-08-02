@@ -8,7 +8,7 @@ const { createMessage } = useMessage();
 
 // 成功处理函数
 export function handleSuccess(res: any, resolve: Function, opts?: any) {
-  console.log(opts, 'opts-success');
+  // console.log(opts, 'opts-success');
   const data = res.data;
   // 未登录
   if (NOLOGIN.includes(data.code)) {
