@@ -287,11 +287,14 @@
       }
     }
     .tip-container {
-      width: 169px;
+      width: 200px;
       height: 44px;
-      margin: 0 auto;
       margin-top: 8px;
-      background: url('@/assets/images/business/progress-border.png');
+      position: absolute;
+      top: 8px;
+      left: 20px;
+      background: url('@/assets/images/business/progress-border.png') no-repeat;
+      background-size: 100% 100%;
       .text1 {
         display: inline-block;
         height: 26px;

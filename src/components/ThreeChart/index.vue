@@ -9,41 +9,7 @@
 
   const { isHover } = unref(props);
 
-  let option: any;
   let hoveredIndex: any = '';
-  option = getPie3D(
-    [
-      {
-        name: 'cc',
-        value: 47,
-        itemStyle: {
-          color: 'rgba(124, 253, 255, .8)',
-        },
-      },
-      {
-        name: 'aa',
-        value: 44,
-        itemStyle: {
-          color: 'rgba(30, 255, 180, .8)',
-        },
-      },
-      {
-        name: 'bb',
-        value: 32,
-        itemStyle: {
-          color: 'rgba(46, 109, 255, .8)',
-        },
-      },
-      {
-        name: 'ee',
-        value: 16,
-        itemStyle: {
-          color: 'rgba(255, 171, 85, .8)',
-        },
-      },
-    ],
-    0.59,
-  );
   // 生成扇形的曲面参数方程
   function getParametricEquation(
     startRatio: number,

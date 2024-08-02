@@ -3,7 +3,7 @@
   import { useCockpitDataStore } from '@/stores/cockpitData';
   import { default_chart_colors } from '@/helper';
 
-  const { getModuleName, getValue } = useCockpitDataStore();
+  const { getModuleName, getValue, getName } = useCockpitDataStore();
 
   const threeChartRef = ref();
   const forewarningList = ref(getValue('fireWarningAnalysis', 0));
@@ -19,6 +19,7 @@
 
   const equipmentActive = ref(0);
   const alarmList = ref<AlarmListType[]>([]);
+
   generateList();
   function generateList() {
     const statusTextMap: {
@@ -56,13 +57,21 @@
     }
   };
 
+  function getScale(): string {
+    const allNum = getValue('safetyHazardRectification', 0) || 0;
+    const num = getValue('safetyHazardRectification', 1) || 0;
+
+    return ((num / allNum) * 100).toFixed(2);
+  }
+
   onMounted(() => {
-    console.log(getValue('fireWarningAnalysis', 0));
     forewarningList.value.forEach((item: any, index: number) => {
-      item.color = default_chart_colors[index];
+      item.itemStyle = {
+        color: default_chart_colors[index],
+      };
       item.value = item.value * 1;
     });
-    console.log(forewarningList.value);
+    console.log(forewarningList.value, 'forewarningList');
     threeChartRef.value.initChart(forewarningList.value);
   });
 </script>
@@ -137,30 +146,47 @@
         </div>
       </div>
     </BasicBox>
-    <BasicBox :title="'安全隐患整改'" style="height: 270px">
+    <BasicBox :title="getModuleName('safetyHazardRectification')" style="height: 270px">
       <div class="safe-container">
         <span class="title">隐患整改</span>
         <div class="right-container">
-          <span class="left">累计发现隐患</span>
-          <span class="middle">87</span>
+          <span class="left">{{ getName('safetyHazardRectification', 0) }}</span>
+          <span class="middle">{{ getValue('safetyHazardRectification', 0) }}</span>
           <span class="right">条</span>
         </div>
       </div>
-      <div class="progress-container">
+      <div class="progress-container position-relative">
         <div class="main">
-          <div class="loading">
-            <img src="@/assets/images/business/dot.png" alt="" class="img" />
+          <div
+            class="loading"
+            :style="{
+              width: getScale() + '%',
+            }"
+          >
+            <img
+              src="@/assets/images/business/dot.png"
+              alt=""
+              class="im position-absolute top--5px"
+              :style="{
+                left: getScale() + '%',
+              }"
+            />
           </div>
         </div>
-        <div class="tip-container">
-          <span class="text1">已完成整改</span>
-          <span class="text2">36</span>
-          <span class="text3">81%</span>
+        <div
+          class="tip-container"
+          :style="{
+            left: -50 + Number(getScale()) + '%',
+          }"
+        >
+          <span class="text1">{{ getName('safetyHazardRectification', 1) }}</span>
+          <span class="text2">{{ getValue('safetyHazardRectification', 1) }}</span>
+          <span class="text3">{{ getScale() }}%</span>
         </div>
         <div class="footer-container">
           <img src="@/assets/images/business/yhzg.png" alt="" class="img" />
-          <span class="left">超期1个月未解决隐患</span>
-          <span class="middle">12</span>
+          <span class="left">{{ getName('safetyHazardRectification', 2) }}</span>
+          <span class="middle">{{ getValue('safetyHazardRectification', 2) }}</span>
           <span class="right">条</span>
         </div>
       </div>
@@ -169,7 +195,7 @@
       <div class="h-100%">
         <div class="chart-container">
           <div class="bar-chart-title">
-            <div class="title-text">有效告警</div>
+            <div class="title-text">{{ getName('fireWarningAnalysis', 1) }}</div>
           </div>
           <div class="bar-chart-unit">{{ getValue('fireWarningAnalysis', 1) }} <span>条</span></div>
         </div>
@@ -186,7 +212,7 @@
               <div
                 class="legend mr-5px w-12px h-12px"
                 :style="{
-                  background: item.color,
+                  background: item?.itemStyle?.color,
                 }"
               ></div>
               <div class="title text-white text-opacity-80 mr-5px text-14px w-65% text-center">
