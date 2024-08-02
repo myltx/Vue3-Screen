@@ -60,3 +60,8 @@
   font-family: 'Oswald';
   src: url('@/assets/font/Oswald-Regular.ttf');
 }
+
+@font-face {
+  font-family: 'DINAlternate';
+  src: url('@/assets/font/DIN-RegularAlternate-2.otf');
+}
