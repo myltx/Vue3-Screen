@@ -78,26 +78,26 @@
 
 <template>
   <div class="container-right mt-22px mr-16px">
-    <BasicBox :title="'消防安全检查'" style="height: 360px">
+    <BasicBox :title="getModuleName('fireSafetynspection')" style="height: 360px">
       <div class="top-container">
         <div class="left-container">
           <img src="@/assets/images/institution/ljxg.png" alt="" />
           <div>
             <div class="title">
-              <span class="number">6</span>
+              <span class="number">{{ getValue('fireSafetynspection', 0) }}</span>
               <span class="tip">家</span>
             </div>
-            <div class="tip">近3日未巡更机构</div>
+            <div class="tip">{{ getName('fireSafetynspection', 0) }}</div>
           </div>
         </div>
         <div class="left-container">
           <img src="@/assets/images/institution/ljxj.png" alt="" />
           <div>
             <div class="title">
-              <span class="number">9</span>
+              <span class="number">{{ getValue('fireSafetynspection', 1) }}</span>
               <span class="tip">家</span>
             </div>
-            <div class="tip">近1月未巡检机构</div>
+            <div class="tip">{{ getName('fireSafetynspection', 1) }}</div>
           </div>
         </div>
       </div>

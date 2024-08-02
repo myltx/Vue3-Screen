@@ -34,7 +34,6 @@
   watch(
     () => isLoading.value,
     () => {
-      console.log(boundaries.value);
       setTimeout(() => {
         map.value.map.setHeading(64.5);
         map.value.map.setTilt(50);

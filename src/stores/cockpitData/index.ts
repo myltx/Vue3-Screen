@@ -64,7 +64,7 @@ export const useCockpitDataStore = defineStore('cockpitData', () => {
   // 获取模块子标题
   function getSubtModuleName(moduleKey: string) {
     if (allData.value[moduleKey]) {
-      const regex = /（([^）]*)）/;
+      const regex = /（([^）]*)）|\(([^)]*)\)/;
       const match = allData.value[moduleKey].moduleName.match(regex);
       const contentInsideBrackets = match ? match[1] : '';
       return contentInsideBrackets;
