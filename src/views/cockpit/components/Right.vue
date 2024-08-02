@@ -287,8 +287,8 @@
         />
       </div> -->
     </BasicBox>
-    <BasicBox :title="'告警'">
-      <div class="scroll">
+    <BasicBox :title="'消防预警分析'">
+      <!-- <div class="scroll">
         <vue3-seamless-scroll :list="alarmList" hover v-model="isScroll" :limitScrollNum="2">
           <div class="item" v-for="(item, index) in alarmList" :key="index">
             <div class="item-top">
@@ -306,7 +306,7 @@
             </div>
           </div>
         </vue3-seamless-scroll>
-      </div>
+      </div> -->
     </BasicBox>
   </div>
 </template>
