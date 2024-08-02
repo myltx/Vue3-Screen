@@ -20,7 +20,10 @@
       letter-spacing: 1px;
       text-align: left;
       font-style: normal;
-      background: linear-gradient(top, #ffffff, #caf9ff);
+      background: linear-gradient(to top, #ffffff, #caf9ff);
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
       margin-bottom: 20px;
       padding: 20px;
       flex: 1;
