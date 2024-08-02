@@ -38,6 +38,7 @@
   const isScroll = computed(() => {
     return indexConfig.value.leftBottomSwiper;
   });
+  const openMapModal = ref(false);
   const equipmentActive = ref(0);
   const option = ref({});
   const chartRef = ref(null); // 用于引用图表实例
@@ -66,6 +67,9 @@
     min = Math.ceil(min);
     max = Math.floor(max);
     return Math.floor(Math.random() * (max - min + 1)) + min;
+  }
+  function handleListClick(item:any){
+    openMapModal.value = true
   }
 
   const handleType = (type: ClickType, value: number) => {
@@ -119,23 +123,31 @@
       <div class="scroll">
         <!-- <vue3-seamless-scroll :list="alarmList" hover v-model="isScroll" :limitScrollNum="2"> -->
         <div class="item" v-for="(item, index) in alarmList" :key="index">
-          <div class="item-top">
-            <div class="left-title">
-              <img :src="statusImgMap[item.status]" alt="" />
-              <span :class="statusClass[item.status]">{{ item.statusText }}</span>
+          <div @click="handleListClick(item)">
+            <div class="item-top">
+              <div class="left-title">
+                <img :src="statusImgMap[item.status]" alt="" />
+                <span :class="statusClass[item.status]">{{ item.statusText }}</span>
+              </div>
+              <div class="time">{{ item.date }}</div>
             </div>
-            <div class="time">{{ item.date }}</div>
-          </div>
-          <div class="item-content">
-            {{ item.content }}
-          </div>
-          <div class="item-subscribe">
-            {{ item.subscribe }}
+            <div class="item-content">
+              {{ item.content }}
+            </div>
+            <div class="item-subscribe">
+              {{ item.subscribe }}
+            </div>
           </div>
         </div>
         <!-- </vue3-seamless-scroll> -->
       </div>
     </BasicBox>
+    <BasicMapModal
+      v-model:modalValue="openMapModal"
+      :title="'告警详情'"
+    >
+      <div>测试-----</div>
+    </BasicMapModal>
   </div>
 </template>
 
