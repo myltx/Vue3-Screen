@@ -50,7 +50,8 @@
     router.push({
       path: '/institution',
       query: {
-        // name: markerData.name,
+        orgId: orgData.value.orgId,
+        name: orgData.value.name,
         back: 1,
       },
     });
@@ -92,9 +93,6 @@
     modalTitle.value = title;
     open.value = true;
   }
-  setTimeout(() => {
-    openMapModal.value = true;
-  }, 1000);
 </script>
 <template>
   <PageWrapper :title="'大屏示例页面'">
