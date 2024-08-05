@@ -3,6 +3,7 @@
   import Left from './components/Left.vue';
   import Right from './components/Right.vue';
   import Bottom from './components/Bottom.vue';
+  import Main from './components/Main.vue';
   import { useCockpitDataStore } from '@/stores/cockpitData';
   import MapIconImg from '@/assets/images/map/map-icon.png';
   import { moduleKeys } from './config';
@@ -55,6 +56,7 @@
     <Left v-if="!isLoading" v-motion-slide-left />
     <Right v-if="!isLoading" v-motion-slide-right />
     <Bottom v-if="!isLoading" v-motion-slide-visible-bottom />
+    <Main v-if="!isLoading" />
     <Map class="map" ref="mapRef" :markerList="markerList" @markerClick="markerClick" />
     <Loading class="loading" />
     <BasicModal v-model:modalValue="open" :title="'实时监测告警'">

@@ -27,7 +27,7 @@
   <div
     v-motion-pop-visible
     v-if="open"
-    class="w-50% h-50% bg-white z-999 position-absolute top-40% right-16% p-20px basic-modal"
+    class="w-50% h-50% bg-white z-999 position-absolute top-45% right-16% p-20px basic-modal z-9999"
   >
     <div class="title text-white">
       <div class="title-text">{{ title }}</div>
