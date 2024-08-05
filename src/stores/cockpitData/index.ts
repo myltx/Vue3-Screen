@@ -97,6 +97,13 @@ export const useCockpitDataStore = defineStore('cockpitData', () => {
     }
     return [];
   }
+  // 获取列表的表头数据
+  function getRule(moduleKey: string, ind: number) {
+    if (kvLists.value[moduleKey] && kvLists.value[moduleKey][ind]?.rule) {
+      return JSON.parse(kvLists.value[moduleKey][ind]?.rule);
+    }
+    return [];
+  }
   return {
     getALlModuleData,
     kvLists,
@@ -105,5 +112,6 @@ export const useCockpitDataStore = defineStore('cockpitData', () => {
     getArray,
     getName,
     getSubtModuleName,
+    getRule,
   };
 });

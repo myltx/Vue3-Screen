@@ -2,7 +2,7 @@
 
 <template>
   <div class="flex justify-center top-container">
-    <div class="flex justify-center item-container">
+    <div class="flex justify-start item-container">
       <img src="@/assets/images/institution/left1.png" class="img" />
       <div class="right-container">
         <span class="font1">214</span>
@@ -10,7 +10,7 @@
         <span class="font3">已接入养老机构</span>
       </div>
     </div>
-    <div class="flex justify-center item-container">
+    <div class="flex justify-start item-container">
       <img src="@/assets/images/institution/left2.png" class="img" />
       <div class="right-container">
         <span class="font1 color2">206</span>
@@ -18,8 +18,8 @@
         <span class="font3">消防感知设备</span>
       </div>
     </div>
-    <div class="flex justify-center item-container">
-      <img src="@/assets/images/institution/left3.png" class="img" />
+    <div class="flex justify-start item-container">
+      <img src="@/assets/images/institution/equipment-bg.png" class="img" />
       <div class="right-container">
         <span class="font1 color3">6</span>
         <span class="font2">个</span>
@@ -37,7 +37,7 @@
     transform: translate(-50%, 0);
     z-index: 999;
     .item-container {
-      width: 220px;
+      width: 210px;
       height: 80px;
       border: 2px solid #3e7899;
       padding: 10px;

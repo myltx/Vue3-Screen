@@ -14,6 +14,7 @@
   const mapRef = ref();
   const open = ref(false);
   const openMapModal = ref(false);
+  const videoModalValue = ref(false);
   const { getALlModuleData } = useCockpitDataStore();
   // 根据配置的 moduleKey 在页面动态获取数据
   startLoading();
@@ -48,7 +49,7 @@
     mapRef.value?.cleanMarkerActive();
   }
   setTimeout(() => {
-    openMapModal.value = true;
+    videoModalValue.value = true;
   }, 2000);
 </script>
 <template>
@@ -69,6 +70,7 @@
     >
       <div @click="handleDetail" class="text-white bg-red p-20px h-20px cursor-pointer">213</div>
     </BasicMapModal>
+    <VideoModal v-model:modalValue="videoModalValue" />
   </PageWrapper>
 </template>
 
