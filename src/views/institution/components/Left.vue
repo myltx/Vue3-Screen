@@ -6,6 +6,7 @@
   import dayjs from 'dayjs';
   import { useSettingStore } from '@/stores/setting/setting';
   import { useCockpitDataStore } from '@/stores/cockpitData';
+  import { page,detail } from '@/api/institution/institution'
 
   type ClickType = 'equipment';
   interface AlarmListType {
@@ -43,6 +44,10 @@
   const option = ref({});
   const chartRef = ref(null); // 用于引用图表实例
   const alarmList = ref<AlarmListType[]>([]);
+  getPageList()
+  async function getPageList(){
+    await page({currentPage:1,pageSize:20})
+  }
   generateList();
   function generateList() {
     const statusTextMap: {
@@ -142,12 +147,6 @@
         <!-- </vue3-seamless-scroll> -->
       </div>
     </BasicBox>
-    <BasicMapModal
-      v-model:modalValue="openMapModal"
-      :title="'告警详情'"
-    >
-      <div>测试-----</div>
-    </BasicMapModal>
   </div>
 </template>
 

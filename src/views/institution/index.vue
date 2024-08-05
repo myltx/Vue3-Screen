@@ -3,6 +3,7 @@
   import Left from './components/Left.vue';
   import Right from './components/Right.vue';
   import Bottom from './components/Bottom.vue';
+  import detailModel from './components/detailModel.vue';
   import Main from './components/Main.vue';
   import { useCockpitDataStore } from '@/stores/cockpitData';
   import { moduleKeys } from './config';
@@ -31,6 +32,7 @@
 
      </div> -->
     <Loading class="loading" />
+    <detailModel />
     <!-- <BasicModal v-model:modalValue="open" /> -->
   </PageWrapper>
 </template>
