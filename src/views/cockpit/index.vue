@@ -20,20 +20,7 @@
   // 根据配置的 moduleKey 在页面动态获取数据
   startLoading();
   getALlModuleData(moduleKeys, endLoading);
-  const markerList = ref<{ [key: string]: any }[]>([
-    {
-      name: '测试点',
-      lat: 30.307823,
-      lng: 120.103241,
-      icon: MapIconImg,
-    },
-    {
-      name: '测试点1',
-      lat: 30.311893,
-      lng: 120.107183,
-      icon: MapIconImg,
-    },
-  ]);
+  const markerList = ref<{ [key: string]: any }[]>([]);
 
   const columns = ref<any>([]);
 
@@ -41,16 +28,37 @@
 
   function markerClick(markerData: any) {
     console.log(markerData);
+
     openMapModal.value = true;
   }
   function handleDetail() {
     router.push({
       path: '/institution',
-      // query: {
-      //   name: markerData.name,
-      // },
+      query: {
+        // name: markerData.name,
+        back: 1,
+      },
     });
   }
+  watch(
+    () => isLoading.value,
+    (val) => {
+      if (!val) {
+        markerList.value = [];
+        const orgList = getValue('map', 0);
+        orgList.forEach((item: any) => {
+          const lngLat = item.orgLngLat ? item.orgLngLat.split(',') : [];
+          if (lngLat && lngLat.length) {
+            item.lng = Number(lngLat[0]);
+            item.lat = Number(lngLat[1]);
+          }
+          item.icon = MapIconImg;
+        });
+        markerList.value = orgList;
+        // mapRef.value?.initMap();
+      }
+    },
+  );
   function cleanMarkerActive() {
     mapRef.value?.cleanMarkerActive();
   }
@@ -75,7 +83,13 @@
     <Right v-if="!isLoading" @more="showMore" v-motion-slide-right />
     <Bottom v-if="!isLoading" @more="showMore" v-motion-slide-visible-bottom />
     <Main v-if="!isLoading" />
-    <Map class="map" ref="mapRef" :markerList="markerList" @markerClick="markerClick" />
+    <Map
+      class="map"
+      ref="mapRef"
+      v-if="!isLoading"
+      :markerList="markerList"
+      @markerClick="markerClick"
+    />
     <Loading class="loading" />
     <BasicModal v-model:modalValue="open" :title="modalTitle">
       <a-table

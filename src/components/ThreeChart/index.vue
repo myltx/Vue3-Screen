@@ -139,7 +139,6 @@
     }
     // 使用上一次遍历时，计算出的数据和 sumValue，调用 getParametricEquation 函数，
     // 向每个 series-surface 传入不同的参数方程 series-surface.parametricEquation，也就是实现每一个扇形。
-    console.log(series);
     for (let i = 0; i < series.length; i += 1) {
       endValue = startValue + series[i].pieData.value;
 
@@ -225,7 +224,6 @@
   }
 
   function initChart(opt: any) {
-    console.log(opt, 'opt');
     const option = getPie3D(opt || [], 0.59);
     var dom = document.getElementById('chart-panel');
     var myChart = echarts.init(dom);

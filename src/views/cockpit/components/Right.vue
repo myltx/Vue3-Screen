@@ -74,7 +74,6 @@
       };
       item.value = item.value * 1;
     });
-    console.log(forewarningList.value, 'forewarningList');
     threeChartRef.value.initChart(forewarningList.value);
   });
 </script>

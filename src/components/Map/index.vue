@@ -1,5 +1,5 @@
 <script setup lang="ts">
-  import { BMap, BMarker, BPolygon, useAreaBoundary } from 'vue3-baidu-map-gl';
+  import { BMap, BMarker, BPolygon, useAreaBoundary, BLabel } from 'vue3-baidu-map-gl';
   import MapIconActiveImg from '@/assets/images/map/map-icon-active.png';
   import MapIconImg from '@/assets/images/map/map-icon.png';
   interface Marker {
@@ -22,14 +22,13 @@
     },
   });
   const emits = defineEmits(['markerClick']);
-  const { markerList, areaName, areaKey } = unref(props);
   const defaultCanterPoint = { lng: 120.103241, lat: 30.307823 };
   const centerPoint = ref(defaultCanterPoint);
   const map = ref<any>(null);
   const { isLoading, boundaries, get } = useAreaBoundary();
 
   function handleInitd() {
-    get(areaName);
+    get(props.areaName);
   }
   watch(
     () => isLoading.value,
@@ -41,7 +40,7 @@
     },
   );
   watch(
-    () => markerList,
+    () => props.markerList,
     (newVal: any) => {
       if (newVal.length) {
         centerPoint.value = { lng: newVal[0]?.lng, lat: newVal[0]?.lat };
@@ -54,7 +53,7 @@
 
   function handleMarkerClick(data: any) {
     map.value.map.panTo({ lng: data?.lng, lat: data?.lat });
-    markerList.forEach((item: any) => {
+    props.markerList.forEach((item: any) => {
       if (item.name == data.name) {
         item.icon = MapIconActiveImg;
       } else {
@@ -62,15 +61,10 @@
       }
     });
 
-    // centerPoint.value = { lng: data?.lng, lat: data?.lat };
-    // setTimeout(() => {
-    //   map.value.map.setHeading(64.5);
-    //   map.value.map.setTilt(50);
-    // }, 200);
     emits('markerClick', data);
   }
   function cleanMarkerActive() {
-    markerList.forEach((item: any) => {
+    props.markerList.forEach((item: any) => {
       item.icon = MapIconImg;
     });
     setTimeout(() => {
@@ -122,15 +116,33 @@
     @initd="mapInitd"
   >
     <BMarker
-      v-for="(marker, index) in markerList"
+      v-for="(marker, index) in props.markerList"
       :key="index"
       :position="{ lng: marker.lng, lat: marker.lat }"
       :data="marker"
       :icon="getMarkerIcon(marker.icon)"
       @click="handleMarkerClick(marker)"
     />
+    <BLabel
+      v-for="(marker, index) in props.markerList"
+      :key="index"
+      :position="{ lng: marker.lng, lat: marker.lat }"
+      :content="marker.name"
+      :offset="{
+        x: -30,
+        y: -50,
+      }"
+      :style="{
+        color: '#fff',
+        backgroundColor: 'rgba(0,0,0,0)',
+        border: 'none',
+        borderRadius: '3px',
+        padding: '5px 10px',
+        fontSize: '14px',
+      }"
+    />
     <BPolygon
-      :key="areaKey"
+      :key="props.areaKey"
       isBoundary
       :path="boundaries"
       stroke-color="#00baaf"
