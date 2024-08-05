@@ -183,7 +183,7 @@
           <span class="text2">{{ getValue('safetyHazardRectification', 1) }}</span>
           <span class="text3">{{ getScale() }}%</span>
         </div>
-        <div class="footer-container">
+        <div class="footer-container mt-20px">
           <img src="@/assets/images/business/yhzg.png" alt="" class="img" />
           <span class="left">{{ getName('safetyHazardRectification', 2) }}</span>
           <span class="middle">{{ getValue('safetyHazardRectification', 2) }}</span>
