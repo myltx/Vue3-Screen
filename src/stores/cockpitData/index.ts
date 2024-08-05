@@ -2,6 +2,7 @@ import { useMessage } from '@/hooks/useMessage';
 import { isFunction, isObject } from '@/utils/is';
 import { getModule } from '@/api/cockpit/cockpit';
 import { cloneDeep } from 'lodash-es';
+import { LocationQueryValue } from 'vue-router';
 
 const { createMessage } = useMessage();
 export const useCockpitDataStore = defineStore('cockpitData', () => {
@@ -13,7 +14,7 @@ export const useCockpitDataStore = defineStore('cockpitData', () => {
   async function getALlModuleData(
     moduleKeys: ModuleKeyType,
     callBack: Function,
-    moduleParam?: string | number,
+    moduleParam?: string | number | LocationQueryValue | LocationQueryValue[],
   ) {
     kvLists.value = {};
     allData.value = {};

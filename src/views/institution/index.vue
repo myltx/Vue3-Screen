@@ -9,6 +9,9 @@
   import { useCockpitDataStore } from '@/stores/cockpitData';
   import { moduleKeys } from './config';
 
+  const route = useRoute();
+  const { name, orgId, back } = route.query;
+
   const { startLoading, endLoading } = useLoadingStore();
   const { isLoading } = storeToRefs(useLoadingStore());
   startLoading();
@@ -16,14 +19,14 @@
   const open = ref(false);
   const { getALlModuleData } = useCockpitDataStore();
   // 根据配置的 moduleKey 在页面动态获取数据
-  getALlModuleData(moduleKeys, endLoading, '560803012012960709');
+  getALlModuleData(moduleKeys, endLoading, orgId);
 
   setTimeout(() => {
     open.value = true;
   }, 2000);
 </script>
 <template>
-  <PageWrapper :title="'大屏示例页面'" showBack>
+  <PageWrapper :title="name" :showBack="Number(back) == 1">
     <Left v-if="!isLoading" v-motion-slide-left />
     <Right v-if="!isLoading" v-motion-slide-right />
     <Bottom v-if="!isLoading" v-motion-slide-visible-bottom />

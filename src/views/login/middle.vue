@@ -9,7 +9,7 @@
   const router = useRouter();
   const { startLoading, endLoading } = useLoadingStore();
   const { createMessage } = useMessage();
-  const { token } = route.query;
+  const { token, orgId, name } = route.query;
   startLoading();
   if (!token) {
     if (import.meta.env.DEV) {
@@ -24,9 +24,21 @@
     getUserCurrentInfo().then((res: any) => {
       if (res.code == 200) {
         setUserInfo(res.data);
+        createMessage.success('登录成功');
+        // 跳转页面
         setTimeout(() => {
           endLoading();
-          router.replace('/');
+          if (orgId) {
+            router.replace({
+              path: '/institution',
+              query: {
+                orgId,
+                name,
+              },
+            });
+          } else {
+            router.replace('/');
+          }
         }, 2000);
       }
     });

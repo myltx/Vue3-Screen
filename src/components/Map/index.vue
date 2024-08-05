@@ -129,7 +129,7 @@
       :position="{ lng: marker.lng, lat: marker.lat }"
       :content="marker.name"
       :offset="{
-        x: -30,
+        x: -50,
         y: -50,
       }"
       :style="{
@@ -139,6 +139,7 @@
         borderRadius: '3px',
         padding: '5px 10px',
         fontSize: '14px',
+        textAlign: 'center',
       }"
     />
     <BPolygon
