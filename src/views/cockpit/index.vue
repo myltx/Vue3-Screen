@@ -48,13 +48,19 @@
   function cleanMarkerActive() {
     mapRef.value?.cleanMarkerActive();
   }
-  setTimeout(() => {
+
+  function playVideo(videoData: any) {
+    console.log(videoData);
     videoModalValue.value = true;
+  }
+
+  setTimeout(() => {
+    // videoModalValue.value = true;
   }, 2000);
 </script>
 <template>
   <PageWrapper :title="'大屏示例页面'">
-    <Left v-if="!isLoading" v-motion-slide-left />
+    <Left v-if="!isLoading" @play="playVideo" v-motion-slide-left />
     <Right v-if="!isLoading" v-motion-slide-right />
     <Bottom v-if="!isLoading" v-motion-slide-visible-bottom />
     <Main v-if="!isLoading" />
@@ -70,7 +76,7 @@
     >
       <div @click="handleDetail" class="text-white bg-red p-20px h-20px cursor-pointer">213</div>
     </BasicMapModal>
-    <VideoModal v-model:modalValue="videoModalValue" />
+    <VideoModal v-model:modalValue="videoModalValue" :title="'视频播放'" />
   </PageWrapper>
 </template>
 

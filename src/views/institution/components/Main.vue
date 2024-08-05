@@ -1,7 +1,11 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+  import DetaultOrgImg from '@/assets/images/institution/default-org-img.png';
+</script>
 
 <template>
   <div class="bg-container">
+    <img :src="DetaultOrgImg" alt="" class="org-img" />
+    <img src="@/assets/images/institution/mask-bg.png" alt="" class="bg-img" />
     <div class="flex justify-center top-container">
       <div class="flex justify-center item-container">
         <img src="@/assets/images/institution/left1.png" class="img" />
@@ -51,8 +55,8 @@
   .bg-container {
     width: 1920px;
     height: 1080px;
-    background: url('@/assets/images/institution/编组 8.png') no-repeat;
-
+    // background: url('@/assets/images/institution/mask-bg.png') no-repeat;
+    // background-size: 100% 100%;
     .top-container {
       .item-container {
         width: 198px;
@@ -126,6 +130,24 @@
           }
         }
       }
+    }
+    .bg-img {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 100%;
+      height: 100%;
+      z-index: 3;
+    }
+    .org-img {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 1500px;
+      height: 1000px;
+      z-index: 1;
     }
   }
 </style>

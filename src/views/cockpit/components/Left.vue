@@ -10,6 +10,7 @@
     subscribe: number | string;
   }
 
+  const emits = defineEmits(['play']);
   const { getModuleName, getValue, getName } = useCockpitDataStore();
 
   const alarmList = ref<AlarmListType[]>([]);
@@ -35,6 +36,9 @@
     min = Math.ceil(min);
     max = Math.floor(max);
     return Math.floor(Math.random() * (max - min + 1)) + min;
+  }
+  function playVideo(data: any) {
+    emits('play', data);
   }
 </script>
 
@@ -91,7 +95,7 @@
       </div>
     </BasicBox>
     <DeviceBox :module-keys="['fireAwarenessEquipmentType', 'fireFightingEquipmentType']" />
-    <VideoBox />
+    <VideoBox @play="playVideo" />
   </div>
 </template>
 

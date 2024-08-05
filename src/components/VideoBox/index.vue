@@ -1,10 +1,13 @@
 <script setup lang="ts">
-  import { DoubleRightOutlined } from '@ant-design/icons-vue';
+  import { DoubleRightOutlined, PlayCircleOutlined } from '@ant-design/icons-vue';
 
-  const emits = defineEmits(['more']);
+  const emits = defineEmits(['more', 'play']);
 
   const handleMore = () => {
     emits('more');
+  };
+  const playVideo = (data) => {
+    emits('play', data);
   };
 </script>
 <template>
@@ -13,10 +16,13 @@
       <span class="more-tip" @click="handleMore">更多 <DoubleRightOutlined /> </span>
     </template>
     <div class="video-container">
-      <img src="@/assets/images/institution/video.png" alt="" class="mt-0px" />
-      <img src="@/assets/images/institution/video.png" alt="" class="mt-0px" />
-      <img src="@/assets/images/institution/video.png" alt="" class="mt-8px" />
-      <img src="@/assets/images/institution/video.png" alt="" class="mt-8px" />
+      <div class="position-relative" v-for="video in 4" :key="video" @click="playVideo(video)">
+        <img src="@/assets/images/institution/video.png" alt="" class="mt-0px" />
+        <play-circle-outlined
+          style="font-size: 50px; color: rgba(255, 255, 255, 0.6)"
+          class="position-absolute top-1/2 left-1/2 icon cursor-pointer"
+        />
+      </div>
     </div>
   </BasicBox>
 </template>
@@ -49,6 +55,9 @@
     img {
       cursor: pointer;
       // margin-top: 8px;
+    }
+    .icon {
+      transform: translate(-50%, -50%);
     }
   }
 </style>
