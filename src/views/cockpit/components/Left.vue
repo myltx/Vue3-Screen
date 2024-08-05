@@ -87,7 +87,7 @@
           </div>
           <div class="flex-1 file-info mx-10px">
             <div class="flex-1 left-text">
-              <div class="info-value text-#FF5151 cursor-pointer" @click="showMore(0)">
+              <div class="info-value text-#FF5151 cursor-pointer" @click="showMore(1)">
                 {{ getValue('safetySystem', 1) }}
               </div>
               <div class="info-unit">家</div>
@@ -95,7 +95,7 @@
           </div>
           <div class="flex-1 file-info">
             <div class="left-text">
-              <div class="info-value text-#FFBA00 cursor-pointer" @click="showMore(0)">
+              <div class="info-value text-#FFBA00 cursor-pointer" @click="showMore(2)">
                 {{ getValue('safetySystem', 2) }}
               </div>
               <div class="info-unit">家</div>

@@ -3,8 +3,8 @@
   import { useCockpitDataStore } from '@/stores/cockpitData';
   import { default_chart_colors } from '@/helper';
 
+  const emits = defineEmits(['more']);
   const { getModuleName, getValue, getName } = useCockpitDataStore();
-
   const threeChartRef = ref();
   const forewarningList = ref(getValue('fireWarningAnalysis', 0));
 
@@ -56,6 +56,9 @@
         break;
     }
   };
+  function showMore(type: number) {
+    emits('more', type);
+  }
 
   function getScale(): string {
     const allNum = getValue('safetyHazardRectification', 0) || 0;
@@ -84,7 +87,9 @@
           <img src="@/assets/images/institution/ljxg.png" alt="" />
           <div>
             <div class="title">
-              <span class="number">{{ getValue('fireSafetynspection', 0) }}</span>
+              <span class="number cursor-pointer" @click="showMore(3)">{{
+                getValue('fireSafetynspection', 0)
+              }}</span>
               <span class="tip">家</span>
             </div>
             <div class="tip">{{ getName('fireSafetynspection', 0) }}</div>
@@ -94,7 +99,9 @@
           <img src="@/assets/images/institution/ljxj.png" alt="" />
           <div>
             <div class="title">
-              <span class="number">{{ getValue('fireSafetynspection', 1) }}</span>
+              <span class="number cursor-pointer" @click="showMore(4)">{{
+                getValue('fireSafetynspection', 1)
+              }}</span>
               <span class="tip">家</span>
             </div>
             <div class="tip">{{ getName('fireSafetynspection', 1) }}</div>
@@ -118,30 +125,42 @@
       <div class="bottom-container">
         <div>
           <img src="@/assets/images/business/rws.png" alt="" class="img" />
-          <span class="tip">累计巡更任务数</span>
+          <span class="tip">
+            {{ getName(equipmentActive == 0 ? 'keepWatch' : 'inspection', 0) }}
+          </span>
         </div>
         <div>
-          <span class="number">1254</span>
+          <span class="number">
+            {{ getValue(equipmentActive == 0 ? 'keepWatch' : 'inspection', 0) }}
+          </span>
           <span class="dw">次</span>
         </div>
       </div>
       <div class="bottom-container">
         <div>
           <img src="@/assets/images/business/wcs.png" alt="" class="img" />
-          <span class="tip">累计巡更完成数</span>
+          <span class="tip">
+            {{ getName(equipmentActive == 0 ? 'keepWatch' : 'inspection', 1) }}
+          </span>
         </div>
         <div>
-          <span class="number">1098</span>
+          <span class="number">
+            {{ getValue(equipmentActive == 0 ? 'keepWatch' : 'inspection', 1) }}
+          </span>
           <span class="dw">次</span>
         </div>
       </div>
       <div class="bottom-container">
         <div>
           <img src="@/assets/images/business/yqs.png" alt="" class="img" />
-          <span class="tip">累计巡更逾期数</span>
+          <span class="tip">
+            {{ getName(equipmentActive == 0 ? 'keepWatch' : 'inspection', 2) }}
+          </span>
         </div>
         <div>
-          <span class="number font3">148</span>
+          <span class="number font3">
+            {{ getValue(equipmentActive == 0 ? 'keepWatch' : 'inspection', 2) }}
+          </span>
           <span class="dw">次</span>
         </div>
       </div>
@@ -151,7 +170,9 @@
         <span class="title">隐患整改</span>
         <div class="right-container">
           <span class="left">{{ getName('safetyHazardRectification', 0) }}</span>
-          <span class="middle">{{ getValue('safetyHazardRectification', 0) }}</span>
+          <span class="middle cursor-pointer" @click="showMore(7)">
+            {{ getValue('safetyHazardRectification', 0) }}
+          </span>
           <span class="right">条</span>
         </div>
       </div>
@@ -186,7 +207,9 @@
         <div class="footer-container">
           <img src="@/assets/images/business/yhzg.png" alt="" class="img" />
           <span class="left">{{ getName('safetyHazardRectification', 2) }}</span>
-          <span class="middle">{{ getValue('safetyHazardRectification', 2) }}</span>
+          <span class="middle cursor-pointer" @click="showMore(8)">
+            {{ getValue('safetyHazardRectification', 2) }}
+          </span>
           <span class="right">条</span>
         </div>
       </div>

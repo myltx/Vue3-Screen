@@ -1,75 +1,89 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+  import { useCockpitDataStore } from '@/stores/cockpitData';
+
+  const emits = defineEmits(['more']);
+  const { getModuleName, getValue, getName } = useCockpitDataStore();
+  function showMore(type: number) {
+    emits('more', type);
+  }
+</script>
 
 <template>
   <div class="container-bottom position-bottom-0 z-999 flex">
     <div class="w-50% mr-10px bg-#112034">
-      <BasicBox :title="'值班打卡'" :size="'large'" :height="'200px'">
+      <BasicBox :title="getModuleName('clockIn')" :size="'large'" :height="'200px'">
         <div class="left-container flex">
           <div class="flex main-container w-52%">
-            <img src="@/assets/images/business/zbdk1.png" alt="">
+            <img src="@/assets/images/business/zbdk1.png" alt="" />
             <div>
-              <span class="number">1520</span>
+              <span class="number">{{ getValue('clockIn', 0) }}</span>
               <span class="dw">班次</span>
-              <div class="title">累计值班任务</div>
+              <div class="title">{{ getName('clockIn', 0) }}</div>
             </div>
           </div>
           <div class="flex main-container w-48%">
-            <img src="@/assets/images/business/zbdk1.png" alt="">
+            <img src="@/assets/images/business/zbdk1.png" alt="" />
             <div>
-              <span class="number">1284</span>
+              <span class="number">{{ getValue('clockIn', 1) }}</span>
               <span class="dw">班次</span>
-              <div class="title">累计完成值班数</div>
+              <div class="title">{{ getName('clockIn', 1) }}</div>
             </div>
           </div>
           <div class="flex main-container bottom-container w-52%">
-            <img src="@/assets/images/business/zbdk2.png" alt="">
+            <img src="@/assets/images/business/zbdk2.png" alt="" />
             <div>
-              <span class="number font1">23</span>
+              <span class="number font1 cursor-pointer" @click="showMore(5)">{{
+                getValue('clockIn', 2)
+              }}</span>
               <span class="dw">家</span>
-              <div class="title">今日已值班打卡机构数</div>
+              <div class="title">{{ getName('clockIn', 2) }}</div>
             </div>
           </div>
           <div class="flex main-container bottom-container w-48%">
-            <img src="@/assets/images/business/zbdk2.png" alt="">
+            <img src="@/assets/images/business/zbdk2.png" alt="" />
             <div>
-              <span class="number font1">86</span>
+              <span class="number font1 cursor-pointer" @click="showMore(6)">{{
+                getValue('clockIn', 3)
+              }}</span>
               <span class="dw">人次</span>
-              <div class="title">今日已完成值班打卡</div>
+              <div class="title">{{ getName('clockIn', 3) }}</div>
             </div>
           </div>
         </div>
       </BasicBox>
     </div>
     <div class="w-50% bg-#112034">
-      <BasicBox :title="'消防演练与培训'" :width="'50%'" :height="'200px'">
+      <BasicBox :title="getModuleName('fireDrillAndTraining')" :width="'50%'" :height="'200px'">
         <div class="right-container">
           <div>
             <div class="bg-container">
-              <span class="number">27</span>
+              <span class="number">{{ getValue('fireDrillAndTraining', 0) }}</span>
               <span class="dw">次</span>
             </div>
-            <div class="title-container">消防演练总次数</div>
+            <div class="title-container">{{ getName('fireDrillAndTraining', 0) }}</div>
           </div>
           <div>
             <div class="bg-container">
-              <span class="number">19</span>
+              <span class="number">{{ getValue('fireDrillAndTraining', 1) }}</span>
               <span class="dw">次</span>
             </div>
-            <div class="title-container">消防培训总次数</div>
+            <div class="title-container">{{ getName('fireDrillAndTraining', 1) }}</div>
           </div>
           <div>
             <div class="bg-container">
-              <span class="number last-number">262</span>
+              <span class="number last-number">{{ getValue('fireDrillAndTraining', 2) }}</span>
               <span class="dw last-dw">人次</span>
             </div>
-            <div class="title-container last-title">消防培训人次</div>
+            <div class="title-container last-title">{{ getName('fireDrillAndTraining', 2) }}</div>
           </div>
         </div>
         <div class="footer-container flex">
-          <img src="@/assets/images/business/pxjgs.png" alt="" class="img">
+          <img src="@/assets/images/business/pxjgs.png" alt="" class="img" />
           <div class="flex">
-            <span class="title">近半年未组织消防培训机构数</span>
-            <span class="number">10</span>
+            <span class="title">{{ getName('fireDrillAndTraining', 3) }}</span>
+            <span class="number cursor-pointer" @click="showMore(9)">
+              {{ getValue('fireDrillAndTraining', 3) }}
+            </span>
             <span class="dw">家</span>
           </div>
         </div>
@@ -79,5 +93,5 @@
 </template>
 
 <style scoped lang="scss">
-@import './styles/bottom.scss';
+  @import './styles/bottom.scss';
 </style>

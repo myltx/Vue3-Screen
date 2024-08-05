@@ -247,48 +247,153 @@ export interface modalType {
   [key: string]: {
     module: string;
     title: string;
+    key: string;
+    index?: number;
+    columns: any[];
   };
 }
+const orgColumns = [
+  {
+    title: '机构',
+    dataIndex: 'name',
+    key: 'name',
+    ellipsis: true,
+  },
+  {
+    title: '安全责任人',
+    dataIndex: 'userName',
+    key: 'userName',
+    ellipsis: true,
+  },
+  {
+    title: '联系方式',
+    dataIndex: 'phone',
+    key: 'phone',
+    ellipsis: true,
+  },
+  {
+    title: '地址',
+    key: 'address',
+    dataIndex: 'address',
+    ellipsis: true,
+  },
+];
+
+const clockColumns = [
+  {
+    title: '机构',
+    dataIndex: 'name',
+    key: 'name',
+    ellipsis: true,
+  },
+  {
+    title: '班次',
+    dataIndex: 'classes',
+    key: 'classes',
+    ellipsis: true,
+    width: 80,
+  },
+  {
+    title: '值班人员',
+    dataIndex: 'userName',
+    key: 'userName',
+    width: 120,
+    ellipsis: true,
+  },
+  {
+    title: '打卡时间',
+    key: 'clockTime',
+    dataIndex: 'clockTime',
+    ellipsis: true,
+  },
+];
+const hiddenDangerColumns = [
+  {
+    title: '机构',
+    dataIndex: 'name',
+    key: 'name',
+    ellipsis: true,
+  },
+  {
+    title: '隐患描述',
+    dataIndex: 'remark',
+    key: 'remark',
+    ellipsis: true,
+  },
+  {
+    title: '上报时间',
+    dataIndex: 'createTime',
+    key: 'createTime',
+    ellipsis: true,
+  },
+  {
+    title: '整改状态',
+    key: 'status',
+    dataIndex: 'status',
+    width: 120,
+    ellipsis: true,
+  },
+];
 
 export const modalType: modalType = {
   0: {
     module: '已上传机构',
     title: '机构明细',
+    key: 'haveAlreadyOrg',
+    columns: orgColumns,
   },
   1: {
     module: '待上传机构',
     title: '机构明细',
+    key: 'toBeUploadedOrg',
+    columns: orgColumns,
   },
   2: {
     module: '待完善机构数',
     title: '机构明细',
+    key: 'needToBeImprovedOrg',
+    columns: orgColumns,
   },
   3: {
     module: '近3日未巡更机构',
     title: '机构明细',
+    key: 'nearlyThreeDaysOrg',
+    columns: orgColumns,
   },
   4: {
     module: '近一月未巡更机构',
     title: '机构明细',
+    key: 'nearlyOneMonthsOrg',
+    columns: orgColumns,
   },
   5: {
     module: '已打卡机构数',
     title: '机构明细',
+    key: 'punchedMechanismsOrg',
+    columns: orgColumns,
   },
   6: {
     module: '今日已完成值班打卡人次',
     title: '机构明细',
+    key: 'dutyHasBeenCompleted',
+    columns: clockColumns,
   },
   7: {
     module: '累计发现隐患',
     title: '隐患明细',
+    key: 'totalHiddenDangerRectification',
+    columns: hiddenDangerColumns,
   },
   8: {
     module: '超期未解决隐患',
     title: '隐患明细',
+    key: 'unsolvedHiddenDanger',
+    columns: hiddenDangerColumns,
   },
   9: {
     module: '近半年未组织培训机构',
     title: '机构明细',
+    key: 'noTrainingInstitutionsWereOrg',
+    columns: orgColumns,
   },
 };

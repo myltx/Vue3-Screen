@@ -16,7 +16,7 @@
   const open = ref(false);
   const openMapModal = ref(false);
   const videoModalValue = ref(false);
-  const { getALlModuleData } = useCockpitDataStore();
+  const { getALlModuleData, getRule, getValue } = useCockpitDataStore();
   // 根据配置的 moduleKey 在页面动态获取数据
   startLoading();
   getALlModuleData(moduleKeys, endLoading);
@@ -35,56 +35,9 @@
     },
   ]);
 
-  const columns = [
-    {
-      title: 'Name',
-      dataIndex: 'name',
-      key: 'name',
-    },
-    {
-      title: 'Age',
-      dataIndex: 'age',
-      key: 'age',
-    },
-    {
-      title: 'Address',
-      dataIndex: 'address',
-      key: 'address',
-    },
-    {
-      title: 'Tags',
-      key: 'tags',
-      dataIndex: 'tags',
-    },
-    {
-      title: 'key',
-      key: 'key',
-    },
-  ];
+  const columns = ref<any>([]);
 
-  const data = [
-    {
-      key: '1',
-      name: 'John Brown',
-      age: 32,
-      address: 'New York No. 1 Lake Park',
-      tags: ['nice', 'developer'],
-    },
-    {
-      key: '2',
-      name: 'Jim Green',
-      age: 42,
-      address: 'London No. 1 Lake Park',
-      tags: ['loser'],
-    },
-    {
-      key: '3',
-      name: 'Joe Black',
-      age: 32,
-      address: 'Sidney No. 1 Lake Park',
-      tags: ['cool', 'teacher'],
-    },
-  ];
+  const tabData = ref([]);
 
   function markerClick(markerData: any) {
     console.log(markerData);
@@ -106,26 +59,31 @@
     console.log(videoData);
     videoModalValue.value = true;
   }
-  function showOrgMore(type: number) {
-    modalTitle.value = modalType[type]?.title;
-    console.log(modalTitle.value);
+  function showMore(type: number) {
+    const { key, title, index, columns: col } = modalType[type];
+    const rules = getRule(key, index || 0);
+    console.log(rules, 'r');
+    columns.value = col;
+    tabData.value = getValue(key, index || 0);
+    modalTitle.value = title;
     open.value = true;
   }
-
-  setTimeout(() => {
-    // videoModalValue.value = true;
-  }, 2000);
 </script>
 <template>
   <PageWrapper :title="'大屏示例页面'">
-    <Left v-if="!isLoading" @play="playVideo" @more="showOrgMore" v-motion-slide-left />
-    <Right v-if="!isLoading" v-motion-slide-right />
-    <Bottom v-if="!isLoading" v-motion-slide-visible-bottom />
+    <Left v-if="!isLoading" @play="playVideo" @more="showMore" v-motion-slide-left />
+    <Right v-if="!isLoading" @more="showMore" v-motion-slide-right />
+    <Bottom v-if="!isLoading" @more="showMore" v-motion-slide-visible-bottom />
     <Main v-if="!isLoading" />
     <Map class="map" ref="mapRef" :markerList="markerList" @markerClick="markerClick" />
     <Loading class="loading" />
     <BasicModal v-model:modalValue="open" :title="modalTitle">
-      <a-table :columns="columns" :data-source="data" :pagination="false" />
+      <a-table
+        :columns="columns"
+        :data-source="tabData"
+        :pagination="false"
+        :scroll="{ y: 300, x: 500 }"
+      />
     </BasicModal>
     <BasicMapModal
       v-model:modalValue="openMapModal"
