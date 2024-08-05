@@ -6,12 +6,13 @@
   import Main from './components/Main.vue';
   import { useCockpitDataStore } from '@/stores/cockpitData';
   import MapIconImg from '@/assets/images/map/map-icon.png';
-  import { moduleKeys } from './config';
+  import { modalType, moduleKeys } from './config';
 
   const router = useRouter();
   const { startLoading, endLoading } = useLoadingStore();
   const { isLoading } = storeToRefs(useLoadingStore());
   const mapRef = ref();
+  const modalTitle = ref('');
   const open = ref(false);
   const openMapModal = ref(false);
   const videoModalValue = ref(false);
@@ -33,6 +34,58 @@
       icon: MapIconImg,
     },
   ]);
+
+  const columns = [
+    {
+      title: 'Name',
+      dataIndex: 'name',
+      key: 'name',
+    },
+    {
+      title: 'Age',
+      dataIndex: 'age',
+      key: 'age',
+    },
+    {
+      title: 'Address',
+      dataIndex: 'address',
+      key: 'address',
+    },
+    {
+      title: 'Tags',
+      key: 'tags',
+      dataIndex: 'tags',
+    },
+    {
+      title: 'key',
+      key: 'key',
+    },
+  ];
+
+  const data = [
+    {
+      key: '1',
+      name: 'John Brown',
+      age: 32,
+      address: 'New York No. 1 Lake Park',
+      tags: ['nice', 'developer'],
+    },
+    {
+      key: '2',
+      name: 'Jim Green',
+      age: 42,
+      address: 'London No. 1 Lake Park',
+      tags: ['loser'],
+    },
+    {
+      key: '3',
+      name: 'Joe Black',
+      age: 32,
+      address: 'Sidney No. 1 Lake Park',
+      tags: ['cool', 'teacher'],
+    },
+  ];
+
   function markerClick(markerData: any) {
     console.log(markerData);
     openMapModal.value = true;
@@ -53,6 +106,11 @@
     console.log(videoData);
     videoModalValue.value = true;
   }
+  function showOrgMore(type: number) {
+    modalTitle.value = modalType[type]?.title;
+    console.log(modalTitle.value);
+    open.value = true;
+  }
 
   setTimeout(() => {
     // videoModalValue.value = true;
@@ -60,14 +118,14 @@
 </script>
 <template>
   <PageWrapper :title="'大屏示例页面'">
-    <Left v-if="!isLoading" @play="playVideo" v-motion-slide-left />
+    <Left v-if="!isLoading" @play="playVideo" @more="showOrgMore" v-motion-slide-left />
     <Right v-if="!isLoading" v-motion-slide-right />
     <Bottom v-if="!isLoading" v-motion-slide-visible-bottom />
     <Main v-if="!isLoading" />
     <Map class="map" ref="mapRef" :markerList="markerList" @markerClick="markerClick" />
     <Loading class="loading" />
-    <BasicModal v-model:modalValue="open" :title="'实时监测告警'">
-      <div>213</div>
+    <BasicModal v-model:modalValue="open" :title="modalTitle">
+      <a-table :columns="columns" :data-source="data" :pagination="false" />
     </BasicModal>
     <BasicMapModal
       v-model:modalValue="openMapModal"
@@ -76,7 +134,7 @@
     >
       <div @click="handleDetail" class="text-white bg-red p-20px h-20px cursor-pointer">213</div>
     </BasicMapModal>
-    <VideoModal v-model:modalValue="videoModalValue" :title="'视频播放'" />
+    <VideoModal v-model:modalValue="videoModalValue" />
   </PageWrapper>
 </template>
 

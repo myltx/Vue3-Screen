@@ -242,3 +242,53 @@ export const moduleKeys: ModuleKeyType = {
     'totalHiddenDangerRectification-累计发现隐患（安全隐患整改弹框）',
   ],
 };
+
+export interface modalType {
+  [key: string]: {
+    module: string;
+    title: string;
+  };
+}
+
+export const modalType: modalType = {
+  0: {
+    module: '已上传机构',
+    title: '机构明细',
+  },
+  1: {
+    module: '待上传机构',
+    title: '机构明细',
+  },
+  2: {
+    module: '待完善机构数',
+    title: '机构明细',
+  },
+  3: {
+    module: '近3日未巡更机构',
+    title: '机构明细',
+  },
+  4: {
+    module: '近一月未巡更机构',
+    title: '机构明细',
+  },
+  5: {
+    module: '已打卡机构数',
+    title: '机构明细',
+  },
+  6: {
+    module: '今日已完成值班打卡人次',
+    title: '机构明细',
+  },
+  7: {
+    module: '累计发现隐患',
+    title: '隐患明细',
+  },
+  8: {
+    module: '超期未解决隐患',
+    title: '隐患明细',
+  },
+  9: {
+    module: '近半年未组织培训机构',
+    title: '机构明细',
+  },
+};

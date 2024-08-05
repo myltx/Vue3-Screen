@@ -10,13 +10,13 @@
     },
   });
   const emits = defineEmits(['closed', 'update:modalValue']);
-  const { title } = unref(props);
   const open = ref(props.modalValue);
   // watch for changes in the modelValue prop
   watch(
     () => props.modalValue,
     (value) => {
       open.value = value;
+
       if (!value) {
         emits('closed');
       }
@@ -30,7 +30,7 @@
     class="w-50% h-50% bg-white z-999 position-absolute top-1/2 left-1/2 p-20px basic-modal"
   >
     <div class="title text-white">
-      <div class="title-text">{{ title }}</div>
+      <div class="title-text">{{ props.title }}</div>
     </div>
     <div
       class="cursor-pointer position-absolute top-0 right--40px b-1px border-#2BAAFF p-10px close"

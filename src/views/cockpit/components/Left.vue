@@ -10,7 +10,7 @@
     subscribe: number | string;
   }
 
-  const emits = defineEmits(['play']);
+  const emits = defineEmits(['play', 'more']);
   const { getModuleName, getValue, getName } = useCockpitDataStore();
 
   const alarmList = ref<AlarmListType[]>([]);
@@ -39,6 +39,10 @@
   }
   function playVideo(data: any) {
     emits('play', data);
+  }
+  function showMore(type: number) {
+    console.log(type);
+    emits('more', type);
   }
 </script>
 
@@ -75,19 +79,25 @@
         <div class="flex space-between items-center w-full">
           <div class="flex-1 file-info">
             <div class="left-text">
-              <div class="info-value text-#00E3F8">{{ getValue('safetySystem', 0) }}</div>
+              <div class="info-value text-#00E3F8 cursor-pointer" @click="showMore(0)">
+                {{ getValue('safetySystem', 0) }}
+              </div>
               <div class="info-unit">家</div>
             </div>
           </div>
           <div class="flex-1 file-info mx-10px">
             <div class="flex-1 left-text">
-              <div class="info-value text-#FF5151">21</div>
+              <div class="info-value text-#FF5151 cursor-pointer" @click="showMore(0)">
+                {{ getValue('safetySystem', 1) }}
+              </div>
               <div class="info-unit">家</div>
             </div>
           </div>
           <div class="flex-1 file-info">
             <div class="left-text">
-              <div class="info-value text-#FFBA00">21</div>
+              <div class="info-value text-#FFBA00 cursor-pointer" @click="showMore(0)">
+                {{ getValue('safetySystem', 2) }}
+              </div>
               <div class="info-unit">家</div>
             </div>
           </div>
