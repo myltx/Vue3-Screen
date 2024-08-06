@@ -1,19 +1,10 @@
 <script setup lang="ts">
-  import { Vue3SeamlessScroll } from 'vue3-seamless-scroll';
-  import { equipmentOption } from '../config';
-  import NORMAL_IMG from '@/assets/images/business/normal.png';
-  import MIDDLE_IMG from '@/assets/images/business/middle.png';
-  import HEIGHT_IMG from '@/assets/images/business/height.png';
   import dayjs from 'dayjs';
-  import { useSettingStore } from '@/stores/setting/setting';
-  import Ring from '../components/3dpie/index2.vue';
-  import { color } from '../components/3dpie/data.js';
   import Rang from '../components/echarts/index.vue';
   import { useCockpitDataStore } from '@/stores/cockpitData';
   import { default_chart_colors } from '@/helper';
 
   const { getModuleName, getValue, getName } = useCockpitDataStore();
-  type ClickType = 'equipment';
 
   interface AlarmListType {
     content: number | string;
@@ -23,34 +14,11 @@
     subscribe: number | string;
   }
 
-  const settingStore = useSettingStore();
   const threeChartRef = ref();
   const forewarningList = ref(getValue('keepWatch', 0));
-  const { indexConfig } = storeToRefs(settingStore);
 
   const equipmentActive = ref(0);
-  const option = ref({});
-  const chartRef = ref(null); // 用于引用图表实例
   const alarmList = ref<AlarmListType[]>([]);
-  const ringData = ref([
-    { name: 'a', value: 10 },
-    { name: 'b', value: 30 },
-    { name: 'c', value: 22 },
-    { name: 'd', value: 12 },
-  ]);
-  const setOption = (key: string, opt: any) => {
-    switch (key) {
-      case 'option':
-        option.value = {};
-        setTimeout(() => {
-          option.value = opt;
-        }, 1000);
-        break;
-
-      default:
-        break;
-    }
-  };
 
   onMounted(() => {
     console.log(forewarningList.value, 'forewarningList');
@@ -168,7 +136,9 @@
     </BasicBox>
     <BasicBox :title="getModuleName('safetyHazardRectification')" style="height: 280px">
       <div class="chart-container safe-container">
-        <div class="bar-chart-title">{{ getName('safetyHazardRectification', 0) }}</div>
+        <div class="bar-chart-title">
+          <div>{{ getName('safetyHazardRectification', 0) }}</div>
+        </div>
         <span>{{ getValue('safetyHazardRectification', 0) }}</span>
         <div class="pie-container">
           <Rang :data="getValue('safetyHazardRectificationChart', 0)" />
