@@ -1,5 +1,8 @@
 <script setup lang="ts">
   import DetaultOrgImg from '@/assets/images/institution/default-org-img.png';
+  import { useCockpitDataStore } from '@/stores/cockpitData';
+
+  const { getName, getValue } = useCockpitDataStore();
 </script>
 
 <template>
@@ -10,33 +13,33 @@
       <div class="flex justify-center item-container">
         <img src="@/assets/images/institution/left1.png" class="img" />
         <div class="right-container">
-          <span class="font1">214</span>
+          <span class="font1">{{ getValue('topCenter', 0) }}</span>
           <span class="font2">台</span>
-          <span class="font3">消防感知设备</span>
+          <span class="font3">{{ getName('topCenter', 0) }}</span>
         </div>
       </div>
       <div class="flex justify-center item-container">
         <img src="@/assets/images/institution/left2.png" class="img" />
         <div class="right-container">
-          <span class="font1 color2">206</span>
+          <span class="font1 color2">{{ getValue('topCenter', 1) }}</span>
           <span class="font2">台</span>
-          <span class="font3">在线设备</span>
+          <span class="font3">{{ getName('topCenter', 1) }}</span>
         </div>
       </div>
       <div class="flex justify-center item-container">
         <img src="@/assets/images/institution/left3.png" class="img" />
         <div class="right-container">
-          <span class="font1 color3">6</span>
+          <span class="font1 color3">{{ getValue('topCenter', 2) }}</span>
           <span class="font2">条</span>
-          <span class="font3">未处理告警</span>
+          <span class="font3">{{ getName('topCenter', 2) }}</span>
         </div>
       </div>
       <div class="flex justify-center item-container">
         <img src="@/assets/images/institution/left4.png" class="img" />
         <div class="right-container">
-          <span class="font1 color4">12</span>
+          <span class="font1 color4">{{ getValue('topCenter', 3) }}</span>
           <span class="font2">条</span>
-          <span class="font3">待整改隐患</span>
+          <span class="font3">{{ getName('topCenter', 3) }}</span>
         </div>
       </div>
     </div>
