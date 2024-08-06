@@ -1,14 +1,30 @@
 <script setup lang="ts">
-const openModal = ref<boolean>(true)
+const props = defineProps({
+    isVisible: {
+        type: Boolean,
+        default: false,
+    },
+});
+watch(
+    () => props.isVisible,
+    (value) => {
+        openModal.value = value
+    },
+);
+const emits = defineEmits(['closeModel']);
+const openModal = ref<boolean>(false)
 const radioType = ref<any>()
 const remark = ref<string>('')
 const handleSubmit = () => {
 
 }
+const handleClose = () => {
+    emits('closeModel',false)
+}
 </script>
 <template>
     <div>
-        <BasicModal v-model:modalValue="openModal" :title="'隐患记录详情'">
+        <BasicModal v-model:modalValue="openModal" :title="'隐患记录详情'" @closed="handleClose">
             <div class="ml-16px mr-34px main-container flex">
                 <div class="left-container w-50%">
                     <div class="flex">

@@ -36,8 +36,8 @@
 
      </div> -->
     <Loading class="loading" />
-    <yhDetailModel />
-    <detailModel />
+    <!-- <yhDetailModel /> -->
+    <!-- <detailModel /> -->
     <!-- <BasicModal v-model:modalValue="open" /> -->
   </PageWrapper>
 </template>
