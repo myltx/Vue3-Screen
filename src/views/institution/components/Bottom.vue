@@ -3,18 +3,26 @@
   import { useSettingStore } from '@/stores';
   import { useCockpitDataStore } from '@/stores/cockpitData';
   import { Vue3SeamlessScroll } from 'vue3-seamless-scroll';
+  import xfDetailModel from './xfDetailModel.vue';
 
   const { getModuleName, getValue, getRule } = useCockpitDataStore();
   const moduleKey = 'dutySituation';
   const settingStore = useSettingStore();
   const { indexConfig } = storeToRefs(settingStore);
   const alarmList = ref<any[]>([]);
+  const isVisible = ref<boolean>(false)
   // const fileList = ref([]);
 
   const isScroll = computed(() => {
     return indexConfig.value.leftBottomSwiper;
   });
-
+  function handleClose(val: boolean) {
+    isVisible.value = val
+  }
+  async function handleListClick(item:any) {
+    isVisible.value = true
+  // openMapModal.value = true
+  }
   getAllList();
   function getAllList() {
     getYuanList({
@@ -134,7 +142,7 @@
           </div>
           <div class="right-container">
             <div class="item-container" v-for="events in alarmList" :key="events.id">
-              <div class="flex items-center justify-between">
+              <div class="flex items-center justify-between item" @click="handleListClick(item)">
                 <div :class="['catagory', events.type == '2' ? 'active' : '']">
                   <span>
                     {{ events.type == '1' ? '消防演练' : '消防培训' }}
@@ -150,6 +158,7 @@
       </BasicBox>
     </div>
   </div>
+  <xfDetailModel :isVisible="isVisible" @closeModel="handleClose"/>
 </template>
 
 <style scoped lang="scss">
