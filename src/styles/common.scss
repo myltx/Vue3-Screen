@@ -12,3 +12,10 @@
   align-items: center;
   justify-content: center;
 }
+
+.text-gradient {
+  background: linear-gradient(to top, #ffffff, #CAF9FF);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}

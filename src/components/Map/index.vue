@@ -26,6 +26,9 @@
   const centerPoint = ref(defaultCanterPoint);
   const map = ref<any>(null);
   const { isLoading, boundaries, get } = useAreaBoundary();
+  const showSearchSelect = ref(false);
+  const selectValue = ref();
+  const searchMarkerRef = ref();
 
   function handleInitd() {
     get(props.areaName);
@@ -54,7 +57,7 @@
   function handleMarkerClick(data: any) {
     map.value.map.panTo({ lng: data?.lng, lat: data?.lat });
     props.markerList.forEach((item: any) => {
-      if (item.name == data.name) {
+      if (item.orgId == data.orgId) {
         item.icon = MapIconActiveImg;
       } else {
         item.icon = MapIconImg;
@@ -98,6 +101,27 @@
       return icon;
     }
   }
+
+  const handleChange = (value: string, options: any) => {
+    console.log(`selected ${value}`);
+    console.log(options);
+    handleMarkerClick(options);
+    changeSearchStatus();
+    selectValue.value = null;
+  };
+
+  const filterOption = (input: string, option: any) => {
+    return option.value.toLowerCase().indexOf(input.toLowerCase()) >= 0;
+  };
+  function changeSearchStatus() {
+    showSearchSelect.value = !showSearchSelect.value;
+  }
+  onClickOutside(searchMarkerRef, () => {
+    setTimeout(() => {
+      showSearchSelect.value = false;
+    }, 100);
+  });
+
   defineExpose({
     cleanMarkerActive,
   });
@@ -151,6 +175,28 @@
       :stroke-weight="2"
     />
   </BMap>
+
+  <div class="search-marker" ref="searchMarkerRef">
+    <img
+      src="@/assets/images/map/marker-search.png"
+      alt=""
+      v-if="!showSearchSelect"
+      v-motion-slide-left
+      @click="changeSearchStatus"
+    />
+    <a-select
+      v-if="showSearchSelect"
+      v-motion-slide-left
+      v-model:value="selectValue"
+      show-search
+      :field-names="{ label: 'name', value: 'orgId', options: 'children' }"
+      placeholder="请选择机构"
+      style="width: 150px"
+      :options="props.markerList"
+      :filter-option="filterOption"
+      @change="handleChange"
+    />
+  </div>
 </template>
 
 <style scoped lang="scss">
@@ -158,9 +204,47 @@
     width: 100%;
     height: 100% !important;
   }
+  .search-marker {
+    position: absolute;
+    top: 7.5%;
+    left: 22%;
+    z-index: 9999;
+    cursor: pointer;
+    img {
+      width: 32px;
+      height: 32px;
+    }
+  }
 </style>
 <style lang="scss">
   .anchorBL {
     display: none !important;
+  }
+  .ant-select-selector {
+    background: #152743 !important;
+    border-color: #3d9cd1 !important;
+  }
+  .ant-select-selection-item {
+    color: rgba(255, 255, 255, 0.49) !important;
+  }
+  .ant-select-dropdown {
+    background: #152743 !important;
+    // border-color: #3d9cd1 !important;
+  }
+  .ant-select-item-option-content {
+    color: rgba(255, 255, 255, 0.49) !important;
+  }
+  .ant-select-item-option-selected:not(.ant-select-item-option-disabled) {
+    background: #2681bc !important;
+    .ant-select-item-option-content {
+      // color: #000 !important;
+    }
+  }
+
+  .ant-select-selection-placeholder {
+    color: rgba(255, 255, 255, 0.49) !important;
+  }
+  .ant-select-arrow {
+    color: rgba(255, 255, 255, 0.49) !important;
   }
 </style>

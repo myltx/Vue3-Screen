@@ -66,6 +66,7 @@
             hover
             v-model="isScroll"
             :limitScrollNum="3"
+            :step="0.4"
           >
             <div class="overflow-y-hidden">
               <div class="td flex w-100%" v-for="item in getValue(moduleKey, 0)" :key="item.id">

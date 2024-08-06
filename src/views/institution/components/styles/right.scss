@@ -103,7 +103,7 @@
       display: flex;
       width: 50%;
       margin-left: 27px;
-    //   margin-top: 9px;
+      //   margin-top: 9px;
       .title {
         // width: 62px;
         height: 22px;
@@ -245,10 +245,15 @@
       line-height: 28px;
       text-align: left;
       font-style: normal;
-      background: linear-gradient(top, #ffffff 0%, #1f8dcb 100%);
       position: absolute;
       top: 0;
       z-index: 9999;
+      div {
+        background: linear-gradient(to top, #ffffff, #1f8dcb);
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
     }
     .bar-chart-unit {
       position: absolute;

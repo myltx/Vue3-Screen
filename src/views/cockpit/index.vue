@@ -105,7 +105,7 @@
       ref="mapRef"
       v-if="!isLoading"
       :markerList="markerList"
-      @markerClick="markerClick"
+      @marker-click="markerClick"
     />
     <Loading class="loading" />
     <BasicModal v-model:modalValue="open" :title="modalTitle">

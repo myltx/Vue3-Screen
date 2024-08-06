@@ -13,7 +13,12 @@
     line-height: 21px;
     text-align: center;
     font-style: normal;
-    background: linear-gradient(top, #ffffff 0%, #caf9ff 100%);
+    div {
+      background: linear-gradient(to top, #ffffff, #CAF9FF);
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
   }
   .file-info {
     position: relative;
