@@ -24,6 +24,9 @@
         border-radius: 6px;
         text-align: center;
         margin-top: 10px;
+        &.active {
+          background: linear-gradient(128deg, #1884d5 0%, #0066ac 100%);
+        }
         span {
           width: 52px;
           height: 18px;
@@ -190,12 +193,13 @@
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;
-      font-family: PingFangSC, PingFang SC;
+      font-family:
+        PingFangSC,
+        PingFang SC;
       font-size: 16px;
-      color: #FFFFFF;
+      color: #ffffff;
       text-align: left;
       font-style: normal;
-
     }
   }
 }

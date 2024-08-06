@@ -3,6 +3,7 @@
  */
 export enum ServicePrefixEnum {
   COCKPIT = '',
+  SERVICE = '',
   USER = '/user',
   OAUTH = '/oauth',
 }

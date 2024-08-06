@@ -33,3 +33,19 @@ export function exportModuleRule(data: any) {
     data,
   });
 }
+
+export function getYuanList(data: any) {
+  return Axios({
+    url: ServicePrefixEnum.SERVICE + '/visualdev/OnlineDev/550662278131745157/List',
+    method: RequestEnum.POST,
+    data,
+  });
+}
+
+export function getPwixunList(data: any) {
+  return Axios({
+    url: ServicePrefixEnum.SERVICE + '/visualdev/OnlineDev/550674121361457541/List',
+    method: RequestEnum.POST,
+    data,
+  });
+}
