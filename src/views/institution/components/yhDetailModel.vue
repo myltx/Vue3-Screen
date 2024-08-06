@@ -38,51 +38,42 @@ const handleSubmit = () => {
                         <span class="tip">附件：</span>
                     </div>
                 </div>
-                <div class="left-container w-50%">
+                <div class="left-container w-48% ml-5px">
                     <div class="flex ml-30px">
                         <div class="tip-container">
                             <div class="bg"></div>
                             <div class="title">隐患整改时间线</div>
                         </div>
                     </div>
-                    <div>
+                    <div class="h-98px">
                         <span class="times ml-28px">2024.01.01 12:15:27</span>
                         <div class="main mt-4px ml-20px">
                             <div class="title mt-8px ml-8px">上报隐患</div>
                             <span class="person mt-4px ml-8px">上报人：</span>
                             <span class="name">张三</span>
                         </div>
+                        <div class="mb-12px"></div>
+                    </div>
+
+                    <div class="h-98px">
+                        <span class="times ml-28px">2024.01.01 12:15:27</span>
+                        <div class="main mt-4px ml-20px">
+                            <div class="title mt-8px ml-8px">上报隐患</div>
+                            <span class="person mt-4px ml-8px">上报人：</span>
+                            <span class="name">张三</span>
+                        </div>
+                        <div class="mb-12px"></div>
+                    </div>
+                    <div class="h-98px">
+                        <span class="times ml-28px">2024.01.01 12:15:27</span>
+                        <div class="main mt-4px ml-20px">
+                            <div class="title mt-8px ml-8px">上报隐患</div>
+                            <span class="person mt-4px ml-8px">上报人：</span>
+                            <span class="name">张三</span>
+                        </div>
+                        <div class="mb-12px"></div>
                     </div>
                 </div>
-                <!-- <div>
-                </div>
-                <div class="right-container">
-
-                </div> -->
-                <!-- <span class="title">设备：11号智能烟感设备</span> -->
-
-                <!-- <div class="middle-container ml-4px mb-8px mt-4px">
-                    <span class="icon">*</span>
-                    <span class="tip">处理结果：</span>
-                    <div class="mt-4px flex">
-                        <div class="w-112px">
-                            <input type="radio" name="type" />
-                            <span class="tip mr-10px ml-6px">有效告警</span>
-                        </div>
-                        <div class="w-112px">
-                            <input type="radio" name="type" />
-                            <span class="tip mr-10px ml-6px">误报</span>
-                        </div>
-                        <div class="w-112px">
-                            <input type="radio" name="type" />
-                            <span class="tip mr-10px ml-6px">测试</span>
-                        </div>
-                    </div>
-                </div> -->
-                <!-- <div class="flex middle-container ml-4px mb-8px mt-12px">
-                    <span class="tip">备注：</span>
-                    <textarea placeholder="请输入备注" v-model="remark" :rows="3" />
-                </div> -->
             </div>
         </BasicModal>
     </div>
