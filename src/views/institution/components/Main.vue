@@ -64,6 +64,7 @@
         margin-top: 99px;
         margin-right: 16px;
         border: 2px solid #3e7899;
+        z-index: 10;
 
         .img {
           width: 49px;
