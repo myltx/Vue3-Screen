@@ -1,9 +1,6 @@
 <script setup lang="ts">
   import { useLoadingStore } from '@/stores/loading';
-  import Left from './components/Left.vue';
-  import Right from './components/Right.vue';
-  import Bottom from './components/Bottom.vue';
-  import Main from './components/Main.vue';
+  import { Left, Right, Bottom, Main } from './components';
   import { useCockpitDataStore } from '@/stores/cockpitData';
   import { moduleKeys } from './config';
   import { usePlayVideo } from '@/stores/videoPlay';
@@ -20,6 +17,7 @@
   const parentData: ParentDataType = {
     videoList: videoList.value,
     playVideo,
+    showMore: () => {},
   };
   provide('data', parentData);
 

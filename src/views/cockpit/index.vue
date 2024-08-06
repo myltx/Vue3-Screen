@@ -1,9 +1,6 @@
 <script setup lang="ts">
   import { useLoadingStore } from '@/stores/loading';
-  import Left from './components/Left.vue';
-  import Right from './components/Right.vue';
-  import Bottom from './components/Bottom.vue';
-  import Main from './components/Main.vue';
+  import { Left, Right, Bottom, Main } from './components';
   import Module from './components/module.vue';
   import { useCockpitDataStore } from '@/stores/cockpitData';
   import MapIconImg from '@/assets/images/map/map-icon.png';
