@@ -25,7 +25,13 @@ const handleClose = () => {
 <template>
     <div>
         <BasicModal v-model:modalValue="openModal" :title="'消防安全培训详情'" @closed="handleClose">
-            <div>1234</div>
+            <div class="ml-38px mr-38px main-container">
+                <div class="catagory">
+                    <span>
+                        消防演练
+                    </span>
+                </div>
+            </div>
         </BasicModal>
     </div>
 </template>
