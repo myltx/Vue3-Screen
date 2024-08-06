@@ -85,7 +85,9 @@
       </div>
     </div>
     <div class="chart-container">
-      <div class="bar-chart-title">设备类型统计</div>
+      <div class="bar-chart-title">
+        <div>设备类型统计</div>
+      </div>
       <div class="bar-chart-unit">单位: <span>台</span></div>
       <v-chart
         class="chart"
@@ -203,10 +205,15 @@
       line-height: 28px;
       text-align: left;
       font-style: normal;
-      background: linear-gradient(top, #ffffff 0%, #1f8dcb 100%);
       position: absolute;
       top: 0;
       z-index: 9999;
+      div {
+        background: linear-gradient(to top, #ffffff, #1f8dcb);
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
     }
     .bar-chart-unit {
       position: absolute;
