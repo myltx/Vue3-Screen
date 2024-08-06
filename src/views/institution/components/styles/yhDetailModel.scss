@@ -4,20 +4,6 @@
     .left-container {
         position: relative;
 
-        &::before {
-            position: absolute;
-            left: 6px;
-            top: 55px;
-            content: '';
-            display: inline-block;
-            height: 190px;
-            width: 1px;
-            border-left: 1px dashed #5DABD9;
-        }
-
-        // display: flex;
-        // justify-content: space-between;
-
         .category {
             margin-left: 10px;
             width: 104px;
@@ -42,6 +28,76 @@
             line-height: 28px;
             text-align: left;
             font-style: normal;
+        }
+
+        .tip-container {
+            position: relative;
+            width: 155px;
+            height: 50px;
+
+            .bg {
+                position: absolute;
+                top: 24px;
+                width: 155px;
+                height: 10px;
+                background: linear-gradient(90deg, #0EBEFB 0%, rgba(56, 179, 255, 0) 100%);
+                opacity: 0.46;
+            }
+
+            .title {
+                position: absolute;
+                top: 10px;
+                width: 119px;
+                height: 24px;
+                font-family: PingFangSC, PingFang SC;
+                font-weight: 500;
+                font-size: 17px;
+                color: #FFFFFF;
+                line-height: 24px;
+                text-align: left;
+                font-style: normal;
+            }
+        }
+
+        .middle-container {
+
+            .tip {
+                width: 64px;
+                height: 21px;
+                font-family: PingFangSC, PingFang SC;
+                font-weight: 400;
+                font-size: 15px;
+                color: #FFFFFF;
+                line-height: 21px;
+                font-style: normal;
+            }
+
+            .time {
+                width: 149px;
+                height: 21px;
+                font-family: PingFangSC, PingFang SC;
+                font-weight: 400;
+                font-size: 15px;
+                color: rgba(255, 255, 255, 0.6);
+                line-height: 21px;
+                text-align: left;
+                font-style: normal;
+            }
+        }
+    }
+
+    .right-container {
+        position: relative;
+
+        &::before {
+            position: absolute;
+            left: 6px;
+            top: 55px;
+            content: '';
+            display: inline-block;
+            height: 190px;
+            width: 1px;
+            border-left: 1px dashed #5DABD9;
         }
 
         .tip-container {
@@ -108,7 +164,7 @@
 
             .title {
                 position: relative;
-                width: 60px;
+                // width: 60px;
                 height: 21px;
                 font-family: PingFangSC, PingFang SC;
                 font-weight: 500;
@@ -143,74 +199,7 @@
                 font-style: normal;
             }
         }
-
     }
 
-    // .title {
-    //     margin-left: 4px;
-    //     width: 217px;
-    //     height: 28px;
-    //     font-family: PingFangSC, PingFang SC;
-    //     font-weight: 500;
-    //     font-size: 20px;
-    //     color: #FFFFFF;
-    //     line-height: 28px;
-    //     text-align: left;
-    //     font-style: normal;
-    // }
 
-    // .tip-container {
-    //     position: relative;
-    //     width: 155px;
-    //     height: 50px;
-
-    //     .bg {
-    //         position: absolute;
-    //         top: 24px;
-    //         width: 155px;
-    //         height: 10px;
-    //         background: linear-gradient(90deg, #0EBEFB 0%, rgba(56, 179, 255, 0) 100%);
-    //         opacity: 0.46;
-    //     }
-
-    //     .title {
-    //         position: absolute;
-    //         top: 10px;
-    //         width: 68px;
-    //         height: 24px;
-    //         font-family: PingFangSC, PingFang SC;
-    //         font-weight: 500;
-    //         font-size: 17px;
-    //         color: #FFFFFF;
-    //         line-height: 24px;
-    //         text-align: left;
-    //         font-style: normal;
-    //     }
-    // }
-
-    .middle-container {
-
-        .tip {
-            width: 64px;
-            height: 21px;
-            font-family: PingFangSC, PingFang SC;
-            font-weight: 400;
-            font-size: 15px;
-            color: #FFFFFF;
-            line-height: 21px;
-            font-style: normal;
-        }
-
-        .time {
-            width: 149px;
-            height: 21px;
-            font-family: PingFangSC, PingFang SC;
-            font-weight: 400;
-            font-size: 15px;
-            color: rgba(255, 255, 255, 0.6);
-            line-height: 21px;
-            text-align: left;
-            font-style: normal;
-        }
-    }
 }

@@ -71,6 +71,7 @@ const alarmList = ref<AlarmListType[]>([]);
 const hiddenList = ref<any>([])
 const isVisible = ref<boolean>(false)
 const isAlarmVisible = ref<boolean>(false)
+const yhDetailData = ref<any>({})
 async function getPageList() {
   hiddenList.value = []
   const statusTextMap: {
@@ -129,11 +130,14 @@ function getRandomInt(min: number, max: number) {
   max = Math.floor(max);
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
-function handleListClick(id: any) {
+async function handleListClick(id: any) {
   if (equipmentActive.value == 0) {
     isAlarmVisible.value = true
   } else {
+    let res = await detail({dangerId:id})
+    yhDetailData.value = res.data
     isVisible.value = true
+    console.log(yhDetailData.value,'详情======')
   }
   // openMapModal.value = true
 }
@@ -217,7 +221,7 @@ onMounted(() => {
       </div>
     </BasicBox>
   </div>
-  <yhDetailModel :isVisible="isVisible" @closeModel="handleClose" />
+  <yhDetailModel :isVisible="isVisible" @closeModel="handleClose" :yhDetailData="yhDetailData"/>
   <detailModel :isVisible="isAlarmVisible" @closeModel="handleAlarmClose" />
 </template>
 
