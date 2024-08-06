@@ -59,8 +59,11 @@
         <div class="scroll">
           <div class="th-body flex w-100%">
             <div
-              class="th w-25% text-left text-16px pb-8px px-8px z-999 bg-#112034"
-              v-for="th in getRule(moduleKey, 0).filter((item: any) => item.key != 'id')"
+              :class="[
+                'th text-left text-16px pb-8px px-8px z-999 bg-#112034',
+                [0, 1].includes(index) ? 'w-30%' : 'w-20%',
+              ]"
+              v-for="(th, index) in getRule(moduleKey, 0).filter((item: any) => item.key != 'id')"
               :key="th.key"
             >
               {{ th.title }}
@@ -75,16 +78,16 @@
           >
             <div class="overflow-y-hidden">
               <div class="td flex w-100%" v-for="item in getValue(moduleKey, 0)" :key="item.id">
-                <div class="td-content" :title="item.time">
+                <div class="td-content w-30%" :title="item.time">
                   {{ item.time }}
                 </div>
-                <div class="td-content" :title="item.timeFrame">
+                <div class="td-content w-30%" :title="item.timeFrame">
                   {{ item.timeFrame }}
                 </div>
-                <div class="td-content" :title="item.userName">
+                <div class="td-content w-20%" :title="item.userName">
                   {{ item.userName }}
                 </div>
-                <div class="td-content" :title="item.status">
+                <div class="td-content w-20%" :title="item.status">
                   <div
                     v-if="item.status == '在岗'"
                     class="flex items-center justify-center bg-gradient-to-br from-#01C69A to-#0099AC rounded-6px w-48px h-24px text-13px"
