@@ -9,7 +9,7 @@
   const settingStore = useSettingStore();
   const { indexConfig } = storeToRefs(settingStore);
   const alarmList = ref<any[]>([]);
-  const fileList = ref([]);
+  // const fileList = ref([]);
 
   const isScroll = computed(() => {
     return indexConfig.value.leftBottomSwiper;
@@ -85,7 +85,18 @@
                   {{ item.userName }}
                 </div>
                 <div class="td-content" :title="item.status">
-                  {{ item.status }}
+                  <div
+                    v-if="item.status == '在岗'"
+                    class="flex items-center justify-center bg-gradient-to-br from-#01C69A to-#0099AC rounded-6px w-48px h-24px text-13px"
+                  >
+                    {{ item.status }}
+                  </div>
+                  <div
+                    v-else
+                    class="flex items-center justify-center bg-gradient-to-br from-#1884D5 to-#0066AC rounded-6px w-48px h-24px text-13px"
+                  >
+                    {{ item.status }}
+                  </div>
                 </div>
               </div>
             </div>
