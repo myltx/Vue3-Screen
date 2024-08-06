@@ -12,9 +12,9 @@
     </template>
     <div class="video-container">
       <div
-        class="position-relative"
-        v-for="video in videoList.slice(0, 4)"
+        v-for="(video, index) in videoList.slice(0, 4)"
         :key="video"
+        :class="['position-relative', index < 2 ? 'mb-10px' : '']"
         @click="playVideo(video)"
       >
         <img src="@/assets/images/institution/video.png" alt="" class="mt-0px" />
