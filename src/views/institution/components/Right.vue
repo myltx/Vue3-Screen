@@ -9,7 +9,10 @@
   import Ring from '../components/3dpie/index2.vue';
   import { color } from '../components/3dpie/data.js';
   import Rang from '../components/echarts/index.vue';
+  import { useCockpitDataStore } from '@/stores/cockpitData';
+  import { default_chart_colors } from '@/helper';
 
+  const { getModuleName, getValue, getName } = useCockpitDataStore();
   type ClickType = 'equipment';
 
   interface AlarmListType {
@@ -21,6 +24,8 @@
   }
 
   const settingStore = useSettingStore();
+  const threeChartRef = ref();
+  const forewarningList = ref(getValue('keepWatch', 0));
   const { indexConfig } = storeToRefs(settingStore);
 
   const equipmentActive = ref(0);
@@ -48,7 +53,15 @@
   };
 
   onMounted(() => {
-    setOption('option', equipmentOption);
+    console.log(forewarningList.value, 'forewarningList');
+    forewarningList.value?.forEach((item: any, index: number) => {
+      item.itemStyle = {
+        color: default_chart_colors[index],
+      };
+      item.value = item.value * 1;
+    });
+    console.log(forewarningList.value, 'forewarningList1');
+    threeChartRef.value.initChart(forewarningList.value);
   });
   generateList();
   function generateList() {
@@ -78,25 +91,37 @@
 
   const handleType = (value: number) => {
     equipmentActive.value = value;
+    if (value) {
+      forewarningList.value = getValue('inspection', 0);
+    } else {
+      forewarningList.value = getValue('keepWatch', 0);
+    }
+    forewarningList.value.forEach((item: any, index: number) => {
+      item.itemStyle = {
+        color: default_chart_colors[index],
+      };
+      item.value = item.value * 1;
+      threeChartRef.value.initChart(forewarningList.value);
+    });
   };
 </script>
 
 <template>
   <div class="container-right mt-22px mr-16px">
-    <BasicBox :title="'消防安全检查'" style="height: 350px">
+    <BasicBox :title="getModuleName('fireSafetynspection')" style="height: 350px">
       <div class="top-container">
         <div class="left-container">
           <img src="@/assets/images/institution/ljxg.png" alt="" />
           <div>
-            <div class="title">累计巡更</div>
-            <div class="number">206</div>
+            <div class="title">{{ getName('fireSafetynspection', 0) }}</div>
+            <div class="number">{{ getValue('fireSafetynspection', 0) }}</div>
           </div>
         </div>
         <div class="left-container">
           <img src="@/assets/images/institution/ljxj.png" alt="" />
           <div>
-            <div class="title">累计巡更</div>
-            <div class="number">206</div>
+            <div class="title">{{ getName('fireSafetynspection', 0) }}</div>
+            <div class="number">{{ getValue('fireSafetynspection', 1) }}</div>
           </div>
         </div>
       </div>
@@ -116,15 +141,37 @@
       </div>
 
       <div class="chart-container">
-        <div class="tip-container">当前巡更情况</div>
+        <div class="h-90% w-100% flex position-relative">
+          <div class="h-100% w-50% three-chart">
+            <ThreeChart isHover ref="threeChartRef" />
+          </div>
+          <div class="flex items-center justify-center ml-20px flex-wrap w-50% h-50% mt-12%">
+            <div
+              class="flex items-center justify-center"
+              v-for="(item, index) in forewarningList"
+              :key="index"
+            >
+              <div
+                class="legend mr-5px w-12px h-12px"
+                :style="{
+                  background: item?.itemStyle?.color,
+                }"
+              ></div>
+              <div class="title text-white text-opacity-80 mr-5px text-14px w-65% text-center">
+                {{ item.name }}
+              </div>
+              <div class="value text-white text-18px w-80px text-right">{{ item.value }}条</div>
+            </div>
+          </div>
+        </div>
       </div>
     </BasicBox>
-    <BasicBox :title="'安全隐患整改'" style="height: 280px">
+    <BasicBox :title="getModuleName('safetyHazardRectification')" style="height: 280px">
       <div class="chart-container safe-container">
-        <div class="bar-chart-title">超期一个月未整改</div>
-        <span>16</span>
+        <div class="bar-chart-title">{{ getName('safetyHazardRectification', 0) }}</div>
+        <span>{{ getValue('safetyHazardRectification', 0) }}</span>
         <div class="pie-container">
-          <Rang :data="[]" />
+          <Rang :data="getValue('safetyHazardRectificationChart', 0)" />
         </div>
       </div>
     </BasicBox>

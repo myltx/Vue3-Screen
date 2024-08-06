@@ -1,23 +1,17 @@
 <script setup lang="ts">
   import * as echarts from 'echarts';
-  const props = defineProps({
-    data: Array,
-  });
+  import { useCockpitDataStore } from '@/stores/cockpitData';
+  const { getValue } = useCockpitDataStore();
   const chart = ref();
   let colorList = ['#22D7BB', '#24AAFF', '#5EDDF8', '#FCB840', '#F9D660'];
-  let color1 = [
-    ['rgba(34,215,187,0.5)', 'rgba(34,215,187,1)'],
-    ['rgba(36,170,255,0.5)', 'rgba(36,170,255,1)'],
-  ];
-  let title = ['电子锁缺失', '未施封', '异常停车'];
-  let dataValue = [100, 200, 300, 400, 500];
-  let dataList = title.map((item, index) => {
-    return {
-      name: item,
-      value: dataValue[index],
-    };
+
+  const dataList = ref(getValue('safetyHazardRectificationChart', 0));
+  console.log('dataList----->', dataList.value);
+  let sum = ref(0);
+
+  dataList.value.forEach((item) => {
+    sum.value = sum.value + item.value;
   });
-  let center = ['50%', '50%'];
   function init() {
     const myChart = echarts.init(chart.value);
     let option = {
@@ -38,8 +32,8 @@
         },
       },
       title: {
-        text: `{a|${100}}`,
-        x: '74',
+        text: `{a|${sum.value}}`,
+        x: '80',
         y: '88',
         textStyle: {
           rich: {
@@ -52,20 +46,15 @@
       },
       legend: {
         orient: 'vertical',
-        right: '-0%',
+        right: '18%',
         top: 'middle',
         itemWidth: 13,
         itemHeight: 13,
         icon: 'circle',
         itemGap: 20,
-        formatter(name) {
+        formatter(name: any) {
           console.log('name----->', name);
-
-          let percentage = 0;
-          for (let i = 0; i < dataValue.length; i++) {
-            percentage += parseInt(dataValue[i]);
-          }
-          let result = dataList.find((item) => item.name == name);
+          let result = dataList.value.find((item) => item.name == name);
 
           //   return `{a|${result.name}}   ${parseInt(result.value)}`;
           return `{a|${result.name} ${result.value}}`;
@@ -99,7 +88,7 @@
           label: {
             show: false,
           },
-          data: dataList,
+          data: dataList.value,
         },
       ],
     };

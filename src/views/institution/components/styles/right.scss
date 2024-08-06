@@ -385,3 +385,75 @@
     }
   }
 }
+
+.chart-container {
+  height: 40px;
+  position: relative;
+  .bar-chart-title {
+    height: 36px;
+    width: 100%;
+    background: url('@/assets/images/business/equipment-chart-title-bg.png') no-repeat;
+    background-size: 100% 100%;
+
+    .title-text {
+      text-indent: 55px;
+      height: 36px;
+      font-family: PangMenZhengDao, PangMenZhengDao;
+      font-weight: normal;
+      font-size: 18px;
+      color: #ffffff;
+      line-height: 28px;
+      text-align: left;
+      font-style: normal;
+      background: linear-gradient(to top, #ffffff, #1f8dcb);
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+  }
+  .bar-chart-unit {
+    position: absolute;
+    top: 5px;
+    right: 0;
+    z-index: 9999;
+    font-family: DINAlternate, DINAlternate;
+    font-weight: bold;
+    font-size: 28px;
+    color: #ff4141;
+    line-height: 18px;
+    text-align: right;
+    font-style: normal;
+    span {
+      font-family:
+        PingFangSC,
+        PingFang SC;
+      font-weight: 400;
+      font-size: 13px;
+      color: #ffffff;
+      line-height: 18px;
+      text-align: right;
+      font-style: normal;
+    }
+  }
+  #bar-chart {
+    height: 100%;
+    width: 100%;
+  }
+}
+.three-chart {
+  height: 100%;
+  width: 50%;
+}
+.three-chart::after {
+  content: '';
+  height: 100%;
+  width: 90%;
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  left: -16%;
+  background: url('@/assets/images/business/chart-bg.png') no-repeat;
+  background-size: 100% 50%;
+  background-position: 0 66%;
+  transform: skew(-20deg);
+}
