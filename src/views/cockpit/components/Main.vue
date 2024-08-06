@@ -36,7 +36,7 @@
 <style scoped lang="scss">
   .top-container {
     position: absolute;
-    top: 100px;
+    top: 7.5%;
     left: 50%;
     transform: translate(-50%, 0);
     z-index: 999;

@@ -50,6 +50,7 @@ export default defineConfig(({ command, mode }: ConfigEnv): UserConfig => {
               'useMouse', // import { useMouse } from '@vueuse/core',
               'useDark', // import { useDark } from '@vueuse/core',
               'useToggle',
+              'onClickOutside',
             ],
             axios: [
               // default imports
