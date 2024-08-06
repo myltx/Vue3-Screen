@@ -287,18 +287,45 @@
       }
     }
     .tip-container {
-      width: 200px;
-      height: 44px;
+      width: 220px;
+      height: 40px;
       margin-top: 8px;
       position: absolute;
       top: 8px;
       left: 20px;
-      background: url('@/assets/images/business/progress-border.png') no-repeat;
-      background-size: 100% 100%;
+      padding: 5px;
+      background: #172b43;
+      border: 1px solid;
+      border-image: linear-gradient(129deg, rgba(70, 220, 255, 1), rgba(32, 171, 255, 1)) 1 1;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      // background: url('@/assets/images/business/progress-border.png') no-repeat;
+      // background-size: 100% 100%;
+      &::after {
+        content: '';
+        position: absolute;
+        top: -26px;
+        left: 30%;
+        border-left: 13px solid transparent;
+        border-right: 13px solid transparent;
+        border-top: 13px solid transparent;
+        border-bottom: 13px solid #52d7ff;
+      }
+      &::before {
+        content: '';
+        position: absolute;
+        left: calc(30% + 1px);
+        top: -23px;
+        border-left: 12.5px solid transparent;
+        border-right: 12.5px solid transparent;
+        border-top: 12.5px solid transparent;
+        border-bottom: 12.5px solid #172b43;
+        z-index: 2;
+      }
       .text1 {
-        display: inline-block;
         height: 26px;
-        margin: 13px 0 5px 8px;
+        // margin: 13px 0 5px 8px;
         font-family:
           PingFangSC,
           PingFang SC;
@@ -311,10 +338,8 @@
         width: 36px;
       }
       .text2 {
-        display: inline-block;
-        width: 24px;
         height: 28px;
-        margin: 11px 0 5px 17px;
+        // margin: 11px 0 5px 17px;
         font-family: DINAlternate, DINAlternate;
         font-weight: bold;
         font-size: 24px;
@@ -323,9 +348,7 @@
         font-style: normal;
       }
       .text3 {
-        display: inline-block;
-        width: 36px;
-        margin: 11px 0 5px 30px;
+        // margin: 11px 0 5px 30px;
         font-family: DINAlternate, DINAlternate;
         font-weight: bold;
         font-size: 24px;

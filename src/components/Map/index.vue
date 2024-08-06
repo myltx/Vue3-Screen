@@ -117,7 +117,9 @@
     showSearchSelect.value = !showSearchSelect.value;
   }
   onClickOutside(searchMarkerRef, () => {
-    showSearchSelect.value = false;
+    setTimeout(() => {
+      showSearchSelect.value = false;
+    }, 100);
   });
 
   defineExpose({
