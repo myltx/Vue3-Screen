@@ -18,7 +18,9 @@
             <div>
               <span class="number">{{ getValue('clockIn', 0) }}</span>
               <span class="dw">班次</span>
-              <div class="title">{{ getName('clockIn', 0) }}</div>
+              <div class="title">
+                <div class="text-gradient"> {{ getName('clockIn', 0) }}</div>
+              </div>
             </div>
           </div>
           <div class="flex main-container w-48%">
@@ -26,7 +28,9 @@
             <div>
               <span class="number">{{ getValue('clockIn', 1) }}</span>
               <span class="dw">班次</span>
-              <div class="title">{{ getName('clockIn', 1) }}</div>
+              <div class="title">
+                <div class="text-gradient"> {{ getName('clockIn', 1) }}</div>
+              </div>
             </div>
           </div>
           <div class="flex main-container bottom-container w-52%">
@@ -36,7 +40,9 @@
                 getValue('clockIn', 2)
               }}</span>
               <span class="dw">家</span>
-              <div class="title">{{ getName('clockIn', 2) }}</div>
+              <div class="title">
+                <div class="text-gradient"> {{ getName('clockIn', 2) }}</div>
+              </div>
             </div>
           </div>
           <div class="flex main-container bottom-container w-48%">
@@ -46,7 +52,9 @@
                 getValue('clockIn', 3)
               }}</span>
               <span class="dw">人次</span>
-              <div class="title">{{ getName('clockIn', 3) }}</div>
+              <div class="title">
+                <div class="text-gradient"> {{ getName('clockIn', 3) }}</div>
+              </div>
             </div>
           </div>
         </div>
@@ -60,21 +68,27 @@
               <span class="number">{{ getValue('fireDrillAndTraining', 0) }}</span>
               <span class="dw">次</span>
             </div>
-            <div class="title-container">{{ getName('fireDrillAndTraining', 0) }}</div>
+            <div class="title-container">
+              <div class="text-gradient"> {{ getName('fireDrillAndTraining', 0) }}</div>
+            </div>
           </div>
           <div>
             <div class="bg-container">
               <span class="number">{{ getValue('fireDrillAndTraining', 1) }}</span>
               <span class="dw">次</span>
             </div>
-            <div class="title-container">{{ getName('fireDrillAndTraining', 1) }}</div>
+            <div class="title-container">
+              <div class="text-gradient"> {{ getName('fireDrillAndTraining', 1) }}</div>
+            </div>
           </div>
           <div>
             <div class="bg-container">
               <span class="number last-number">{{ getValue('fireDrillAndTraining', 2) }}</span>
               <span class="dw last-dw">人次</span>
             </div>
-            <div class="title-container last-title">{{ getName('fireDrillAndTraining', 2) }}</div>
+            <div class="title-container last-title">
+              <div class="text-gradient"> {{ getName('fireDrillAndTraining', 2) }}</div>
+            </div>
           </div>
         </div>
         <div class="footer-container flex">

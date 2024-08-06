@@ -57,7 +57,9 @@
               alt=""
               class="h-90px w-90px mb-10px mx-auto"
             />
-            <div class="text">{{ getName('safetySystem', 0) }}</div>
+            <div class="text">
+              <div>{{ getName('safetySystem', 0) }}</div>
+            </div>
           </div>
           <div class="flex-1">
             <img
@@ -65,7 +67,9 @@
               alt=""
               class="h-90px w-90px mb-10px mx-auto"
             />
-            <div class="text">{{ getName('safetySystem', 1) }}</div>
+            <div class="text">
+              <div>{{ getName('safetySystem', 1) }}</div>
+            </div>
           </div>
           <div class="flex-1">
             <img
@@ -73,7 +77,9 @@
               alt=""
               class="h-90px w-90px mb-10px mx-auto"
             />
-            <div class="text">{{ getName('safetySystem', 2) }}</div>
+            <div class="text">
+              <div>{{ getName('safetySystem', 2) }}</div>
+            </div>
           </div>
         </div>
         <div class="flex space-between items-center w-full">
