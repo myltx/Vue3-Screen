@@ -121,7 +121,9 @@
     </BasicBox>
     <BasicBox :title="'安全隐患整改'" style="height: 280px">
       <div class="chart-container safe-container">
-        <div class="bar-chart-title">超期一个月未整改</div>
+        <div class="bar-chart-title">
+          <div>超期一个月未整改</div>
+        </div>
         <span>16</span>
         <div class="pie-container">
           <Rang :data="[]" />
