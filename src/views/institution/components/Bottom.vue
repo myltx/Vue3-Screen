@@ -134,13 +134,15 @@
           </div>
           <div class="right-container">
             <div class="item-container" v-for="events in alarmList" :key="events.id">
-              <div :class="['catagory', events.type == '2' ? 'active' : '']">
-                <span>
-                  {{ events.type == '1' ? '消防演练' : '消防培训' }}
-                </span>
+              <div class="flex items-center justify-between">
+                <div :class="['catagory', events.type == '2' ? 'active' : '']">
+                  <span>
+                    {{ events.type == '1' ? '消防演练' : '消防培训' }}
+                  </span>
+                </div>
+                <div class="title">{{ events.name }}</div>
+                <div class="time">{{ events.sign_time }}</div>
               </div>
-              <div class="title">{{ events.name }}</div>
-              <div class="time">{{ events.sign_time }}</div>
               <div class="location">{{ events.address }}</div>
             </div>
           </div>
