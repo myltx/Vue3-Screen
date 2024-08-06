@@ -9,43 +9,25 @@
   import MapIconImg from '@/assets/images/map/map-icon.png';
   import { modalType, moduleKeys } from './config';
   import { ParentDataType } from 'types/components.common';
+  import { usePlayVideo } from '@/stores/videoPlay';
 
   const router = useRouter();
   const { startLoading, endLoading } = useLoadingStore();
   const { isLoading } = storeToRefs(useLoadingStore());
+  const { videoList, videoModalValue } = storeToRefs(usePlayVideo());
+  const { playVideo } = usePlayVideo();
+
   const mapRef = ref();
   const modalTitle = ref('');
   const open = ref(false);
   const openMapModal = ref(false);
-  const videoModalValue = ref(false);
-  const activeVideo = ref(0);
-  const videoList = ref([
-    {
-      name: '视频1',
-      address: '杭州',
-      id: 1,
-      url: 'https://www.w3school.com.cn/example/html5/mov_bbb.mp4',
-    },
-    {
-      name: '视频2',
-      address: '杭州',
-      id: 2,
-      url: 'https://www.w3school.com.cn/example/html5/mov_bbb.mp4',
-    },
-    {
-      name: '视频3',
-      address: '杭州',
-      id: 3,
-      url: 'https://www.w3school.com.cn/example/html5/mov_bbb.mp4',
-    },
-    {
-      name: '视频4',
-      address: '杭州',
-      id: 4,
-      url: 'https://www.w3school.com.cn/example/html5/mov_bbb.mp4',
-    },
-  ]);
 
+  const parentData: ParentDataType = {
+    videoList: videoList.value,
+    playVideo,
+    showMore,
+  };
+  provide('data', parentData);
   const orgData = ref<any>({
     orgType: 2,
     address: '杭州',
@@ -109,16 +91,6 @@
     mapRef.value?.cleanMarkerActive();
   }
 
-  function playVideo(videoData: any, isMore?: boolean) {
-    console.log(videoData);
-    videoModalValue.value = true;
-    if (!isMore) {
-      activeVideo.value = videoData.id;
-    }
-  }
-  function playVideoItem(videoData: any) {
-    activeVideo.value = videoData.id;
-  }
   function showMore(type: number) {
     const { key, title, index, columns: col } = modalType[type];
     const rules = getRule(key, index || 0);
@@ -128,24 +100,12 @@
     modalTitle.value = title;
     open.value = true;
   }
-  const parentData: ParentDataType = {
-    videoList: videoList.value,
-    playVideo,
-    showMore,
-  };
-  provide('data', parentData);
 </script>
 <template>
   <PageWrapper :title="'大屏示例页面'">
-    <Left
-      v-if="!isLoading"
-      @play="playVideo"
-      @more="showMore"
-      :videoList="videoList.slice(0, 4)"
-      v-motion-slide-left
-    />
-    <Right v-if="!isLoading" @more="showMore" v-motion-slide-right />
-    <Bottom v-if="!isLoading" @more="showMore" v-motion-slide-visible-bottom />
+    <Left v-if="!isLoading" v-motion-slide-left />
+    <Right v-if="!isLoading" v-motion-slide-right />
+    <Bottom v-if="!isLoading" v-motion-slide-visible-bottom />
     <Main v-if="!isLoading" />
     <Map
       class="map"
@@ -188,31 +148,7 @@
       <Module :title="'消防设施设备'" :list="[1, 3, 4]" />
       <Module :title="'消防安全检查'" :list="[1, 3, 4, 1, 3, 4]" />
     </BasicMapModal>
-    <VideoModal v-model:modalValue="videoModalValue">
-      <div class="flex h-100%">
-        <div class="left w-25% mr-1% h-100% overflow-y-auto">
-          <div
-            v-for="(item, index) in videoList"
-            :key="item.id"
-            @click="playVideoItem(item)"
-            :class="[
-              'video-item p-3px bg-#1D334C mb-8px cursor-pointer border-1 border-solid border-#1D334C',
-              activeVideo == index ? 'active' : '',
-            ]"
-          >
-            <img
-              src="@/assets/images/institution/4a13061a82e91b56e8f116ba94122d93备份 2@2x.png"
-              alt=""
-            />
-            <div class="text-white mt-4px text-14px font-500 w-100% text-ellipsis">
-              {{ item.name }}
-            </div>
-            <div class="address text-ellipsis">{{ item.address }}</div>
-          </div>
-        </div>
-        <div class="right w-74% bg-red h-100%"></div>
-      </div>
-    </VideoModal>
+    <VideoModal v-model:modalValue="videoModalValue" />
   </PageWrapper>
 </template>
 
@@ -256,18 +192,6 @@
       line-height: 21px;
       text-align: left;
       font-style: normal;
-    }
-  }
-  // 视频
-  .video-item {
-    &.active {
-      border: 2px solid #2eb0ff;
-    }
-    .address {
-      width: 100%;
-      color: rgba(255, 255, 255, 0.45);
-      margin-top: 3px;
-      font-size: 12px;
     }
   }
 </style>

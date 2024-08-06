@@ -3,11 +3,11 @@
   import Left from './components/Left.vue';
   import Right from './components/Right.vue';
   import Bottom from './components/Bottom.vue';
-  import detailModel from './components/detailModel.vue';
-  import yhDetailModel from './components/yhDetailModel.vue';
   import Main from './components/Main.vue';
   import { useCockpitDataStore } from '@/stores/cockpitData';
   import { moduleKeys } from './config';
+  import { usePlayVideo } from '@/stores/videoPlay';
+  import { ParentDataType } from 'types/components.common';
 
   const route = useRoute();
   const { name, orgId, back } = route.query;
@@ -16,10 +16,19 @@
   const { isLoading } = storeToRefs(useLoadingStore());
   startLoading();
 
+  const { videoList, videoModalValue } = storeToRefs(usePlayVideo());
+  const { playVideo } = usePlayVideo();
+
   const open = ref(false);
   const { getALlModuleData } = useCockpitDataStore();
   // 根据配置的 moduleKey 在页面动态获取数据
   getALlModuleData(moduleKeys, endLoading, orgId);
+
+  const parentData: ParentDataType = {
+    videoList: videoList.value,
+    playVideo,
+  };
+  provide('data', parentData);
 
   setTimeout(() => {
     open.value = true;
@@ -30,15 +39,10 @@
     <Left v-if="!isLoading" v-motion-slide-left />
     <Right v-if="!isLoading" v-motion-slide-right />
     <Bottom v-if="!isLoading" v-motion-slide-visible-bottom />
-    <!-- <Map class="map" :markerList="markerList" /> -->
     <Main v-if="!isLoading" />
-    <!-- <div class="bg-container">
 
-     </div> -->
     <Loading class="loading" />
-    <!-- <yhDetailModel /> -->
-    <!-- <detailModel /> -->
-    <!-- <BasicModal v-model:modalValue="open" /> -->
+    <VideoModal v-model:modalValue="videoModalValue" />
   </PageWrapper>
 </template>
 
