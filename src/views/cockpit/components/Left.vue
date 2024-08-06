@@ -1,6 +1,7 @@
 <script setup lang="ts">
   import dayjs from 'dayjs';
   import { useCockpitDataStore } from '@/stores/cockpitData';
+  import { ParentDataType } from 'types/components.common';
 
   interface AlarmListType {
     content: number | string;
@@ -9,8 +10,9 @@
     statusText: number | string;
     subscribe: number | string;
   }
+  const parentData = inject('data') as ParentDataType;
+  const { showMore } = parentData;
 
-  const emits = defineEmits(['play', 'more']);
   const { getModuleName, getValue, getName } = useCockpitDataStore();
 
   const alarmList = ref<AlarmListType[]>([]);
@@ -36,13 +38,6 @@
     min = Math.ceil(min);
     max = Math.floor(max);
     return Math.floor(Math.random() * (max - min + 1)) + min;
-  }
-  function playVideo(data: any) {
-    emits('play', data);
-  }
-  function showMore(type: number) {
-    console.log(type);
-    emits('more', type);
   }
 </script>
 
@@ -111,7 +106,7 @@
       </div>
     </BasicBox>
     <DeviceBox :module-keys="['fireAwarenessEquipmentType', 'fireFightingEquipmentType']" />
-    <VideoBox @play="playVideo" />
+    <VideoBox />
   </div>
 </template>
 

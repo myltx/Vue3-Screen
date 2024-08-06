@@ -58,3 +58,9 @@ export interface BasicBoxProps {
    */
   width?: string | number;
 }
+
+export interface ParentDataType {
+  videoList: any[];
+  showMore: Function;
+  playVideo: Function;
+}

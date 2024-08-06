@@ -1,13 +1,13 @@
 <script setup lang="ts">
   import { DoubleRightOutlined, PlayCircleOutlined } from '@ant-design/icons-vue';
+  import { ParentDataType } from 'types/components.common';
 
+  const parentData: any = inject('data') as ParentDataType;
+  const { videoList, playVideo } = parentData;
   const emits = defineEmits(['more', 'play']);
 
   const handleMore = () => {
     emits('more');
-  };
-  const playVideo = (data) => {
-    emits('play', data);
   };
 </script>
 <template>
@@ -16,7 +16,12 @@
       <span class="more-tip" @click="handleMore">更多 <DoubleRightOutlined /> </span>
     </template>
     <div class="video-container">
-      <div class="position-relative" v-for="video in 4" :key="video" @click="playVideo(video)">
+      <div
+        class="position-relative"
+        v-for="video in videoList.slice(0, 4)"
+        :key="video"
+        @click="playVideo(video)"
+      >
         <img src="@/assets/images/institution/video.png" alt="" class="mt-0px" />
         <play-circle-outlined
           style="font-size: 50px; color: rgba(255, 255, 255, 0.6)"

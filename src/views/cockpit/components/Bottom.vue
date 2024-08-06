@@ -1,11 +1,10 @@
 <script setup lang="ts">
   import { useCockpitDataStore } from '@/stores/cockpitData';
+  import { ParentDataType } from 'types/components.common';
 
-  const emits = defineEmits(['more']);
+  const parentData = inject('data') as ParentDataType;
+  const { showMore } = parentData;
   const { getModuleName, getValue, getName } = useCockpitDataStore();
-  function showMore(type: number) {
-    emits('more', type);
-  }
 </script>
 
 <template>

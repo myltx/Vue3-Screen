@@ -2,8 +2,10 @@
   import dayjs from 'dayjs';
   import { useCockpitDataStore } from '@/stores/cockpitData';
   import { default_chart_colors } from '@/helper';
+  import { ParentDataType } from 'types/components.common';
 
-  const emits = defineEmits(['more']);
+  const parentData = inject('data') as ParentDataType;
+  const { showMore } = parentData;
   const { getModuleName, getValue, getName } = useCockpitDataStore();
   const threeChartRef = ref();
   const forewarningList = ref(getValue('fireWarningAnalysis', 0));
@@ -56,9 +58,6 @@
         break;
     }
   };
-  function showMore(type: number) {
-    emits('more', type);
-  }
 
   function getScale(): string {
     const allNum = getValue('safetyHazardRectification', 0) || 0;
