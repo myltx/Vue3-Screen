@@ -92,8 +92,14 @@
                     {{ item.status }}
                   </div>
                   <div
-                    v-else
+                    v-else-if="item.status == '待打卡'"
                     class="flex items-center justify-center bg-gradient-to-br from-#1884D5 to-#0066AC rounded-6px w-48px h-24px text-13px"
+                  >
+                    {{ item.status }}
+                  </div>
+                  <div
+                    v-else
+                    class="flex items-center justify-center bg-gradient-to-br from-#F78989 to-#F52727 rounded-6px w-48px h-24px text-13px"
                   >
                     {{ item.status }}
                   </div>
