@@ -13,7 +13,7 @@
   });
   const emits = defineEmits(['closed', 'update:modalValue']);
 
-  const { videoList, activeVideo } = storeToRefs(usePlayVideo());
+  const { videoList, activeVideo, bloading, protocol, videoUrl } = storeToRefs(usePlayVideo());
   const { playVideoItem } = usePlayVideo();
   const open = ref(props.modalValue);
   // watch for changes in the modelValue prop
@@ -61,7 +61,20 @@
             <div class="address text-ellipsis">{{ item.address }}</div>
           </div>
         </div>
-        <div class="right w-74% bg-red h-100%"></div>
+        <div class="right w-74% bg-#000 h-100%">
+          <live-player
+            class="h-100%"
+            v-if="videoUrl"
+            muted
+            fluent
+            :loading="bloading"
+            autoplay
+            live
+            :protocol="protocol"
+            :video-url="videoUrl"
+          />
+          <div class="text-#999 font-bold text-20px mt-50px text-center" v-else>暂无播放源</div>
+        </div>
       </div>
     </div>
   </div>
@@ -98,5 +111,13 @@
       margin-top: 3px;
       font-size: 12px;
     }
+  }
+</style>
+<style lang="scss">
+  .player-wrapper {
+    height: 100% !important;
+  }
+  .video-wrapper {
+    height: 100% !important;
   }
 </style>

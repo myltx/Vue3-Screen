@@ -27,6 +27,11 @@ export const usePlayVideo = defineStore('usePlayVideo', () => {
       url: 'https://www.w3school.com.cn/example/html5/mov_bbb.mp4',
     },
   ]);
+  const videoUrl = ref(
+    'https://iot.stream.whenyoungcloud.cn:7443/rtp/00002252/hls.m3u8?deviceId=33000000001320000030&key=',
+  );
+  const bloading = ref(false);
+  const protocol = ref('');
   function playVideo(videoData: any, isMore?: boolean) {
     console.log(videoData);
     videoModalValue.value = true;
@@ -41,6 +46,9 @@ export const usePlayVideo = defineStore('usePlayVideo', () => {
     videoList,
     videoModalValue,
     activeVideo,
+    bloading,
+    protocol,
+    videoUrl,
     playVideo,
     playVideoItem,
   };

@@ -53,7 +53,6 @@
   const tabData = ref([]);
 
   function markerClick(markerData: any) {
-    console.log(markerData);
     orgData.value = markerData;
     openMapModal.value = true;
   }
@@ -82,7 +81,6 @@
           item.icon = MapIconImg;
         });
         markerList.value = orgList;
-        // mapRef.value?.initMap();
       }
     },
   );
