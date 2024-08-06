@@ -174,7 +174,9 @@
     </BasicBox>
     <BasicBox :title="getModuleName('safetyHazardRectification')" style="height: 270px">
       <div class="safe-container">
-        <span class="title">隐患整改</span>
+        <span class="title">
+          <div>隐患整改</div>
+        </span>
         <div class="right-container">
           <span class="left">{{ getName('safetyHazardRectification', 0) }}</span>
           <span class="middle cursor-pointer" @click="showMore(7)">

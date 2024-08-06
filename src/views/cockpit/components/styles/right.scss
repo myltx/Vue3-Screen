@@ -236,6 +236,12 @@
       line-height: 23px;
       text-align: left;
       font-style: normal;
+      div {
+        background: linear-gradient(to top, #ffffff, #CAF9FF);
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
     }
     .right-container {
       .left {
