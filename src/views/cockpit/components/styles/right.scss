@@ -286,12 +286,32 @@
         }
       }
     }
+    .up-arrow {
+      position: absolute;
+      top: 0px;
+      left: 30%;
+      border-left: 13px solid transparent;
+      border-right: 13px solid transparent;
+      border-top: 13px solid transparent;
+      border-bottom: 13px solid #52d7ff;
+      z-index: 7;
+    }
+    .up-arrow-border {
+      position: absolute;
+      left: calc(30% + 1px);
+      top: 4px;
+      border-left: 12.5px solid transparent;
+      border-right: 12.5px solid transparent;
+      border-top: 12.5px solid transparent;
+      border-bottom: 12.5px solid #172b43;
+      z-index: 8;
+    }
     .tip-container {
       width: 220px;
       height: 40px;
       margin-top: 8px;
       position: absolute;
-      top: 8px;
+      top: 18px;
       left: 20px;
       padding: 5px;
       background: #172b43;
@@ -302,27 +322,7 @@
       justify-content: space-between;
       // background: url('@/assets/images/business/progress-border.png') no-repeat;
       // background-size: 100% 100%;
-      &::after {
-        content: '';
-        position: absolute;
-        top: -26px;
-        left: 30%;
-        border-left: 13px solid transparent;
-        border-right: 13px solid transparent;
-        border-top: 13px solid transparent;
-        border-bottom: 13px solid #52d7ff;
-      }
-      &::before {
-        content: '';
-        position: absolute;
-        left: calc(30% + 1px);
-        top: -23px;
-        border-left: 12.5px solid transparent;
-        border-right: 12.5px solid transparent;
-        border-top: 12.5px solid transparent;
-        border-bottom: 12.5px solid #172b43;
-        z-index: 2;
-      }
+
       .text1 {
         height: 26px;
         // margin: 13px 0 5px 8px;

@@ -67,6 +67,14 @@
     return ((num / allNum) * 100).toFixed(2);
   }
 
+  function getBoxScale(scale: string) {
+    if (Number(scale) >= 50) {
+      return 50;
+    } else {
+      return Number(scale);
+    }
+  }
+
   onMounted(() => {
     forewarningList.value.forEach((item: any, index: number) => {
       item.itemStyle = {
@@ -191,12 +199,28 @@
                 left: getScale() + '%',
               }"
             />
+            <div
+              class="up-arrow"
+              :style="{
+                left: (Number(getScale()) >= 50 ? Number('-1') : -1) + Number(getScale()) + '%',
+              }"
+            ></div>
+            <div
+              class="up-arrow-border"
+              :style="{
+                left: (Number(getScale()) >= 50 ? Number('-0.5') : -0.8) + Number(getScale()) + '%',
+              }"
+            ></div>
           </div>
         </div>
+
         <div
           class="tip-container"
           :style="{
-            left: -50 + Number(getScale()) + '%',
+            left:
+              (Number(getScale()) >= 50 ? Number('-12') : -3) +
+              Number(getBoxScale(getScale())) +
+              '%',
           }"
         >
           <span class="text1">{{ getName('safetyHazardRectification', 1) }}</span>
