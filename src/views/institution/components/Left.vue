@@ -3,6 +3,11 @@
   import NORMAL_IMG from '@/assets/images/business/normal.png';
   import MIDDLE_IMG from '@/assets/images/business/middle.png';
   import HEIGHT_IMG from '@/assets/images/business/height.png';
+
+  import DZG_IMG from '@/assets/images/institution/dzg.png';
+  import WYS_IMG from '@/assets/images/institution/dys.png';
+  import YZG_IMG from '@/assets/images/institution/dzg.png';
+
   import dayjs from 'dayjs';
   import { useSettingStore } from '@/stores/setting/setting';
   import { useCockpitDataStore } from '@/stores/cockpitData';
@@ -15,6 +20,7 @@
     date: number | string;
     statusText: number | string;
     subscribe: number | string;
+    name?: string
   }
 
   const settingStore = useSettingStore();
@@ -28,12 +34,26 @@
     2: MIDDLE_IMG,
     3: HEIGHT_IMG,
   };
+  const statusHiddenImgMap: {
+    [key in number]: string;
+  } = {
+    1: DZG_IMG,
+    2: WYS_IMG,
+    3: YZG_IMG,
+  };
   const statusClass: {
     [key in number]: string;
   } = {
     1: 'normal',
     2: 'middle',
     3: 'height',
+  };
+  const statusHiddenClass: {
+    [key in number]: string;
+  } = {
+    1: 'dzg',
+    2: 'wys',
+    3: 'yzg',
   };
 
   const isScroll = computed(() => {
@@ -44,9 +64,32 @@
   const option = ref({});
   const chartRef = ref(null); // 用于引用图表实例
   const alarmList = ref<AlarmListType[]>([]);
-  getPageList()
+  const hiddenList = ref<any>([])
   async function getPageList(){
-    await page({currentPage:1,pageSize:20})
+    hiddenList.value = []
+    const statusTextMap: {
+      [key in number]: string;
+    } = {
+      1: '待整改',
+      2: '未验收',
+      3: '已整改',
+    };
+    let res = await page({currentPage:1,pageSize:20})
+    if(res.code == 200){
+      hiddenList.value = res?.data?.dangerPageVOList || []
+    }
+    if(hiddenList.value.length){
+      hiddenList.value.map((item:any)=>{
+        alarmList.value.push({
+          content:`【隐患描述】${item?.dangerRemark || ''}`,
+          date: dayjs(item.reportingTime).format('YYYY-MM-DD HH:mm:ss'),
+          subscribe: item?.placeName,
+          statusText: statusTextMap[item.reportingStatus],
+          status:item.reportingStatus,
+          name:item?.creator?.desensitizeName
+        })
+      })
+    }
   }
   generateList();
   function generateList() {
@@ -78,15 +121,22 @@
   }
 
   const handleType = (type: ClickType, value: number) => {
-    switch (type) {
-      case 'equipment':
-        equipmentActive.value = value;
-        setOption('option', equipmentOption);
-        break;
-
-      default:
-        break;
+    equipmentActive.value = value;
+    alarmList.value = []
+    if(value == 1) {
+      getPageList()
+    }else{
+      generateList()
     }
+    // switch (type) {
+    //   case 'equipment':
+    //     equipmentActive.value = value;
+    //     setOption('option', equipmentOption);
+    //     break;
+
+    //   default:
+    //     break;
+    // }
   };
   const setOption = (key: string, opt: any) => {
     switch (key) {
@@ -127,17 +177,22 @@
       </div>
       <div class="scroll">
         <!-- <vue3-seamless-scroll :list="alarmList" hover v-model="isScroll" :limitScrollNum="2"> -->
-        <div class="item" v-for="(item, index) in alarmList" :key="index">
+        <div :class="['item',equipmentActive == 1 ? 'newItem' : '']" v-for="(item, index) in alarmList" :key="index">
           <div @click="handleListClick(item)">
             <div class="item-top">
               <div class="left-title">
-                <img :src="statusImgMap[item.status]" alt="" />
-                <span :class="statusClass[item.status]">{{ item.statusText }}</span>
+                <img :src="statusImgMap[item.status]" alt="" v-if="equipmentActive == 0"/>
+                <img :src="statusHiddenImgMap[item.status]" alt="" v-if="equipmentActive == 1"/>
+                <span :class="statusClass[item.status]" v-if="equipmentActive == 0">{{ item.statusText }}</span>
+                <span :class="statusHiddenClass[item.status]" v-if="equipmentActive == 1">{{ item.statusText }}</span>
               </div>
               <div class="time">{{ item.date }}</div>
             </div>
             <div class="item-content">
               {{ item.content }}
+            </div>
+            <div class="item-subscribe" v-if="equipmentActive == 1">
+              上报人：{{ item.name }}
             </div>
             <div class="item-subscribe">
               {{ item.subscribe }}

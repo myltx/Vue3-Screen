@@ -6,6 +6,7 @@
   width: 400px;
   background: linear-gradient(180deg, rgba(0, 0, 1, 0.5) 0%, #091829 100%);
   backdrop-filter: blur(4px);
+
   .text {
     font-family: PangMenZhengDao;
     font-size: 18px;
@@ -15,24 +16,21 @@
     font-style: normal;
     background: linear-gradient(top, #ffffff 0%, #caf9ff 100%);
   }
+
   .file-info {
     position: relative;
     margin-top: 10px;
     height: 114px;
-    background: linear-gradient(
-      180deg,
-      #0f3c67 0%,
-      rgba(22, 67, 110, 0.29) 53%,
-      rgba(29, 74, 116, 0) 100%
-    );
+    background: linear-gradient(180deg,
+        #0f3c67 0%,
+        rgba(22, 67, 110, 0.29) 53%,
+        rgba(29, 74, 116, 0) 100%);
     border-radius: 8px 8px 0px 0px;
     border: 2px solid;
-    border-image: linear-gradient(
-      to bottom,
-      rgba(97, 204, 255, 1),
-      rgba(29, 70, 89, 0.93),
-      rgba(8, 40, 58, 0)
-    );
+    border-image: linear-gradient(to bottom,
+        rgba(97, 204, 255, 1),
+        rgba(29, 70, 89, 0.93),
+        rgba(8, 40, 58, 0));
     border-image-slice: 1;
     border-bottom: 0;
     display: flex;
@@ -49,10 +47,12 @@
       height: 3px;
       background: #4fd3fe;
     }
+
     .left-text {
       width: calc((100% - 11px) / 2);
       text-align: center;
       padding: 2px;
+
       .info-title {
         font-family:
           PingFangSC,
@@ -64,6 +64,7 @@
         font-style: normal;
         text-transform: none;
       }
+
       .info-value {
         font-family: DINAlternate, DINAlternate;
         font-weight: bold;
@@ -73,6 +74,7 @@
         font-style: normal;
         margin: 10px 0;
       }
+
       .info-unit {
         font-family:
           PingFangSC,
@@ -84,25 +86,26 @@
         font-style: normal;
       }
     }
+
     .placeholder {
       width: 1px;
       height: 90px;
-      background: linear-gradient(
-        180deg,
-        rgba(79, 211, 254, 0) 0%,
-        #4fd3fe 52%,
-        rgba(216, 216, 216, 0) 100%
-      );
+      background: linear-gradient(180deg,
+          rgba(79, 211, 254, 0) 0%,
+          #4fd3fe 52%,
+          rgba(216, 216, 216, 0) 100%);
       opacity: 0.53;
       margin: 0 5px;
     }
   }
+
   // 设备
   .equipment-top {
     height: 33px;
     display: flex;
     align-items: center;
     justify-content: space-between;
+
     .equipment-item {
       display: flex;
       align-items: center;
@@ -112,17 +115,20 @@
       flex: 1;
       background: url('@/assets/images/business/equipment-tag-bg.png') no-repeat;
       background-size: 100% 100%;
+
       &.active {
         background: url('@/assets/images/business/equipment-tag-bg-active.png') no-repeat;
         background-size: 100% 100%;
       }
     }
   }
+
   .value-container {
     display: flex;
     align-items: center;
     justify-content: space-between;
     margin-top: 10px;
+
     .value-item {
       flex: 1;
       display: flex;
@@ -138,8 +144,10 @@
       line-height: 22px;
       text-align: left;
       font-style: normal;
+
       &.placeholder {
         position: relative;
+
         &::after {
           content: '';
           position: absolute;
@@ -147,14 +155,13 @@
           top: 0;
           width: 2px;
           height: 20px;
-          background: linear-gradient(
-            180deg,
-            rgba(114, 218, 245, 0) 0%,
-            #72daf5 46%,
-            rgba(114, 218, 245, 0) 100%
-          );
+          background: linear-gradient(180deg,
+              rgba(114, 218, 245, 0) 0%,
+              #72daf5 46%,
+              rgba(114, 218, 245, 0) 100%);
           margin: 0 5px;
         }
+
         &::before {
           content: '';
           position: absolute;
@@ -162,15 +169,14 @@
           top: 0;
           width: 2px;
           height: 20px;
-          background: linear-gradient(
-            180deg,
-            rgba(114, 218, 245, 0) 0%,
-            #72daf5 46%,
-            rgba(114, 218, 245, 0) 100%
-          );
+          background: linear-gradient(180deg,
+              rgba(114, 218, 245, 0) 0%,
+              #72daf5 46%,
+              rgba(114, 218, 245, 0) 100%);
           margin: 0 5px;
         }
       }
+
       .value {
         font-family:
           PingFangSC,
@@ -184,10 +190,12 @@
       }
     }
   }
+
   .chart-container {
     margin-top: 10px;
     height: 70%;
     position: relative;
+
     .bar-chart-title {
       text-indent: 35px;
       height: 28px;
@@ -206,6 +214,7 @@
       top: 0;
       z-index: 9999;
     }
+
     .bar-chart-unit {
       position: absolute;
       top: 5px;
@@ -220,19 +229,23 @@
       line-height: 18px;
       text-align: right;
       font-style: normal;
+
       span {
         color: #fff;
       }
     }
+
     #bar-chart {
       height: 100%;
       width: 100%;
     }
   }
+
   // 底部
   .scroll {
     overflow-y: auto;
     height: 550px;
+
     .item {
       padding: 8px 12px;
       width: 100%;
@@ -241,19 +254,23 @@
       margin-bottom: 5px;
       margin-top: 13px;
       cursor: pointer;
+
       .item-top {
         display: flex;
         align-items: center;
         justify-content: space-between;
+
         .left-title {
           display: flex;
           align-items: center;
         }
+
         img {
           width: 39px;
           height: 39px;
           margin-right: 10px;
         }
+
         .normal {
           font-family: PangMenZhengDao, PangMenZhengDao;
           font-weight: normal;
@@ -264,6 +281,7 @@
           text-align: left;
           font-style: normal;
         }
+
         .middle {
           font-family: PangMenZhengDao, PangMenZhengDao;
           font-weight: normal;
@@ -274,6 +292,7 @@
           text-align: left;
           font-style: normal;
         }
+
         .height {
           font-family: PangMenZhengDao, PangMenZhengDao;
           font-weight: normal;
@@ -284,6 +303,46 @@
           text-align: left;
           font-style: normal;
         }
+
+        .dzg {
+          width: 78px;
+          height: 24px;
+          font-family: PangMenZhengDao, PangMenZhengDao;
+          font-weight: normal;
+          font-size: 24px;
+          color: #69DDFF;
+          line-height: 27px;
+          letter-spacing: 2px;
+          text-align: left;
+          font-style: normal;
+        }
+
+        .wys {
+          width: 78px;
+          height: 24px;
+          font-family: PangMenZhengDao, PangMenZhengDao;
+          font-weight: normal;
+          font-size: 24px;
+          color: #00D48A;
+          line-height: 27px;
+          letter-spacing: 2px;
+          text-align: left;
+          font-style: normal;
+        }
+
+        .yzg {
+          width: 78px;
+          height: 24px;
+          font-family: PangMenZhengDao, PangMenZhengDao;
+          font-weight: normal;
+          font-size: 24px;
+          color: #69DDFF;
+          line-height: 27px;
+          letter-spacing: 2px;
+          text-align: left;
+          font-style: normal;
+        }
+
         .time {
           font-family:
             PingFangSC,
@@ -296,6 +355,7 @@
           font-style: normal;
         }
       }
+
       .item-content {
         font-family:
           PingFangSC,
@@ -308,6 +368,7 @@
         font-style: normal;
         margin-top: 4px;
       }
+
       .item-subscribe {
         margin-top: 8px;
         font-family:
@@ -319,6 +380,10 @@
         text-align: left;
         font-style: normal;
       }
+    }
+
+    .newItem {
+      height: 150px;
     }
   }
 }
