@@ -109,10 +109,12 @@
     mapRef.value?.cleanMarkerActive();
   }
 
-  function playVideo(videoData: any) {
+  function playVideo(videoData: any, isMore?: boolean) {
     console.log(videoData);
     videoModalValue.value = true;
-    activeVideo.value = videoData.id;
+    if (!isMore) {
+      activeVideo.value = videoData.id;
+    }
   }
   function playVideoItem(videoData: any) {
     activeVideo.value = videoData.id;

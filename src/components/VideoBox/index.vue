@@ -4,16 +4,11 @@
 
   const parentData: any = inject('data') as ParentDataType;
   const { videoList, playVideo } = parentData;
-  const emits = defineEmits(['more', 'play']);
-
-  const handleMore = () => {
-    emits('more');
-  };
 </script>
 <template>
   <BasicBox :title="'实时视频联动'">
     <template #subTitle>
-      <span class="more-tip" @click="handleMore">更多 <DoubleRightOutlined /> </span>
+      <span class="more-tip" @click="playVideo({}, true)">更多 <DoubleRightOutlined /> </span>
     </template>
     <div class="video-container">
       <div
