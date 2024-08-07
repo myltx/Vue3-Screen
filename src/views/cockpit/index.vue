@@ -40,10 +40,10 @@
     lat: 30.307823,
     icon: '/src/assets/images/map/map-icon-active.png',
   });
-  const { getALlModuleData, getRule, getValue } = useCockpitDataStore();
+  const { interValGeyAllModuleData, getRule, getValue } = useCockpitDataStore();
   // 根据配置的 moduleKey 在页面动态获取数据
   startLoading();
-  getALlModuleData(moduleKeys, endLoading);
+  interValGeyAllModuleData(moduleKeys, endLoading);
   const markerList = ref<{ [key: string]: any }[]>([]);
 
   const columns = ref<any>([]);

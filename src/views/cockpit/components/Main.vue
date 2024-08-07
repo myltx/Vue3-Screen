@@ -9,7 +9,9 @@
     <div class="flex justify-start item-container">
       <img src="@/assets/images/institution/left1.png" class="img" />
       <div class="right-container">
-        <span class="font1">{{ getValue('topCenter', 0) }}</span>
+        <span class="font1">
+          <CountUp class="display-inline-block" :startVal="0" :end-val="getValue('topCenter', 0)" />
+        </span>
         <span class="font2">家</span>
         <span class="font3">{{ getName('topCenter', 0) }}</span>
       </div>
@@ -17,7 +19,9 @@
     <div class="flex justify-start item-container">
       <img src="@/assets/images/institution/left2.png" class="img" />
       <div class="right-container">
-        <span class="font1">{{ getValue('topCenter', 1) }}</span>
+        <span class="font1">
+          <CountUp class="display-inline-block" :startVal="0" :end-val="getValue('topCenter', 1)" />
+        </span>
         <span class="font2">台</span>
         <span class="font3">{{ getName('topCenter', 1) }}</span>
       </div>
@@ -25,7 +29,9 @@
     <div class="flex justify-start item-container">
       <img src="@/assets/images/institution/equipment-bg.png" class="img" />
       <div class="right-container">
-        <span class="font1">{{ getValue('topCenter', 2) }}</span>
+        <span class="font1">
+          <CountUp class="display-inline-block" :startVal="0" :end-val="getValue('topCenter', 2)" />
+        </span>
         <span class="font2">个</span>
         <span class="font3">{{ getName('topCenter', 2) }}</span>
       </div>

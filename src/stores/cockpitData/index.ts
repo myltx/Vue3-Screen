@@ -105,8 +105,22 @@ export const useCockpitDataStore = defineStore('cockpitData', () => {
     }
     return [];
   }
+  function interValGeyAllModuleData(
+    moduleKeys: ModuleKeyType,
+    callBack: Function,
+    moduleParam?: string | number | LocationQueryValue | LocationQueryValue[],
+  ) {
+    getALlModuleData(moduleKeys, callBack, moduleParam);
+    setInterval(
+      () => {
+        getALlModuleData(moduleKeys, callBack, moduleParam);
+      },
+      1000 * 10 * 5,
+    );
+  }
   return {
     getALlModuleData,
+    interValGeyAllModuleData,
     kvLists,
     getModuleName,
     getValue,

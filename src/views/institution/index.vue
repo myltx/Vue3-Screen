@@ -13,7 +13,7 @@
   const { videoList, videoModalValue } = storeToRefs(usePlayVideo());
   const { playVideo } = usePlayVideo();
   const open = ref(false);
-  const { getALlModuleData } = useCockpitDataStore();
+  const { interValGeyAllModuleData } = useCockpitDataStore();
   const parentData: ParentDataType = {
     videoList: videoList.value,
     playVideo,
@@ -23,7 +23,7 @@
 
   startLoading();
   // 根据配置的 moduleKey 在页面动态获取数据
-  getALlModuleData(moduleKeys, endLoading, orgId);
+  interValGeyAllModuleData(moduleKeys, endLoading, orgId);
 
   setTimeout(() => {
     open.value = true;
