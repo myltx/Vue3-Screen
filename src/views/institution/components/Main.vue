@@ -13,7 +13,13 @@
       <div class="flex justify-center item-container">
         <img src="@/assets/images/institution/left1.png" class="img" />
         <div class="right-container">
-          <span class="font1">{{ getValue('topCenter', 0) }}</span>
+          <span class="font1">
+            <CountUp
+              class="display-inline-block"
+              :startVal="0"
+              :end-val="getValue('topCenter', 0)"
+            />
+          </span>
           <span class="font2">台</span>
           <span class="font3">{{ getName('topCenter', 0) }}</span>
         </div>
@@ -21,7 +27,13 @@
       <div class="flex justify-center item-container">
         <img src="@/assets/images/institution/left2.png" class="img" />
         <div class="right-container">
-          <span class="font1 color2">{{ getValue('topCenter', 1) }}</span>
+          <span class="font1 color2">
+            <CountUp
+              class="display-inline-block"
+              :startVal="0"
+              :end-val="getValue('topCenter', 1)"
+            />
+          </span>
           <span class="font2">台</span>
           <span class="font3">{{ getName('topCenter', 1) }}</span>
         </div>
@@ -29,7 +41,13 @@
       <div class="flex justify-center item-container">
         <img src="@/assets/images/institution/left3.png" class="img" />
         <div class="right-container">
-          <span class="font1 color3">{{ getValue('topCenter', 2) }}</span>
+          <span class="font1 color3">
+            <CountUp
+              class="display-inline-block"
+              :startVal="0"
+              :end-val="getValue('topCenter', 2)"
+            />
+          </span>
           <span class="font2">条</span>
           <span class="font3">{{ getName('topCenter', 2) }}</span>
         </div>
@@ -37,7 +55,13 @@
       <div class="flex justify-center item-container">
         <img src="@/assets/images/institution/left4.png" class="img" />
         <div class="right-container">
-          <span class="font1 color4">{{ getValue('topCenter', 3) }}</span>
+          <span class="font1 color4">
+            <CountUp
+              class="display-inline-block"
+              :startVal="0"
+              :end-val="getValue('topCenter', 3)"
+            />
+          </span>
           <span class="font2">条</span>
           <span class="font3">{{ getName('topCenter', 3) }}</span>
         </div>
