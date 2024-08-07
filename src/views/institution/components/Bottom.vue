@@ -1,63 +1,54 @@
 <script setup lang="ts">
-  import { getPwixunList, getYuanList } from '@/api/cockpit/cockpit';
+  import { getFireDrillList } from '@/api/cockpit/cockpit';
   import { useSettingStore } from '@/stores';
   import { useCockpitDataStore } from '@/stores/cockpitData';
   import { Vue3SeamlessScroll } from 'vue3-seamless-scroll';
   import xfDetailModel from './xfDetailModel.vue';
 
+  const route = useRoute();
+  const { orgId } = route.query;
   const { getModuleName, getValue, getRule } = useCockpitDataStore();
   const moduleKey = 'dutySituation';
   const settingStore = useSettingStore();
   const { indexConfig } = storeToRefs(settingStore);
   const alarmList = ref<any[]>([]);
-  const isVisible = ref<boolean>(false)
-  // const fileList = ref([]);
+  const isVisible = ref<boolean>(false);
+  const fileList = ref<any>([]);
 
   const isScroll = computed(() => {
     return indexConfig.value.leftBottomSwiper;
   });
   function handleClose(val: boolean) {
-    isVisible.value = val
+    isVisible.value = val;
   }
-  async function handleListClick(item:any) {
-    isVisible.value = true
-  // openMapModal.value = true
+  async function handleListClick(item: any) {
+    isVisible.value = true;
+    // openMapModal.value = true
   }
-  getAllList();
-  function getAllList() {
-    getYuanList({
-      currentPage: 1,
-      pageSize: 1,
-      modelId: '550662278131745157',
-      menuId: '550662341197300101',
-      queryJson: '',
-      superQueryJson: '',
-      sidx: '-start_time',
-    }).then((res: any) => {
-      console.log(res, 'r');
-      res.data.list.forEach((item: any) => {
-        item.type = '1';
-        item.sign_time && (item.sign_time = item.sign_time.replace(/-/g, '.'));
+
+  getFireDrillList({
+    orgId,
+  }).then((res: any) => {
+    alarmList.value = res.data || [];
+    if (res.data && res.data.length) {
+      res.data.forEach((item: any) => {
+        if (item.file) {
+          const files = JSON.parse(item.file);
+          const imgs = files.filter((file: any) =>
+            ['jpg', 'png', 'jpeg', 'gif'].includes(file.fileExtension),
+          );
+          imgs.forEach((img: any) => {
+            if (import.meta.env.DEV) {
+              img.url = `http://dev.zhxf.whenyoungcloud.cn${img.url}`;
+            } else {
+              img.url = `${window.location.origin}${img.url}`;
+            }
+          });
+          fileList.value = [...fileList.value, ...imgs];
+        }
       });
-      alarmList.value = [...alarmList.value, ...res.data.list];
-    });
-    getPwixunList({
-      currentPage: 1,
-      pageSize: 2,
-      modelId: '550674121361457541',
-      menuId: '550682426959987077',
-      queryJson: '',
-      superQueryJson: '',
-      sidx: '-F_CreatorTime',
-    }).then((res: any) => {
-      console.log(res, 'rr');
-      res.data.list.forEach((item: any) => {
-        item.type = '2';
-        item.sign_time && (item.sign_time = item.sign_time.replace(/-/g, '.'));
-      });
-      alarmList.value = [...alarmList.value, ...res.data.list];
-    });
-  }
+    }
+  });
 </script>
 
 <template>
@@ -126,26 +117,20 @@
         <div class="flex h-90%">
           <div class="swipter-container">
             <a-carousel autoplay>
-              <div class="h-100%">
-                <img src="@/assets/images/institution/video.png" alt="" />
-              </div>
-              <div class="h-100%">
-                <img src="@/assets/images/institution/video.png" alt="" />
-              </div>
-              <div class="h-100%">
-                <img src="@/assets/images/institution/video.png" alt="" />
-              </div>
-              <div class="h-100%">
-                <img src="@/assets/images/institution/video.png" alt="" />
+              <div class="h-100%" v-for="img in fileList" :key="img.fileId">
+                <img :src="img.url" alt="" />
               </div>
             </a-carousel>
           </div>
           <div class="right-container">
             <div class="item-container" v-for="events in alarmList" :key="events.id">
-              <div class="flex items-center justify-between item" @click="handleListClick(item)">
-                <div :class="['catagory', events.type == '2' ? 'active' : '']">
+              <div
+                class="flex items-center justify-between cursor-pointer item"
+                @click="handleListClick(events)"
+              >
+                <div :class="['catagory', events.type == '消防培训' ? 'active' : '']">
                   <span>
-                    {{ events.type == '1' ? '消防演练' : '消防培训' }}
+                    {{ events.type }}
                   </span>
                 </div>
                 <div class="title">{{ events.name }}</div>
@@ -158,7 +143,7 @@
       </BasicBox>
     </div>
   </div>
-  <xfDetailModel :isVisible="isVisible" @closeModel="handleClose"/>
+  <xfDetailModel :isVisible="isVisible" @closeModel="handleClose" />
 </template>
 
 <style scoped lang="scss">

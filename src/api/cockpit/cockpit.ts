@@ -49,3 +49,11 @@ export function getPwixunList(data: any) {
     data,
   });
 }
+
+export function getFireDrillList(data: any) {
+  return Axios({
+    url: ServicePrefixEnum.COCKPIT + '/cockpitDynamicData/getFireDrillList',
+    method: RequestEnum.POST,
+    data,
+  });
+}
