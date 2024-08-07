@@ -41,7 +41,7 @@ const handleClose = () => {
                     </div>
                     <div class="mt-8px">
                         <span class="tip">地点：</span>
-                        <span class="time ml-8px">老人活动室</span>
+                        <span class="time ml-8px">{{ xfDetailData?.address }}</span>
                     </div>
                     <div class="mt-8px flex">
                         <span class="fj">附件：</span>
