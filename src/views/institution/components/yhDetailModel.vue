@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import dayjs from 'dayjs';
+import decryptString  from '@/utils/jnpf'
 const props = defineProps({
     isVisible: {
         type: Boolean,
@@ -91,7 +92,10 @@ const handleClose = () => {
                                     rectificationProgressType[item.rectificationProgress] }}
                                 </div>
                                 <span class="person mt-4px ml-8px">上报人：</span>
-                                <span class="name">张三</span>
+                                <span class="name">{{ decryptString(
+                                    item?.targetChiefDTO?.encryptVal || "",
+                                    "ch20210825093727"
+                                ) }}</span>
                             </div>
                             <div class="mb-12px"></div>
                         </div>

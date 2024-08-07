@@ -1,172 +1,176 @@
 <script setup lang="ts">
-  import { equipmentOption } from '../config';
-  import NORMAL_IMG from '@/assets/images/business/normal.png';
-  import MIDDLE_IMG from '@/assets/images/business/middle.png';
-  import HEIGHT_IMG from '@/assets/images/business/height.png';
+import { equipmentOption } from '../config';
+import NORMAL_IMG from '@/assets/images/business/normal.png';
+import MIDDLE_IMG from '@/assets/images/business/middle.png';
+import HEIGHT_IMG from '@/assets/images/business/height.png';
 
-  import DZG_IMG from '@/assets/images/institution/dzg.png';
-  import WYS_IMG from '@/assets/images/institution/dys.png';
-  import YZG_IMG from '@/assets/images/institution/dzg.png';
+import DZG_IMG from '@/assets/images/institution/dzg.png';
+import WYS_IMG from '@/assets/images/institution/dys.png';
+import YZG_IMG from '@/assets/images/institution/dzg.png';
 
-  import dayjs from 'dayjs';
-  import { page, detail } from '@/api/institution/institution';
-  import yhDetailModel from './yhDetailModel.vue';
-  import detailModel from './detailModel.vue';
+import dayjs from 'dayjs';
+import { page, detail } from '@/api/institution/institution';
+import yhDetailModel from './yhDetailModel.vue';
+import detailModel from './detailModel.vue';
+import decryptString  from '@/utils/jnpf'
 
-  type ClickType = 'equipment';
-  interface AlarmListType {
-    content: number | string;
-    status: number;
-    date: number | string;
-    statusText: number | string;
-    subscribe: number | string;
-    name?: string;
-    dangerId?: string;
+type ClickType = 'equipment';
+interface AlarmListType {
+  content: number | string;
+  status: number;
+  date: number | string;
+  statusText: number | string;
+  subscribe: number | string;
+  name?: string;
+  dangerId?: string;
+}
+
+const statusImgMap: {
+  [key in number]: string;
+} = {
+  1: NORMAL_IMG,
+  2: MIDDLE_IMG,
+  3: HEIGHT_IMG,
+};
+const statusHiddenImgMap: {
+  [key in number]: string;
+} = {
+  1: DZG_IMG,
+  2: WYS_IMG,
+  3: YZG_IMG,
+};
+const statusClass: {
+  [key in number]: string;
+} = {
+  1: 'normal',
+  2: 'middle',
+  3: 'height',
+};
+const statusHiddenClass: {
+  [key in number]: string;
+} = {
+  1: 'dzg',
+  2: 'wys',
+  3: 'yzg',
+};
+
+const equipmentActive = ref(0);
+const option = ref({});
+const alarmList = ref<AlarmListType[]>([]);
+const hiddenList = ref<any>([]);
+const isVisible = ref<boolean>(false);
+const isAlarmVisible = ref<boolean>(false);
+const yhDetailData = ref<any>({});
+const yhData = ref<any>({})
+async function getPageList() {
+  hiddenList.value = [];
+  const statusTextMap: {
+    [key in number]: string;
+  } = {
+    1: '待整改',
+    2: '未验收',
+    3: '已整改',
+  };
+  let res: any = await page({ currentPage: 1, pageSize: 20 });
+  if (res.code == 200) {
+    hiddenList.value = res?.data?.dangerPageVOList || [];
   }
-
-  const statusImgMap: {
-    [key in number]: string;
-  } = {
-    1: NORMAL_IMG,
-    2: MIDDLE_IMG,
-    3: HEIGHT_IMG,
-  };
-  const statusHiddenImgMap: {
-    [key in number]: string;
-  } = {
-    1: DZG_IMG,
-    2: WYS_IMG,
-    3: YZG_IMG,
-  };
-  const statusClass: {
-    [key in number]: string;
-  } = {
-    1: 'normal',
-    2: 'middle',
-    3: 'height',
-  };
-  const statusHiddenClass: {
-    [key in number]: string;
-  } = {
-    1: 'dzg',
-    2: 'wys',
-    3: 'yzg',
-  };
-
-  const equipmentActive = ref(0);
-  const option = ref({});
-  const alarmList = ref<AlarmListType[]>([]);
-  const hiddenList = ref<any>([]);
-  const isVisible = ref<boolean>(false);
-  const isAlarmVisible = ref<boolean>(false);
-  const yhDetailData = ref<any>({});
-  const yhData = ref<any>({})
-  async function getPageList() {
-    hiddenList.value = [];
-    const statusTextMap: {
-      [key in number]: string;
-    } = {
-      1: '待整改',
-      2: '未验收',
-      3: '已整改',
-    };
-    let res: any = await page({ currentPage: 1, pageSize: 20 });
-    if (res.code == 200) {
-      hiddenList.value = res?.data?.dangerPageVOList || [];
-    }
-    if (hiddenList.value.length) {
-      hiddenList.value.map((item: any) => {
-        alarmList.value.push({
-          content: `【隐患描述】${item?.dangerRemark || ''}`,
-          date: dayjs(item.reportingTime).format('YYYY-MM-DD HH:mm:ss'),
-          subscribe: item?.placeName,
-          statusText: statusTextMap[item.reportingStatus],
-          status: item.reportingStatus,
-          name: item?.creator?.desensitizeName,
-          dangerId: item?.dangerId,
-        });
-      });
-    }
-  }
-  generateList();
-  function generateList() {
-    const statusTextMap: {
-      [key in number]: string;
-    } = {
-      1: '普通告警',
-      2: '重要告警',
-      3: '紧急告警',
-    };
-    for (let i = 0; i < 11; i++) {
-      const status = getRandomInt(1, 3);
+  if (hiddenList.value.length) {
+    hiddenList.value.map((item: any) => {
       alarmList.value.push({
-        content: '设备：13号智能烟感设备',
-        subscribe: '厨房餐厅',
-        status,
-        statusText: statusTextMap[status],
-        date: dayjs().format('YYYY-MM-DD HH:mm:ss'),
+        content: `【隐患描述】${item?.dangerRemark || ''}`,
+        date: dayjs(item.reportingTime).format('YYYY-MM-DD HH:mm:ss'),
+        subscribe: item?.placeName,
+        statusText: statusTextMap[item.reportingStatus],
+        status: item.reportingStatus,
+        name: decryptString(
+          item?.creator?.encryptVal || "",
+          "ch20210825093727"
+        ),
+        dangerId: item?.dangerId,
       });
-    }
+    });
   }
-  function handleClose(val: boolean) {
-    isVisible.value = val;
-  }
-  function handleAlarmClose(val: boolean) {
-    isAlarmVisible.value = val;
-  }
-  function getRandomInt(min: number, max: number) {
-    min = Math.ceil(min);
-    max = Math.floor(max);
-    return Math.floor(Math.random() * (max - min + 1)) + min;
-  }
-  async function handleListClick(item: any) {
-    if (equipmentActive.value == 0) {
-      isAlarmVisible.value = true;
-    } else {
-      let res: any = await detail({ dangerId: item.dangerId });
-      yhDetailData.value = res.data;
-      yhData.value = item
-      isVisible.value = true;
-      console.log(JSON.parse(yhDetailData.value?.sffFireDangerDTO?.dangerFile), '详情======');
-    }
-    // openMapModal.value = true
-  }
-
-  const handleType = (type: ClickType, value: number) => {
-    equipmentActive.value = value;
-    alarmList.value = [];
-    if (value == 1) {
-      getPageList();
-    } else {
-      generateList();
-    }
-    // switch (type) {
-    //   case 'equipment':
-    //     equipmentActive.value = value;
-    //     setOption('option', equipmentOption);
-    //     break;
-
-    //   default:
-    //     break;
-    // }
+}
+generateList();
+function generateList() {
+  const statusTextMap: {
+    [key in number]: string;
+  } = {
+    1: '普通告警',
+    2: '重要告警',
+    3: '紧急告警',
   };
-  const setOption = (key: string, opt: any) => {
-    switch (key) {
-      case 'option':
-        option.value = {};
-        setTimeout(() => {
-          option.value = opt;
-        }, 1000);
-        break;
+  for (let i = 0; i < 11; i++) {
+    const status = getRandomInt(1, 3);
+    alarmList.value.push({
+      content: '设备：13号智能烟感设备',
+      subscribe: '厨房餐厅',
+      status,
+      statusText: statusTextMap[status],
+      date: dayjs().format('YYYY-MM-DD HH:mm:ss'),
+    });
+  }
+}
+function handleClose(val: boolean) {
+  isVisible.value = val;
+}
+function handleAlarmClose(val: boolean) {
+  isAlarmVisible.value = val;
+}
+function getRandomInt(min: number, max: number) {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+async function handleListClick(item: any) {
+  if (equipmentActive.value == 0) {
+    isAlarmVisible.value = true;
+  } else {
+    let res: any = await detail({ dangerId: item.dangerId });
+    yhDetailData.value = res.data;
+    yhData.value = item
+    isVisible.value = true;
+    console.log(JSON.parse(yhDetailData.value?.sffFireDangerDTO?.dangerFile), '详情======');
+  }
+  // openMapModal.value = true
+}
 
-      default:
-        break;
-    }
-  };
+const handleType = (type: ClickType, value: number) => {
+  equipmentActive.value = value;
+  alarmList.value = [];
+  if (value == 1) {
+    getPageList();
+  } else {
+    generateList();
+  }
+  // switch (type) {
+  //   case 'equipment':
+  //     equipmentActive.value = value;
+  //     setOption('option', equipmentOption);
+  //     break;
 
-  onMounted(() => {
-    setOption('option', equipmentOption);
-  });
+  //   default:
+  //     break;
+  // }
+};
+const setOption = (key: string, opt: any) => {
+  switch (key) {
+    case 'option':
+      option.value = {};
+      setTimeout(() => {
+        option.value = opt;
+      }, 1000);
+      break;
+
+    default:
+      break;
+  }
+};
+
+onMounted(() => {
+  setOption('option', equipmentOption);
+});
 </script>
 
 <template>
@@ -192,8 +196,8 @@
           :class="['item', equipmentActive == 1 ? 'newItem' : '']"
           v-for="(item, index) in alarmList"
           :key="index"
-        >
-          <div @click="handleListClick(item)">
+        >          
+        <div @click="handleListClick(item)">
             <div class="item-top">
               <div class="left-title">
                 <img :src="statusImgMap[item.status]" alt="" v-if="equipmentActive == 0" />
@@ -224,5 +228,5 @@
 </template>
 
 <style scoped lang="scss">
-  @import './styles/left.scss';
+@import './styles/left.scss';
 </style>
