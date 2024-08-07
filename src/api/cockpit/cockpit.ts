@@ -58,3 +58,19 @@ export function getFireDrillList(data: any) {
     data,
   });
 }
+
+// 获取视频播放地址
+export function getVideoUrl(id: string | number) {
+  return Axios({
+    url: ServicePrefixEnum.SERVICE + '/iotMaster/getVideoUrl?deviceId=' + id,
+    method: RequestEnum.GET,
+  });
+}
+
+// 停止视频播放
+export function stopVideo(id: string | number) {
+  return Axios({
+    url: ServicePrefixEnum.SERVICE + '/iotMaster/stopVideo?deviceId=' + id,
+    method: RequestEnum.GET,
+  });
+}
