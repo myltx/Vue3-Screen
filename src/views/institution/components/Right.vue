@@ -21,14 +21,12 @@
   const alarmList = ref<AlarmListType[]>([]);
 
   onMounted(() => {
-    console.log(forewarningList.value, 'forewarningList');
     forewarningList.value?.forEach((item: any, index: number) => {
       item.itemStyle = {
         color: default_chart_colors[index],
       };
       item.value = item.value * 1;
     });
-    console.log(forewarningList.value, 'forewarningList1');
     threeChartRef.value.initChart(forewarningList.value);
   });
   generateList();
