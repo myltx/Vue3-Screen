@@ -14,7 +14,7 @@
   const emits = defineEmits(['closed', 'update:modalValue']);
 
   const { videoList, activeVideo, bloading, protocol, videoUrl } = storeToRefs(usePlayVideo());
-  const { playVideo } = usePlayVideo();
+  const { playVideo, stopActiveVideo } = usePlayVideo();
   const open = ref(props.modalValue);
   const videoModalRef = ref(null);
   // watch for changes in the modelValue prop
@@ -23,8 +23,15 @@
     (value) => {
       open.value = value;
       if (!value) {
+        stopActiveVideo();
         emits('closed');
       }
+    },
+  );
+  watch(
+    () => videoUrl.value,
+    () => {
+      console.log(videoUrl.value, 'videoUrl');
     },
   );
   onClickOutside(videoModalRef, () => {

@@ -1,13 +1,12 @@
-import { getVideoDeviceList, getVideoUrl } from '@/api/cockpit/cockpit';
+import { getVideoDeviceList, getVideoUrl, stopVideo } from '@/api/cockpit/cockpit';
 
 export const usePlayVideo = defineStore('usePlayVideo', () => {
   const route = useRoute();
   const videoModalValue = ref(false);
-  const activeVideo = ref(0);
+  const activeVideo = ref('');
+  const channelId = ref('');
   const videoList = ref<any>([]);
-  const videoUrl = ref(
-    'https://iot.stream.whenyoungcloud.cn:7443/rtp/00002252/hls.m3u8?deviceId=33000000001320000030&key=',
-  );
+  const videoUrl = ref('');
   function getList() {
     getVideoDeviceList({ orgId: route.query.orgId as string | number }).then((res: any) => {
       videoList.value = res.data;
@@ -15,8 +14,10 @@ export const usePlayVideo = defineStore('usePlayVideo', () => {
   }
   const bloading = ref(false);
   const protocol = ref('');
-  function playVideo(videoData: any, isMore?: boolean) {
-    console.log(videoData);
+  async function playVideo(videoData: any, isMore?: boolean) {
+    if (activeVideo.value) {
+      await stopActiveVideo();
+    }
     activeVideo.value = videoData.id;
     if (!isMore) {
       videoModalValue.value = true;
@@ -25,7 +26,17 @@ export const usePlayVideo = defineStore('usePlayVideo', () => {
   }
   function play() {
     getVideoUrl(activeVideo.value).then((res: any) => {
-      console.log(res);
+      videoUrl.value = res.data.playUrl || '';
+      channelId.value = res.data.channelId || '';
+    });
+  }
+  function stopActiveVideo() {
+    stopVideo(activeVideo.value, channelId.value).then((res: any) => {
+      if (res.data) {
+        videoUrl.value = '';
+        channelId.value = '';
+        activeVideo.value = '';
+      }
     });
   }
   return {
@@ -37,5 +48,6 @@ export const usePlayVideo = defineStore('usePlayVideo', () => {
     videoUrl,
     playVideo,
     getList,
+    stopActiveVideo,
   };
 });

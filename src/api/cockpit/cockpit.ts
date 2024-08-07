@@ -78,9 +78,10 @@ export function getVideoUrl(id: string | number) {
 }
 
 // 停止视频播放
-export function stopVideo(id: string | number) {
+export function stopVideo(id: string | number, channelId: string | number) {
   return Axios({
-    url: ServicePrefixEnum.SERVICE + '/iotMaster/stopVideo?deviceId=' + id,
+    url:
+      ServicePrefixEnum.SERVICE + '/iotMaster/stopVideo?deviceId=' + id + '&channelId=' + channelId,
     method: RequestEnum.GET,
   });
 }
