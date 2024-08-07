@@ -11,6 +11,7 @@
   });
   const emits = defineEmits(['closed', 'update:modalValue']);
   const open = ref(props.modalValue);
+  const mapModalRef = ref(null);
   // watch for changes in the modelValue prop
   watch(
     () => props.modalValue,
@@ -21,9 +22,14 @@
       }
     },
   );
+
+  onClickOutside(mapModalRef, () => {
+    emits('update:modalValue', false);
+  });
 </script>
 <template>
   <div
+    ref="mapModalRef"
     v-motion-pop-visible
     v-if="open"
     class="w-50% h-50% bg-white z-999 position-absolute top-45% right-16% p-20px basic-modal z-9999"

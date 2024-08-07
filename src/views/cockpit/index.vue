@@ -20,7 +20,7 @@
   const openMapModal = ref(false);
 
   const parentData: ParentDataType = {
-    videoList: videoList.value,
+    videoList,
     playVideo,
     showMore,
   };

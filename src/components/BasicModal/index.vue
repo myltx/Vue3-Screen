@@ -11,6 +11,7 @@
   });
   const emits = defineEmits(['closed', 'update:modalValue']);
   const open = ref(props.modalValue);
+  const modalRef = ref();
   // watch for changes in the modelValue prop
   watch(
     () => props.modalValue,
@@ -22,10 +23,14 @@
       }
     },
   );
+  onClickOutside(modalRef, () => {
+    emits('update:modalValue', false);
+  });
 </script>
 <template>
   <div
     v-motion-pop-visible
+    ref="modalRef"
     v-if="open"
     class="w-50% h-50% bg-white z-999 position-absolute top-1/2 left-1/2 p-20px basic-modal"
   >

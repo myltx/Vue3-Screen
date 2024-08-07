@@ -60,7 +60,7 @@ export interface BasicBoxProps {
 }
 
 export interface ParentDataType {
-  videoList: any[];
+  videoList: any;
   showMore: Function;
   playVideo: Function;
 }
