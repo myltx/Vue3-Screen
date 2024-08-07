@@ -9,6 +9,10 @@ const props = defineProps({
         type: Object,
         default: () => { },
     },
+    yhData: {
+        type: Object,
+        default: () => { }
+    }
 });
 watch(
     () => props.isVisible,
@@ -56,16 +60,16 @@ const handleClose = () => {
                     <div class="middle-container ml-4px mb-8px">
                         <span class="tip">上报时间：</span>
                         <span class="time ml-8px">
-                            {{ dayjs(yhDetailData?.sffFireDangerAssignDTOS[0]['generationTime']).format('YYYY-MM-DDHH:mm:ss')}}
+                            {{ yhData?.date }}
                         </span>
                     </div>
                     <div class="middle-container ml-4px mb-8px">
                         <span class="tip">隐患地点：</span>
-                        <span class="time ml-8px">{{ yhDetailData?.sffFireDangerDTO?.dangerRemark }}</span>
+                        <span class="time ml-8px">{{ yhData?.subscribe }}</span>
                     </div>
                     <div class="middle-container ml-4px mb-8px">
                         <span class="tip">上报人：</span>
-                        <span class="time ml-8px">张三</span>
+                        <span class="time ml-8px">{{ yhData?.name }}</span>
                     </div>
                     <div class="middle-container ml-4px mb-8px">
                         <span class="tip">附件：</span>
@@ -79,15 +83,18 @@ const handleClose = () => {
                         </div>
                     </div>
                     <div class="h-98px" v-for="(item, index) in yhDetailData?.sffFireDangerAssignDTOS" :key="index">
-                        <span class="times ml-28px">{{ dayjs(item['generationTime']).format('YYYY-MM-DD HH:mm:ss')
-                            }}</span>
-                        <div class="main mt-4px ml-20px">
-                            <div class="title mt-8px ml-8px">{{ rectificationProgressType[item.rectificationProgress] }}
+                        <div class="zgx">
+                            <span class="times ml-28px">{{ dayjs(item['generationTime']).format('YYYY-MM-DD HH:mm:ss')
+                                }}</span>
+                            <div class="main mt-4px ml-20px">
+                                <div class="title mt-8px ml-8px">{{
+                                    rectificationProgressType[item.rectificationProgress] }}
+                                </div>
+                                <span class="person mt-4px ml-8px">上报人：</span>
+                                <span class="name">张三</span>
                             </div>
-                            <span class="person mt-4px ml-8px">上报人：</span>
-                            <span class="name">张三</span>
+                            <div class="mb-12px"></div>
                         </div>
-                        <div class="mb-12px"></div>
                     </div>
 
                     <!-- <div class="h-98px">

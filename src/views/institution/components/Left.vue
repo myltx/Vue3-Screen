@@ -60,6 +60,7 @@
   const isVisible = ref<boolean>(false);
   const isAlarmVisible = ref<boolean>(false);
   const yhDetailData = ref<any>({});
+  const yhData = ref<any>({})
   async function getPageList() {
     hiddenList.value = [];
     const statusTextMap: {
@@ -118,14 +119,15 @@
     max = Math.floor(max);
     return Math.floor(Math.random() * (max - min + 1)) + min;
   }
-  async function handleListClick(id: any) {
+  async function handleListClick(item: any) {
     if (equipmentActive.value == 0) {
       isAlarmVisible.value = true;
     } else {
-      let res: any = await detail({ dangerId: id });
+      let res: any = await detail({ dangerId: item.dangerId });
       yhDetailData.value = res.data;
+      yhData.value = item
       isVisible.value = true;
-      console.log(yhDetailData.value, '详情======');
+      console.log(JSON.parse(yhDetailData.value?.sffFireDangerDTO?.dangerFile), '详情======');
     }
     // openMapModal.value = true
   }
@@ -191,7 +193,7 @@
           v-for="(item, index) in alarmList"
           :key="index"
         >
-          <div @click="handleListClick(item?.dangerId)">
+          <div @click="handleListClick(item)">
             <div class="item-top">
               <div class="left-title">
                 <img :src="statusImgMap[item.status]" alt="" v-if="equipmentActive == 0" />
@@ -217,7 +219,7 @@
       </div>
     </BasicBox>
   </div>
-  <yhDetailModel :isVisible="isVisible" @closeModel="handleClose" :yhDetailData="yhDetailData" />
+  <yhDetailModel :isVisible="isVisible" @closeModel="handleClose" :yhDetailData="yhDetailData" :yhData="yhData"/>
   <detailModel :isVisible="isAlarmVisible" @closeModel="handleAlarmClose" />
 </template>
 
