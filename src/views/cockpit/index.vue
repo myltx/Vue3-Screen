@@ -12,6 +12,7 @@
   const { startLoading, endLoading } = useLoadingStore();
   const { isLoading } = storeToRefs(useLoadingStore());
   const { videoList, videoModalValue } = storeToRefs(usePlayVideo());
+  console.log(videoList.value, 'videoList111');
   const { playVideo } = usePlayVideo();
 
   const mapRef = ref();
