@@ -88,13 +88,16 @@
   }
 
   function showMore(type: number) {
+    open.value = false;
     const { key, title, index, columns: col } = modalType[type];
     const rules = getRule(key, index || 0);
     console.log(rules, 'r');
     columns.value = col;
     tabData.value = getValue(key, index || 0);
     modalTitle.value = title;
-    open.value = true;
+    setTimeout(() => {
+      open.value = true;
+    }, 300);
   }
 </script>
 <template>
