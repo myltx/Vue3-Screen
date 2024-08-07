@@ -30,7 +30,7 @@ const handleClose = () => {
     <div>
         <BasicModal v-model:modalValue="openModal" :title="'消防安全培训详情'" @closed="handleClose">
             <div class="ml-38px mr-38px main-container">
-                <div class="catagory">
+                <div :class="['catagory', xfDetailData.type == '消防培训' ? 'active' : '']">
                     <span>{{ xfDetailData.type }}</span>
                 </div>
                 <div class="title ml-8px">{{ xfDetailData.name }}</div>
@@ -46,10 +46,7 @@ const handleClose = () => {
                     <div class="mt-8px flex">
                         <span class="fj">附件：</span>
                         <div class="flex img-container">
-                            <img src="@/assets/images/institution/video.png" alt="" width="25%" />
-                            <img src="@/assets/images/institution/video.png" alt="" width="25%" />
-                            <img src="@/assets/images/institution/video.png" alt="" width="25%" />
-                            <img src="@/assets/images/institution/video.png" alt="" width="25%" />
+                            <img v-for="(item,index) in xfDetailData.file" :key="index" :src="item.url" alt="" class="img">
                         </div>
                     </div>
                 </div>
