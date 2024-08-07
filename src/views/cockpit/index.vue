@@ -12,18 +12,23 @@
   const { startLoading, endLoading } = useLoadingStore();
   const { isLoading } = storeToRefs(useLoadingStore());
   const { videoList, videoModalValue } = storeToRefs(usePlayVideo());
-  const { playVideo } = usePlayVideo();
+  const { playVideo, getList } = usePlayVideo();
 
   const mapRef = ref();
   const modalTitle = ref('');
   const open = ref(false);
   const openMapModal = ref(false);
-
   const parentData: ParentDataType = {
     videoList,
     playVideo,
     showMore,
   };
+  watch(
+    () => videoList.value,
+    () => {
+      parentData.videoList = videoList.value;
+    },
+  );
   provide('data', parentData);
   const orgData = ref<any>({
     orgType: 2,
@@ -43,6 +48,7 @@
   // 根据配置的 moduleKey 在页面动态获取数据
   startLoading();
   interValGeyAllModuleData(moduleKeys, endLoading);
+  getList();
   const markerList = ref<{ [key: string]: any }[]>([]);
 
   const columns = ref<any>([]);

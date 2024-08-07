@@ -13,7 +13,7 @@
       </span>
     </template>
     <div class="video-container">
-      <template v-if="videoList.length">
+      <template v-if="parentData.videoList.length">
         <div
           v-for="(video, index) in videoList.slice(0, 4)"
           :key="video"

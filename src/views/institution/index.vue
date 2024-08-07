@@ -11,7 +11,7 @@
   const { startLoading, endLoading } = useLoadingStore();
   const { isLoading } = storeToRefs(useLoadingStore());
   const { videoList, videoModalValue } = storeToRefs(usePlayVideo());
-  const { playVideo } = usePlayVideo();
+  const { playVideo, getList } = usePlayVideo();
   const open = ref(false);
   const { interValGeyAllModuleData } = useCockpitDataStore();
   const parentData: ParentDataType = {
@@ -19,12 +19,18 @@
     playVideo,
     showMore: () => {},
   };
+  watch(
+    () => videoList.value,
+    () => {
+      parentData.videoList = videoList.value;
+    },
+  );
   provide('data', parentData);
 
   startLoading();
   // 根据配置的 moduleKey 在页面动态获取数据
   interValGeyAllModuleData(moduleKeys, endLoading, orgId);
-
+  getList();
   setTimeout(() => {
     open.value = true;
   }, 2000);
