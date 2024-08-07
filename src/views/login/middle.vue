@@ -46,7 +46,7 @@
 </script>
 <template>
   <PageWrapper :show-header="false">
-    <Loading class="loading" />
+    <Loading class="loading" :content="'登录中...'" />
   </PageWrapper>
 </template>
 
