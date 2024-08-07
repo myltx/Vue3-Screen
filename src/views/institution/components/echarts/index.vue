@@ -53,7 +53,6 @@
         icon: 'circle',
         itemGap: 20,
         formatter(name: any) {
-          console.log('name----->', name);
           let result = dataList.value.find((item) => item.name == name);
 
           //   return `{a|${result.name}}   ${parseInt(result.value)}`;

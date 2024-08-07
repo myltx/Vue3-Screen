@@ -58,3 +58,12 @@ export function removeLocalStorage(key?: string) {
 export function getTenant(): string {
   return localStorage.getItem('tenant') || '';
 }
+
+// 获取文件地址
+export function getFileUrl(url: string): string {
+  if (import.meta.env.DEV) {
+    console.log(import.meta.env, 'env');
+    return url;
+  }
+  return `${window.location.origin}${url}`;
+}

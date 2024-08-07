@@ -4,6 +4,7 @@
   import { useCockpitDataStore } from '@/stores/cockpitData';
   import { Vue3SeamlessScroll } from 'vue3-seamless-scroll';
   import xfDetailModel from './xfDetailModel.vue';
+  import { getFileUrl } from '@/utils';
 
   const route = useRoute();
   const { orgId } = route.query;
@@ -38,11 +39,7 @@
             ['jpg', 'png', 'jpeg', 'gif'].includes(file.fileExtension),
           );
           imgs.forEach((img: any) => {
-            if (import.meta.env.DEV) {
-              img.url = `http://dev.zhxf.whenyoungcloud.cn${img.url}`;
-            } else {
-              img.url = `${window.location.origin}${img.url}`;
-            }
+            img.url = `${getFileUrl(img.url)}`;
           });
           fileList.value = [...fileList.value, ...imgs];
         }

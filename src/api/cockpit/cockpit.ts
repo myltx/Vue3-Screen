@@ -1,5 +1,5 @@
 import { ServicePrefixEnum } from '@/enums/comon';
-import { RequestEnum } from '@/enums/httpEnum';
+import { ContentTypeEnum, RequestEnum } from '@/enums/httpEnum';
 import Axios from '@/utils/http/axios/index';
 
 export function getModule(data: any) {
@@ -54,6 +54,7 @@ export function getFireDrillList(data: any) {
   return Axios({
     url: ServicePrefixEnum.COCKPIT + '/cockpitDynamicData/getFireDrillList',
     method: RequestEnum.POST,
+    meta: { 'Content-Type': ContentTypeEnum.FORM_URLENCODED },
     data,
   });
 }
