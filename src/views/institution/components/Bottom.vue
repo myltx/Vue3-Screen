@@ -30,20 +30,22 @@
   getFireDrillList({
     orgId,
   }).then((res: any) => {
-    alarmList.value = res.data || [];
     if (res.data && res.data.length) {
       res.data.forEach((item: any) => {
         if (item.file) {
           const files = JSON.parse(item.file);
+          files.forEach((file: any) => {
+            file.url = `${getFileUrl(file.url)}`;
+          });
           const imgs = files.filter((file: any) =>
             ['jpg', 'png', 'jpeg', 'gif'].includes(file.fileExtension),
           );
-          imgs.forEach((img: any) => {
-            img.url = `${getFileUrl(img.url)}`;
-          });
           fileList.value = [...fileList.value, ...imgs];
+          item.file = files;
         }
       });
+      alarmList.value = res.data || [];
+      console.log(alarmList.value, 'alarmList.value')
     }
   });
 </script>

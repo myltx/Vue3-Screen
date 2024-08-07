@@ -61,9 +61,10 @@ export function getTenant(): string {
 
 // 获取文件地址
 export function getFileUrl(url: string): string {
+  let proxyUrl = window.location.origin;
   if (import.meta.env.DEV) {
-    console.log(import.meta.env, 'env');
-    return url;
+    const proxy = JSON.parse(import.meta.env.VITE_PROXY);
+    proxyUrl = proxy[0][1] || '';
   }
-  return `${window.location.origin}${url}`;
+  return `${proxyUrl}${url}`;
 }
