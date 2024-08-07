@@ -14,6 +14,7 @@
   const { indexConfig } = storeToRefs(settingStore);
   const alarmList = ref<any[]>([]);
   const isVisible = ref<boolean>(false);
+  const xfDetailData = ref<any>([])
   const fileList = ref<any>([]);
 
   const isScroll = computed(() => {
@@ -23,6 +24,8 @@
     isVisible.value = val;
   }
   async function handleListClick(item: any) {
+    xfDetailData.value = item
+    console.log(item,'item======')
     isVisible.value = true;
     // openMapModal.value = true
   }
@@ -142,7 +145,7 @@
       </BasicBox>
     </div>
   </div>
-  <xfDetailModel :isVisible="isVisible" @closeModel="handleClose" />
+  <xfDetailModel :isVisible="isVisible" @closeModel="handleClose" :xfDetailData="xfDetailData"/>
 </template>
 
 <style scoped lang="scss">
