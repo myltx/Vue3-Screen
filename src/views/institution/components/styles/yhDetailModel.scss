@@ -93,6 +93,9 @@
             height: 100%;
             border-left: 1px dashed #5DABD9;
         }
+        .no-border{
+            border-left: none;
+        }
 
         // &::before {
         //     position: absolute;

@@ -84,7 +84,7 @@ const handleClose = () => {
                         </div>
                     </div>
                     <div class="h-98px" v-for="(item, index) in yhDetailData?.sffFireDangerAssignDTOS" :key="index">
-                        <div class="zgx">
+                        <div :class="['zgx',index == yhDetailData?.sffFireDangerAssignDTOS.length - 1 ? 'no-border' : '']">
                             <span class="times ml-28px">{{ dayjs(item['generationTime']).format('YYYY-MM-DD HH:mm:ss')
                                 }}</span>
                             <div class="main mt-4px ml-20px">
