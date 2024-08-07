@@ -11,18 +11,6 @@ const routes: Array<RouteRecordRaw> = [
     redirect: '/cockpit',
   },
   {
-    path: '/home',
-    name: 'home',
-    component: () => import('@/views/HomeView.vue'),
-    children: [
-      {
-        path: '/index',
-        name: 'index',
-        component: () => import('@/views/index/index.vue'),
-      },
-    ],
-  },
-  {
     path: '/login',
     name: 'Login',
     component: () => import('@/views/login/index.vue'),
