@@ -4,6 +4,7 @@ export const useSettingStore = defineStore('setting', () => {
   const indexConfig = ref({
     leftBottomSwiper: true, //左轮播
     rightBottomSwiper: true, //右下轮播
+    intervalUpdateData: false, // 是否开启定时更新数据
   });
   const defaultOption = ref({
     step: 4, // 数值越大速度滚动越快
@@ -16,6 +17,7 @@ export const useSettingStore = defineStore('setting', () => {
     singleWidth: 0, // 单步运动停止的宽度(默认值0是无缝不停止的滚动) direction => 2/3
     singleWaitTime: 3000, // 单步运动停止的时间(默认值1000ms)
     bgType: 'map', // 背景类型
+    intervalUpdateData: false, // 是否开启定时更新数据
   });
   // 背景控制
   const bgType = ref<'map' | 'threejs'>('threejs');

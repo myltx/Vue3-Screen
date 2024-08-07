@@ -5,6 +5,7 @@
   const isScaleRadio = ref(true);
   const leftBottomRadio = ref(true);
   const rightBottomRadio = ref(true);
+  const intervalUpdateData = ref(false);
   const settingStore = useSettingStore();
   const { indexConfig } = storeToRefs(settingStore);
 
@@ -14,6 +15,7 @@
 
     leftBottomRadio.value = indexConfig.value.leftBottomSwiper;
     rightBottomRadio.value = indexConfig.value.rightBottomSwiper;
+    intervalUpdateData.value = indexConfig.value.intervalUpdateData;
   };
   init();
   // const handleClose = () => {};
@@ -34,6 +36,7 @@
     settingStore.setIndexConfig({
       leftBottomSwiper: leftBottomRadio.value, //左轮播
       rightBottomSwiper: rightBottomRadio.value, //右下轮播
+      intervalUpdateData: intervalUpdateData.value, // 定时更新数据
     });
   };
   // function go(path: string) {
@@ -45,8 +48,8 @@
 </script>
 
 <template>
-  <a-drawer v-model:open="settingStore.settingShow" placement="right" size="360px">
-    <template #header>
+  <a-drawer v-model:open="settingStore.settingShow" placement="right">
+    <template #title>
       <h2 class="setting-title">设置</h2>
     </template>
     <template #default>
@@ -63,6 +66,18 @@
         </div>
       </div>
       <div class="left_shu">实时监测</div>
+      <div class="setting_item">
+        <span class="setting_label">
+          是否定时更新数据:
+          <span class="setting_label_tip"></span>
+        </span>
+        <div class="setting_content">
+          <a-radio-group v-model:value="intervalUpdateData" @change="indexRadioChange">
+            <a-radio :value="true">是</a-radio>
+            <a-radio :value="false">否</a-radio>
+          </a-radio-group>
+        </div>
+      </div>
       <div class="setting_item">
         <span class="setting_label"> 告警轮播: <span class="setting_label_tip"></span> </span>
         <div class="setting_content">

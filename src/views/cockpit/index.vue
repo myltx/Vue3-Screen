@@ -12,7 +12,6 @@
   const { startLoading, endLoading } = useLoadingStore();
   const { isLoading } = storeToRefs(useLoadingStore());
   const { videoList, videoModalValue } = storeToRefs(usePlayVideo());
-  console.log(videoList.value, 'videoList111');
   const { playVideo } = usePlayVideo();
 
   const mapRef = ref();
@@ -101,7 +100,7 @@
   }
 </script>
 <template>
-  <PageWrapper :title="'大屏示例页面'">
+  <PageWrapper :title="'大屏示例页面'" :show-setting="true">
     <Left v-if="!isLoading" v-motion-slide-left />
     <Right v-if="!isLoading" v-motion-slide-right />
     <Bottom v-if="!isLoading" v-motion-slide-visible-bottom />

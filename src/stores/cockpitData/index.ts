@@ -3,9 +3,15 @@ import { isFunction, isObject } from '@/utils/is';
 import { getModule } from '@/api/cockpit/cockpit';
 import { cloneDeep } from 'lodash-es';
 import { LocationQueryValue } from 'vue-router';
+import { useSettingStore } from '@/stores/index';
 
 const { createMessage } = useMessage();
 export const useCockpitDataStore = defineStore('cockpitData', () => {
+  const settingStore = useSettingStore();
+  const { indexConfig } = storeToRefs(settingStore);
+  const intervalUpdateData = computed(() => {
+    return indexConfig.value.intervalUpdateData;
+  });
   // 根据配置的 moduleKey 在页面动态获取数据
   const promiseList: Promise<any>[] = [];
   const kvLists = ref<{ [key: string]: any }>({});
@@ -111,12 +117,15 @@ export const useCockpitDataStore = defineStore('cockpitData', () => {
     moduleParam?: string | number | LocationQueryValue | LocationQueryValue[],
   ) {
     getALlModuleData(moduleKeys, callBack, moduleParam);
-    setInterval(
-      () => {
-        getALlModuleData(moduleKeys, callBack, moduleParam);
-      },
-      1000 * 10 * 5,
-    );
+    if (intervalUpdateData.value) {
+      setInterval(
+        () => {
+          console.log(intervalUpdateData.value, 'intervalUpdateData');
+          getALlModuleData(moduleKeys, callBack, moduleParam);
+        },
+        1000 * 60 * 5,
+      );
+    }
   }
   return {
     getALlModuleData,
