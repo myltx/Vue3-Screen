@@ -100,7 +100,7 @@
   }
 </script>
 <template>
-  <PageWrapper :title="'大屏示例页面'" :show-setting="true">
+  <PageWrapper :title="'大屏示例页面'">
     <Left v-if="!isLoading" v-motion-slide-left />
     <Right v-if="!isLoading" v-motion-slide-right />
     <Bottom v-if="!isLoading" v-motion-slide-visible-bottom />
