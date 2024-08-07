@@ -2,14 +2,10 @@
   import { BMap, BMarker, BPolygon, useAreaBoundary, BLabel } from 'vue3-baidu-map-gl';
   import MapIconActiveImg from '@/assets/images/map/map-icon-active.png';
   import MapIconImg from '@/assets/images/map/map-icon.png';
-  interface Marker {
-    lng: number;
-    lat: number;
-    icon?: any;
-  }
+
   const props = defineProps({
     markerList: {
-      type: Array<Marker>,
+      type: Array<{ [key: string]: any }>,
       default: () => [],
     },
     areaName: {

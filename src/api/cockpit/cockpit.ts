@@ -59,6 +59,16 @@ export function getFireDrillList(data: any) {
   });
 }
 
+// 获取视频列表
+export function getVideoDeviceList(data: { orgId?: string | number }) {
+  return Axios({
+    url: ServicePrefixEnum.SERVICE + '/cockpitDynamicData/getVideoDeviceList',
+    method: RequestEnum.POST,
+    meta: { 'Content-Type': ContentTypeEnum.FORM_URLENCODED },
+    data,
+  });
+}
+
 // 获取视频播放地址
 export function getVideoUrl(id: string | number) {
   return Axios({
