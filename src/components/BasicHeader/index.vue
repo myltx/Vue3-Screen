@@ -34,13 +34,13 @@
     <div class="title"> {{ title }} </div>
     <a-space class="other">
       <div
-        class="text-white b-1px b-#0a2b57 p-5px cursor-pointer rounded-5px font-bold"
+        class="text-white p-5px cursor-pointer rounded-5px font-bold go-back"
         v-if="showBack"
         @click="goBack"
       >
-        返回
+        运营侧
       </div>
-      <div class="date">{{ getDate() }}</div>
+      <!-- <div class="date">{{ getDate() }}</div> -->
       <div class="time">{{ time }}</div>
       <a-avatar size="large">
         <img src="@/assets/images/header/avatar.gif" alt="" class="avatar" />

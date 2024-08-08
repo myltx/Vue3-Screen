@@ -35,6 +35,15 @@
     align-items: center;
     justify-content: space-between;
     height: 100%;
+    .go-back {
+      width: 88px;
+      height: 32px;
+      background: url('@/assets/images/header/go-back-bg.png') no-repeat;
+      background-size: 100% 100%;
+      display: flex;
+      align-items: center;
+      text-indent: 13px;
+    }
     .date {
       font-family: PangMenZhengDao, PangMenZhengDao;
       font-weight: normal;
@@ -66,7 +75,7 @@
     }
   }
 }
-.footer-container{
+.footer-container {
   position: absolute;
   bottom: 10px;
   z-index: 9999;
