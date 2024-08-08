@@ -10,9 +10,9 @@ export function detail(data: any) {
   });
 }
 
-export function page(data: any) {
+export function page(data: any,orgId:any) {
   return Axios({
-    url: ServicePrefixEnum.COCKPIT + '/zhxf/h5/danger/reporting/page',
+    url: ServicePrefixEnum.COCKPIT + `/cockpitDynamicData/getDangerList?orgId=${orgId}`,
     method: RequestEnum.POST,
     data,
   });

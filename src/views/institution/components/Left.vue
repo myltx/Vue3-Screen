@@ -75,7 +75,7 @@ async function getPageList() {
     2: '未验收',
     3: '已整改',
   };
-  let res: any = await page({ currentPage: 1, pageSize: 20 });
+  let res: any = await page({ currentPage: 1, pageSize: 20 },route.query.orgId);
   if (res.code == 200) {
     hiddenList.value = res?.data?.dangerPageVOList || [];
   }
@@ -198,7 +198,7 @@ onMounted(() => {
           隐患
         </div>
       </div>
-      <div class="scroll">
+      <div class="scroll" v-if="alarmList.length">
         <div :class="['item', equipmentActive == 1 ? 'newItem' : '']" v-for="(item, index) in alarmList" :key="index">
           <div @click="handleListClick(item)">
             <div class="item-top">
@@ -224,6 +224,7 @@ onMounted(() => {
           </div>
         </div>
       </div>
+      <div v-if="!alarmList.length">暂无数据</div>
     </BasicBox>
   </div>
   <yhDetailModel :isVisible="isVisible" @closeModel="handleClose" :yhDetailData="yhDetailData" :yhData="yhData" />
