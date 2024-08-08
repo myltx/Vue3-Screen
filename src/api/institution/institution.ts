@@ -20,7 +20,7 @@ export function page(data: any) {
 
 export function getAlarmList(data: any) {
   return Axios({
-    url: ServicePrefixEnum.COCKPIT + '/cockpitDynamicData/getAlarmList?orgId=558933565715270917',
+    url: ServicePrefixEnum.COCKPIT + '/cockpitDynamicData/getAlarmList?orgId=560356386806981637',
     method: RequestEnum.POST,
     data,
   });
