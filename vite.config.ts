@@ -9,6 +9,7 @@ import Components from 'unplugin-vue-components/vite';
 import { AntDesignVueResolver } from 'unplugin-vue-components/resolvers';
 import topLevelAwait from 'vite-plugin-top-level-await';
 import MonacoEditorNlsPlugin from 'vite-plugin-monaco-editor';
+import progress from 'vite-plugin-progress';
 //https://github.com/element-plus/unplugin-element-plus/blob/HEAD/README.zh-CN.md
 // vite.config.ts
 import UnoCSS from 'unocss/vite';
@@ -25,6 +26,7 @@ export default defineConfig(({ command, mode }: ConfigEnv): UserConfig => {
   return {
     base: VITE_PUBLIC_PATH,
     plugins: [
+      progress(),
       MonacoEditorNlsPlugin({
         languageWorkers: ['json'],
       }),
