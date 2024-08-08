@@ -224,7 +224,7 @@ onMounted(() => {
           </div>
         </div>
       </div>
-      <div v-if="!alarmList.length">暂无数据</div>
+      <div v-if="!alarmList.length" class="mt-20px">暂无数据</div>
     </BasicBox>
   </div>
   <yhDetailModel :isVisible="isVisible" @closeModel="handleClose" :yhDetailData="yhDetailData" :yhData="yhData" />
