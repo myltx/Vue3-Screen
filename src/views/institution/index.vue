@@ -4,7 +4,6 @@
   import { useCockpitDataStore } from '@/stores/cockpitData';
   import { moduleKeys } from './config';
   import { usePlayVideo } from '@/stores/videoPlay';
-  import { ParentDataType } from 'types/components.common';
 
   const route = useRoute();
   const { name, orgId, back } = route.query;

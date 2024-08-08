@@ -1,7 +1,6 @@
 <script setup lang="ts">
   import dayjs from 'dayjs';
   import { useCockpitDataStore } from '@/stores/cockpitData';
-  import { ParentDataType } from 'types/components.common';
 
   interface AlarmListType {
     content: number | string;

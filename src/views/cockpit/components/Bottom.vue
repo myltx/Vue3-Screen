@@ -1,6 +1,5 @@
 <script setup lang="ts">
   import { useCockpitDataStore } from '@/stores/cockpitData';
-  import { ParentDataType } from 'types/components.common';
 
   const parentData = inject('data') as ParentDataType;
   const { showMore } = parentData;

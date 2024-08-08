@@ -113,12 +113,13 @@ export default defineConfig(({ command, mode }: ConfigEnv): UserConfig => {
     },
     build: {
       outDir: 'dist',
-      target: 'esnext',
-      rollupOptions: {
-        output: {
-          manualChunks: {},
-        },
-      },
+      sourcemap: true,
+      // target: 'modules',
+      // rollupOptions: {
+      //   output: {
+      //     manualChunks: {},
+      //   },
+      // },
     },
   };
 });

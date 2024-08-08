@@ -5,7 +5,6 @@
   import { useCockpitDataStore } from '@/stores/cockpitData';
   import MapIconImg from '@/assets/images/map/map-icon.png';
   import { modalType, moduleKeys } from './config';
-  import { ParentDataType } from 'types/components.common';
   import { usePlayVideo } from '@/stores/videoPlay';
 
   const router = useRouter();

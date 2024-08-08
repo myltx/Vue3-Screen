@@ -26,3 +26,9 @@ interface ModuleKeyType {
 }
 
 type TimeProp = NodeJS.Timeout;
+
+declare interface ParentDataType {
+  videoList: any;
+  showMore: Function;
+  playVideo: Function;
+}

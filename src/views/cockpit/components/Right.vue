@@ -2,7 +2,6 @@
   import dayjs from 'dayjs';
   import { useCockpitDataStore } from '@/stores/cockpitData';
   import { default_chart_colors } from '@/helper';
-  import { ParentDataType } from 'types/components.common';
 
   const parentData = inject('data') as ParentDataType;
   const { showMore } = parentData;

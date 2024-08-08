@@ -1,6 +1,5 @@
 <script setup lang="ts">
   import { DoubleRightOutlined, PlayCircleOutlined } from '@ant-design/icons-vue';
-  import { ParentDataType } from 'types/components.common';
 
   const parentData: any = inject('data') as ParentDataType;
   const { videoList, playVideo } = parentData;
