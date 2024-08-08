@@ -9,7 +9,7 @@
   import YZG_IMG from '@/assets/images/institution/dzg.png';
 
   import dayjs from 'dayjs';
-  import { page, detail } from '@/api/institution/institution';
+  import { page, detail, getAlarmList, alarmSingle } from '@/api/institution/institution';
   import yhDetailModel from './yhDetailModel.vue';
   import detailModel from './detailModel.vue';
   import decryptString from '@/utils/jnpf';
@@ -90,7 +90,11 @@
     }
   }
   generateList();
-  function generateList() {
+  async function generateList() {
+    // let res: any = await getAlarmList({ currentPage: 1, pageSize: 20});
+    // if (res.code == 200) {
+    //   alarmList.value = res.data
+    // }
     const statusTextMap: {
       [key in number]: string;
     } = {

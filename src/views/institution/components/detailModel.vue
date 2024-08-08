@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { alarmSingle, getDictionaryTypeSelector } from '@/api/institution/institution';
 const props = defineProps({
     isVisible: {
         type: Boolean,
@@ -9,13 +10,33 @@ watch(
     () => props.isVisible,
     (value) => {
         openModal.value = value
+        if (value) {
+            getDictionaryTypeSelector("sbgjcl").then((res) => {
+                radioList.value = res?.data?.list || []
+                console.log(radioList.value, '====')
+            });
+        }
+
     },
 );
+const radioType = ref<number>();
+const radioStyle = reactive({
+    height: '30px',
+    lineHeight: '30px',
+    color: 'rgba(255, 255, 255, 0.6)'
+});
 const emits = defineEmits(['closeModel']);
 const openModal = ref<boolean>(false)
-const radioType = ref<any>()
 const remark = ref<string>('')
-const handleSubmit = () => {
+const radioList = ref<any>([])
+const handleSubmit = async () => {
+    if (radioType.value) {
+        await alarmSingle({
+            alarmId: '',
+            wbResult: radioType.value,
+            wbMark: remark.value
+        })
+    }
 
 }
 const handleClose = () => {
@@ -55,9 +76,16 @@ const handleClose = () => {
                 <div class="middle-container ml-4px mb-8px mt-4px">
                     <span class="icon">*</span>
                     <span class="tip">处理结果：</span>
+                    <a-radio-group v-model:value="radioType">
+                        <a-radio v-for="(item, index) in radioList" :key="index" :style="radioStyle"
+                            :value="item.enCode">{{ item.fullName
+                            }}</a-radio>
+                    </a-radio-group>
+                    <!-- <span class="icon">*</span>
+                    <span class="tip">处理结果：</span>
                     <div class="mt-4px flex">
                         <div class="w-112px">
-                            <input type="radio" name="type" />
+                            <input type="radio" name="type" value="1"/>
                             <span class="tip mr-10px ml-6px">有效告警</span>
                         </div>
                         <div class="w-112px">
@@ -68,17 +96,7 @@ const handleClose = () => {
                             <input type="radio" name="type" />
                             <span class="tip mr-10px ml-6px">测试</span>
                         </div>
-
-                        <!-- <input type="radio" name="type" />
-                        <span class="tip mr-10px">误报</span>
-                        <input type="radio" name="type" />
-                        <span class="tip mr-10px">测试</span> -->
-                        <!-- <a-radio-group name="radioGroup" v-model:value="radioType">
-                            <a-radio value="1">有效告警</a-radio>
-                            <a-radio value="2">误报</a-radio>
-                            <a-radio value="3">测试</a-radio>
-                        </a-radio-group> -->
-                    </div>
+                    </div> -->
                 </div>
                 <div class="flex middle-container ml-4px mb-8px mt-12px">
                     <span class="tip">备注：</span>
