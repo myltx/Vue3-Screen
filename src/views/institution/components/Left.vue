@@ -13,6 +13,7 @@ import { page, detail, getAlarmList, alarmSingle } from '@/api/institution/insti
 import yhDetailModel from './yhDetailModel.vue';
 import detailModel from './detailModel.vue';
 import decryptString from '@/utils/jnpf';
+const route = useRoute();
 
 type ClickType = 'equipment';
 interface AlarmListType {
@@ -103,7 +104,7 @@ async function generateList() {
     3: '重要告警',
     2: '紧急告警',
   };
-  let res: any = await getAlarmList({ currentPage: 1, pageSize: 20, processStatus: 0 });
+  let res: any = await getAlarmList({ currentPage: 1, pageSize: 20, processStatus: 0 },route.query.orgId);
   if (res.code == 200) {
     hiddenList.value = res.data || []
   }

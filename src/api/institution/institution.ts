@@ -18,9 +18,9 @@ export function page(data: any) {
   });
 }
 
-export function getAlarmList(data: any) {
+export function getAlarmList(data: any,orgId:any) {
   return Axios({
-    url: ServicePrefixEnum.COCKPIT + '/cockpitDynamicData/getAlarmList?orgId=560356386806981637',
+    url: ServicePrefixEnum.COCKPIT + `/cockpitDynamicData/getAlarmList?orgId=${orgId}`,
     method: RequestEnum.POST,
     data,
   });
