@@ -23,6 +23,8 @@ interface AlarmListType {
   subscribe: number | string;
   name?: string;
   dangerId?: string;
+  alarmId?: string;
+  alarmName?: string;
 }
 
 const statusImgMap: {
@@ -62,6 +64,7 @@ const isVisible = ref<boolean>(false);
 const isAlarmVisible = ref<boolean>(false);
 const yhDetailData = ref<any>({});
 const yhData = ref<any>({});
+const gjDetailData = ref<any>({})
 async function getPageList() {
   hiddenList.value = [];
   const statusTextMap: {
@@ -112,7 +115,8 @@ async function generateList() {
         subscribe: item?.placeName,
         statusText: statusTextMap[item.param],
         status: item.param,
-        dangerId: item?.dangerId,
+        alarmId: item?.alarmId,
+        alarmName: item?.alarmName
       })
     })
   }
@@ -130,6 +134,7 @@ function getRandomInt(min: number, max: number) {
 }
 async function handleListClick(item: any) {
   if (equipmentActive.value == 0) {
+    gjDetailData.value = item;
     isAlarmVisible.value = true;
   } else {
     let res: any = await detail({ dangerId: item.dangerId });
@@ -221,7 +226,7 @@ onMounted(() => {
     </BasicBox>
   </div>
   <yhDetailModel :isVisible="isVisible" @closeModel="handleClose" :yhDetailData="yhDetailData" :yhData="yhData" />
-  <detailModel :isVisible="isAlarmVisible" @closeModel="handleAlarmClose" />
+  <detailModel :isVisible="isAlarmVisible" @closeModel="handleAlarmClose" :gjDetailData="gjDetailData"/>
 </template>
 
 <style scoped lang="scss">

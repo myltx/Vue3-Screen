@@ -1,10 +1,17 @@
 <script setup lang="ts">
+import NORMAL_IMG from '@/assets/images/business/normal.png';
+import MIDDLE_IMG from '@/assets/images/business/middle.png';
+import HEIGHT_IMG from '@/assets/images/business/height.png';
 import { alarmSingle, getDictionaryTypeSelector } from '@/api/institution/institution';
 const props = defineProps({
     isVisible: {
         type: Boolean,
         default: false,
     },
+    gjDetailData: {
+        type: Object,
+        default: () => { }
+    }
 });
 watch(
     () => props.isVisible,
@@ -25,6 +32,20 @@ const radioStyle = reactive({
     lineHeight: '30px',
     color: 'rgba(255, 255, 255, 0.6)'
 });
+const statusImgMap: {
+    [key in number]: string;
+} = {
+    4: NORMAL_IMG,
+    3: MIDDLE_IMG,
+    2: HEIGHT_IMG,
+};
+const statusClass: {
+    [key in number]: string;
+} = {
+    4: 'normal',
+    3: 'middle',
+    2: 'height',
+};
 const emits = defineEmits(['closeModel']);
 const openModal = ref<boolean>(false)
 const remark = ref<string>('')
@@ -48,30 +69,32 @@ const handleClose = () => {
         <BasicModal v-model:modalValue="openModal" :title="'告警详情'" @closed="handleClose">
             <div class="ml-34px mr-34px main-container">
                 <div class="top-container">
-                    <div class="flex">
-                        <img src="@/assets/images/institution/gjxq.png" alt="">
-                        <span class="category">普通告警</span>
+                    <div class="flex mb-10px">
+                        <img :src="statusImgMap[gjDetailData.status]" alt="" />
+                        <span :class="statusClass[gjDetailData.status]">{{
+                            gjDetailData.statusText
+                        }}</span>
                     </div>
                     <div class="btn-container">
                         <span class="tip" @click="handleSubmit">确定</span>
                     </div>
                 </div>
-                <span class="title">设备：11号智能烟感设备</span>
+                <span class="title">{{ gjDetailData.content }}</span>
                 <div class="tip-container">
                     <div class="bg"></div>
                     <div class="title">告警信息</div>
                 </div>
                 <div class="middle-container ml-4px mb-8px">
                     <span class="tip">告警时间：</span>
-                    <span class="time ml-8px">2023-11-02 16:42:45</span>
+                    <span class="time ml-8px">{{ gjDetailData.date }}</span>
                 </div>
                 <div class="middle-container ml-4px mb-8px">
                     <span class="tip">告警场所：</span>
-                    <span class="time ml-8px">托养一区/一层101活动室</span>
+                    <span class="time ml-8px">{{ gjDetailData.subscribe }}</span>
                 </div>
                 <div class="middle-container ml-4px mb-8px">
                     <span class="tip">告警内容：</span>
-                    <span class="time ml-8px">回南天、雨季到来等引发机房天花板、墙体、</span>
+                    <span class="time ml-8px">{{ gjDetailData.alarmName }}</span>
                 </div>
                 <div class="middle-container ml-4px mb-8px mt-4px">
                     <span class="icon">*</span>

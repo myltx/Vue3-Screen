@@ -3,6 +3,45 @@
         display: flex;
         justify-content: space-between;
 
+        img {
+            width: 39px;
+            height: 39px;
+            margin-right: 10px;
+        }
+
+        .normal {
+            font-family: PangMenZhengDao, PangMenZhengDao;
+            font-weight: normal;
+            font-size: 24px;
+            color: #69ddff;
+            line-height: 38px;
+            letter-spacing: 2px;
+            text-align: left;
+            font-style: normal;
+        }
+
+        .middle {
+            font-family: PangMenZhengDao, PangMenZhengDao;
+            font-weight: normal;
+            font-size: 24px;
+            color: #f3b158;
+            line-height: 38px;
+            letter-spacing: 2px;
+            text-align: left;
+            font-style: normal;
+        }
+
+        .height {
+            font-family: PangMenZhengDao, PangMenZhengDao;
+            font-weight: normal;
+            font-size: 24px;
+            color: #dd5858;
+            line-height: 38px;
+            letter-spacing: 2px;
+            text-align: left;
+            font-style: normal;
+        }
+
         .category {
             margin-left: 10px;
             width: 104px;
