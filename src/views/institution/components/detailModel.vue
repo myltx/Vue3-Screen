@@ -3,6 +3,8 @@ import NORMAL_IMG from '@/assets/images/business/normal.png';
 import MIDDLE_IMG from '@/assets/images/business/middle.png';
 import HEIGHT_IMG from '@/assets/images/business/height.png';
 import { alarmSingle, getDictionaryTypeSelector } from '@/api/institution/institution';
+import { useMessage } from '@/hooks/useMessage';
+const { createMessage, notification } = useMessage();
 const props = defineProps({
     isVisible: {
         type: Boolean,
@@ -52,11 +54,18 @@ const remark = ref<string>('')
 const radioList = ref<any>([])
 const handleSubmit = async () => {
     if (radioType.value) {
-        await alarmSingle({
-            alarmId: '',
+        let res = await alarmSingle({
+            alarmId: props.gjDetailData.alarmId,
             wbResult: radioType.value,
             wbMark: remark.value
         })
+        if(res.code == 200){
+            createMessage.success('操作成功');
+            openModal.value = false
+            emits('closeModel', false)
+        }else {
+            createMessage.error(`${res.msg}`);
+        }
     }
 
 }
