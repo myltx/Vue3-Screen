@@ -4,7 +4,9 @@
   "scripts": {
     "dev": "vite",
     "build:old": "run-p type-check build-only",
-    "build": "vite build",
+    "build": "vite build && tar -zcvf cockpit-web.tar.gz dist",
+    "build:dev": "vite build",
+    "build:test": "vite build",
     "preview": "vite preview --port 4173",
     "build-only": "vite build",
     "type-check": "vue-tsc --noEmit",
