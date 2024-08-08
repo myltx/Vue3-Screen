@@ -13,6 +13,7 @@ import { page, detail, getAlarmList, alarmSingle } from '@/api/institution/insti
 import yhDetailModel from './yhDetailModel.vue';
 import detailModel from './detailModel.vue';
 import decryptString from '@/utils/jnpf';
+import { getFileUrl } from '@/utils';
 const route = useRoute();
 
 type ClickType = 'equipment';
@@ -60,6 +61,7 @@ const statusHiddenClass: {
 const equipmentActive = ref(0);
 const option = ref({});
 const alarmList = ref<AlarmListType[]>([]);
+const imgList = ref<any>([])
 const hiddenList = ref<any>([]);
 const isVisible = ref<boolean>(false);
 const isAlarmVisible = ref<boolean>(false);
@@ -138,11 +140,20 @@ async function handleListClick(item: any) {
     gjDetailData.value = item;
     isAlarmVisible.value = true;
   } else {
+    imgList.value = []
     let res: any = await detail({ dangerId: item.dangerId });
     yhDetailData.value = res.data;
+    let imgTempList = JSON.parse(yhDetailData.value?.sffFireDangerDTO?.dangerFile) || []
+    if(imgTempList.length){
+      imgTempList.map((item:any)=>{
+        if(item.url){
+          imgList.value.push(getFileUrl(item.url))
+        }
+      })
+    }
     yhData.value = item;
     isVisible.value = true;
-    console.log(JSON.parse(yhDetailData.value?.sffFireDangerDTO?.dangerFile), '详情======');
+    console.log(imgList.value,'imglist')
   }
   // openMapModal.value = true
 }
