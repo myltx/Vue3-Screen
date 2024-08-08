@@ -8,6 +8,9 @@ dependencies:
   '@ant-design/icons-vue':
     specifier: ^7.0.1
     version: 7.0.1(vue@3.4.31)
+  '@types/crypto-js':
+    specifier: ^4.2.2
+    version: 4.2.2
   '@unocss/reset':
     specifier: ^0.53.6
     version: 0.53.6
@@ -1236,6 +1239,10 @@ packages:
     dependencies:
       '@types/tern': 0.23.9
     dev: true
+
+  /@types/crypto-js@4.2.2:
+    resolution: {integrity: sha512-sDOLlVbHhXpAUAL0YHDUUwDZf3iN4Bwi4W6a0W0b+QcAezUbRtH4FVb+9J4h+XFPW7l/gQ9F8qC7P+Ec4k8QVQ==}
+    dev: false
 
   /@types/estree@1.0.5:
     resolution: {integrity: sha512-/kYRxGDLWzHOB7q+wtSUQlFrtcdUccpfy+X+9iMBpHK8QLLhx2wIPYuS5DYtR9Wa/YlZAbIovy7qVdB1Aq6Lyw==}
@@ -5757,7 +5764,7 @@ packages:
     dependencies:
       acorn: 8.12.1
       estree-walker: 3.0.3
-      magic-string: 0.30.11
+      magic-string: 0.30.10
       unplugin: 1.11.0
     dev: false
     optional: true
