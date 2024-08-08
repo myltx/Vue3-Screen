@@ -8,7 +8,7 @@
   const route = useRoute();
   const router = useRouter();
   const { startLoading, endLoading } = useLoadingStore();
-  const { createMessage } = useMessage();
+  const { createMessage, notification } = useMessage();
   const { token, orgId, name } = route.query;
   startLoading();
   if (!token) {
@@ -24,7 +24,12 @@
     getUserCurrentInfo().then((res: any) => {
       if (res.code == 200) {
         setUserInfo(res.data);
-        createMessage.success('登录成功');
+        // createMessage.success('登录成功');
+        notification.success({
+          message: '登录成功',
+          description: '欢迎回来，' + res.data?.userInfo?.userName + '！',
+          duration: 4,
+        });
         // 跳转页面
         setTimeout(() => {
           endLoading();
