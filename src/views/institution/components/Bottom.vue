@@ -5,6 +5,7 @@
   import { Vue3SeamlessScroll } from 'vue3-seamless-scroll';
   import xfDetailModel from './xfDetailModel.vue';
   import { getFileUrl } from '@/utils';
+  import CarouselDefaultImg from '@/assets/images/institution/carousel-default.png';
 
   const route = useRoute();
   const { orgId } = route.query;
@@ -14,7 +15,7 @@
   const { indexConfig } = storeToRefs(settingStore);
   const alarmList = ref<any[]>([]);
   const isVisible = ref<boolean>(false);
-  const xfDetailData = ref<any>([])
+  const xfDetailData = ref<any>([]);
   const fileList = ref<any>([]);
 
   const isScroll = computed(() => {
@@ -24,10 +25,8 @@
     isVisible.value = val;
   }
   async function handleListClick(item: any) {
-    xfDetailData.value = item
-    console.log(item,'item======')
+    xfDetailData.value = item;
     isVisible.value = true;
-    // openMapModal.value = true
   }
 
   getFireDrillList({
@@ -48,6 +47,13 @@
         }
       });
       alarmList.value = res.data || [];
+      if (!fileList.value.length) {
+        fileList.value = [
+          {
+            url: CarouselDefaultImg,
+          },
+        ];
+      }
     }
   });
 </script>
@@ -144,7 +150,7 @@
       </BasicBox>
     </div>
   </div>
-  <xfDetailModel :isVisible="isVisible" @closeModel="handleClose" :xfDetailData="xfDetailData"/>
+  <xfDetailModel :isVisible="isVisible" @closeModel="handleClose" :xfDetailData="xfDetailData" />
 </template>
 
 <style scoped lang="scss">
