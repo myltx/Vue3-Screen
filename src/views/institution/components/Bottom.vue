@@ -121,7 +121,7 @@
     </div>
     <div class="w-50% bg-#112034">
       <BasicBox :title="getModuleName('fireDrillAndTraining')" :width="'50%'" :height="'200px'">
-        <div class="flex h-90%">
+        <div class="flex h-90% w-100%">
           <div class="swipter-container">
             <a-carousel autoplay>
               <div class="h-100%" v-for="img in fileList" :key="img.fileId">
@@ -130,21 +130,24 @@
             </a-carousel>
           </div>
           <div class="right-container">
-            <div class="item-container" v-for="events in alarmList" :key="events.id">
-              <div
-                class="flex items-center justify-between cursor-pointer item"
-                @click="handleListClick(events)"
-              >
-                <div :class="['catagory', events.type == '消防培训' ? 'active' : '']">
-                  <span>
-                    {{ events.type }}
-                  </span>
+            <template v-if="!alarmList.length">
+              <div class="item-container" v-for="events in alarmList" :key="events.id">
+                <div
+                  class="flex items-center justify-between cursor-pointer item"
+                  @click="handleListClick(events)"
+                >
+                  <div :class="['catagory', events.type == '消防培训' ? 'active' : '']">
+                    <span>
+                      {{ events.type }}
+                    </span>
+                  </div>
+                  <div class="title">{{ events.name }}</div>
+                  <div class="time">{{ events.sign_time }}</div>
                 </div>
-                <div class="title">{{ events.name }}</div>
-                <div class="time">{{ events.sign_time }}</div>
+                <div class="location">{{ events.address }}</div>
               </div>
-              <div class="location">{{ events.address }}</div>
-            </div>
+            </template>
+            <Empty v-else />
           </div>
         </div>
       </BasicBox>
