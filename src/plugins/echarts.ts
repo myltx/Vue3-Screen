@@ -20,6 +20,8 @@ import {
   GeoComponent,
   MarkPointComponent,
 } from 'echarts/components';
+// import { Scatter3DChart } from 'echarts-gl/charts';
+// import { Grid3DComponent } from 'echarts-gl/components';
 
 use([
   CanvasRenderer,
@@ -40,5 +42,5 @@ use([
 ]);
 
 export const registerEcharts = (app: any) => {
-  app.component('v-chart', ECharts);
+  app.component('VChart', ECharts);
 };

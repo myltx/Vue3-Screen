@@ -37,12 +37,10 @@ const httpServer = (config: any) => {
   //   http 默认配置
   const method = config?.method.toUpperCase();
   let baseURL = '';
-  const protocol = window.location.protocol;
-  const host = window.location.host;
-  if (host.split(':')[0] === 'localhost') {
+  if (import.meta.env.DEV) {
     baseURL = import.meta.env.VITE_GLOB_API_URL;
   } else {
-    baseURL = `${protocol}//${host}${import.meta.env.VITE_GLOB_API_URL}`;
+    baseURL = `${window.location.origin}${import.meta.env.VITE_GLOB_API_URL}`;
   }
   const httpDefaultOpts: any = {
     method,

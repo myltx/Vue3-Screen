@@ -1,5 +1,6 @@
 <script setup lang="ts">
   import { RouterView } from 'vue-router';
+  console.log(12312312321313, '12313');
 </script>
 
 <template>

@@ -67,7 +67,7 @@
         color: default_chart_colors[index],
       };
       item.value = item.value * 1;
-      threeChartRef.value.initChart(forewarningList.value);
+      // threeChartRef.value.initChart(forewarningList.value);
     });
   };
 </script>
