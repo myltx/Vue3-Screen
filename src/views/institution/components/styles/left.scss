@@ -387,4 +387,7 @@
       height: 150px;
     }
   }
+  .scroll::-webkit-scrollbar {
+    width: 5px; //修改滚动条宽度
+  }
 }
