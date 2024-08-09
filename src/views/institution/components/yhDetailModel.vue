@@ -78,7 +78,8 @@ const handleClose = () => {
           <div class="mt-16px">
             <a-tooltip>
               <template #title>【隐患描述】{{ yhDetailData?.sffFireDangerDTO?.dangerRemark }}</template>
-              <div class="detail text-ellipsis">【隐患描述】{{ yhDetailData?.sffFireDangerDTO?.dangerRemark }}</div>
+              <div class="detail" style="overflow: hidden;text-overflow: ellipsis;display: -webkit-box;-webkit-box-orient: vertical;-webkit-line-clamp: 2;
+              ">【隐患描述】{{ yhDetailData?.sffFireDangerDTO?.dangerRemark }}</div>
             </a-tooltip>
             <!-- <div class="detail text-ellipsis">【隐患描述】{{ yhDetailData?.sffFireDangerDTO?.dangerRemark }}</div> -->
           </div>
