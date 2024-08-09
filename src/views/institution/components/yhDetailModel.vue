@@ -76,7 +76,7 @@ const handleClose = () => {
             }}</span>
           </div>
           <div class="mt-16px">
-            <span class="detail">【隐患描述】{{ yhDetailData?.sffFireDangerDTO?.dangerRemark }}</span>
+            <div class="detail text-ellipsis">【隐患描述】{{ yhDetailData?.sffFireDangerDTO?.dangerRemark }}</div>
           </div>
           <div class="tip-container mt-20px">
             <div class="bg"></div>
@@ -98,7 +98,7 @@ const handleClose = () => {
           </div>
           <div class="middle-container ml-4px mb-8px flex">
             <span class="fj">附件：</span>
-            <span class="img-container flex mr-40px">
+            <span class="img-container flex">
               <img v-for="(item, index) in imgList" :key="index" :src="item" alt="" class="img">
             </span>
           </div>

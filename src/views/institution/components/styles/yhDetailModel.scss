@@ -20,7 +20,7 @@
 
         .detail {
             width: 240px;
-            height: 56px;
+            // height: 56px;
             font-family: PingFangSC, PingFang SC;
             font-weight: 500;
             font-size: 20px;
@@ -85,11 +85,14 @@
             }
 
             .img-container {
-                width: calc(100% - 100px);
+                display: flex;
+                flex-wrap: wrap;
+                width: calc(100% - 60px);
 
                 .img {
-                    margin-left: 8px;
-                    width: 30%;
+                    padding-right: 8px;
+                    padding-bottom: 8px;
+                    width: 33%;
                 }
             }
 
@@ -269,4 +272,9 @@
         text-align: left;
         font-style: normal;
     }
+}
+.text-ellipsis {
+    text-overflow:ellipsis;
+    white-space:nowrap;
+    overflow:hidden;
 }
