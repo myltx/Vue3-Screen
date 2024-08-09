@@ -64,6 +64,7 @@ const handleSubmit = async () => {
             createMessage.success('操作成功');
             openModal.value = false
             radioType.value = ''
+            remark.value = ''
             emits('closeModel', false)
         }else {
             createMessage.error(`${res.msg}`);
@@ -73,6 +74,7 @@ const handleSubmit = async () => {
 }
 const handleClose = () => {
     radioType.value = ''
+    remark.value = ''
     emits('closeModel', false)
 }
 </script>
