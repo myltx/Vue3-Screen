@@ -130,7 +130,7 @@
             </a-carousel>
           </div>
           <div class="right-container">
-            <template v-if="!alarmList.length">
+            <template v-if="alarmList.length">
               <div class="item-container" v-for="events in alarmList" :key="events.id">
                 <div
                   class="flex items-center justify-between cursor-pointer item"
