@@ -70,13 +70,17 @@ const handleClose = () => {
       <div class="ml-16px mr-34px main-container flex">
         <div class="left-container w-50%">
           <div class="left-title flex">
-            <img :src="statusHiddenImgMap[yhData.status]" alt="" class="mr-4px"/>
+            <img :src="statusHiddenImgMap[yhData.status]" alt="" class="mr-4px" />
             <span :class="statusHiddenClass[yhData.status]">{{
               yhData.statusText
             }}</span>
           </div>
           <div class="mt-16px">
-            <div class="detail text-ellipsis">【隐患描述】{{ yhDetailData?.sffFireDangerDTO?.dangerRemark }}</div>
+            <a-tooltip>
+              <template #title>【隐患描述】{{ yhDetailData?.sffFireDangerDTO?.dangerRemark }}</template>
+              <div class="detail text-ellipsis">【隐患描述】{{ yhDetailData?.sffFireDangerDTO?.dangerRemark }}</div>
+            </a-tooltip>
+            <!-- <div class="detail text-ellipsis">【隐患描述】{{ yhDetailData?.sffFireDangerDTO?.dangerRemark }}</div> -->
           </div>
           <div class="tip-container mt-20px">
             <div class="bg"></div>
