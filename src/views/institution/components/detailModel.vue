@@ -22,6 +22,7 @@ watch(
         if (value) {
             getDictionaryTypeSelector("sbgjcl").then((res) => {
                 radioList.value = res?.data?.list || []
+                radioType.value = radioList.value[0].enCode
                 console.log(radioList.value, '====')
             });
         }
@@ -84,7 +85,7 @@ const handleClose = () => {
                         <img :src="statusImgMap[gjDetailData.status]" alt="" />
                         <span :class="statusClass[gjDetailData.status]">{{
                             gjDetailData.statusText
-                        }}</span>
+                            }}</span>
                     </div>
                     <div class="btn-container">
                         <span class="tip" @click="handleSubmit">确定</span>
