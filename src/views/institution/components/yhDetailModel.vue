@@ -1,6 +1,9 @@
 <script setup lang="ts">
 import dayjs from 'dayjs';
 import decryptString from '@/utils/jnpf';
+import DZG_IMG from '@/assets/images/institution/dzg.png';
+import WYS_IMG from '@/assets/images/institution/dys.png';
+import YZG_IMG from '@/assets/images/institution/dzg.png';
 const props = defineProps({
   isVisible: {
     type: Boolean,
@@ -36,6 +39,27 @@ const rectificationProgressType: {
   4: '待验收',
   5: '已整改',
 };
+const statusTextMap: {
+  [key in number]: string;
+} = {
+  1: '待整改',
+  2: '待验收',
+  3: '已整改',
+};
+const statusHiddenImgMap: {
+  [key in number]: string;
+} = {
+  1: DZG_IMG,
+  2: WYS_IMG,
+  3: YZG_IMG,
+};
+const statusHiddenClass: {
+  [key in number]: string;
+} = {
+  1: 'dzg',
+  2: 'wys',
+  3: 'yzg',
+};
 const handleClose = () => {
   emits('closeModel', false);
 };
@@ -45,14 +69,10 @@ const handleClose = () => {
     <BasicModal v-model:modalValue="openModal" :title="'隐患记录详情'" @closed="handleClose">
       <div class="ml-16px mr-34px main-container flex">
         <div class="left-container w-50%">
-          <div class="flex">
-            <img src="@/assets/images/institution/yhxq.png" alt="" width="47px" height="46px" />
-            <span class="category">{{
-              yhDetailData?.dangerStatus == 0
-                ? '待整改'
-                : yhDetailData?.dangerStatus == 1
-                  ? '待验收'
-                  : '已整改'
+          <div class="left-title flex">
+            <img :src="statusHiddenImgMap[yhData.status]" alt="" class="mr-4px"/>
+            <span :class="statusHiddenClass[yhData.status]">{{
+              yhData.statusText
             }}</span>
           </div>
           <div class="mt-16px">

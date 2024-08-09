@@ -114,7 +114,7 @@
             height: 100%;
             border-left: 1px dashed #5DABD9;
         }
-        
+
         .no-border {
             border-left: none;
         }
@@ -231,5 +231,42 @@
         }
     }
 
+    .dzg {
+        width: 78px;
+        height: 24px;
+        font-family: PangMenZhengDao, PangMenZhengDao;
+        font-weight: normal;
+        font-size: 24px;
+        color: #69DDFF;
+        line-height: 46px;
+        letter-spacing: 2px;
+        text-align: left;
+        font-style: normal;
+    }
 
+    .wys {
+        width: 78px;
+        height: 24px;
+        font-family: PangMenZhengDao, PangMenZhengDao;
+        font-weight: normal;
+        font-size: 24px;
+        color: #00D48A;
+        line-height: 46px;
+        letter-spacing: 2px;
+        text-align: left;
+        font-style: normal;
+    }
+
+    .yzg {
+        width: 78px;
+        height: 24px;
+        font-family: PangMenZhengDao, PangMenZhengDao;
+        font-weight: normal;
+        font-size: 24px;
+        color: #69DDFF;
+        line-height: 46px;
+        letter-spacing: 2px;
+        text-align: left;
+        font-style: normal;
+    }
 }
