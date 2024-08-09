@@ -107,5 +107,12 @@
       border: 1px solid #2baaff;
       backdrop-filter: blur(4px);
     }
+    .modal-content {
+      overflow: -moz-scrollbars-none;
+      -ms-overflow-style: none;
+      &::-webkit-scrollbar {
+        width: 0 !important;
+      }
+    }
   }
 </style>
