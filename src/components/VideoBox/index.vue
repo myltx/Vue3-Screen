@@ -26,7 +26,7 @@
           />
         </div>
       </template>
-      <div v-else class="text-center w-100% text-#999 text-20px">暂无监控</div>
+      <Empty v-else :text="'暂无监控'" />
     </div>
   </BasicBox>
 </template>
