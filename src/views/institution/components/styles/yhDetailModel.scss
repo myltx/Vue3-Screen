@@ -72,6 +72,27 @@
                 font-style: normal;
             }
 
+            .fj {
+                display: inline-block;
+                height: 21px;
+                font-family: PingFangSC, PingFang SC;
+                font-weight: 400;
+                font-size: 15px;
+                color: #FFFFFF;
+                line-height: 21px;
+                text-align: left;
+                font-style: normal;
+            }
+
+            .img-container {
+                width: calc(100% - 100px);
+
+                .img {
+                    margin-left: 8px;
+                    width: 30%;
+                }
+            }
+
             .time {
                 width: 149px;
                 height: 21px;
@@ -93,7 +114,8 @@
             height: 100%;
             border-left: 1px dashed #5DABD9;
         }
-        .no-border{
+        
+        .no-border {
             border-left: none;
         }
 

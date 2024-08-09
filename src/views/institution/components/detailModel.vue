@@ -28,7 +28,7 @@ watch(
 
     },
 );
-const radioType = ref<number>();
+const radioType = ref<any>();
 const radioStyle = reactive({
     height: '30px',
     lineHeight: '30px',
@@ -62,6 +62,7 @@ const handleSubmit = async () => {
         if(res.code == 200){
             createMessage.success('操作成功');
             openModal.value = false
+            radioType.value = ''
             emits('closeModel', false)
         }else {
             createMessage.error(`${res.msg}`);
@@ -70,6 +71,7 @@ const handleSubmit = async () => {
 
 }
 const handleClose = () => {
+    radioType.value = ''
     emits('closeModel', false)
 }
 </script>
