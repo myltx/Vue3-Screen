@@ -2,24 +2,27 @@
   import { useCockpitDataStore } from '@/stores/cockpitData';
   import { getEquipmentOption } from '@/views/cockpit/config';
 
+  import * as echarts from 'echarts';
+
   interface Props {
     moduleKeys: string[];
   }
 
   const props = defineProps<Props>();
   const { moduleKeys } = unref(props);
+  const myChart = ref();
 
   const { getModuleName, getValue, getSubtModuleName } = useCockpitDataStore();
 
   const equipmentActive = ref(0);
   const option = ref({});
-  const chartRef = ref(null); // 用于引用图表实例
 
   const handleType = (value: number) => {
     equipmentActive.value = value;
     setOption();
   };
   const setOption = () => {
+    myChart.value && myChart.value.clear();
     let data = [];
     let yData = [];
     let xData = [];
@@ -30,14 +33,19 @@
     }
     yData = data.map((item: { [key: string]: string | number }) => item.value);
     xData = data.map((item: { [key: string]: string | number }) => item.name);
-    option.value = {};
     setTimeout(() => {
       option.value = getEquipmentOption(xData, yData);
+      myChart.value && myChart.value.setOption(option.value);
     }, 500);
   };
+  function initChart() {
+    var dom = document.getElementById('barChart');
+    myChart.value = echarts.init(dom);
+    setOption();
+  }
 
   onMounted(() => {
-    setOption();
+    initChart();
   });
 </script>
 
@@ -89,13 +97,7 @@
         <div>设备类型统计</div>
       </div>
       <div class="bar-chart-unit">单位: <span>台</span></div>
-      <v-chart
-        class="chart"
-        ref="chartRef"
-        id="bar-chart"
-        :option="option"
-        v-if="Object.keys(option).length"
-      />
+      <div id="barChart"></div>
     </div>
   </BasicBox>
 </template>
@@ -233,7 +235,7 @@
         color: #fff;
       }
     }
-    #bar-chart {
+    #barChart {
       height: 100%;
       width: 100%;
     }

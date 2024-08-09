@@ -15,13 +15,11 @@ import 'virtual:uno.css';
 
 import 'ant-design-vue/dist/reset.css';
 
-import { registerEcharts } from '@/plugins/echarts';
 //不使用mock 请注释掉
 // import { mockXHR } from '@/mock/index';
 // mockXHR();
 
 const app: App = createApp(AppComponent);
-registerEcharts(app);
 
 app.use(MotionPlugin);
 

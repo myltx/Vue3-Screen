@@ -349,7 +349,7 @@
 </script>
 
 <template>
-  <div id="chart-panel">123 </div>
+  <div id="chart-panel"></div>
 </template>
 
 <style scoped lang="scss">
