@@ -74,10 +74,10 @@ async function getPageList() {
     [key in number]: string;
   } = {
     1: '待整改',
-    2: '未验收',
+    2: '待验收',
     3: '已整改',
   };
-  let res: any = await page({ currentPage: 1, pageSize: 20 },route.query.orgId);
+  let res: any = await page({ currentPage: 1, pageSize: 20 }, route.query.orgId);
   if (res.code == 200) {
     hiddenList.value = res?.data?.dangerPageVOList || [];
   }
@@ -106,7 +106,7 @@ async function generateList() {
     3: '重要告警',
     2: '紧急告警',
   };
-  let res: any = await getAlarmList({ currentPage: 1, pageSize: 20, processStatus: 0 },route.query.orgId);
+  let res: any = await getAlarmList({ currentPage: 1, pageSize: 20, processStatus: 0 }, route.query.orgId);
   if (res.code == 200) {
     hiddenList.value = res.data || []
   }
@@ -144,16 +144,16 @@ async function handleListClick(item: any) {
     let res: any = await detail({ dangerId: item.dangerId });
     yhDetailData.value = res.data;
     let imgTempList = JSON.parse(yhDetailData.value?.sffFireDangerDTO?.dangerFile) || []
-    if(imgTempList.length){
-      imgTempList.map((item:any)=>{
-        if(item.url){
+    if (imgTempList.length) {
+      imgTempList.map((item: any) => {
+        if (item.url) {
           imgList.value.push(getFileUrl(item.url))
         }
       })
     }
     yhData.value = item;
     isVisible.value = true;
-    console.log(imgList.value,'imglist')
+    console.log(imgList.value, 'imglist')
   }
   // openMapModal.value = true
 }
@@ -235,11 +235,12 @@ onMounted(() => {
           </div>
         </div>
       </div>
-      <div v-if="!alarmList.length" class="mt-20px">暂无数据</div>
+      <Empty v-else :text="'暂无数据'" class="mt-20px"/>
     </BasicBox>
   </div>
-  <yhDetailModel :isVisible="isVisible" @closeModel="handleClose" :yhDetailData="yhDetailData" :yhData="yhData" :imgList="imgList"/>
-  <detailModel :isVisible="isAlarmVisible" @closeModel="handleAlarmClose" :gjDetailData="gjDetailData"/>
+  <yhDetailModel :isVisible="isVisible" @closeModel="handleClose" :yhDetailData="yhDetailData" :yhData="yhData"
+    :imgList="imgList" />
+  <detailModel :isVisible="isAlarmVisible" @closeModel="handleAlarmClose" :gjDetailData="gjDetailData" />
 </template>
 
 <style scoped lang="scss">
