@@ -390,4 +390,9 @@
   .scroll::-webkit-scrollbar {
     width: 5px; //修改滚动条宽度
   }
+  .text-ellipsis {
+    text-overflow:ellipsis;
+    white-space:nowrap;
+    overflow:hidden;
+  }
 }

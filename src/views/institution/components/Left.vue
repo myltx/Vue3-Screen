@@ -225,7 +225,7 @@ onMounted(() => {
               </div>
               <div class="time">{{ item.date }}</div>
             </div>
-            <div class="item-content">
+            <div class="item-content text-ellipsis">
               {{ item.content }}
             </div>
             <div class="item-subscribe" v-if="equipmentActive == 1"> 上报人：{{ item.name }} </div>
