@@ -38,9 +38,9 @@ const httpServer = (config: any) => {
   const method = config?.method.toUpperCase();
   let baseURL = '';
   if (import.meta.env.DEV) {
-    baseURL = import.meta.env.VITE_GLOB_API_URL + import.meta.env.VITE_GLOB_API_URL_PREFIX;
+    baseURL = import.meta.env.VITE_GLOB_API_URL;
   } else {
-    baseURL = `${window.location.origin}${import.meta.env.VITE_GLOB_API_URL_PREFIX}`;
+    baseURL = `${window.location.origin}`;
   }
   const httpDefaultOpts: any = {
     method,
