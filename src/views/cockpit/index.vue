@@ -43,7 +43,7 @@
     lat: 30.307823,
     icon: '/src/assets/images/map/map-icon-active.png',
   });
-  const { interValGeyAllModuleData, getRule, getValue } = useCockpitDataStore();
+  const { interValGeyAllModuleData, getRule, getValue, getOneModule } = useCockpitDataStore();
   // 根据配置的 moduleKey 在页面动态获取数据
   startLoading();
   interValGeyAllModuleData(moduleKeys, endLoading);
@@ -54,8 +54,27 @@
 
   const tabData = ref([]);
 
-  function markerClick(markerData: any) {
+  async function markerClick(markerData: any) {
     orgData.value = markerData;
+    const promiseList: any = [];
+    const moduleList = moduleKeys['orgPage']?.map((item: string) => {
+      const regexPattern = /^([^-]+)/;
+      const match: string[] = regexPattern.exec(item) || [];
+      return match[1] || '';
+    });
+    moduleList?.forEach((moduleKey: any) => {
+      promiseList.push(
+        getOneModule({
+          pageKey: 'orgPage',
+          moduleKey,
+          moduleParam: markerData.orgId,
+        }),
+      );
+    });
+
+    const data = await Promise.all(promiseList);
+    console.log(data, 'dd');
+    orgData.value.modules = data.map((item) => item?.data?.kvList[0]);
     openMapModal.value = true;
   }
   function handleDetail() {
@@ -150,9 +169,12 @@
           查看<br />详情
         </div>
       </div>
-      <Module :title="'消防安全制度建设'" :list="[1, 3, 4]" />
-      <Module :title="'消防设施设备'" :list="[1, 3, 4]" />
-      <Module :title="'消防安全检查'" :list="[1, 3, 4, 1, 3, 4]" />
+      <Module
+        v-for="(module, index) in orgData?.modules"
+        :key="index"
+        :title="module?.name"
+        :list="module?.value"
+      />
     </BasicMapModal>
     <VideoModal v-model:modalValue="videoModalValue" />
   </PageWrapper>

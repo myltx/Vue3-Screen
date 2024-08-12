@@ -5,7 +5,7 @@
       default: '',
     },
     list: {
-      type: Array,
+      type: Array<{ [key: string]: any }>,
       default: () => [],
     },
   });
@@ -17,8 +17,8 @@
     </div>
     <div class="module-content-list">
       <div class="module-content-item" v-for="(item, index) in props.list" :key="index">
-        <div class="module-content-item-title">消防安全制度</div>
-        <div class="module-content-item-value">44</div>
+        <div class="module-content-item-title">{{ item.title }}</div>
+        <div class="module-content-item-value">{{ item.value }}</div>
       </div>
     </div>
   </div>

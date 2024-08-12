@@ -127,6 +127,15 @@ export const useCockpitDataStore = defineStore('cockpitData', () => {
       );
     }
   }
+
+  interface ModuleParam {
+    pageKey: string;
+    moduleKey: string;
+    moduleParam: string | number;
+  }
+  function getOneModule(param: ModuleParam): Promise<any> {
+    return getModule(param);
+  }
   return {
     getALlModuleData,
     interValGeyAllModuleData,
@@ -137,5 +146,6 @@ export const useCockpitDataStore = defineStore('cockpitData', () => {
     getName,
     getSubtModuleName,
     getRule,
+    getOneModule,
   };
 });

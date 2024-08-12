@@ -241,6 +241,11 @@ export const moduleKeys: ModuleKeyType = {
     'dutyHasBeenCompleted-已完成值班人次（值班打卡弹框）',
     'totalHiddenDangerRectification-累计发现隐患（安全隐患整改弹框）',
   ],
+  orgPage: [
+    'fireSafetySystem-消防安全制度建设',
+    'fireFightingFacilitiesAndEquipment-消防设施设备',
+    'fireSafetyInspection-消防安全检',
+  ],
 };
 
 export interface modalType {
