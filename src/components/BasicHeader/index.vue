@@ -1,10 +1,19 @@
 <script setup lang="ts">
   import { SettingOutlined } from '@ant-design/icons-vue';
-  import { getDate } from '@/utils';
+  import { getDate, getFileUrl, getUserInfo } from '@/utils';
   import { useSettingStore } from '@/stores';
+  import DetaultAvatar from '@/assets/images/header/avatar.gif';
 
   const router = useRouter();
   const { setSettingShow } = useSettingStore();
+
+  const userInfo = getUserInfo();
+  const avatarImg = computed(() => {
+    if (userInfo?.userInfo?.headIcon) {
+      return getFileUrl(userInfo?.userInfo?.headIcon);
+    }
+    return DetaultAvatar;
+  });
 
   const props = defineProps({
     title: {
@@ -43,7 +52,7 @@
       <!-- <div class="date">{{ getDate() }}</div> -->
       <div class="time">{{ time }}</div>
       <a-avatar size="large">
-        <img src="@/assets/images/header/avatar.gif" alt="" class="avatar" />
+        <img :src="avatarImg" alt="" class="avatar" />
       </a-avatar>
       <SettingOutlined
         :style="{
