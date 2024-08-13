@@ -9,7 +9,6 @@
     if (length < 4) {
       for (let i = 0; i < 4 - length; i++) {
         parentData.videoList.push({
-          url: '',
           type: 'empty',
         });
       }
