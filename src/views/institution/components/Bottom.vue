@@ -74,7 +74,7 @@
             <div
               :class="[
                 'th text-left text-16px pb-8px px-8px z-999 bg-#112034',
-                [0, 1].includes(index) ? 'w-30%' : 'w-20%',
+                [0, 2].includes(index) ? 'w-30%' : 'w-20%',
               ]"
               v-for="(th, index) in getRule(moduleKey, 0).filter((item: any) => item.key != 'id')"
               :key="th.key"
@@ -94,11 +94,11 @@
                 <div class="td-content w-30%" :title="item.time">
                   {{ item.time }}
                 </div>
-                <div class="td-content w-30%" :title="item.timeFrame">
-                  {{ item.timeFrame }}
-                </div>
                 <div class="td-content w-20%" :title="item.userName">
                   {{ item.userName }}
+                </div>
+                <div class="td-content w-30%" :title="item.timeFrame">
+                  {{ item.timeFrame }}
                 </div>
                 <div class="td-content w-20%" :title="item.status">
                   <div
