@@ -9,9 +9,9 @@
   console.log('dataList----->', dataList.value);
   let sum = ref(0);
 
-  dataList.value.forEach((item) => {
-    sum.value = sum.value + item.value;
-  });
+  sum.value = dataList.value.reduce((previous: any, current: any) => {
+    return Number(previous) + Number(current.value);
+  }, 0);
   function init() {
     const myChart = echarts.init(chart.value);
     let option = {

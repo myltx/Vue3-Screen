@@ -23,7 +23,7 @@
 </script>
 <template>
   <div>
-    <BasicModal v-model:modalValue="openModal" :title="'消防安全培训详情'" @closed="handleClose">
+    <BasicModal v-model:modalValue="openModal" :title="'消防演练与培训'" @closed="handleClose">
       <div class="ml-38px mr-38px main-container">
         <div :class="['catagory', xfDetailData.type == '消防培训' ? 'active' : '']">
           <span>{{ xfDetailData.type }}</span>

@@ -47,7 +47,6 @@
         }
       });
       alarmList.value = res.data || [];
-      console.log(fileList.value, '111');
       if (!fileList.value.length) {
         fileList.value = [
           {

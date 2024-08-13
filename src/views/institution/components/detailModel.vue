@@ -138,7 +138,13 @@
         </div>
         <div class="flex middle-container ml-4px mb-8px mt-12px">
           <span class="tip">备注：</span>
-          <textarea placeholder="请输入备注" v-model="remark" :rows="3"></textarea>
+          <textarea
+            placeholder="请输入备注"
+            v-model="remark"
+            :rows="3"
+            show-count
+            :maxlength="200"
+          ></textarea>
         </div>
       </div>
     </BasicModal>

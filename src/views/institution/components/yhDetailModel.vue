@@ -109,7 +109,7 @@
             </span>
           </div>
         </div>
-        <div class="right-container w-48% ml-5px">
+        <div class="right-container w-48% h-100% overflow-y-scroll ml-5px">
           <div class="flex ml-30px">
             <div class="tip-container">
               <div class="bg"></div>
@@ -134,7 +134,7 @@
                 <div class="title mt-8px ml-8px"
                   >{{ rectificationProgressType[item.rectificationProgress] }}
                 </div>
-                <span class="person mt-4px ml-8px">上报人：</span>
+                <span class="person mt-4px ml-8px">当前责任人：</span>
                 <span class="name">{{
                   decryptString(item?.targetChiefDTO?.encryptVal || '', 'ch20210825093727')
                 }}</span>
