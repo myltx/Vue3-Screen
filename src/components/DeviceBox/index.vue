@@ -66,7 +66,7 @@
       </div>
     </div>
 
-    <div class="value-container">
+    <div class="value-container" v-show="equipmentActive == 0">
       <div class="value-item">
         在线
         <div class="value text-#3bdff6">
@@ -92,7 +92,7 @@
         </div>
       </div>
     </div>
-    <div class="chart-container">
+    <div :class="['chart-container', equipmentActive == 1 ? 'pt-30px' : '']">
       <div class="bar-chart-title">
         <div>设备类型统计</div>
       </div>
