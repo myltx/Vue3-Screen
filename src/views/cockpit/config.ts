@@ -14,26 +14,19 @@ export function getEquipmentOption(xData: string[] | number[], yData: string[] |
       },
       borderWidth: 1,
       padding: 5,
-      // formatter: function (parms: any) {
-      //   const str =
-      //     '年份：' +
-      //     parms[0].axisValue +
-      //     '</br>' +
-      //     parms[0].marker +
-      //     '上衣：' +
-      //     parms[0].value +
-      //     '</br>' +
-      //     parms[2].marker +
-      //     '裙子:' +
-      //     parms[2].value;
-      //   return str;
-      // },
+      formatter: function (params: any) {
+        console.log(params, 'params');
+        const { name, value, marker } = params;
+        const regex = /background-color:\s*#[0-9a-fA-F]{6}/;
+        const replacedStr = marker.replace(regex, `background-color: #00fafd`);
+        return `${replacedStr}${name}: ${value}`;
+      },
     },
     textStyle: {
       color: '#C9C9C9',
     },
 
-    // color: ['#fbc292', '#06fbfe',  '#f06e91'],
+    // color: ['#fbc292', '#06fbfe', '#f06e91'],
     legend: {
       show: false,
       type: 'scroll',
