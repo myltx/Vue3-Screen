@@ -63,8 +63,8 @@ dependencies:
     specifier: ^4.4.0
     version: 4.4.0(vue@3.4.31)
   vue3-baidu-map-gl:
-    specifier: ^2.3.4
-    version: 2.3.4(vue@3.4.31)
+    specifier: ^2.4.0
+    version: 2.4.0(vue@3.4.31)
   vue3-seamless-scroll:
     specifier: ^2.0.1
     version: 2.0.1
@@ -7493,8 +7493,8 @@ packages:
       vue: 3.4.31(typescript@5.1.6)
     dev: false
 
-  /vue3-baidu-map-gl@2.3.4(vue@3.4.31):
-    resolution: {integrity: sha512-SUQK5XxjNCI+VNtrTCP/8mtk/jY8O9HO6DC1X9WoCb/fxt+HqjPIqEFYr8J55MArrrlGjeGEJ9C4rV739FiwAw==}
+  /vue3-baidu-map-gl@2.4.0(vue@3.4.31):
+    resolution: {integrity: sha512-QEOfdCtX8Ns29XZIgxufdCGPNGGPDPoPCUbkPoOuVE3Bzo2XZYzY0dYDt/a5tH59mmweKaeWJfU+Dr6k01S/Iw==}
     engines: {node: '>=12.0.0', pnpm: '>=8.0.0'}
     peerDependencies:
       vue: ^3.0.0

@@ -28,6 +28,7 @@
 
   function handleInitd() {
     get(props.areaName);
+    console.log(boundaries, 'boundaries');
   }
   watch(
     () => isLoading.value,
@@ -76,7 +77,7 @@
     handleInitd();
   }
   function getMarkerIcon(icon: string) {
-    if (icon.includes('/src/assets/')) {
+    if (icon.includes('.png')) {
       const imgIcon = {
         imageUrl: icon,
         // imageSize: {

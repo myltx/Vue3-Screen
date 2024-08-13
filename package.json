@@ -6,8 +6,8 @@
     "build:old": "run-p type-check build-only",
     "build": "vite build ",
     "build:tar": "vite build && tar -zcvf cockpit-web.tar.gz dist",
-    "build:dev": "vite build",
-    "build:test": "vite build",
+    "build:dev": "vite build --mode test",
+    "build:test": "vite build --mode test",
     "preview": "vite build && vite preview --port 4173",
     "build-only": "vite build",
     "type-check": "vue-tsc --noEmit",
@@ -34,7 +34,7 @@
     "pinia": "^2.1.7",
     "vue": "^3.4.31",
     "vue-router": "^4.4.0",
-    "vue3-baidu-map-gl": "^2.3.4",
+    "vue3-baidu-map-gl": "^2.4.0",
     "vue3-seamless-scroll": "^2.0.1"
   },
   "devDependencies": {
