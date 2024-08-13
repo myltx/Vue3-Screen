@@ -72,6 +72,10 @@
       max-width: 32px !important;
       border-radius: 50%;
       cursor: pointer;
+      // display: inline-block !important;
+    }
+    .ant-avatar {
+      background: rgba(0, 0, 0, 0) !important;
     }
   }
 }

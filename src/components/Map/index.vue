@@ -28,7 +28,6 @@
 
   function handleInitd() {
     get(props.areaName);
-    console.log(boundaries, 'boundaries');
   }
   watch(
     () => isLoading.value,
