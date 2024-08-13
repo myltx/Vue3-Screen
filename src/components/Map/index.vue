@@ -10,11 +10,11 @@
     },
     areaName: {
       type: String,
-      default: '浙江省杭州市西湖区',
+      default: '浙江省海宁市',
     },
     areaKey: {
       type: String,
-      default: '浙江省杭州市',
+      default: '浙江省海宁市',
     },
   });
   const emits = defineEmits(['markerClick']);
