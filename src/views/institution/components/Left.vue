@@ -128,7 +128,10 @@
         });
       });
     }
-    loading.value = false;
+
+    setTimeout(() => {
+      loading.value = false;
+    }, 500);
   }
   function handleClose(val: boolean) {
     isVisible.value = val;
@@ -137,7 +140,11 @@
     isAlarmVisible.value = val;
   }
   function success() {
-    generateList();
+    if (equipmentActive.value == 1) {
+      getPageList();
+    } else {
+      generateList();
+    }
   }
   async function handleListClick(item: any) {
     if (equipmentActive.value == 0) {
@@ -163,8 +170,12 @@
   }
 
   const handleType = (type: ClickType, value: number) => {
+    if (loading.value) {
+      return;
+    }
     equipmentActive.value = value;
     alarmList.value = [];
+
     if (value == 1) {
       getPageList();
     } else {

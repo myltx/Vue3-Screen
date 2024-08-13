@@ -15,6 +15,7 @@
   }
 
   const threeChartRef = ref();
+  const threeChartRef1 = ref();
   const forewarningList = ref(getValue('keepWatch', 0));
 
   const equipmentActive = ref(0);
@@ -57,6 +58,7 @@
 
   const handleType = (value: number) => {
     equipmentActive.value = value;
+    console.log(equipmentActive.value, 'equipmentActive.value');
     if (value) {
       forewarningList.value = getValue('inspection', 0);
     } else {
@@ -67,7 +69,15 @@
         color: default_chart_colors[index],
       };
       item.value = item.value * 1;
-      // threeChartRef.value.initChart(forewarningList.value);
+      if (value) {
+        setTimeout(() => {
+          threeChartRef1.value.initChart(forewarningList.value);
+        }, 100);
+      } else {
+        setTimeout(() => {
+          threeChartRef.value.initChart(forewarningList.value);
+        }, 100);
+      }
     });
   };
 </script>
@@ -109,7 +119,8 @@
       <div class="chart-container">
         <div class="h-90% w-100% flex position-relative">
           <div class="h-100% w-50% three-chart">
-            <ThreeChart isHover ref="threeChartRef" />
+            <ThreeChart isHover ref="threeChartRef" v-if="equipmentActive == 0" />
+            <ThreeChart isHover ref="threeChartRef1" v-else />
           </div>
           <div class="flex items-center justify-center ml-20px flex-wrap w-50% h-50% mt-12%">
             <div

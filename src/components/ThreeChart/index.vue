@@ -6,6 +6,7 @@
     isHover: boolean;
   }
   const props = defineProps<IProps>();
+  const myChart = ref();
 
   const { isHover } = unref(props);
 
@@ -225,12 +226,12 @@
 
   function initChart(opt: any) {
     const option = getPie3D(opt || [], 0.59);
-    var dom = document.getElementById('chart-panel');
-    var myChart = echarts.init(dom);
+    var dom: any = document.getElementById('chart-panel');
+    myChart.value = echarts.init(dom);
     //  修正取消高亮失败的 bug
     // 监听 mouseover，近似实现高亮（放大）效果
     isHover &&
-      myChart.on('mouseover', function (params: any) {
+      myChart.value.on('mouseover', function (params: any) {
         // 准备重新渲染扇形所需的参数
         let isSelected;
         let isHovered;
@@ -297,13 +298,13 @@
           }
 
           // 使用更新后的 option，渲染图表
-          myChart.setOption(option);
+          myChart.value.setOption(option);
         }
       });
 
     // 修正取消高亮失败的 bug
     isHover &&
-      myChart.on('globalout', function () {
+      myChart.value.on('globalout', function () {
         let isSelected;
         let isHovered;
         let startRatio;
@@ -335,15 +336,26 @@
         }
 
         // 使用更新后的 option，渲染图表
-        myChart.setOption(option);
+        myChart.value.setOption(option);
       });
 
     if (option && typeof option === 'object') {
-      myChart.setOption(option);
+      myChart.value.setOption(option);
     }
+  }
+  function setOption(opt: any) {
+    const option = getPie3D(opt || [], 0.59);
+    if (option && typeof option === 'object') {
+      myChart.value.setOption(option);
+    }
+  }
+  function cleanChart() {
+    myChart.value.clear();
   }
   defineExpose({
     initChart,
+    cleanChart,
+    setOption,
   });
   onMounted(() => {});
 </script>
