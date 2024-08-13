@@ -55,7 +55,7 @@
       <div class="flex h-100%">
         <div class="left w-25% mr-1% h-100% overflow-y-auto">
           <div
-            v-for="item in videoList"
+            v-for="item in videoList.filter((item: any) => item?.type != 'empty')"
             :key="item.id"
             @click="playVideo(item)"
             :class="[
