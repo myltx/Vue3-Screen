@@ -239,7 +239,7 @@
         </div>
       </div>
       <Empty
-        v-else-if="loading || alarmList.length"
+        v-else-if="loading || !alarmList.length"
         :text="loading ? '数据加载中...' : '暂无数据'"
         class="mt-20px"
       />

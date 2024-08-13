@@ -44,8 +44,10 @@ export const useCockpitDataStore = defineStore('cockpitData', () => {
       const data = await Promise.all(promiseList);
       if (data.length) {
         data.forEach((item: any) => {
-          kvLists.value[item.data.moduleKey] = item.data?.kvList;
-          allData.value[item.data.moduleKey] = item.data;
+          if (item.code == 200) {
+            kvLists.value[item.data.moduleKey] = item.data?.kvList;
+            allData.value[item.data.moduleKey] = item.data;
+          }
         });
         console.log(allData.value, ' allData.value');
       }

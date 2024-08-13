@@ -109,7 +109,7 @@
             </span>
           </div>
         </div>
-        <div class="right-container w-48% h-100% overflow-y-scroll ml-5px">
+        <div class="right-container w-48% ml-5px">
           <div class="flex ml-30px">
             <div class="tip-container">
               <div class="bg"></div>
