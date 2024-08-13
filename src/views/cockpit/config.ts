@@ -6,7 +6,7 @@ export function getEquipmentOption(xData: string[] | number[], yData: string[] |
   return {
     //   backgroundColor: '#000E1A', //背景色
     tooltip: {
-      trigger: 'axis',
+      // trigger: 'axis',
       borderColor: 'rgba(255,255,255,.3)',
       backgroundColor: 'rgba(13,5,30,.6)',
       textStyle: {
@@ -14,20 +14,20 @@ export function getEquipmentOption(xData: string[] | number[], yData: string[] |
       },
       borderWidth: 1,
       padding: 5,
-      formatter: function (parms: any) {
-        const str =
-          '年份：' +
-          parms[0].axisValue +
-          '</br>' +
-          parms[0].marker +
-          '上衣：' +
-          parms[0].value +
-          '</br>' +
-          parms[2].marker +
-          '裙子:' +
-          parms[2].value;
-        return str;
-      },
+      // formatter: function (parms: any) {
+      //   const str =
+      //     '年份：' +
+      //     parms[0].axisValue +
+      //     '</br>' +
+      //     parms[0].marker +
+      //     '上衣：' +
+      //     parms[0].value +
+      //     '</br>' +
+      //     parms[2].marker +
+      //     '裙子:' +
+      //     parms[2].value;
+      //   return str;
+      // },
     },
     textStyle: {
       color: '#C9C9C9',
