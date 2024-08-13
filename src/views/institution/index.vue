@@ -1,6 +1,9 @@
 <script setup lang="ts">
   import { useLoadingStore } from '@/stores/loading';
-  import { Left, Right, Bottom, Main } from './components';
+  import Bottom from './components/Bottom.vue';
+  import Left from './components/Left.vue';
+  import Main from './components/Main.vue';
+  import Right from './components/Right.vue';
   import { useCockpitDataStore } from '@/stores/cockpitData';
   import { moduleKeys } from './config';
   import { usePlayVideo } from '@/stores/videoPlay';

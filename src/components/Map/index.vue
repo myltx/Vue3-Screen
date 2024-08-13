@@ -41,7 +41,7 @@
   watch(
     () => props.markerList,
     (newVal: any) => {
-      if (newVal.length) {
+      if (newVal && newVal.length) {
         centerPoint.value = { lng: newVal[0]?.lng, lat: newVal[0]?.lat };
       } else {
         centerPoint.value = defaultCanterPoint;

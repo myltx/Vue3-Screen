@@ -1,6 +1,9 @@
 <script setup lang="ts">
   import { useLoadingStore } from '@/stores/loading';
-  import { Left, Right, Bottom, Main } from './components';
+  import Bottom from './components/Bottom.vue';
+  import Left from './components/Left.vue';
+  import Main from './components/Main.vue';
+  import Right from './components/Right.vue';
   import Module from './components/module.vue';
   import { useCockpitDataStore } from '@/stores/cockpitData';
   import MapIconImg from '@/assets/images/map/map-icon.png';
@@ -93,7 +96,7 @@
       if (!val) {
         markerList.value = [];
         const orgList = getValue('map', 0);
-        orgList.forEach((item: any) => {
+        orgList?.forEach((item: any) => {
           const lngLat = item.orgLngLat ? item.orgLngLat.split(',') : [];
           if (lngLat && lngLat.length) {
             item.lng = Number(lngLat[0]);
@@ -124,7 +127,7 @@
   }
 </script>
 <template>
-  <PageWrapper :title="'大屏示例页面'">
+  <PageWrapper :title="'智慧消防物联网监控感知平台'">
     <Left v-if="!isLoading" v-motion-slide-left />
     <Right v-if="!isLoading" v-motion-slide-right />
     <Bottom v-if="!isLoading" v-motion-slide-visible-bottom />
