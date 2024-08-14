@@ -3,10 +3,12 @@ import { graphic } from 'echarts/core';
 const data0 = [1, 1, 1, 1, 1, 1, 1];
 
 export function getEquipmentOption(xData: string[] | number[], yData: string[] | number[]) {
+  console.log(xData, yData);
   return {
     //   backgroundColor: '#000E1A', //背景色
     tooltip: {
-      // trigger: 'axis',
+      show: true,
+      trigger: 'axis',
       borderColor: 'rgba(255,255,255,.3)',
       backgroundColor: 'rgba(13,5,30,.6)',
       textStyle: {
@@ -15,10 +17,7 @@ export function getEquipmentOption(xData: string[] | number[], yData: string[] |
       borderWidth: 1,
       padding: 5,
       formatter: function (params: any) {
-        const { name, value, marker, seriesIndex } = params;
-        if (seriesIndex != 4) {
-          return;
-        }
+        const { name, value, marker } = params[0];
         const regex = /background-color:\s*#[0-9a-fA-F]{6}/;
         const replacedStr = marker.replace(regex, `background-color: #00fafd`);
         return `${replacedStr}${name}: ${value}`;
@@ -27,21 +26,8 @@ export function getEquipmentOption(xData: string[] | number[], yData: string[] |
     textStyle: {
       color: '#C9C9C9',
     },
-
-    // color: ['#fbc292', '#06fbfe', '#f06e91'],
     legend: {
       show: false,
-      type: 'scroll',
-      orient: 'vertical',
-      selectedMode: false, //图例点击失效
-      right: '10%',
-      top: '15%',
-      textStyle: {
-        color: '#ffffff',
-        fontSize: 14,
-      },
-
-      // data: datas.legendData,
     },
     grid: {
       containLabel: true,
@@ -166,7 +152,7 @@ export function getEquipmentOption(xData: string[] | number[], yData: string[] |
       },
 
       {
-        data: data0,
+        data: yData,
         type: 'pictorialBar',
         barMaxWidth: '20',
         symbol: 'diamond',

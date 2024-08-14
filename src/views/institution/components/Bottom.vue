@@ -36,9 +36,12 @@
       res.data.forEach((item: any) => {
         if (item.file) {
           const files = JSON.parse(item.file);
-          const imgs = files.filter((file: any) =>
-            ['jpg', 'png', 'jpeg', 'gif'].includes(file.fileExtension),
-          );
+          const regex = /\.([^.]+)$/;
+          const imgs = files.filter((file: any) => {
+            const match = regex.exec(file.url);
+            const extension = (match && match[1]) as string;
+            return ['jpg', 'png', 'jpeg', 'gif'].includes(extension);
+          });
           imgs.forEach((img: any) => {
             img.url = `${getFileUrl(img.url)}`;
           });
@@ -130,7 +133,7 @@
         <div class="flex h-90% w-100%">
           <div class="swipter-container">
             <a-carousel autoplay>
-              <div class="h-100%" v-for="img in fileList" :key="img.fileId">
+              <div class="h-100%" v-for="img in fileList.slice(0, 3)" :key="img.fileId">
                 <img :src="img.url" alt="" />
               </div>
             </a-carousel>

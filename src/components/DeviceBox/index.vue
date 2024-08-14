@@ -10,7 +10,7 @@
 
   const props = defineProps<Props>();
   const { moduleKeys } = unref(props);
-  const myChart = ref();
+  let myChart: any = null;
 
   const { getModuleName, getValue, getSubtModuleName } = useCockpitDataStore();
 
@@ -22,7 +22,7 @@
     setOption();
   };
   const setOption = () => {
-    myChart.value && myChart.value.clear();
+    myChart && myChart.clear();
     let data = [];
     let yData = [];
     let xData = [];
@@ -35,12 +35,12 @@
     xData = data.map((item: { [key: string]: string | number }) => item.name);
     setTimeout(() => {
       option.value = getEquipmentOption(xData, yData);
-      myChart.value && myChart.value.setOption(option.value);
+      myChart && myChart.setOption(option.value);
     }, 500);
   };
   function initChart() {
-    var dom = document.getElementById('barChart');
-    myChart.value = echarts.init(dom);
+    var dom: any = document.getElementById('barChart');
+    myChart = echarts.init(dom);
     setOption();
   }
 

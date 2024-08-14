@@ -97,7 +97,7 @@
         <div class="left-container">
           <img src="@/assets/images/institution/ljxj.png" alt="" />
           <div>
-            <div class="title">{{ getName('fireSafetynspection', 0) }}</div>
+            <div class="title">{{ getName('fireSafetynspection', 1) }}</div>
             <div class="number">{{ getValue('fireSafetynspection', 1) }}</div>
           </div>
         </div>
