@@ -29,7 +29,7 @@
       };
       item.value = item.value * 1;
     });
-    threeChartRef.value.initChart(forewarningList.value);
+    threeChartRef.value.initChart(forewarningList.value.slice(1, 4));
   });
   generateList();
   function generateList() {
@@ -72,11 +72,11 @@
       item.value = item.value * 1;
       if (value) {
         setTimeout(() => {
-          threeChartRef1.value.initChart(forewarningList.value);
+          threeChartRef1.value.initChart(forewarningList.value.slice(1, 4));
         }, 100);
       } else {
         setTimeout(() => {
-          threeChartRef.value.initChart(forewarningList.value);
+          threeChartRef.value.initChart(forewarningList.value.slice(1, 4));
         }, 100);
       }
     });
@@ -119,14 +119,18 @@
 
       <div class="chart-container">
         <div class="h-90% w-100% flex position-relative">
-          <div class="h-100% w-50% three-chart">
+          <div class="bar-chart-title1">
+            <div>{{ forewarningList[0]?.name || '巡更任务数' }}</div>
+          </div>
+          <span class="bar-chart-title1-span">{{ forewarningList[0]?.value || 0 }}</span>
+          <div class="h-100% w-50% three-chart mt-30px">
             <ThreeChart :isHover="false" ref="threeChartRef" v-if="equipmentActive == 0" />
             <ThreeChart :isHover="false" ref="threeChartRef1" v-else />
           </div>
-          <div class="flex items-center justify-center ml-20px flex-wrap w-50% h-50% mt-12%">
+          <div class="flex items-center justify-center ml-20px flex-wrap w-50% h-50% mt-17%">
             <div
               class="flex items-center justify-center"
-              v-for="(item, index) in forewarningList"
+              v-for="(item, index) in forewarningList.slice(1, 4)"
               :key="index"
             >
               <div
