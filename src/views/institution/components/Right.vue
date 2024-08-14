@@ -144,12 +144,12 @@
         </div>
       </div>
     </BasicBox>
-    <BasicBox :title="getModuleName('safetyHazardRectification')" style="height: 280px">
+    <BasicBox :title="getModuleName('safetyHazardRectificationChart')" style="height: 280px">
       <div class="chart-container safe-container">
         <div class="bar-chart-title">
-          <div>{{ getName('safetyHazardRectification', 0) }}</div>
+          <div>{{ getName('safetyHazardRectificationChart', 0) }}</div>
         </div>
-        <span>{{ getValue('safetyHazardRectification', 0) }}</span>
+        <span>{{ getValue('safetyHazardRectificationChart', 0) }}</span>
         <div class="pie-container">
           <Rang :data="getArray('safetyHazardRectificationChart', 3, 1)" />
         </div>
