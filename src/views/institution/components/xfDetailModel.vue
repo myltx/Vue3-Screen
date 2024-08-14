@@ -25,10 +25,17 @@
   <div>
     <BasicModal v-model:modalValue="openModal" :title="'消防演练与培训'" @closed="handleClose">
       <div class="ml-38px mr-38px main-container">
-        <div :class="['catagory', xfDetailData.type == '消防培训' ? 'active' : '']">
-          <span>{{ xfDetailData.type }}</span>
+        <div class="flex">
+          <div :class="['catagory', xfDetailData.type == '消防培训' ? 'active' : '']">
+            <span>{{ xfDetailData.type }}</span>
+          </div>
+          <div class="title ml-8px text-ellipsis">
+            <a-tooltip>
+              <template #title>{{ xfDetailData.name }}</template>
+              <div class="detail text-ellipsis">{{ xfDetailData.name }}</div>
+            </a-tooltip>
+          </div>
         </div>
-        <div class="title ml-8px">{{ xfDetailData.name }}</div>
         <div class="mt-20px detail-container">
           <div>
             <span class="tip">时间：</span>
