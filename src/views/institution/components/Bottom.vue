@@ -91,32 +91,32 @@
             <div class="overflow-y-hidden">
               <div class="td flex w-100%" v-for="item in getValue(moduleKey, 0)" :key="item.id">
                 <div class="td-content w-30%" :title="item.time">
-                  {{ item.time }}
+                  {{ item.startDate }}
                 </div>
                 <div class="td-content w-20%" :title="item.userName">
-                  {{ item.userName }}
+                  {{ item.name }}
                 </div>
                 <div class="td-content w-30%" :title="item.timeFrame">
-                  {{ item.timeFrame }}
+                  {{ item.timeInterval }}
                 </div>
-                <div class="td-content w-20%" :title="item.status">
+                <div class="td-content w-20%" :title="item.onDutyStatus">
                   <div
-                    v-if="item.status == '在岗'"
+                    v-if="item.onDutyStatus == '在岗'"
                     class="flex items-center justify-center bg-gradient-to-br from-#01C69A to-#0099AC rounded-6px w-48px h-24px text-13px"
                   >
-                    {{ item.status }}
+                    {{ item.onDutyStatus }}
                   </div>
                   <div
-                    v-else-if="item.status == '待打卡'"
+                    v-else-if="item.onDutyStatus == '待打卡'"
                     class="flex items-center justify-center bg-gradient-to-br from-#1884D5 to-#0066AC rounded-6px w-48px h-24px text-13px"
                   >
-                    {{ item.status }}
+                    {{ item.onDutyStatus }}
                   </div>
                   <div
                     v-else
                     class="flex items-center justify-center bg-gradient-to-br from-#F78989 to-#F52727 rounded-6px w-48px h-24px text-13px"
                   >
-                    {{ item.status }}
+                    {{ item.onDutyStatus }}
                   </div>
                 </div>
               </div>
