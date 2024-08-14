@@ -151,7 +151,7 @@
                     </span>
                   </div>
                   <div class="title">{{ events.name }}</div>
-                  <div class="time">{{ events.sign_time }}</div>
+                  <div class="time">{{ events.date }}</div>
                 </div>
                 <div class="location">{{ events.address }}</div>
               </div>
