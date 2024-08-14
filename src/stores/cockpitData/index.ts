@@ -97,7 +97,7 @@ export const useCockpitDataStore = defineStore('cockpitData', () => {
     return '';
   }
   //   获取数据为列表的项
-  function getArray(moduleKey: string, subInd: number, ind = 0) {
+  function getArray(moduleKey: string, subInd?: number, ind = 0) {
     if (kvLists.value[moduleKey]) {
       if (subInd) {
         subInd = kvLists.value.length;

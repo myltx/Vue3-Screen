@@ -1,11 +1,11 @@
 <script setup lang="ts">
   import * as echarts from 'echarts';
   import { useCockpitDataStore } from '@/stores/cockpitData';
-  const { getValue } = useCockpitDataStore();
+  const { getArray } = useCockpitDataStore();
   const chart = ref();
   let colorList = ['#22D7BB', '#24AAFF', '#5EDDF8', '#FCB840', '#F9D660'];
 
-  const dataList = ref(getValue('safetyHazardRectificationChart', 0));
+  const dataList = ref(getArray('safetyHazardRectificationChart', 3, 1));
   console.log('dataList----->', dataList.value);
   let sum = ref(0);
 

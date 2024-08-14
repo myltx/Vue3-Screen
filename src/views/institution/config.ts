@@ -228,7 +228,7 @@ export const moduleKeys: ModuleKeyType = {
     'hiddenTrouble-告警/隐患记录（隐患）',
     'dutySituation-消防值班情况',
     'fireDrillAndTraining-消防演练与培训',
-    'safetyHazardRectification-安全隐患整改（超期一个月未整改）',
+    // 'safetyHazardRectification-安全隐患整改（超期一个月未整改）',
     'safetyHazardRectificationChart-安全隐患整改（chart）',
     'map-中间图片',
   ],

@@ -4,7 +4,7 @@
   import { useCockpitDataStore } from '@/stores/cockpitData';
   import { default_chart_colors } from '@/helper';
 
-  const { getModuleName, getValue, getName } = useCockpitDataStore();
+  const { getModuleName, getValue, getName, getArray } = useCockpitDataStore();
 
   interface AlarmListType {
     content: number | string;
@@ -16,12 +16,13 @@
 
   const threeChartRef = ref();
   const threeChartRef1 = ref();
-  const forewarningList = ref(getValue('keepWatch', 0));
+  const forewarningList = ref(getArray('keepWatch'));
 
   const equipmentActive = ref(0);
   const alarmList = ref<AlarmListType[]>([]);
 
   onMounted(() => {
+    console.log(forewarningList.value, 'forewarningList.value');
     forewarningList.value?.forEach((item: any, index: number) => {
       item.itemStyle = {
         color: default_chart_colors[index],
@@ -60,9 +61,9 @@
     equipmentActive.value = value;
     console.log(equipmentActive.value, 'equipmentActive.value');
     if (value) {
-      forewarningList.value = getValue('inspection', 0);
+      forewarningList.value = getArray('inspection');
     } else {
-      forewarningList.value = getValue('keepWatch', 0);
+      forewarningList.value = getArray('keepWatch');
     }
     forewarningList.value.forEach((item: any, index: number) => {
       item.itemStyle = {
@@ -119,8 +120,8 @@
       <div class="chart-container">
         <div class="h-90% w-100% flex position-relative">
           <div class="h-100% w-50% three-chart">
-            <ThreeChart isHover ref="threeChartRef" v-if="equipmentActive == 0" />
-            <ThreeChart isHover ref="threeChartRef1" v-else />
+            <ThreeChart :isHover="false" ref="threeChartRef" v-if="equipmentActive == 0" />
+            <ThreeChart :isHover="false" ref="threeChartRef1" v-else />
           </div>
           <div class="flex items-center justify-center ml-20px flex-wrap w-50% h-50% mt-12%">
             <div
@@ -150,7 +151,7 @@
         </div>
         <span>{{ getValue('safetyHazardRectification', 0) }}</span>
         <div class="pie-container">
-          <Rang :data="getValue('safetyHazardRectificationChart', 0)" />
+          <Rang :data="getArray('safetyHazardRectificationChart', 3, 1)" />
         </div>
       </div>
     </BasicBox>

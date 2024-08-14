@@ -74,7 +74,7 @@
   }
 
   onMounted(() => {
-    forewarningList.value.forEach((item: any, index: number) => {
+    forewarningList.value?.forEach((item: any, index: number) => {
       item.itemStyle = {
         color: default_chart_colors[index],
       };
@@ -247,7 +247,7 @@
         </div>
         <div class="h-90% w-100% flex position-relative">
           <div class="h-100% w-50% three-chart">
-            <ThreeChart isHover ref="threeChartRef" />
+            <ThreeChart :isHover="false" ref="threeChartRef" />
           </div>
           <div class="flex items-center justify-center ml-20px flex-wrap w-50% h-50% mt-12%">
             <div
