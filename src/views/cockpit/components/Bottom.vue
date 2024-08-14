@@ -81,10 +81,10 @@
           </div>
           <div>
             <div class="bg-container">
-              <span class="number last-number">{{ getValue('fireDrillAndTraining', 2) }}</span>
-              <span class="dw last-dw">人次</span>
+              <span class="number">{{ getValue('fireDrillAndTraining', 2) }}</span>
+              <span class="dw">人次</span>
             </div>
-            <div class="title-container last-title">
+            <div class="title-container">
               <div class="text-gradient"> {{ getName('fireDrillAndTraining', 2) }}</div>
             </div>
           </div>

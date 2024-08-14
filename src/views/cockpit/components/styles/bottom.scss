@@ -70,17 +70,18 @@
 
   .right-container {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
 
     .bg-container {
-      margin-left: 39px;
+      // margin-left: 39px;
       // margin-top: 10px;
-      width: 89px;
+      // width: 89px;
       height: 77px;
-      background: url('@/assets/images/business/xfyl.png');
+      text-align: center;
+      background: url('@/assets/images/business/xfyl.png') top center no-repeat;
 
       .number {
-        margin-left: 20px;
+        // margin-left: 20px;
         width: 31px;
         height: 37px;
         font-family: DINAlternate, DINAlternate;
@@ -116,7 +117,7 @@
     }
 
     .title-container {
-      margin-left: 25px;
+      // margin-left: 25px;
       margin-top: 8px;
       width: 118px;
       height: 20px;
@@ -124,12 +125,8 @@
       font-size: 18px;
       color: #FFFFFF;
       line-height: 21px;
-      text-align: left;
+      text-align: center;
       font-style: normal;
-    }
-
-    .last-title {
-      margin-left: 35px;
     }
   }
 
