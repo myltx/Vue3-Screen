@@ -15,8 +15,10 @@ export function getEquipmentOption(xData: string[] | number[], yData: string[] |
       borderWidth: 1,
       padding: 5,
       formatter: function (params: any) {
-        console.log(params, 'params');
-        const { name, value, marker } = params;
+        const { name, value, marker, seriesIndex } = params;
+        if (seriesIndex != 4) {
+          return;
+        }
         const regex = /background-color:\s*#[0-9a-fA-F]{6}/;
         const replacedStr = marker.replace(regex, `background-color: #00fafd`);
         return `${replacedStr}${name}: ${value}`;

@@ -153,10 +153,10 @@
       :title="orgData.name"
       @closed="cleanMarkerActive"
     >
-      <div class="info flex justify-between items-start">
+      <div class="info flex justify-between items-start pb-10px">
         <div>
-          <div class="info-item flex items-center">
-            地址：<div>{{ orgData.address }}</div>
+          <div class="info-item flex">
+            地址：<div class="w-200px">{{ orgData.address }}</div>
           </div>
           <div class="info-item flex items-center my-4px">
             机构安全负责人：<div>{{ orgData.userName }}</div>
@@ -172,12 +172,14 @@
           查看<br />详情
         </div>
       </div>
-      <Module
-        v-for="(module, index) in orgData?.modules"
-        :key="index"
-        :title="module?.name"
-        :list="module?.value"
-      />
+      <div class="h-300px overflow-y-auto">
+        <Module
+          v-for="(module, index) in orgData?.modules"
+          :key="index"
+          :title="module?.name"
+          :list="module?.value"
+        />
+      </div>
     </BasicMapModal>
     <VideoModal v-model:modalValue="videoModalValue" />
   </PageWrapper>

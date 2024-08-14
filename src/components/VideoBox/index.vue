@@ -6,7 +6,7 @@
   // 实现watch 监听 parentData.videoList 数据变化
   watchEffect(() => {
     const length = parentData.videoList.length;
-    if (length < 4) {
+    if (length < 4 && length > 0) {
       for (let i = 0; i < 4 - length; i++) {
         parentData.videoList.push({
           type: 'empty',
