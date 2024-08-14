@@ -18,7 +18,11 @@
 <template>
   <BasicBox :title="'实时视频联动'">
     <template #subTitle>
-      <span class="more-tip" v-if="parentData.videoList.length" @click="playVideo({}, true)">
+      <span
+        class="more-tip"
+        v-if="parentData.videoList.length"
+        @click="playVideo(parentData.videoList[0], false)"
+      >
         更多 <DoubleRightOutlined />
       </span>
     </template>
