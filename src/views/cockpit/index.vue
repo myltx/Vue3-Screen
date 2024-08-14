@@ -77,8 +77,12 @@
 
     const data = await Promise.all(promiseList);
     console.log(data, 'dd');
-    orgData.value.modules = data.map((item) => item?.data?.kvList[0]);
+    orgData.value.modules = data.map((item) => item?.data);
     openMapModal.value = true;
+  }
+  // 获取模块标题
+  function getModuleName(moduleName: string) {
+    return moduleName.replace(/[\(（].*?[\)）]/g, '');
   }
   function handleDetail() {
     router.push({
@@ -176,8 +180,8 @@
         <Module
           v-for="(module, index) in orgData?.modules"
           :key="index"
-          :title="module?.name"
-          :list="module?.value"
+          :title="getModuleName(module?.moduleName)"
+          :list="module?.kvList"
         />
       </div>
     </BasicMapModal>

@@ -17,7 +17,7 @@
     </div>
     <div class="module-content-list">
       <div class="module-content-item" v-for="(item, index) in props.list" :key="index">
-        <div class="module-content-item-title">{{ item.title }}</div>
+        <div class="module-content-item-title">{{ item.name }}</div>
         <div class="module-content-item-value">{{ item.value }}</div>
       </div>
     </div>
@@ -66,6 +66,7 @@
       padding: 5px 8px;
       margin-top: 12px;
       .module-content-item-title {
+        text-align: center;
         font-family:
           PingFangSC,
           PingFang SC;
