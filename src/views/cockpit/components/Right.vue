@@ -227,13 +227,17 @@
           <span class="text2">{{ getValue('safetyHazardRectification', 1) }}</span>
           <span class="text3">{{ getScale() }}%</span>
         </div>
-        <div class="footer-container">
-          <img src="@/assets/images/business/yhzg.png" alt="" class="img" />
-          <span class="left">{{ getName('safetyHazardRectification', 2) }}</span>
-          <span class="middle cursor-pointer" @click="showMore(8)">
-            {{ getValue('safetyHazardRectification', 2) }}
-          </span>
-          <span class="right">条</span>
+        <div class="footer-container flex items-center justify-between">
+          <div class="flex items-center w-63%">
+            <img src="@/assets/images/business/yhzg.png" alt="" class="img" />
+            <span class="left">{{ getName('safetyHazardRectification', 2) }}</span>
+          </div>
+          <div class="flex items-center justify-end w-40%">
+            <span class="middle cursor-pointer w-200px" @click="showMore(8)">
+              {{ getValue('safetyHazardRectification', 2) }}
+            </span>
+            <span class="right mt-10px">条</span>
+          </div>
         </div>
       </div>
     </BasicBox>
@@ -249,20 +253,23 @@
           <div class="h-100% w-50% three-chart">
             <ThreeChart :isHover="false" ref="threeChartRef" />
           </div>
-          <div class="flex items-center justify-center ml-20px flex-wrap w-50% h-50% mt-12%">
+          <div class="flex items-center justify-center ml-10px flex-wrap w-50% h-50% mt-12%">
             <div
               class="flex items-center justify-center"
               v-for="(item, index) in forewarningList"
               :key="index"
             >
               <div
-                class="legend mr-5px w-12px h-12px"
+                class="legend mr-2px w-12px h-12px"
                 :style="{
                   background: item?.itemStyle?.color,
                 }"
               ></div>
-              <div class="title text-white text-opacity-80 mr-5px text-14px w-65% text-center">
-                {{ item.name }}
+              <div
+                class="title text-white text-opacity-80 mr-5px text-12px w-71% text-center"
+                :title="item.name"
+              >
+                {{ item.name.substring(0, 7) }}
               </div>
               <div class="value text-white text-18px w-80px text-right">{{ item.value }}条</div>
             </div>

@@ -371,7 +371,8 @@
         display: inline-block;
       }
       .left {
-        width: 176px;
+        // width: 176px;
+        width: 250px;
         margin-left: 12px;
         font-family: PangMenZhengDao, PangMenZhengDao;
         font-weight: normal;
@@ -383,21 +384,21 @@
         height: 28px;
       }
       .middle {
-        width: 27px;
-        margin-left: 90px;
+        // width: 27px;
+        // margin-left: 90px;
         font-family: DINAlternate, DINAlternate;
         font-weight: bold;
         font-size: 28px;
         color: #ffc934;
         line-height: 32px;
-        text-align: center;
+        text-align: right;
         height: 32px;
         font-style: normal;
       }
       .right {
-        position: absolute;
-        right: 0;
-        top: 28px;
+        // position: absolute;
+        // right: 0;
+        // top: 28px;
         width: 13px;
         margin-left: 4px;
         font-family:

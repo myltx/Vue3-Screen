@@ -47,7 +47,7 @@
     transform: translate(-50%, 0);
     z-index: 999;
     .item-container {
-      width: 210px;
+      width: 240px;
       height: 80px;
       border: 2px solid #3e7899;
       padding: 10px;
