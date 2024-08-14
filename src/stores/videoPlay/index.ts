@@ -15,7 +15,6 @@ export const usePlayVideo = defineStore('usePlayVideo', () => {
   const bloading = ref(false);
   const protocol = ref('');
   async function playVideo(videoData: any, isMore?: boolean) {
-    console.log('更多------>', videoData);
     if (activeVideo.value) {
       await stopActiveVideo();
     }
@@ -25,21 +24,20 @@ export const usePlayVideo = defineStore('usePlayVideo', () => {
     }
     play();
   }
+
   function play() {
-    console.log('activeVideo.value------>', activeVideo.value);
     getVideoUrl(activeVideo.value).then((res: any) => {
-      videoUrl.value = res.data.playUrl || '';
-      channelId.value = res.data.channelId || '';
-    });
-  }
-  function stopActiveVideo() {
-    stopVideo(activeVideo.value, channelId.value).then((res: any) => {
-      if (res.data) {
-        videoUrl.value = '';
-        channelId.value = '';
-        activeVideo.value = '';
+      if (res.code == 200) {
+        videoUrl.value = res.data?.playUrl || '';
+        channelId.value = res.data?.channelId || '';
       }
     });
+  }
+  async function stopActiveVideo() {
+    await stopVideo(activeVideo.value, channelId.value);
+    videoUrl.value = '';
+    channelId.value = '';
+    activeVideo.value = '';
   }
   return {
     videoList,

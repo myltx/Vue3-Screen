@@ -63,10 +63,8 @@
               activeVideo == item.id ? 'active' : '',
             ]"
           >
-            <img
-              src="@/assets/images/institution/4a13061a82e91b56e8f116ba94122d93备份 2@2x.png"
-              alt=""
-            />
+            <img :src="item.snapPicUrl" class="h-100% w-98%" alt="" v-if="item.snapPicUrl" />
+            <img src="@/assets/images/institution/video.png" class="h-100% w-98%" alt="" v-else />
             <div class="text-white mt-4px text-14px font-500 w-100% text-ellipsis">
               {{ item.iotName }}
             </div>

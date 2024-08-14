@@ -34,7 +34,18 @@
           :class="['position-relative w-50% h-50%', index < 2 ? 'mb-10px' : '']"
         >
           <div v-if="video.type != 'empty'" @click="playVideo(video)">
-            <img src="@/assets/images/institution/video.png" alt="" class="mt-0px h-100% w-98%" />
+            <img
+              :src="video.snapPicUrl"
+              alt=""
+              class="mt-0px h-100% w-98%"
+              v-if="video.snapPicUrl"
+            />
+            <img
+              src="@/assets/images/institution/video.png"
+              alt=""
+              class="mt-0px h-100% w-98%"
+              v-else
+            />
             <play-circle-outlined
               style="font-size: 50px; color: rgba(255, 255, 255, 0.6)"
               class="position-absolute top-1/2 left-1/2 icon cursor-pointer"
