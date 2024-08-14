@@ -227,4 +227,11 @@
       font-style: normal;
     }
   }
+  :deep(.ant-table-body) {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  :deep(.ant-table-cell-scrollbar) {
+    box-shadow: none !important;
+  }
 </style>
