@@ -60,8 +60,8 @@
 <template>
   <div>
     <BasicModal v-model:modalValue="openModal" :title="'隐患记录详情'" @closed="handleClose">
-      <div class="ml-16px mr-34px main-container flex">
-        <div class="left-container w-50%">
+      <div class="ml-16px main-container flex">
+        <div class="left-container w-47%">
           <div class="left-title flex">
             <img :src="statusHiddenImgMap[yhData.status]" alt="" class="mr-4px" />
             <span :class="statusHiddenClass[yhData.status]">{{ yhData.statusText }}</span>
@@ -109,7 +109,7 @@
             </span>
           </div>
         </div>
-        <div class="right-container w-48% h-100% overflow-y-scroll ml-5px">
+        <div class="right-container w-53% h-100% ml-5px pl-5px">
           <div class="flex ml-30px">
             <div class="tip-container">
               <div class="bg"></div>
