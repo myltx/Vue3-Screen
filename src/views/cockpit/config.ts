@@ -374,7 +374,7 @@ export const modalType: modalType = {
   },
   6: {
     module: '今日已完成值班打卡人次',
-    title: '机构明细',
+    title: '机构值班打卡明细',
     key: 'dutyHasBeenCompleted',
     columns: clockColumns,
   },
