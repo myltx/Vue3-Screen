@@ -22,7 +22,6 @@
   const alarmList = ref<AlarmListType[]>([]);
 
   onMounted(() => {
-    console.log(forewarningList.value, 'forewarningList.value');
     forewarningList.value?.forEach((item: any, index: number) => {
       item.itemStyle = {
         color: default_chart_colors[index],

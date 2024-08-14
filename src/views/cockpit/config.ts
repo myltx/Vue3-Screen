@@ -3,7 +3,6 @@ import { graphic } from 'echarts/core';
 const data0 = [1, 1, 1, 1, 1, 1, 1];
 
 export function getEquipmentOption(xData: string[] | number[], yData: string[] | number[]) {
-  console.log(xData, yData);
   return {
     //   backgroundColor: '#000E1A', //背景色
     tooltip: {

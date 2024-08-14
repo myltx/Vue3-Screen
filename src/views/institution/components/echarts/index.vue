@@ -7,7 +7,6 @@
   let colorList = ['#CC7605', '#0098FF', '#00E2E7', '#FCB840', '#F9D660'];
 
   const dataList = ref(getArray('safetyHazardRectificationChart', 3, 1));
-  console.log('dataList----->', dataList.value);
   let sum = ref(0);
 
   sum.value = dataList.value.reduce((previous: any, current: any) => {
