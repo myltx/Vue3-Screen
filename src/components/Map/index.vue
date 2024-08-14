@@ -33,7 +33,7 @@
     () => isLoading.value,
     () => {
       setTimeout(() => {
-        map.value.map.setHeading(64.5);
+        map.value.map.setHeading(34.5);
         map.value.map.setTilt(50);
       }, 200);
     },
@@ -128,6 +128,7 @@
     :tilt="50"
     :height="'100%'"
     class="map"
+    :zoom="12"
     enableDoubleClickZoom
     enableScrollWheelZoom
     ak="0BMG1CekNJ2VVFRrrmX6x6qma8WHYGY0"
