@@ -55,7 +55,7 @@
     transform: translate(-50%, -50%) !important;
     width: 646px;
     height: 436px;
-    background: linear-gradient(180deg, rgba(0, 0, 1, 0.5) 0%, #091829 100%);
+    background: linear-gradient(180deg, rgba(0, 0, 1, 0.7) 0%, #091829 100%);
     box-shadow: 0px 13px 26px 0px rgba(0, 0, 0, 0.89);
     border: 1px solid #2baaff;
     backdrop-filter: blur(4px);
