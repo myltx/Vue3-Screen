@@ -56,7 +56,8 @@
   }
   .module-content-list {
     display: flex;
-    justify-content: space-between;
+    // justify-content: space-between;
+    justify-content: flex-start;
     flex-wrap: wrap;
     .module-content-item {
       flex: 0 0 calc(33.33% - 12px);
@@ -65,6 +66,7 @@
       border: 1px dashed rgba(73, 132, 185, 0.42);
       padding: 5px 8px;
       margin-top: 12px;
+      margin-right: 10px;
       .module-content-item-title {
         text-align: center;
         font-family:
