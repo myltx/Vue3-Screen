@@ -225,7 +225,7 @@ export const moduleKeys: ModuleKeyType = {
     'fireSafetySystem-消防安全制度建设',
     'fireFightingFacilitiesAndEquipment-消防设施设备',
     'fireSafetyInspection-消防安全检',
-    'fireSafetyRectification-安全隐患整改',
+    'fireRectification-安全隐患整改',
     'fireAlarmAnalysis-消防隐患告警分析',
   ],
 };

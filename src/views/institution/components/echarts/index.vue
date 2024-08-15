@@ -87,7 +87,88 @@
           label: {
             show: false,
           },
-          data: dataList.value,
+          data: [
+            {
+              value: dataList.value[0].value, name: dataList.value[0].name,
+              itemStyle: {
+                color: new echarts.graphic.LinearGradient(0, 1, 0, 0, [{
+                  offset: 0,
+                  color: 'rgba(204, 118, 5, 0)',
+                },
+                {
+                  offset: 0.25,
+                  color: 'rgba(204, 118, 5, .3)',
+                },
+                {
+                  offset: 0.5,
+                  color: 'rgba(204, 118, 5, .4)',
+                },
+                {
+                  offset: 0.75,
+                  color: 'rgba(204, 118, 5, .5)',
+                },
+                {
+                  offset: 1,
+                  color: 'rgba(204, 118, 5, 1)',
+                },
+                ]),
+              }
+            },
+            {
+              value: dataList.value[1].value, name: dataList.value[1].name,
+              itemStyle: {
+                color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+                {
+                  offset: 0,
+                  color: 'rgba(0, 152, 255, 0)',
+                }, 
+                {
+                  offset: 0.25,
+                  color: 'rgba(0, 152, 255, .3)',
+                },
+                {
+                  offset: 0.5,
+                  color: 'rgba(0, 152, 255, .4)',
+                },
+                {
+                  offset: 0.75,
+                  color: 'rgba(0, 152, 255, .5)',
+                },
+                {
+                  offset: 1,
+                  color: 'rgba(0, 152, 255, 1)',
+                },
+                ]),
+              }
+            },
+            {
+              value: dataList.value[2].value, name: dataList.value[2].name,
+              itemStyle: {
+                color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+                {
+                  offset: 0,
+                  color: 'rgba(0, 226, 231, 0)',
+                },
+                {
+                  offset: 0.25,
+                  color: 'rgba(0, 226, 231, .3)',
+                },
+                {
+                  offset: 0.5,
+                  color: 'rgba(0, 226, 231, .4)',
+                },
+                {
+                  offset: 0.75,
+                  color: 'rgba(0, 226, 231, .5)',
+                },
+                {
+                  offset: 1,
+                  color: 'rgba(0, 226, 231, 1)',
+                },
+              ]),
+              }
+            },
+          ]
         },
       ],
     };
