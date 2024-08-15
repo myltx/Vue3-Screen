@@ -18,7 +18,7 @@
     },
   });
   const emits = defineEmits(['markerClick']);
-  const defaultCanterPoint = { lng: 120.103241, lat: 30.307823 };
+  const defaultCanterPoint = { lng: 123.6303241, lat: 33.307823 };
   const centerPoint = ref(defaultCanterPoint);
   const map = ref<any>(null);
   const { isLoading, boundaries, get } = useAreaBoundary();
@@ -34,7 +34,7 @@
     () => {
       setTimeout(() => {
         map.value.map.setHeading(34.5);
-        map.value.map.setTilt(50);
+        map.value.map.setTilt(55);
       }, 200);
     },
   );
