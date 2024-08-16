@@ -18,7 +18,7 @@
     },
   });
   const emits = defineEmits(['markerClick']);
-  const defaultCanterPoint = { lng: 123.6303241, lat: 33.307823 };
+  const defaultCanterPoint = { lng: 120.6803241, lat: 30.367823 };
   const centerPoint = ref(defaultCanterPoint);
   const map = ref<any>(null);
   const { isLoading, boundaries, get } = useAreaBoundary();
@@ -28,27 +28,34 @@
 
   function handleInitd() {
     get(props.areaName);
+    setTimeout(() => {
+      map.value.map.setCenter(defaultCanterPoint, {
+        tilt: 55,
+        heading: 39.5,
+      });
+      // centerPoint.value = defaultCanterPoint;
+    }, 1000);
   }
   watch(
     () => isLoading.value,
     () => {
       setTimeout(() => {
-        map.value.map.setHeading(34.5);
+        map.value.map.setHeading(39.5);
         map.value.map.setTilt(55);
       }, 200);
     },
   );
-  watch(
-    () => props.markerList,
-    (newVal: any) => {
-      if (newVal && newVal.length) {
-        centerPoint.value = { lng: newVal[0]?.lng, lat: newVal[0]?.lat };
-      } else {
-        centerPoint.value = defaultCanterPoint;
-      }
-    },
-    { immediate: true, deep: true },
-  );
+  // watch(
+  //   () => props.markerList,
+  //   (newVal: any) => {
+  //     if (newVal && newVal.length) {
+  //       centerPoint.value = { lng: newVal[0]?.lng, lat: newVal[0]?.lat };
+  //     } else {
+  //       centerPoint.value = defaultCanterPoint;
+  //     }
+  //   },
+  //   { immediate: true, deep: true },
+  // );
 
   function handleMarkerClick(data: any) {
     map.value.map.panTo({ lng: data?.lng, lat: data?.lat });
@@ -67,8 +74,8 @@
       item.icon = MapIconImg;
     });
     setTimeout(() => {
-      map.value.map.setHeading(64.5);
-      map.value.map.setTilt(50);
+      map.value.map.setHeading(39.5);
+      map.value.map.setTilt(55);
     }, 200);
   }
   function mapInitd(e: any) {
@@ -99,8 +106,6 @@
   }
 
   const handleChange = (value: string, options: any) => {
-    console.log(`selected ${value}`);
-    console.log(options);
     handleMarkerClick(options);
     changeSearchStatus();
     selectValue.value = null;

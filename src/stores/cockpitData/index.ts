@@ -60,7 +60,7 @@ export const useCockpitDataStore = defineStore('cockpitData', () => {
         });
         console.group('数据加载结果');
         console.log('正常模块', allData.value);
-        console.error('异常模块', errorModuleList.value);
+        errorModuleList.value.length && console.error('异常模块', errorModuleList.value);
         console.groupEnd();
       }
     } else {
