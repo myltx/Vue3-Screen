@@ -16,6 +16,8 @@ export const useCockpitDataStore = defineStore('cockpitData', () => {
   const promiseList: Promise<any>[] = [];
   const kvLists = ref<{ [key: string]: any }>({});
   const allData = ref<{ [key: string]: any }>({});
+  let keyIndexMap: { [key: number]: string } = {};
+  let startInd = 0;
   //   异步根据页面所有模块配置获取数据
   async function getALlModuleData(
     moduleKeys: ModuleKeyType,
@@ -24,6 +26,8 @@ export const useCockpitDataStore = defineStore('cockpitData', () => {
   ) {
     kvLists.value = {};
     allData.value = {};
+    startInd = 0;
+    keyIndexMap = [];
     if (isObject(moduleKeys)) {
       for (const key in moduleKeys) {
         const moduleList = moduleKeys[key].map((item: string) => {
@@ -32,6 +36,8 @@ export const useCockpitDataStore = defineStore('cockpitData', () => {
           return match[1] || '';
         });
         moduleList.forEach((moduleKey: string) => {
+          keyIndexMap[startInd] = `${key}-${moduleKey}`;
+          startInd++;
           promiseList.push(
             getModule({
               pageKey: key,
@@ -42,14 +48,20 @@ export const useCockpitDataStore = defineStore('cockpitData', () => {
         });
       }
       const data = await Promise.all(promiseList);
+      const errorModuleList = ref<string[]>([]);
       if (data.length) {
-        data.forEach((item: any) => {
+        data.forEach((item: any, index: number) => {
           if (item.code == 200) {
             kvLists.value[item.data.moduleKey] = item.data?.kvList;
             allData.value[item.data.moduleKey] = item.data;
+          } else {
+            errorModuleList.value.push(keyIndexMap[index]);
           }
         });
-        console.log(allData.value, ' allData.value');
+        console.group('数据加载结果');
+        console.log('正常模块', allData.value);
+        console.error('异常模块', errorModuleList.value);
+        console.groupEnd();
       }
     } else {
       createMessage.warn('数据加载失败');
