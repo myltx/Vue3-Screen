@@ -69,6 +69,20 @@
 
     emits('markerClick', data);
   }
+
+  const mouseoverMarker = (data: any) => {
+    props.markerList.forEach((item: any) => {
+      if (item.orgId == data.orgId) {
+        item.isShowLabel = true;
+      }
+    });
+  };
+  const mouseoutMarker = () => {
+    props.markerList.forEach((item: any) => {
+      item.isShowLabel = false;
+    });
+  };
+
   function cleanMarkerActive() {
     props.markerList.forEach((item: any) => {
       item.icon = MapIconImg;
@@ -147,6 +161,8 @@
       :position="{ lng: marker.lng, lat: marker.lat }"
       :data="marker"
       :icon="getMarkerIcon(marker.icon)"
+      @mouseover="mouseoverMarker(marker)"
+      @mouseout="mouseoutMarker"
       @click="handleMarkerClick(marker)"
     />
     <BLabel
@@ -159,7 +175,7 @@
         y: -50,
       }"
       :style="{
-        color: '#fff',
+        color: !marker.isShowLabel ? 'rgba(0,0,0,0)' : '#fff',
         backgroundColor: 'rgba(0,0,0,0)',
         border: 'none',
         borderRadius: '3px',
