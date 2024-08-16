@@ -6,6 +6,7 @@
   import xfDetailModel from './xfDetailModel.vue';
   import { getFileUrl } from '@/utils';
   import CarouselDefaultImg from '@/assets/images/institution/carousel-default.png';
+  import decryptString from '@/utils/jnpf';
 
   const route = useRoute();
   const { orgId } = route.query;
@@ -97,7 +98,7 @@
                   {{ item.startDate }}
                 </div>
                 <div class="td-content w-20%" :title="item.userName">
-                  {{ item.name }}
+                  {{decryptString(item.nameEncrypted || '', 'ch20210825093727') }}
                 </div>
                 <div class="td-content w-30%" :title="item.timeFrame">
                   {{ item.timeInterval }}
