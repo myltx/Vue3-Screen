@@ -169,7 +169,10 @@
             负责人电话：<div>{{ orgData.phone }}</div>
           </div>
           <div class="info-item flex items-center">
-            消防站：<div>{{ orgData.fireStationName }} | {{ orgData.fireStationPhone }}</div>
+            消防站：<div>
+              {{ orgData.fireStationName }} {{ orgData.fireStationPhone ? '|' : '' }}
+              {{ orgData.fireStationPhone }}
+            </div>
           </div>
         </div>
         <div @click="handleDetail" class="text-white cursor-pointer detail-btn">

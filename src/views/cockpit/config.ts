@@ -1,6 +1,6 @@
 import { graphic } from 'echarts/core';
 
-const data0 = [1, 1, 1, 1, 1, 1, 1];
+// const data0 = [1, 1, 1, 1, 1, 1, 1];
 
 export function getEquipmentOption(xData: string[] | number[], yData: string[] | number[]) {
   return {
@@ -269,48 +269,48 @@ const orgColumns = [
 const clockColumns = [
   {
     title: '机构',
-    dataIndex: 'name',
-    key: 'name',
+    dataIndex: 'orgName',
+    key: 'orgName',
     ellipsis: true,
   },
   {
     title: '班次',
-    dataIndex: 'classes',
-    key: 'classes',
+    dataIndex: 'shiftName',
+    key: 'shiftName',
     ellipsis: true,
     width: 80,
   },
   {
     title: '值班人员',
-    dataIndex: 'userName',
-    key: 'userName',
+    dataIndex: 'staffName',
+    key: 'staffName',
     width: 120,
     ellipsis: true,
   },
   {
     title: '打卡时间',
-    key: 'clockTime',
-    dataIndex: 'clockTime',
+    key: 'checkInTime',
+    dataIndex: 'checkInTime',
     ellipsis: true,
   },
 ];
 const hiddenDangerColumns = [
   {
     title: '机构',
-    dataIndex: 'name',
-    key: 'name',
+    dataIndex: 'orgName',
+    key: 'orgName',
     ellipsis: true,
   },
   {
     title: '隐患描述',
-    dataIndex: 'remark',
-    key: 'remark',
+    dataIndex: 'dangerRemark',
+    key: 'dangerRemark',
     ellipsis: true,
   },
   {
     title: '上报时间',
-    dataIndex: 'createTime',
-    key: 'createTime',
+    dataIndex: 'creatorTime',
+    key: 'creatorTime',
     ellipsis: true,
   },
   {
