@@ -4,6 +4,7 @@ import { getModule } from '@/api/cockpit/cockpit';
 import { cloneDeep } from 'lodash-es';
 import { LocationQueryValue } from 'vue-router';
 import { useSettingStore } from '@/stores/index';
+import { allDataJson, kvListJson } from './index.data';
 
 const { createMessage } = useMessage();
 export const useCockpitDataStore = defineStore('cockpitData', () => {
@@ -14,8 +15,9 @@ export const useCockpitDataStore = defineStore('cockpitData', () => {
   });
   // 根据配置的 moduleKey 在页面动态获取数据
   const promiseList: Promise<any>[] = [];
-  const kvLists = ref<{ [key: string]: any }>({});
-  const allData = ref<{ [key: string]: any }>({});
+  const kvLists = ref<{ [key: string]: any }>(kvListJson);
+  const allData = ref<{ [key: string]: any }>(allDataJson);
+  console.log(allData.value, 'allData.value');
   let keyIndexMap: { [key: number]: string } = {};
   let startInd = 0;
   //   异步根据页面所有模块配置获取数据
@@ -24,6 +26,14 @@ export const useCockpitDataStore = defineStore('cockpitData', () => {
     callBack: Function,
     moduleParam?: string | number | LocationQueryValue | LocationQueryValue[],
   ) {
+    console.warn('无接口对应所以停止接口加载数据逻辑');
+    // 等待页面加载完成后关闭加载框
+    nextTick(() => {
+      setTimeout(() => {
+        callBack && isFunction(callBack) && callBack();
+      }, 1500);
+    });
+    return;
     kvLists.value = {};
     allData.value = {};
     startInd = 0;

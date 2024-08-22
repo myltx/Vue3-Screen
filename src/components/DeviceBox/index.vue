@@ -45,7 +45,9 @@
   }
 
   onMounted(() => {
-    initChart();
+    nextTick(() => {
+      initChart();
+    });
   });
 </script>
 

@@ -9,7 +9,8 @@
   const router = useRouter();
   const { startLoading, endLoading } = useLoadingStore();
   const { createMessage, notification } = useMessage();
-  const { token, orgId, name } = route.query;
+  const { orgId, name } = route.query;
+  const token = 'test';
   startLoading();
   if (!token) {
     if (import.meta.env.DEV) {
@@ -22,30 +23,28 @@
     // 获取用户信息
     // 这里走免登接口
     getUserCurrentInfo().then((res: any) => {
-      if (res.code == 200) {
-        setUserInfo(res.data);
-        // createMessage.success('登录成功');
-        notification.success({
-          message: '登录成功',
-          description: '欢迎回来，' + res.data?.userInfo?.userName + '！',
-          duration: 4,
-        });
-        // 跳转页面
-        setTimeout(() => {
-          endLoading();
-          if (orgId) {
-            router.replace({
-              path: '/institution',
-              query: {
-                orgId,
-                name,
-              },
-            });
-          } else {
-            router.replace('/');
-          }
-        }, 2000);
-      }
+      setUserInfo(res);
+      // createMessage.success('登录成功');
+      notification.success({
+        message: '登录成功',
+        description: '欢迎回来，' + res?.userInfo?.userName + '！',
+        duration: 4,
+      });
+      // 跳转页面
+      setTimeout(() => {
+        endLoading();
+        if (orgId) {
+          router.replace({
+            path: '/institution',
+            query: {
+              orgId,
+              name,
+            },
+          });
+        } else {
+          router.replace('/');
+        }
+      }, 2000);
     });
   }
 </script>

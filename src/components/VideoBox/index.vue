@@ -5,7 +5,7 @@
   const { playVideo } = parentData;
   // 实现watch 监听 parentData.videoList 数据变化
   watchEffect(() => {
-    const length = parentData.videoList.length;
+    const length = parentData.videoList?.length;
     if (length < 4 && length > 0) {
       for (let i = 0; i < 4 - length; i++) {
         parentData.videoList.push({
@@ -20,14 +20,14 @@
     <template #subTitle>
       <span
         class="more-tip"
-        v-if="parentData.videoList.length"
+        v-if="parentData.videoList?.length"
         @click="playVideo(parentData.videoList[0], false)"
       >
         更多 <DoubleRightOutlined />
       </span>
     </template>
     <div class="video-container">
-      <template v-if="parentData.videoList.length">
+      <template v-if="parentData.videoList?.length">
         <div
           v-for="(video, index) in parentData.videoList.slice(0, 4)"
           :key="video"

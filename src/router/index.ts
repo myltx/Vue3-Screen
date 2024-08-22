@@ -1,7 +1,7 @@
 import { createRouter, createWebHashHistory } from 'vue-router';
 import type { RouteRecordRaw } from 'vue-router';
 import { start, close } from '@/utils/nprogress';
-import { LOGIN_OUT_PATH_PRODUCTION, LOGIN_PATH, MIDDLE_LOGIN_PATH } from '@/helper';
+import { LOGIN_PATH, MIDDLE_LOGIN_PATH } from '@/helper';
 import { getToken } from '@/utils';
 import { isDevFn } from '../../build/utils';
 
@@ -47,7 +47,7 @@ router.beforeEach((to, from, next) => {
         next(MIDDLE_LOGIN_PATH);
       });
     } else {
-      window.location.href = LOGIN_OUT_PATH_PRODUCTION;
+      next(MIDDLE_LOGIN_PATH);
     }
   } else {
     setTimeout(() => {

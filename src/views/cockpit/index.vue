@@ -9,6 +9,7 @@
   import MapIconImg from '@/assets/images/map/map-icon.png';
   import { modalType, moduleKeys } from './config';
   import { usePlayVideo } from '@/stores/videoPlay';
+  import { orgInfoJson } from '@/stores/cockpitData/index.data';
 
   const router = useRouter();
   const { startLoading, endLoading } = useLoadingStore();
@@ -32,21 +33,9 @@
     },
   );
   provide('data', parentData);
-  const orgData = ref<any>({
-    orgType: 2,
-    address: '杭州',
-    phone: '131****1111',
-    name: '张张养老院',
-    id: 1,
-    orgLngLat: '120.103241,30.307823',
-    userName: '李四',
-    orgId: '558933565715270917',
-    phoneEncrypted: 'rRU88Ro/ioq051MnlJcPBw==',
-    lng: 120.103241,
-    lat: 30.307823,
-    icon: '/src/assets/images/map/map-icon-active.png',
-  });
-  const { interValGeyAllModuleData, getRule, getValue, getOneModule } = useCockpitDataStore();
+  const orgData = ref<any>({});
+  // getOneModule
+  const { interValGeyAllModuleData, getRule, getValue } = useCockpitDataStore();
   // 根据配置的 moduleKey 在页面动态获取数据
   startLoading();
   interValGeyAllModuleData(moduleKeys, endLoading);
@@ -59,23 +48,24 @@
 
   async function markerClick(markerData: any) {
     orgData.value = markerData;
-    const promiseList: any = [];
-    const moduleList = moduleKeys['orgPage']?.map((item: string) => {
-      const regexPattern = /^([^-]+)/;
-      const match: string[] = regexPattern.exec(item) || [];
-      return match[1] || '';
-    });
-    moduleList?.forEach((moduleKey: any) => {
-      promiseList.push(
-        getOneModule({
-          pageKey: 'orgPage',
-          moduleKey,
-          moduleParam: markerData.orgId,
-        }),
-      );
-    });
+    // const promiseList: any = [];
+    // const moduleList = moduleKeys['orgPage']?.map((item: string) => {
+    //   const regexPattern = /^([^-]+)/;
+    //   const match: string[] = regexPattern.exec(item) || [];
+    //   return match[1] || '';
+    // });
+    // moduleList?.forEach((moduleKey: any) => {
+    //   promiseList.push(
+    //     getOneModule({
+    //       pageKey: 'orgPage',
+    //       moduleKey,
+    //       moduleParam: markerData.orgId,
+    //     }),
+    //   );
+    // });
 
-    const data = await Promise.all(promiseList);
+    // let data = await Promise.all(promiseList);
+    const data = orgInfoJson;
     console.log(data, 'dd');
     orgData.value.modules = data.map((item) => item?.data);
     openMapModal.value = true;
