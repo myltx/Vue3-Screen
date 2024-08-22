@@ -11,7 +11,7 @@
   import { usePlayVideo } from '@/stores/videoPlay';
   import { orgInfoJson } from '@/stores/cockpitData/index.data';
 
-  const router = useRouter();
+  // const router = useRouter();
   const { startLoading, endLoading } = useLoadingStore();
   const { isLoading } = storeToRefs(useLoadingStore());
   const { videoList, videoModalValue } = storeToRefs(usePlayVideo());
@@ -74,16 +74,16 @@
   function getModuleName(moduleName: string) {
     return moduleName.replace(/[\(（].*?[\)）]/g, '');
   }
-  function handleDetail() {
-    router.push({
-      path: '/institution',
-      query: {
-        orgId: orgData.value.orgId,
-        name: orgData.value.name,
-        back: 1,
-      },
-    });
-  }
+  // function handleDetail() {
+  //   router.push({
+  //     path: '/institution',
+  //     query: {
+  //       orgId: orgData.value.orgId,
+  //       name: orgData.value.name,
+  //       back: 1,
+  //     },
+  //   });
+  // }
   watch(
     () => isLoading.value,
     (val) => {
@@ -165,9 +165,9 @@
             </div>
           </div>
         </div>
-        <div @click="handleDetail" class="text-white cursor-pointer detail-btn">
+        <!-- <div @click="handleDetail" class="text-white cursor-pointer detail-btn">
           查看<br />详情
-        </div>
+        </div> -->
       </div>
       <div class="h-300px overflow-y-auto">
         <Module
