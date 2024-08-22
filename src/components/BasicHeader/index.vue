@@ -9,10 +9,10 @@
 
   const userInfo = getUserInfo();
   const avatarImg = computed(() => {
+    return DetaultAvatar;
     if (userInfo?.userInfo?.headIcon) {
       return getFileUrl(userInfo?.userInfo?.headIcon);
     }
-    return DetaultAvatar;
   });
 
   const props = defineProps({

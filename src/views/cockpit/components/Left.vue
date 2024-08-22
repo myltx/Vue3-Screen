@@ -1,5 +1,6 @@
 <script setup lang="ts">
   import dayjs from 'dayjs';
+  // import { DoubleLeftOutlined, DoubleRightOutlined } from '@ant-design/icons-vue';
   import { useCockpitDataStore } from '@/stores/cockpitData';
 
   interface AlarmListType {
@@ -106,6 +107,11 @@
     </BasicBox>
     <DeviceBox :module-keys="['fireAwarenessEquipmentType', 'fireFightingEquipmentType']" />
     <VideoBox />
+    <!-- 展开 -->
+    <!-- <div class="position-absolute top-30% right--30px z-999 text-red text-30px b-1px b-red">
+      <DoubleLeftOutlined />
+      <DoubleRightOutlined />
+    </div> -->
   </div>
 </template>
 
