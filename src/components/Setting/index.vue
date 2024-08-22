@@ -65,37 +65,39 @@
           </a-radio-group>
         </div>
       </div>
-      <div class="left_shu">实时监测</div>
-      <div class="setting_item">
-        <span class="setting_label">
-          是否定时更新数据:
-          <span class="setting_label_tip"></span>
-        </span>
-        <div class="setting_content">
-          <a-radio-group v-model:value="intervalUpdateData" @change="indexRadioChange">
-            <a-radio :value="true">是</a-radio>
-            <a-radio :value="false">否</a-radio>
-          </a-radio-group>
+      <template v-if="false">
+        <div class="left_shu">实时监测</div>
+        <div class="setting_item">
+          <span class="setting_label">
+            是否定时更新数据:
+            <span class="setting_label_tip"></span>
+          </span>
+          <div class="setting_content">
+            <a-radio-group v-model:value="intervalUpdateData" @change="indexRadioChange">
+              <a-radio :value="true">是</a-radio>
+              <a-radio :value="false">否</a-radio>
+            </a-radio-group>
+          </div>
         </div>
-      </div>
-      <div class="setting_item">
-        <span class="setting_label"> 告警轮播: <span class="setting_label_tip"></span> </span>
-        <div class="setting_content">
-          <a-radio-group v-model:value="leftBottomRadio" @change="indexRadioChange">
-            <a-radio :value="true">是</a-radio>
-            <a-radio :value="false">否</a-radio>
-          </a-radio-group>
+        <div class="setting_item">
+          <span class="setting_label"> 告警轮播: <span class="setting_label_tip"></span> </span>
+          <div class="setting_content">
+            <a-radio-group v-model:value="leftBottomRadio" @change="indexRadioChange">
+              <a-radio :value="true">是</a-radio>
+              <a-radio :value="false">否</a-radio>
+            </a-radio-group>
+          </div>
         </div>
-      </div>
-      <div class="setting_item">
-        <span class="setting_label"> 右侧轮播: </span>
-        <div class="setting_content">
-          <a-radio-group v-model:value="rightBottomRadio" @change="indexRadioChange">
-            <a-radio :value="true">是</a-radio>
-            <a-radio :value="false">否</a-radio>
-          </a-radio-group>
+        <div class="setting_item">
+          <span class="setting_label"> 右侧轮播: </span>
+          <div class="setting_content">
+            <a-radio-group v-model:value="rightBottomRadio" @change="indexRadioChange">
+              <a-radio :value="true">是</a-radio>
+              <a-radio :value="false">否</a-radio>
+            </a-radio-group>
+          </div>
         </div>
-      </div>
+      </template>
     </template>
     <!-- <template #footer>
       <div style="flex: auto">

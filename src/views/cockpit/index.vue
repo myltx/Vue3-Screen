@@ -121,7 +121,7 @@
   }
 </script>
 <template>
-  <PageWrapper :title="'智慧消防物联网监控感知平台'">
+  <PageWrapper :title="'智慧消防物联网监控感知平台'" show-setting>
     <Left v-if="!isLoading" v-motion-slide-left />
     <Right v-if="!isLoading" v-motion-slide-right />
     <Bottom v-if="!isLoading" v-motion-slide-visible-bottom />
