@@ -1,5 +1,6 @@
 <script setup lang="ts">
   import { useSettingStore } from '@/stores/index';
+  import { GithubOutlined } from '@ant-design/icons-vue';
 
   // const router = useRouter();
   const isScaleRadio = ref(true);
@@ -64,6 +65,20 @@
             <a-radio :value="false">否</a-radio>
           </a-radio-group>
         </div>
+      </div>
+      <div class="setting_item mt-20px">
+        <a-space>
+          <a-button
+            href="https://github.com/myltx/Vue3-Screen"
+            target="_blank"
+            class="flex items-center"
+          >
+            <GithubOutlined />
+            源码地址
+          </a-button>
+
+          <!-- <a-button @click="go('/dataConfig/excelToJson')">ExCelToJson</a-button> -->
+        </a-space>
       </div>
       <template v-if="false">
         <div class="left_shu">实时监测</div>
