@@ -1,8 +1,19 @@
 ## 项目描述
 
-Vue3+vite版本驾驶舱
+Vue3 + vite 版本驾驶舱
 
-[源代码地址](https://github.com/daidaibg/IofTV-Screen-Vue3/tree/master)
+参考[代码地址](https://github.com/daidaibg/IofTV-Screen-Vue3/tree/master)
+
+- master 
+
+## 界面预览
+
+![alt text](image.png)
+
+## 分支说明
+
+- threejs
+  - 包含threejs相关代码
 
 #### 样式
 
@@ -269,25 +280,23 @@ interface CountUpOptions {
   - `types` 类型定义文件更改
   - `wip` 开发中
 
+
 ## 需要开发功能
 
 - [x] 接口请求（数据逻辑）
-  - [ ] 异常处理
-- [ ] 公共异常确认框
+  - [x] 异常处理
+- [x] 公共异常确认框
 - [x] pageWrapper
 - [x] 带标题的 BasicBox
 - [x] loading
 - [x] 自动登录的中间页
-- [ ] 公共弹框
+- [x] 公共弹框
 - [x] map components
   - [x] 点位渲染
   - [x] 中心点切换
   - [x] marker 点击事件
   - [x] 自定义 marker icon
-- [ ] 获取动态数据然后转换为页面需要格式（使用 store ）
-- [ ] 根据环境判断跳转地址
-- [ ] dev 运行后增加访问方式、地址提示，防止初次访问项目无法正确访问问题
-- [ ] 3D图表
-- [ ] 柱状图、折线图
-- [ ] 表单样式调整（解决提交样式不统一问题）
+- [x] 获取动态数据然后转换为页面需要格式（使用 store ）
+- [x] 3D图表
+- [x] 柱状图、折线图
 - [ ] 账号密码登录页面？（用于在开发环境时方便调试登录）
