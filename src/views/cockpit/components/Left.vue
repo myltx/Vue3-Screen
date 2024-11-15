@@ -106,7 +106,26 @@
       </div>
     </BasicBox>
     <DeviceBox :module-keys="['fireAwarenessEquipmentType', 'fireFightingEquipmentType']" />
-    <VideoBox />
+    <BasicBox :title="'实时动态'" :height="'235px'">
+      <AutoScrollTable
+        :headers="[
+          {
+            key: 'content',
+            title: '内容',
+            style: {},
+          },
+          {
+            key: 'date',
+            title: '时间',
+            style: {},
+          },
+        ]"
+        :rows="alarmList"
+        :interval="1000"
+        :step="0.5"
+      />
+    </BasicBox>
+    <!-- <VideoBox /> -->
     <!-- 展开 -->
     <!-- <div class="position-absolute top-30% right--30px z-999 text-red text-30px b-1px b-red">
       <DoubleLeftOutlined />

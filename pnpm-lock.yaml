@@ -102,7 +102,7 @@ devDependencies:
     version: 5.62.0(eslint@8.57.0)(typescript@5.1.6)
   '@unocss/postcss':
     specifier: ^0.53.6
-    version: 0.53.6(postcss@8.4.39)
+    version: 0.53.6(postcss@8.4.41)
   '@vitejs/plugin-vue':
     specifier: ^4.6.2
     version: 4.6.2(vite@5.4.2)(vue@3.4.31)
@@ -114,7 +114,7 @@ devDependencies:
     version: 10.11.0(vue@3.4.31)
   autoprefixer:
     specifier: ^10.4.19
-    version: 10.4.19(postcss@8.4.39)
+    version: 10.4.19(postcss@8.4.41)
   eslint:
     specifier: ^8.57.0
     version: 8.57.0
@@ -159,7 +159,7 @@ devDependencies:
     version: 5.1.6
   unocss:
     specifier: ^0.53.6
-    version: 0.53.6(postcss@8.4.39)(vite@5.4.2)
+    version: 0.53.6(postcss@8.4.41)(vite@5.4.2)
   unplugin-auto-import:
     specifier: ^0.16.7
     version: 0.16.7(@vueuse/core@10.11.0)
@@ -181,6 +181,9 @@ devDependencies:
   vue-tsc:
     specifier: ^1.8.27
     version: 1.8.27(typescript@5.1.6)
+  vue3-scroll-seamless:
+    specifier: ^1.0.6
+    version: 1.0.6
 
 packages:
 
@@ -2624,7 +2627,7 @@ packages:
       sirv: 2.0.4
     dev: true
 
-  /@unocss/postcss@0.53.6(postcss@8.4.39):
+  /@unocss/postcss@0.53.6(postcss@8.4.41):
     resolution: {integrity: sha512-/Xi1f32uWgvlGqW7YejV5gJQYOFKKHU3TxQSrqUHVtHmtG5ZS8Ow6ZIumcReWnazpI/grq0H0O/ZPrXsUvPcpg==}
     engines: {node: '>=14'}
     peerDependencies:
@@ -2635,7 +2638,7 @@ packages:
       css-tree: 2.3.1
       fast-glob: 3.3.2
       magic-string: 0.30.10
-      postcss: 8.4.39
+      postcss: 8.4.41
     dev: true
 
   /@unocss/preset-attributify@0.53.6:
@@ -3124,7 +3127,7 @@ packages:
     resolution: {integrity: sha512-Oei9OH4tRh0YqU3GxhX79dM/mwVgvbZJaSNaRk+bshkj0S5cfHcgYakreBjrHwatXKbz+IoIdYLxrKim2MjW0Q==}
     dev: false
 
-  /autoprefixer@10.4.19(postcss@8.4.39):
+  /autoprefixer@10.4.19(postcss@8.4.41):
     resolution: {integrity: sha512-BaENR2+zBZ8xXhM4pUaKUxlVdxZ0EZhjvbopwnXmxRUfqDmwSpC2lAi/QXvx7NRdPCo1WKEcEF6mV64si1z4Ew==}
     engines: {node: ^10 || ^12 || >=14}
     hasBin: true
@@ -3136,7 +3139,7 @@ packages:
       fraction.js: 4.3.7
       normalize-range: 0.1.2
       picocolors: 1.0.1
-      postcss: 8.4.39
+      postcss: 8.4.41
       postcss-value-parser: 4.2.0
     dev: true
 
@@ -7026,6 +7029,12 @@ packages:
       possible-typed-array-names: 1.0.0
     dev: true
 
+  /typescript@4.9.5:
+    resolution: {integrity: sha512-1FXk9E2Hm+QzZQ7z+McJiHL4NW1F2EzMu9Nq9i3zAaGqibafqYwCVU6WyWAuyQRRzOlxou8xZSyXLEN8oKj24g==}
+    engines: {node: '>=4.2.0'}
+    hasBin: true
+    dev: true
+
   /typescript@5.1.6:
     resolution: {integrity: sha512-zaWCozRZ6DLEWAWFrVDz1H6FVXzUSfTy5FUMWsQlU8Ym5JP9eO4xkTIROFCQvhQf61z6O/G6ugw3SgAnvvm+HA==}
     engines: {node: '>=14.17'}
@@ -7160,7 +7169,7 @@ packages:
     engines: {node: '>= 10.0.0'}
     dev: true
 
-  /unocss@0.53.6(postcss@8.4.39)(vite@5.4.2):
+  /unocss@0.53.6(postcss@8.4.41)(vite@5.4.2):
     resolution: {integrity: sha512-yZeSaa3ulfDyU7WaOeN5AZN/ciopY+f9GPuME4hgzxZmUnCSJmuwBW+5UHud2BSRKdem+mLIpBzNXTOsDP8gFA==}
     engines: {node: '>=14'}
     peerDependencies:
@@ -7173,7 +7182,7 @@ packages:
       '@unocss/cli': 0.53.6
       '@unocss/core': 0.53.6
       '@unocss/extractor-arbitrary-variants': 0.53.6
-      '@unocss/postcss': 0.53.6(postcss@8.4.39)
+      '@unocss/postcss': 0.53.6(postcss@8.4.41)
       '@unocss/preset-attributify': 0.53.6
       '@unocss/preset-icons': 0.53.6
       '@unocss/preset-mini': 0.53.6
@@ -7489,6 +7498,12 @@ packages:
       mitt: 3.0.1
       vue: 3.4.31(typescript@5.1.6)
     dev: false
+
+  /vue3-scroll-seamless@1.0.6:
+    resolution: {integrity: sha512-2vcnZ2HmEehV8bZGE3mK7b4XgiMqsf/1bIjV+OjDP+JsyShhUQaFdgGY4nBJt12mjL+A4f8ed9oLPNznVS816g==}
+    dependencies:
+      typescript: 4.9.5
+    dev: true
 
   /vue3-seamless-scroll@2.0.1:
     resolution: {integrity: sha512-mI3BaDU3pjcPUhVSw3/xNKdfPBDABTi/OdZaZqKysx4cSdNfGRbVvGNDzzptBbJ5S7imv5T55l6x/SqgnxKreg==}

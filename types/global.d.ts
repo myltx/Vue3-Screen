@@ -32,3 +32,5 @@ declare interface ParentDataType {
   showMore: Function;
   playVideo: Function;
 }
+
+declare module 'vue3-scroll-seamless';
