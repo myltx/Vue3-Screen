@@ -1,6 +1,6 @@
 <script lang="ts" setup>
   import { vue3ScrollSeamless } from 'vue3-scroll-seamless';
-  interface Headers {
+  export interface Headers {
     key: string;
     style: Object;
     title: string;
@@ -17,20 +17,22 @@
   interface Props extends ClassOption {
     headers: Headers[];
     rows: { [key: string]: string }[];
-    interval: number;
     scrollAuto: boolean;
     height?: string | number;
+    classOptions: Object;
   }
   const props = withDefaults(defineProps<Props>(), {
-    interval: 1000,
     scrollAuto: true,
   });
-  const classOptions = {
-    limitMoveNum: 6,
-    direction: props.direction || 1,
-    hoverStop: props.hoverStop ? props.hoverStop : true,
-    step: props.step || 1,
-  };
+  const defaultClassOption = Object.assign(
+    {
+      limitMoveNum: 6,
+      direction: 1,
+      hoverStop: true,
+      step: 1,
+    },
+    props.classOptions,
+  );
 </script>
 
 <template>
@@ -39,46 +41,55 @@
     :style="{ height: props.height ? props.height + 'px' : '100%' }"
     ref="tableContainer"
   >
-    <div class="w-100% flex thead py-6px px-16px color-#4EA4FF text-12px font-500 h-28px">
+    <div
+      class="w-100% flex thead py-6px px-16px color-#4EA4FF text-12px font-500 h-28px"
+      v-if="props.rows.length"
+    >
       <div
         class="flex-1"
         v-for="th in props.headers.filter((item) => item.key !== 'id')"
-        :key="th.key"
+        :key="th?.key"
         :style="{
-          ...(th.style ? th.style : {}),
+          ...(th.style ? th?.style : {}),
         }"
       >
-        {{ th.title }}
+        {{ th?.title }}
       </div>
     </div>
     <!-- 这一层是tr -->
-    <div class="tbody" v-if="props.scrollAuto">
-      <vue3ScrollSeamless class="scroll-wrap" :classOptions="classOptions" :dataList="props.rows">
+    <template v-if="props.rows.length">
+      <div class="tbody" v-if="props.scrollAuto">
+        <vue3ScrollSeamless
+          class="scroll-wrap"
+          :classOptions="defaultClassOption"
+          :dataList="props.rows"
+        >
+          <div class="flex px-16px py-6px tr text-12px" v-for="row in props.rows" :key="row?.id">
+            <div
+              class="flex-1 td"
+              :style="{
+                ...(th?.style ? th.style : {}),
+              }"
+              v-for="th in props.headers.filter((item) => item.key !== 'id')"
+              :key="th.key"
+            >
+              {{ row[th?.key] }}
+            </div>
+          </div>
+        </vue3ScrollSeamless>
+      </div>
+      <div class="tbody overflow-y-auto" v-else>
         <div class="flex px-16px py-6px tr text-12px" v-for="row in props.rows" :key="row.id">
           <div
             class="flex-1 td"
-            :style="{
-              ...(th.style ? th.style : {}),
-            }"
             v-for="th in props.headers.filter((item) => item.key !== 'id')"
             :key="th.key"
           >
             {{ row[th.key] }}
           </div>
         </div>
-      </vue3ScrollSeamless>
-    </div>
-    <div class="tbody overflow-y-auto" v-else>
-      <div class="flex px-16px py-6px tr text-12px" v-for="row in props.rows" :key="row.id">
-        <div
-          class="flex-1 td"
-          v-for="th in props.headers.filter((item) => item.key !== 'id')"
-          :key="th.key"
-        >
-          {{ row[th.key] }}
-        </div>
       </div>
-    </div>
+    </template>
   </div>
 </template>
 

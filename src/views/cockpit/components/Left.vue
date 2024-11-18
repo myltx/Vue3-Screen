@@ -121,8 +121,9 @@
           },
         ]"
         :rows="alarmList"
-        :interval="1000"
-        :step="0.5"
+        :class-options="{
+          step: 0.5,
+        }"
       />
     </BasicBox>
     <!-- <VideoBox /> -->

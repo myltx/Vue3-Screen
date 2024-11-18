@@ -4,7 +4,7 @@ Vue3 + vite 版本驾驶舱
 
 参考[代码地址](https://github.com/daidaibg/IofTV-Screen-Vue3/tree/master)
 
-- master 
+- master
 
 ## 界面预览
 
@@ -252,6 +252,55 @@ interface CountUpOptions {
 <v-chart class="chart" id="bar-chart" :option="option" v-if="Object.keys(option).length" />
 ```
 
+### AutoScrollTable 滚动列表组件
+
+基于 [vue3-seamless-scroll](https://github.com/xfy520/vue3-seamless-scroll)
+
+#### 代码演示
+
+```vue
+<AutoScrollTable
+  :headers="[
+    {
+      key: 'content',
+      title: '内容',
+      style: {},
+    },
+    {
+      key: 'date',
+      title: '时间',
+      style: {},
+    },
+  ]"
+  :rows="alarmList"
+  :class-options="{
+    step: 0.5,
+  }"
+></AutoScrollTable>
+```
+
+#### Props
+
+| 属性 | 说明 | 类型 | 可选值 | 默认值 |
+| :----: | :------: | :-------------: | :-----------------------: | :-----: |
+| headers | 表头数组 | [Headers](#Headers) | --- | --- |
+| rows | 表格内容数组 | { [key: string]: string }[] | --- | --- |
+| scrollAuto | 是否开启滚动 | Boolean | true/false | true |
+| height | 表格高度 | string | number | --- | 100% |
+| classOptions | vue3-seamless-scroll配置 | Object | [vue3-seamless-scroll组件配置](https://github.com/xfy520/vue3-seamless-scroll?tab=readme-ov-file#%E7%BB%84%E4%BB%B6%E9%85%8D%E7%BD%AE) | {limitMoveNum: 6,direction: 1, hoverStop: true,step: 1,} |
+
+#### Type
+
+##### Headers
+
+```typescript
+{
+  key: string;
+  style: Object;
+  title: string;
+}
+```
+
 ## 全局参数
 
 ### filter
@@ -280,7 +329,6 @@ interface CountUpOptions {
   - `types` 类型定义文件更改
   - `wip` 开发中
 
-
 ## 需要开发功能
 
 - [x] 接口请求（数据逻辑）
@@ -299,4 +347,4 @@ interface CountUpOptions {
 - [x] 获取动态数据然后转换为页面需要格式（使用 store ）
 - [x] 3D图表
 - [x] 柱状图、折线图
-- [ ] 账号密码登录页面？（用于在开发环境时方便调试登录）
+- [x] AutoScrollTable 滚动列表组件
