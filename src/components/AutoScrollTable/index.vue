@@ -43,7 +43,7 @@
   >
     <div
       class="w-100% flex thead py-6px px-16px color-#4EA4FF text-12px font-500 h-28px"
-      v-if="props.rows.length"
+      v-if="props.headers.length"
     >
       <div
         class="flex-1"
