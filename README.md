@@ -282,7 +282,7 @@ interface CountUpOptions {
 #### Props
 
 | 属性 | 说明 | 类型 | 可选值 | 默认值 |
-| :----: | :------: | :-------------: | :-----------------------: | :-----: |
+| :-: | :-: | :-: | :-: | :-: | --- |
 | headers | 表头数组 | [Headers](#Headers) | --- | --- |
 | rows | 表格内容数组 | { [key: string]: string }[] | --- | --- |
 | scrollAuto | 是否开启滚动 | Boolean | true/false | true |
@@ -310,6 +310,14 @@ interface CountUpOptions {
 ```vue
 {{ 10.23123 | montionFilter }}
 ```
+
+#### 案例
+
+##### 案例1
+
+![](./1.gif)
+
+<!-- <video src="./2024-11-18 17-46-02.mp4"></video> -->
 
 ## Git 贡献提交规范
 
