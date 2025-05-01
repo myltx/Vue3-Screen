@@ -1,0 +1,32 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write # 添加写入权限
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 8.14.0 # 可以根据需要调整pnpm版本
+
+      - name: Install dependencies
+        run: pnpm install # 使用pnpm并确保依赖一致
+
+      - name: Build
+        run: pnpm run build
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist # 根据你的构建输出目录进行调整
