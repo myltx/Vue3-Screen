@@ -6,6 +6,16 @@ Vue3 + vite 版本驾驶舱
 
 - master
 
+## 开始
+
+请按照以下步骤开始模板：
+
+1. 单击**[Use this template](https://github.com/myltx/Vue3-Screen/generate)**（必须登录）或仅克隆此存储库。
+2. 转到Project文件夹并运行 `pnpm i`。
+3. 在开发模式下启动应用 `pnpm dev`。
+
+- tips: 项目中使用了多种字体,所以项目较大,如不需要可自行删除
+
 ## 界面预览
 
 ![alt text](image.png)
