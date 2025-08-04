@@ -121,7 +121,7 @@
   }
 </script>
 <template>
-  <PageWrapper :title="'智慧消防物联网监控感知平台'" show-setting>
+  <PageWrapper :title="'示例大屏驾驶舱'" show-setting>
     <Left v-if="!isLoading" v-motion-slide-left />
     <Right v-if="!isLoading" v-motion-slide-right />
     <Bottom v-if="!isLoading" v-motion-slide-visible-bottom />
@@ -147,12 +147,12 @@
       :title="orgData.name"
       @closed="cleanMarkerActive"
     >
-      <div class="info flex justify-between items-start pb-10px">
+      <div class="info flex justify-between items-start pb-[10px]">
         <div>
           <div class="info-item flex">
-            地址：<div class="w-200px">{{ orgData.address }}</div>
+            地址：<div class="w-[200px]">{{ orgData.address }}</div>
           </div>
-          <div class="info-item flex items-center my-4px">
+          <div class="info-item flex items-center my-[4px]">
             机构安全负责人：<div>{{ orgData.userName }}</div>
           </div>
           <div class="info-item flex items-center">
@@ -169,7 +169,7 @@
           查看<br />详情
         </div> -->
       </div>
-      <div class="h-300px overflow-y-auto">
+      <div class="h-[300px] overflow-y-auto">
         <Module
           v-for="(module, index) in orgData?.modules"
           :key="index"
